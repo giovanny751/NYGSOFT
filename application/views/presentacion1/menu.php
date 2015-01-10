@@ -1,8 +1,8 @@
 <head>
-    <script src="<?php echo  base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo  base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
-    <link href="<?php echo  base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo  base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+    <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+    <script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
+    <link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <style>
@@ -20,7 +20,7 @@
         <button type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones">Nuevo Modulo</button>
     </div>
     <?php if (!empty($nombrepadre)) {
-        ?> <div padre="<?php echo  $hijo ?>"  class="row devolver" ><b><?php echo  $nombrepadre ?></b></div>
+        ?> <div padre="<?= $hijo ?>"  class="row devolver" ><b><?= $nombrepadre ?></b></div>
     <?php } else { ?>
         <div class="row devolver"><b>Principal</b></div>
     <?php } ?>
@@ -36,12 +36,12 @@
                     <tbody id="cuerpomodulo">
                         <?php if (empty($menu)) { ?><tr><td colspan="3" align="center">No Existen Datos</td></tr><?php } ?>
                         <?php foreach ($menu as $modulo) { ?>
-                            <tr id="<?php echo  $modulo['menu_id'] ?>">
-                                <td><?php echo  $modulo['menu_nombrepadre'] ?></td>
-                                <td align="center"><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones"  idgeneral="<?php echo  $modulo['menu_id'] ?>" nombre="<?php echo  $modulo['menu_nombrepadre'] ?>" idpadre="<?php echo  $modulo['menu_id'] ?>" >Opción</button>
+                            <tr id="<?= $modulo['menu_id'] ?>">
+                                <td><?= $modulo['menu_nombrepadre'] ?></td>
+                                <td align="center"><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones"  idgeneral="<?= $modulo['menu_id'] ?>" nombre="<?= $modulo['menu_nombrepadre'] ?>" idpadre="<?= $modulo['menu_id'] ?>" >Opción</button>
                                     <!--<button  >Option</button>-->
                                 </td>
-                                <td align="center"><input type="radio" class="submodulo" idgeneral="<?php echo  $modulo['menu_id'] ?>" idpadre="<?php echo  $modulo['menu_idpadre'] ?>" nombrepadre="<?php echo  $modulo['menu_nombrepadre'] ?>" name="submodulo" menu="<?php echo  $modulo['menu_idhijo'] ?>"></td>
+                                <td align="center"><input type="radio" class="submodulo" idgeneral="<?= $modulo['menu_id'] ?>" idpadre="<?= $modulo['menu_idpadre'] ?>" nombrepadre="<?= $modulo['menu_nombrepadre'] ?>" name="submodulo" menu="<?= $modulo['menu_idhijo'] ?>"></td>
                             </tr>    
                         <?php } ?>
                     </tbody>    
@@ -134,7 +134,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-12 col-lg-12 col-sm-12 col-sx-12 margenlogo' align='right' >
-                        <button type="button" general="<?php echo  $idgeneral ?>" padre="<?php echo  $hijo ?>" class="btn btn-success" id="guardar">Guardar</button>
+                        <button type="button" general="<?= $idgeneral ?>" padre="<?= $hijo ?>" class="btn btn-success" id="guardar">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@
         $('.eliminar').attr('generalid', idgeneral);
         $('.guardar').attr('generalid', idgeneral);
 
-        var url = "<?php echo  base_url('index.php/presentacion/consultadatosmenu') ?>";
+        var url = "<?= base_url('index.php/presentacion/consultadatosmenu') ?>";
         $.post(url, {idgeneral: idgeneral}, function (data) {
             $('#nombre').val(data['menu_nombrepadre']);
             $('#papa').val(data['menu_idpadre']);
@@ -175,7 +175,7 @@
 
         var idgeneral = $(this).attr('generalid');
 
-        var url = "<?php echo  base_url('index.php/presentacion/eliminarmodulo') ?>";
+        var url = "<?= base_url('index.php/presentacion/eliminarmodulo') ?>";
         $.post(url, {idgeneral: idgeneral}, function (data) {
 
         $('#myModal').modal('hide');
@@ -198,7 +198,7 @@
 
         $('#idgeneral2').val(papa);
         $('#nombrepadre2').val(menuaseguir);
-        $('#redireccion').attr('href', "<?php echo  base_url('index.php/presentacion/menu') ?>");
+        $('#redireccion').attr('href', "<?= base_url('index.php/presentacion/menu') ?>");
         $('#redireccion').submit();
     });
 
@@ -206,7 +206,7 @@
         var modulo = $('#modulo').val();
         var padre = $(this).attr('padre');
         var general = $(this).attr('general');
-        var url = "<?php echo  base_url('index.php/presentacion/guardarmodulo') ?>";
+        var url = "<?= base_url('index.php/presentacion/guardarmodulo') ?>";
         $.post(url, {modulo: modulo, padre: padre, general: general}, function (data) {
             $('#cuerpomodulo *').remove();
             var tabla = "";
@@ -227,7 +227,7 @@
         var accion = $('#accion').val();
         var estado = $('#estado').val();
 
-        var url = "<?php echo  base_url('index.php/presentacion/guardaratributosmenu') ?>";
+        var url = "<?= base_url('index.php/presentacion/guardaratributosmenu') ?>";
 
         $.post(url, {id:id,nombre: nombre, controlador: controlador, accion: accion, estado: estado}, function (data) {
             $('#myModal').modal('hide');
@@ -249,7 +249,7 @@
         $('#menu').val(papa);
         $('#idgeneral').val(idgeneral);
         $('#nombrepadre').val(menuaseguir + "<i class='glyphicon glyphicon-chevron-right'></i><a padre='" + papa + "'>" + nombrepadre + "</a>");
-        $('#formulario').attr('href', "<?php echo  base_url('index.php/presentacion/menu') ?>");
+        $('#formulario').attr('href', "<?= base_url('index.php/presentacion/menu') ?>");
         $('#formulario').submit();
     });
 

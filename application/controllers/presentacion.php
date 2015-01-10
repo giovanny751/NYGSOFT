@@ -5,38 +5,35 @@ if (!defined('BASEPATH'))
 
 $padre = "prueba";
 
-class Presentacion extends CI_Controller {
+class Presentacion extends My_Controller {
 
     function __construct() {
         parent::__construct();
 //        $numero = "";
-
+//        $this->load->js('js/jquery.min.js');
         $this->load->database();
         $this->load->model('ingreso_model');
         $this->load->model('Roles_model');
-        $this->data['menu'] = $this->session->userdata('menu');
         $this->data['user'] = $this->ion_auth->user()->row();
+        $this->data['menu_completo'] = $this->session->userdata('menu');
     }
 
     function principal() {
         if (!empty($this->data['user'])) {
 //            var_dump($this->data['user']);die;
-            
-            $menu = $this->modulos('prueba', null, $this->data['user']->id);
-            $this->session->set_userdata('menu', $menu);
-//            $this->load->view('presentacion/modulos', $this->data);
-            $data['menu'] = $menu;
-            $data['title'] = 'Index';
-            $data['content'] = 'presentacion/modulos';
-            $this->load->view('template/template', $data);
+//            echo "hola";die;
+            $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
+//            $this->data['content'] = "";
+
+            $this->layout->view('presentacion/principal', $this->data);
         } else {
             redirect('auth/login', 'refresh');
         }
     }
 
-    function modulos($datosmodulos, $html = null,$usuarioid) {
-        $tipo=2;
-        $menu = $this->ingreso_model->menu($datosmodulos,$usuarioid,$tipo);
+    function modulos($datosmodulos, $html = null, $usuarioid) {
+        $tipo = 2;
+        $menu = $this->ingreso_model->menu($datosmodulos, $usuarioid, $tipo);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -50,7 +47,7 @@ class Presentacion extends CI_Controller {
                     foreach ($menu as $submenus):
                         $html .= "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "' >" . strtoupper($nombrepapa) . "</a>";
                         if (!empty($submenus[0]))
-                            $html .=$this->modulos($submenus[0], null,$usuarioid);
+                            $html .=$this->modulos($submenus[0], null, $usuarioid);
                         $html .= "</li>";
                     endforeach;
         $html.="</ul>";
@@ -104,8 +101,9 @@ class Presentacion extends CI_Controller {
                 $this->data['menu'] = $this->ingreso_model->hijos($this->data['idgeneral']);
             }
 
-
-            $this->load->view('presentacion/menu', $this->data);
+//            $this->data['content'] = 'presentacion/menu';
+            $this->layout->view('presentacion/menu', $this->data);
+//            $this->load->view('presentacion/menu', $this->data);
         } else {
             redirect('auth/login', 'refresh');
         }
@@ -150,7 +148,9 @@ class Presentacion extends CI_Controller {
     function usuario() {
 
         $this->data['usaurios'] = $this->ingreso_model->totalusuarios();
-        $this->load->view('presentacion/usuario', $this->data);
+//        $this->data['content'] = 'presentacion/usuario';
+        $this->layout->view('presentacion/usuario', $this->data);
+//        $this->load->view('presentacion/usuario', $this->data);
     }
 
     function consultausuario() {
@@ -256,7 +256,7 @@ class Presentacion extends CI_Controller {
 
 //        var_dump($this->data['roles']);die;
 
-        $this->load->view('presentacion/roles', $this->data);
+        $this->layout->view('presentacion/roles', $this->data);
     }
 
     function guardarroles() {
@@ -284,8 +284,9 @@ class Presentacion extends CI_Controller {
     function administracionareas() {
 
         $this->data['cargos'] = $this->ingreso_model->areas();
+        $this->data['pais'] = $this->ingreso_model->paises();
 
-        $this->load->view('presentacion/administracionareas', $this->data);
+        $this->layout->view('presentacion/administracionareas', $this->data);
     }
 
     function guardararea() {
@@ -306,10 +307,10 @@ class Presentacion extends CI_Controller {
         $this->ingreso_model->guardarcargo($area, $cargo);
     }
 
-    function permisousuarios($datosmodulos, $html = null,$idusuario) {
-        
-        $tipo=1;
-        $menu = $this->ingreso_model->menu($datosmodulos,$idusuario,$tipo);
+    function permisousuarios($datosmodulos, $html = null, $idusuario) {
+
+        $tipo = 1;
+        $menu = $this->ingreso_model->menu($datosmodulos, $idusuario, $tipo);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion'], $modulo['menudos']);
@@ -321,14 +322,14 @@ class Presentacion extends CI_Controller {
             foreach ($nombrepapa as $nombrepapa => $menuidpadre)
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
-                        if($submenus[3]==$padre){
-                            $checked = 'checked' ;
-                        }else{
+                        if ($submenus[3] == $padre) {
+                            $checked = 'checked';
+                        } else {
                             $checked = '';
                         }
-                        $html .= "<li> <input type='checkbox' ".$checked." name='permisousuario[]' value='" . $padre . "'>" . strtoupper($nombrepapa);
+                        $html .= "<li> <input type='checkbox' " . $checked . " name='permisousuario[]' value='" . $padre . "'>" . strtoupper($nombrepapa);
                         if (!empty($submenus[0]))
-                            $html .=$this->permisousuarios($submenus[0], null,$idusuario);
+                            $html .=$this->permisousuarios($submenus[0], null, $idusuario);
                         $html .= "</li>";
                     endforeach;
         $html.="</ul>";
@@ -337,7 +338,7 @@ class Presentacion extends CI_Controller {
 
     function permisos() {
         $idusuario = $this->input->post('id');
-        echo $this->permisousuarios('prueba', null,$idusuario);
+        echo $this->permisousuarios('prueba', null, $idusuario);
     }
 
     function guardarpermisos() {
@@ -353,6 +354,35 @@ class Presentacion extends CI_Controller {
 
         $this->ingreso_model->eliminarpermisosmenu($usuarioid);
         $this->ingreso_model->permisosusuariomenu($permiso);
+    }
+
+    function guardarpais() {
+
+        $pais = $this->input->post('pais');
+        $this->ingreso_model->guardarpais($pais);
+
+
+        $pais = $this->ingreso_model->paises();
+        $this->output->set_content_type('application/json')->set_output(json_encode($pais));
+    }
+
+    function guardarciudad() {
+
+        $pais = $this->input->post('pais');
+        $ciudad = $this->input->post('ciudad');
+
+        $insertar[] = array('pai_id' => $pais, 'ciu_nombre' => $ciudad);
+
+        $this->ingreso_model->guardarciudad($insertar);
+    }
+
+    function guardartipoproducto() {
+
+        $tipoproducto = $this->input->post('tipoproducto');
+        $this->ingreso_model->guardartipoproducto($tipoproducto);
+
+        //$pais = $this->ingreso_model->paises();
+        //$this->output->set_content_type('application/json')->set_output(json_encode($pais));
     }
 
 }

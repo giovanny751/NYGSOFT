@@ -1,7 +1,7 @@
-<script src="<?php echo  base_url('js/jquery.js') ?>"></script>
-<script src="<?php echo  base_url('js/jquery-1.9.1.js') ?>"></script>
-<script src="<?php echo  base_url('js/jquery-ui.js') ?>"></script>
-<link rel="stylesheet" href="<?php echo  base_url('css/jquery-ui.css') ?>" type="text/css" media="screen"/>
+<script src="<?= base_url('js/jquery.js') ?>"></script>
+<script src="<?= base_url('js/jquery-1.9.1.js') ?>"></script>
+<script src="<?= base_url('js/jquery-ui.js') ?>"></script>
+<link rel="stylesheet" href="<?= base_url('css/jquery-ui.css') ?>" type="text/css" media="screen"/>
 <h2 align="center">Administración Modulo</h2>
 <br>
 <table align="center">
@@ -14,10 +14,10 @@
 <tbody>
     <?php foreach ($modulo as $modulos) { ?>
         <tr>
-            <td><?php echo  $modulos['NOMBRE_MENU'] ?></td>
-            <td><?php echo  $modulos['NOMBRE_MODULO'] ?></td>
+            <td><?= $modulos['NOMBRE_MENU'] ?></td>
+            <td><?= $modulos['NOMBRE_MODULO'] ?></td>
             <td><?php if($modulos['ESTADO'] == 1){echo "Activo";}else{echo "Inactivo";} ?></td>
-            <td align="center"><button type='button' class="modulo" controlador="<?php echo  $modulos['CONTROLADOR'] ?>" estado="<?php echo  $modulos['ESTADO'] ?>" nombremenu="<?php echo  $modulos['NOMBRE_MENU'] ?>" nombremodulo="<?php echo  $modulos['NOMBRE_MODULO'] ?>" idmenu="<?php echo  $modulos['ID_MENU'] ?>" idmodulo="<?php echo  $modulos['ID_MODULO'] ?>" >Modificar</button></td>
+            <td align="center"><button type='button' class="modulo" controlador="<?= $modulos['CONTROLADOR'] ?>" estado="<?= $modulos['ESTADO'] ?>" nombremenu="<?= $modulos['NOMBRE_MENU'] ?>" nombremodulo="<?= $modulos['NOMBRE_MODULO'] ?>" idmenu="<?= $modulos['ID_MENU'] ?>" idmodulo="<?= $modulos['ID_MODULO'] ?>" >Modificar</button></td>
         </tr>
     <?php } ?>
 </tbody>
@@ -77,7 +77,7 @@
                        var estadoguardado =  $('#estado').val();
                        var nombremoduloguardado = $('#modulo').val();
                        var controladorguardado = $('#controlador').val();
-                       var url = "<?php echo  base_url('index.php/presentacion/guardamodulo') ?>"
+                       var url = "<?= base_url('index.php/presentacion/guardamodulo') ?>"
                        $.post(url,{idmenu : idmenu , idmodulo : idmodulo, nombremoduloguardado : nombremoduloguardado, 
                        estadoguardado : estadoguardado,controladorguardado : controladorguardado
                             }); 

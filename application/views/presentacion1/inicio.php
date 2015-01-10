@@ -1,6 +1,6 @@
-<script src="<?php echo  base_url('js/jquery.js') ?>"></script>
-<script src="<?php echo  base_url('js/jquery-1.9.1.js') ?>"></script>
-<script src="<?php echo  base_url('js/jquery-ui.js') ?>"></script>
+<script src="<?= base_url('js/jquery.js') ?>"></script>
+<script src="<?= base_url('js/jquery-1.9.1.js') ?>"></script>
+<script src="<?= base_url('js/jquery-ui.js') ?>"></script>
 
 
 <table cellspacing="9" cellpadding="4">
@@ -50,12 +50,12 @@
         
         if(contrasena == segundacontrasena){
         
-        var url = "<?php echo  base_url('index.php/presentacion/guardausuario') ?>";
+        var url = "<?= base_url('index.php/presentacion/guardausuario') ?>";
         
         $.post(url,{contrasena : contrasena,usuario : usuario,nombre : nombre,segundonombre : segundonombre, apellido : apellido, segundoapellido : segundoapellido,
             correo : correo,otrocorreo : otrocorreo
         },function(data){
-            window.location.href = "<?php echo  base_url('index.php/presentacion/index') ?>"; 
+            window.location.href = "<?= base_url('index.php/presentacion/index') ?>"; 
         });
         }else{
             

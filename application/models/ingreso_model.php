@@ -210,4 +210,27 @@ class Ingreso_model extends CI_Model {
         $this->db->insert_batch('permisos', $permiso);
     }
 
+    function paises() {
+
+        $pais = $this->db->get('pais');
+        return $pais->result_array();
+    }
+
+    function guardarpais($pais) {
+
+        $this->db->set('pai_nombre', $pais);
+        $this->db->insert('pais');
+    }
+
+    function guardarciudad($insertar) {
+
+        $this->db->insert_batch('ciudad', $insertar);
+    }
+
+    function guardartipoproducto($tipoproducto) {
+
+        $this->db->set('tipPro_nombre', $tipoproducto);
+        $this->db->insert('tipo_producto');
+    }
+
 }

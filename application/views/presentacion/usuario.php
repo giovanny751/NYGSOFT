@@ -5,7 +5,8 @@
         <button data-toggle="modal" data-target="#myModal"  type="button" id="insertarusuario" class="btn btn-success">Ingresar Usuario</button>
     </div>
     <div class="row">
-        <table class="table">
+        <div class="table-responsive ">
+        <table class="table table-responsive table-striped table-bordered">
             <thead>
             <th style="width: 220px">Usuario</th>
             <th style="width: 220px">Email</th>
@@ -17,8 +18,8 @@
             <tbody>
                 <?php foreach ($usaurios as $todosusuarios) { ?>
                     <tr>
-                        <td><?php echo  $todosusuarios['username'] ?></td>
-                        <td><?php echo  $todosusuarios['email'] ?></td>
+                        <td><?= $todosusuarios['username'] ?></td>
+                        <td><?= $todosusuarios['email'] ?></td>
                         <td><?php
                             if (!empty($todosusuarios['phone'])) {
                                 echo $todosusuarios['phone'];
@@ -33,13 +34,14 @@
                                 echo "Inactivo";
                             }
                             ?></td>
-                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo  $todosusuarios['id'] ?>">Modificar</button></td>
-                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"  id="permiso" class="btn btn-info" usuarioid="<?php echo  $todosusuarios['id'] ?>">Permisos</button></td>
+                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?= $todosusuarios['id'] ?>">Modificar</button></td>
+                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"  id="permiso" class="btn btn-info" usuarioid="<?= $todosusuarios['id'] ?>">Permisos</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
         <div id="alerta"></div>
+    </div>
     </div>
 </div>
 
@@ -141,7 +143,7 @@
         $('.obligatorio').val('');
 
         var id = $(this).attr('idpadre');
-        var url = "<?php echo  base_url('index.php/presentacion/consultausuario') ?>";
+        var url = "<?= base_url('index.php/presentacion/consultausuario') ?>";
         $.post(url, {id: id}, function (data) {
             $('#usuario').val(data.username);
             $('#email').val(data.email);

@@ -1,8 +1,8 @@
 <head>
-    <script src="<?php echo  base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo  base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
-    <link href="<?php echo  base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo  base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+    <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+    <script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
+    <link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <style>
@@ -14,7 +14,7 @@
     }
 </style>
 <div class="container">
-    <form method="post" action="<?php echo  base_url('index.php/auth/login') ?>">
+    <form method="post" action="<?= base_url('index.php/auth/login') ?>">
 
         <div class="row formulario">
             <div class="row grayBoxFrom">

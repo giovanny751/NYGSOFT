@@ -1,8 +1,8 @@
 <head>
-    <script src="<?php echo  base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo  base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
-    <link href="<?php echo  base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo  base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+    <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+    <script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
+    <link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <style>
@@ -33,8 +33,8 @@
             <tbody>
                 <?php foreach ($usaurios as $todosusuarios) { ?>
                     <tr>
-                        <td><?php echo  $todosusuarios['username'] ?></td>
-                        <td><?php echo  $todosusuarios['email'] ?></td>
+                        <td><?= $todosusuarios['username'] ?></td>
+                        <td><?= $todosusuarios['email'] ?></td>
                         <td><?php
                             if (!empty($todosusuarios['phone'])) {
                                 echo $todosusuarios['phone'];
@@ -49,7 +49,7 @@
                                 echo "Inactivo";
                             }
                             ?></td>
-                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo  $todosusuarios['id'] ?>">Modificar</button></td>
+                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?= $todosusuarios['id'] ?>">Modificar</button></td>
                     </tr>
 <?php } ?>
             </tbody>
@@ -123,7 +123,7 @@
         $('.obligatorio').val('');
 
         var id = $(this).attr('idpadre');
-        var url = "<?php echo  base_url('index.php/presentacion/consultausuario') ?>";
+        var url = "<?= base_url('index.php/presentacion/consultausuario') ?>";
         $.post(url, {id: id}, function (data) {
             $('#usuario').val(data.username);
             $('#email').val(data.email);
@@ -136,7 +136,7 @@
     });
     
     $('.guardar').click(function(){
-        var url = "<?php echo  base_url('index.php/presentacion/guardarusuario') ?>";
+        var url = "<?= base_url('index.php/presentacion/guardarusuario') ?>";
         
         $.post(url,$('#registro').serialize(),function(data){
             

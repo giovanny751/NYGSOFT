@@ -1,40 +1,32 @@
-<html>
-<head>
-    <title>NYGSOFT.COM</title>
-    <link href="<?php echo base_url('img/nygsoft.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
-    <script src="<?php echo base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
+<title>NYGSOFT.COM</title>
 
-    <script src="<?php echo base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo base_url('js/ajaxfileupload.js') ?>" type="text/javascript"></script>
-    <!--<script src="<?php echo base_url('js/plupload.dev.js') ?>" type="text/javascript"></script>-->
-    <link href="<?php echo base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="<?php echo base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
-    <!--<script src="<?php echo base_url('js/jquery.smartmenus.bootstrap.min.js') ?>" type="text/javascript"></script>-->
-    <style>
+<script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!--<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>
+<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
+<link href="<?php echo base_url('img/nygsoft.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
+<script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
 
-        body > .container {
-            padding: 60px 15px 0;
-        }
-        html, body {
-            height: 100%;
-        }
-        #contenedor {
-            min-height: 100%;
-            height: auto !important;
-            height: 100%;
-            margin: 0 auto -60px;
-        }
-        #footer{
-            height: 60px;
-        }
+<script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
 
-    </style>
-</head>
+<link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+<link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href="<?= base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
+<!--<script src="<?= base_url('js/jquery.smartmenus.bootstrap.min.js') ?>" type="text/javascript"></script>-->
 
+<style>
+    .container{
+        margin-top: 5%;
+        /*position: fixed;*/    
+    }
+    .row{
+        margin-top: 1%;
+    }
+</style>
 <?php
 
 function modulos($datosmodulos = 'prueba', $dato = null) {
@@ -58,7 +50,11 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
         foreach ($nombrepapa as $nombrepapa => $menuidpadre)
             foreach ($menuidpadre as $modulos => $menu)
                 foreach ($menu as $submenus):
-                    echo "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "'>" . strtoupper($nombrepapa) . "</a>";
+                    if ($submenus[1] == "" && $submenus[2] == "") {
+                        echo "<li><a href='#'>" . strtoupper($nombrepapa) . "</a>";
+                    } else {
+                        echo "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "'>" . strtoupper($nombrepapa) . "</a>";
+                    }
                     if (!empty($submenus[0]))
                         modulos($submenus[0]);
                     echo "</li>";
@@ -66,40 +62,32 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
     echo "</ul>";
 }
 ?>
-
-<body>
+<div class='container'>
     <div class="row">
-        <nav class="navbar navbar-default navbar-fixed-top" >
-            <div class='container'> 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">NYGSOFT</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">NYGSOFT</a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <?php echo modulos(); ?>
-                </div>
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">NYGSOFT</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">NYGSOFT</a>
             </div>
-        </nav>
+            <div class="navbar-collapse collapse">
+                <?= modulos(); ?>
+            </div>
+        </div><!--/.nav-collapse -->
     </div>
-
-    <div class='container'> 
-
+    <div class="row">
         <?php echo $content_for_layout ?>
-
     </div>
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com
-                <img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px">
-        </div>
-    </footer>
-    <div id="footer">
-        <p>© Michelle Torres 2013</p>
-    </div>
-</body>
-</html>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="row" style="">
+            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
+        </div>    
+    </div>     
+</footer>

@@ -5,7 +5,7 @@
 	<meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
 	<?php // echo link_tag("css/style.css")?>
         <!--<link rel="stylesheet" href="images/style.css" type="text/css" />-->
-        <link rel="stylesheet" type="text/css" href="<?php echo  base_url('css/style2.css') ?>" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?= base_url('css/style2.css') ?>" media="screen" />
 	<title>Orange web 2.0 free template</title>
 </head>
 <body>

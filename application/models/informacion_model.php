@@ -29,6 +29,10 @@ class Informacion_model extends CI_Model {
         $this->db->where('infPer_id',$id);
         $this->db->delete('informacion_personal');
     }
+    function consultaurlusuario(){
+        $datos=$this->db->get('informacion_personal');
+        return $datos->result_array();
+    }
 }
 
 ?>

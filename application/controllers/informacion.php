@@ -59,6 +59,10 @@ class Informacion extends My_Controller {
 
         $this->layout->view('informacion/consultarusuario');
     }
+    function consultaurlusuario(){
+        $datos=$this->Informacion_model->consultaurlusuario();
+        $this->output->set_content_type('application/json')->set_output(json_encode($datos));
+    }
 
 }
 

@@ -3,8 +3,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-$padre = "prueba";
-
 class Presentacion extends My_Controller {
 
     function __construct() {

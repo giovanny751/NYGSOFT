@@ -1,11 +1,11 @@
-   <div class="row" align="center">
-        <h3>REGISTRO USUARIO</h3>
-    </div>
-    <div class="row">
-        <button data-toggle="modal" data-target="#myModal"  type="button" id="insertarusuario" class="btn btn-success">Ingresar Usuario</button>
-    </div>
-    <div class="row">
-        <div class="table-responsive ">
+<div class="row" align="center">
+    <h3>REGISTRO USUARIO</h3>
+</div>
+<div class="row">
+    <button data-toggle="modal" data-target="#myModal"  type="button" id="insertarusuario" class="btn btn-success">Ingresar Usuario</button>
+</div>
+<div class="row">
+    <div class="table-responsive ">
         <table class="table table-responsive table-striped table-bordered">
             <thead>
             <th style="width: 220px">Usuario</th>
@@ -42,7 +42,7 @@
         </table>
         <div id="alerta"></div>
     </div>
-    </div>
+</div>
 </div>
 
 <!--Modal-->
@@ -129,6 +129,7 @@
             </div>
         </div>
     </div>
+</div>
 
 <style>
     .error{

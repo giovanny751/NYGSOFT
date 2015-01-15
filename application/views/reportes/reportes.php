@@ -37,7 +37,7 @@
         <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6">
 
             <div class="row">
-                <label>Reporte</label><input type="text" class="form-control" name="reporte">
+                <label>Reporte</label><input type="text" class="form-control obligado" id="reporte" name="reporte">
             </div>
             <div class="row"><label>Host</label><input type="text" class="form-control" name="host" id="host"></div>
             <div class="row">
@@ -49,7 +49,13 @@
                 </div>
             </div>
             <div class="row">
-                <label>Query</label><textarea class="form-control" id="query" name="query"></textarea>
+                <label>XML</label><textarea style="height: 365px;" class="form-control obligado" id="query" name="query"></textarea>
+            </div>
+            <div class="row">
+                <label>Categoria</label>
+                <select class="form-control" name="categoria" id="categoria">
+                    <option>-Seleccionar-</option>
+                </select>
             </div>
             <div class="row" align="right">
                 <button type="button" class="guardarquery btn btn-success">Validar</button>
@@ -141,15 +147,27 @@
         </div>
     </div>
 </div>
+<style>
+    .color{
+        color: blue;
+    }
+</style>
 <script>
-
+    
     $('.guardartotalreporte').click(function () {
 
         var url = "<?php echo base_url('index.php/reportes/guardartodoreporte') ?>";
-
-        $.post(url, $('#formreport').serialize(), function (data) {
-
+        var i = 0;
+        $('.obligatorio').each(function (indice, campo) {
+            if ($(this).val() == "") {
+                i++;
+            }
         });
+        if (i == 0) {
+            $.post(url, $('#formreport').serialize(), function (data) {
+
+            });
+        }
     });
 
     $('body').delegate('.reporte', 'click', function () {
@@ -159,6 +177,13 @@
         var url = "<?php echo base_url('index.php/reportes/allreport') ?>";
 
         $.post(url, {id: id}, function (data) {
+//            console.log(data);
+//            data.rep_id();
+            $('#reporte').val(data.rep_nombre);
+            $('#query').val(data.rep_query);
+            $('#host').val(data.rep_host);
+            $('#user').val(data.rep_user);
+            $('#password').val(data.rep_password);
 
         });
     });

@@ -25,7 +25,7 @@ class Reportes_model extends CI_Model {
     function inforeport($id){
         
         $this->db->where('rep_id',$id);
-        $reportes= $this->db->get('reportes');
+        $reportes= $this->db->get('reporte');
         return $reportes->result_array(); 
     }
     function editreport($id,$nombre,$estado){
@@ -36,15 +36,69 @@ class Reportes_model extends CI_Model {
         $this->db->update('reportes');
         echo $this->db->last_query();
     }
-    function allreport(){
-        
-            
-        
-    }
     function guardartodoreporte($data,$id){
         
         $this->db->where('rep_id',$id);
-        $this->db->update('reportes',$data);
+        $this->db->update('reporte',$data);
         
+    }
+    function consultahijos($idgeneral = 0) {
+
+//        $this->db->select('menu_id,menu_idpadre');
+        if (!empty($idgeneral))
+            $this->db->where('rep_idpadre', $idgeneral);
+        else
+            $this->db->where('rep_idpadre', '0');
+        $dato = $this->db->get('reporte');
+
+//        echo 1;die;
+//        var_dump($dato->result_array());die;
+//        echo $this->db->last_query();die;
+        return $dato->result_array();
+    }
+    function hijos($hijo) {
+
+        $this->db->where('rep_idpadre', $hijo);
+        $dato = $this->db->get('reporte');
+        $envio = $dato->result_array();
+
+//        echo $this->db->last_query();
+        return $envio;
+    }
+     function guardarmodulo($modulo, $padre = null, $general) {
+
+
+        $data = array('rep_nombrepadre' => $modulo,
+            'rep_idpadre' => $general
+        );
+
+        $this->db->insert('reporte', $data);
+
+        return $this->db->insert_id();
+    }
+     function cargamenu($padre) {
+        if (empty($padre)) {
+            $this->db->where('rep_idpadre', '0');
+        } else {
+            $this->db->where('rep_idpadre', $padre);
+        }
+        $dato = $this->db->get('reporte');
+        $envio = $dato->result_array();
+
+        return $envio;
+    }
+    function consultamenu($idgeneral) {
+
+        $this->db->where('rep_id', $idgeneral);
+        $datos = $this->db->get('reporte');
+
+        return $datos->result_array();
+    }
+    function actualizahijos($padre) {
+
+        $data = array('rep_idhijo' => $padre);
+
+        $this->db->where('rep_id', $padre);
+        $this->db->update('reporte', $data);
     }
 }

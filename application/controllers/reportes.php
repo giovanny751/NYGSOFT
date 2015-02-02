@@ -45,7 +45,7 @@ class reportes extends My_Controller {
         }
     }
 
-        function guardarmodulo() {
+    function guardarmodulo() {
 
 
         if (!empty($this->data['user'])) {
@@ -63,6 +63,7 @@ class reportes extends My_Controller {
             redirect('auth/login', 'refresh');
         }
     }
+
     function consultadatosmenu() {
 
         $idgeneral = $this->input->post('idgeneral');
@@ -73,11 +74,6 @@ class reportes extends My_Controller {
         } else {
             redirect('auth/login', 'refresh');
         }
-    }
-    
-    function totalreportes() {
-        $this->data['reporte'] = $this->Reportes_model->totalreportes();
-        $this->layout->view('reportes/reportes', $this->data);
     }
 
     function inforeport() {
@@ -105,11 +101,13 @@ class reportes extends My_Controller {
 
     function guardartodoreporte() {
 
-        $id = $this->input->post('idreporte');  
+        $id = $this->input->post('idreporte');
+
+        $query = $this->input->post('query');
 
         $data = array(
             'rep_nombrepadre' => $this->input->post('reporte'),
-            'rep_query' => $this->input->post('query'),
+            'rep_query' => $query,
             'rep_host' => $this->input->post('host'),
             'rep_user' => $this->input->post('user'),
             'rep_password' => $this->input->post('password'),
@@ -134,12 +132,77 @@ class reportes extends My_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($reportes));
     }
 
+    function logicareportes($datosmodulos = 'prueba', $dato = null) {
+
+
+        $informacion = $this->Reportes_model->visualizacionreporte($datosmodulos, 3, 1);
+        $i = array();
+        foreach ($informacion as $modulo)
+            $i[$modulo['rep_id']][$modulo['rep_nombrepadre']][$modulo['rep_idpadre']] [] = array($modulo['rep_idhijo']);
+
+
+        $report = "<ul >";
+        foreach ($i as $padre => $nombrepapa)
+            foreach ($nombrepapa as $nombrepapa => $menuidpadre)
+                foreach ($menuidpadre as $modulos => $menu)
+                    foreach ($menu as $submenus):
+                        $report .= "<li>" . strtoupper($nombrepapa) . "<input type='radio' value='".$padre."' name='seleccionreporte'>";
+                        if (!empty($submenus[0]))
+                            $this->logicareportes($submenus[0]);
+                        $report .= "</li>";
+                    endforeach;
+        $report .= "</ul>";
+
+        return $report;
+    }
+
     function informacionreporte() {
 
-        $id = 1;
-        $informacion = $this->Reportes_model->inforeport($id);
 
-        $this->layout->view('reportes/informacionreporte');
+        $this->data['logicareportes'] = $this->logicareportes($datosmodulos = 'prueba', $dato = null);
+
+
+        $this->layout->view('reportes/informacionreporte', $this->data);
+    }
+
+    function abrirxml() {
+
+        $idreporte = $this->input->post('seleccionreporte');
+        
+        $reporte =  $this->Reportes_model->consultareporte($idreporte);
+        
+        $query = $reporte[0]['rep_query'];
+        
+
+        $t = <<< EOF
+<?xml version="1.0" encoding="iso-8859-1"?>    
+<datos>        
+$query
+</datos>        
+EOF;
+
+        $this->data['xml'] = @simplexml_load_string($t);
+        
+//        $calcular = $this->data['xml']->calculate;
+        
+//        foreach($this->data['xml']->calculate as $campo => $alias){
+//            echo $campo."***".$alias."<br>";
+//        }
+//        die;
+//            $xml   = simplexml_load_string($this->data['xml'], 'SimpleXMLElement', LIBXML_NOCDATA);
+
+//            $array = json_decode(json_encode($xml), TRUE);
+        
+//            var_dump($array);die;
+//        
+//        echo "<pre>";
+//        var_dump($this->data['xml']->calculate);die;
+//        
+        $this->data['informacion'] = $this->Reportes_model->ejecucionquery($this->data['xml']->query);
+//        $this->data['totales'] = $this->Reportes_model->totales($this->data['xml']->query,$calcular);
+                
+        $this->layout->view('reportes/abrirxml',$this->data);
+
     }
 
 }

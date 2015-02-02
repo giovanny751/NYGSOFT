@@ -8,14 +8,14 @@ class Inicio extends MY_Controller {
     function __construct() {
         parent::__construct();
         $this->data['user'] = $this->ion_auth->user()->row();
+        $this->load->model('Roles_model');
     }
-
-    public function index () {
-       if($this->ion_auth->logged_in()) :
-           $this->build("inicio");
-       else :
-           redirect("auth/login");
-       endif;
+    function seleccionrol(){
+        
+        $id = $this->data['user']->id;        
+        $this->data['datos'] = $this->Roles_model->cantidadroles($id);
+        $this->load->view('inicio/seleccionrol',$this->data);
+        
     }
 
 

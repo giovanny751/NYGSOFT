@@ -46,7 +46,7 @@ class Auth extends CI_Controller {
 
     //log the user in
     function login() {
-        $this->data['title'] = "Logueo";
+        $this->data['title'] = "NYGSOFT";
 
         //validate form input
         $this->form_validation->set_rules('identity', 'Identity', 'required');
@@ -61,7 +61,7 @@ class Auth extends CI_Controller {
                 //if the login is successful
                 //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('presentacion/principal', 'refresh');
+                    redirect('presentacion/principal', 'refresh');
             } else {
                 //if the login was un-successful
                 //redirect them back to the login page

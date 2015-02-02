@@ -6,6 +6,18 @@ class Reportes_model extends CI_Model {
         parent::__construct();       
     }
     
+    function visualizacionreporte($padre = null, $idusuario, $tipo){
+        
+        if ($padre != "prueba") {
+            $this->db->where('rep_idpadre', $padre);
+        } else {
+            $this->db->where('rep_idpadre', 0);
+        };
+        
+        $reporte = $this->db->get('reporte');
+        return $reporte->result_array();
+    }
+    
     function validarquery($id,$query){
         
        $query = $this->db->query("desc $query");
@@ -100,5 +112,31 @@ class Reportes_model extends CI_Model {
 
         $this->db->where('rep_id', $padre);
         $this->db->update('reporte', $data);
+    }
+    function consultareporte($idreporte){
+       $this->db->where('rep_id',$idreporte); 
+       $reporte = $this->db->get('reporte');
+       return $reporte->result_array(); 
+    }
+    function ejecucionquery($query){
+        
+//        echo $query;die;
+        
+        $query = $this->db->query($query);
+        
+//        echo $this->db->last_query();
+        
+        return $query->result_array();
+    }
+    function totales($query,$campos){
+        
+        //        echo $query;die;
+        
+        $query = $this->db->query($query);
+        
+//        echo $this->db->last_query();
+        
+        return $query->result_array();
+        
     }
 }

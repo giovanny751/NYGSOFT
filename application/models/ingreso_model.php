@@ -5,13 +5,8 @@ class Ingreso_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
-
+    
     function menu($padre = null, $idusuario, $tipo) {
-
-//        echo $padre."****";die;
-//        echo $padre."*****"."<br>";
-//        $idusuario = $idusuario->id;
-
 
         if ($padre != "prueba") {
             $this->db->where('menu_idpadre', $padre);
@@ -30,12 +25,34 @@ class Ingreso_model extends CI_Model {
         }
         $dato = $this->db->get('modulo');
         $envio = $dato->result_array();
-
-        //echo $this->db->last_query();die;
-
         return $envio;
     }
+    function permisoroles($padre = null) {
 
+        if ($padre != "prueba") {
+            $this->db->where('menu_idpadre', $padre);
+        } else {
+            $this->db->where('menu_idpadre', 0);
+        };
+        $dato = $this->db->get('modulo');
+        $envio = $dato->result_array();
+        return $envio;
+    }
+    
+    
+    function permisousuarioroles($idusuario,$idrol,$padre = null) {
+
+        if ($padre != "prueba") {
+            $this->db->where('menu_idpadre', $padre);
+        } else {
+            $this->db->where('menu_idpadre', 0);
+        };
+        $this->db->where('permisos_rol.rol_id', $idrol);
+        $this->db->join('permisos_rol','permisos_rol.menu_id = modulo.menu_id');
+//        $this->db->join('permisos','permisos.rol_id = permisos_rol.rol_id','left');
+        $dato = $this->db->get('modulo');
+        return  $dato->result_array();
+    }
     function consultamenu($idgeneral) {
 
         $this->db->where('menu_id', $idgeneral);
@@ -201,13 +218,10 @@ class Ingreso_model extends CI_Model {
         $this->db->insert('cargos');
     }
 
-    function eliminarpermisosmenu($usuarioid) {
-        $this->db->where('usu_id', $usuarioid);
-        $this->db->delete('permisos');
-    }
-
     function permisosusuariomenu($permiso) {
+        
         $this->db->insert_batch('permisos', $permiso);
+        
     }
 
     function paises() {

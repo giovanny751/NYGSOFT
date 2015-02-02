@@ -10,6 +10,7 @@
                 <thead>
                 <th>Nombre</th>
                 <th>Estado</th>
+                <th>Eliminar</th>
                 <th>Opciones</th>
                 </thead>
                 <tbody id="cuerporol">
@@ -17,7 +18,8 @@
                     <tr>
                         <td><?php echo $datos['rol_nombre']; ?></td>
                         <td><?php echo $datos['rol_estado']; ?></td>
-                        <td><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-info">Opciones</button></td>
+                        <td><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-info opciones">Opciones</button></td>
+                        <td><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
                     </tr>
                     <?php }?>
                 </tbody>
@@ -38,11 +40,17 @@
                         <h5><i class="glyphicon glyphicon-pencil"></i> Nuevo</h5>
                     </div>
                     <div class="well">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12 col-sm-12 col-sx-12">
-                                <label>Nombre</label><input type="text" id="nombre" class="form-control">
-                            </div>
+                        <form id="nuevorol" method="post">
+                        <div class="form-group">
+                                <label >Nombre</label><input type="text" id="nombre" name="nombre" class="form-control">
                         </div>
+                        <div class="form-group">
+                                <label>Permisos </label>
+                                <?php 
+                                echo $content;
+                                ?>
+                        </div>
+                        </form>    
                     </div>
                 </div>
             </div>		
@@ -61,14 +69,32 @@
 </div>    
 
 <script>
+    
+    
+//------------------------------------------------------------------------------
+//                      ELIMINAR ROL    
+//------------------------------------------------------------------------------ 
+
+$('body').delegate('.eliminar','click',function(){
+   
+   var id = $(this).attr('rol');
+   
+   var url = "<?php echo base_url('index.php/presentacion/eliminarrol'); ?>";
+        
+   $.post(url,{id:id},function(data){
+       
+   });
+   $(this).parents('tr').remove();
+});
+
 //------------------------------------------------------------------------------
 //                      NUEVO ROL    
 //------------------------------------------------------------------------------    
     $('body').delegate('.guardar','click',function(){
         
-        var nombre = $('#nombre').val();
         var url = "<?php echo base_url('index.php/presentacion/guardarroles'); ?>";
-        $.post(url,{nombre:nombre},function(data){
+        
+        $.post(url,$('#nuevorol').serialize(),function(data){
             $('#myModal').modal('hide');
             
             var filas = "";
@@ -77,7 +103,8 @@
                 filas += "<tr>";
                 filas += "<td>"+val.rol_nombre+"</td>";
                 filas += "<td>"+val.rol_estado+"</td>";
-                filas += "<td><button type='button' rol='"+val.rol_id+"' class='btn btn-info'>Opciones</button></td>";
+                filas += "<td><button type='button' rol='"+val.rol_id+"' class='btn btn-danger eliminar'>Eliminar</button></td>";
+                filas += "<td><button type='button' rol='"+val.rol_id+"' class='btn btn-info opciones'>Opciones</button></td>";
                 filas += "</tr>";
             });
             
@@ -88,6 +115,12 @@
             
         });
         
+    });
+    
+    $('.opciones').click(function(){
+        
+        $('#nombre').val('');
+        $('.seleccionados').prop('checked',false);
     });
     
     

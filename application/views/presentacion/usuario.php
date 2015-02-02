@@ -13,7 +13,7 @@
             <th style="width: 220px">Numero Celular</th>
             <th style="width: 220px">Estado</th>
             <th style="width: 220px">Modificar</th>
-            <th style="width: 220px">Permisos</th>
+            <th style="width: 220px">Roles</th>
             </thead>
             <tbody>
                 <?php foreach ($usaurios as $todosusuarios) { ?>
@@ -35,7 +35,7 @@
                             }
                             ?></td>
                         <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?= $todosusuarios['id'] ?>">Modificar</button></td>
-                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"  id="permiso" class="btn btn-info" usuarioid="<?= $todosusuarios['id'] ?>">Permisos</button></td>
+                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?= $todosusuarios['id'] ?>">Roles</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -105,15 +105,32 @@
             <div class="col-md-12 col-lg-12 col-sm-12 col-sx-12">
                 <div class=" marginV20">
                     <div class="widgetTitle">
-                        <h5><i class="glyphicon glyphicon-pencil"></i> Permisos</h5>
+                        <h5><i class="glyphicon glyphicon-pencil"></i> Asignacion de Rol</h5>
                     </div>
                     <div class="well">
-                        <form method="post" id="formulariopermisos">
-                            <input type="hidden" name="usuarioid" id="usuarioid">
-                            <div class="row totalpermisos">
-
+                        <div class="row">
+                            <div class="form-group has-success has-feedback">
+                                <label>Roles</label>
+                                <select id="roles" class="form-control">
+                                    <option value="">-Seleccionar-</option>
+                                    <?php foreach ($roles as $rol) { ?>
+                                        <option value="<?php echo $rol['rol_id']; ?>"><?php echo $rol['rol_nombre']; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <button type="button" class="btn btn-success insertarrol">Asignar</button>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row">
+                            <form method="post" id="formulariopermisos">
+                                <input type="hidden" name="usuarioid" id="usuarioid">
+                                <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6 rolseleccionado">
+
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6 permisomenu">
+
+                                </div>
+                            </form>    
+                        </div>
                     </div>
                 </div>
             </div>		
@@ -140,38 +157,65 @@
 <script>
     $('#ingresousuario').hide();
 
-    $('.modificar').click(function () {
+//------------------------------------------------------------------------------    
+    $('.insertarrol').click(function() {
+
+        $('.permisomenu *').remove();
+        $('.rolseleccionado *').remove();
+        
+        var idusuario = $(this).attr('usuarioid'); 
+        
+        var idrol = $('#roles').val();
+        var textrol = $('#roles option:selected').text();
+
+
+        if (idrol != "") {
+            $('.rolseleccionado').append('<input type="hidden" name="roluser" value="' + idrol + '"><div style="cursor:pointer" class="alert alert-success rolusuario" rolid="' + idrol + '">' + textrol + '</div>');
+        }
+
+        var url = "<?= base_url('index.php/presentacion/permisosporrol') ?>";
+
+        $('.permisomenu *').remove();
+        $.post(url, {idrol: idrol,idusuario:idusuario}, function(data) {
+            $('.permisomenu').append(data);
+        });
+
+
+    });
+
+    $('.modificar').click(function() {
         $('.obligatorio').val('');
 
         var id = $(this).attr('idpadre');
         var url = "<?= base_url('index.php/presentacion/consultausuario') ?>";
-        $.post(url, {id: id}, function (data) {
+        $.post(url, {id: id}, function(data) {
             $('#usuario').val(data.username);
             $('#email').val(data.email);
             $('#celular').val(data.phone);
         });
     });
 
-    $('body').delegate('#permiso', 'click', function () {
+    $('body').delegate('.permiso', 'click', function() {
         var id = $(this).attr('usuarioid');
         $('#usuarioid').val(id);
+        $('.insertarrol').attr('usuarioid',id);
         var url = "<?php echo base_url('index.php/presentacion/permisos') ?>";
-        $.post(url, {id: id}, function (data) {
+        $.post(url, {id: id}, function(data) {
             $('.totalpermisos').html(data);
         });
     });
 
-    $('body').delegate('.guardarpermiso', 'click', function () {
+    $('body').delegate('.guardarpermiso', 'click', function() {
 
         var url = "<?php echo base_url('index.php/presentacion/guardarpermisos') ?>"
 
-        $.post(url, $('#formulariopermisos').serialize(), function () {
+        $.post(url, $('#formulariopermisos').serialize(), function() {
 
         });
 
     });
 
-    $('#insertarusuario').click(function () {
+    $('#insertarusuario').click(function() {
         $('.obligatorio').val('');
     });
 

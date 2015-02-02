@@ -7,6 +7,15 @@ class Roles_model extends CI_Model {
         
         
     }
+    function cantidadroles($id){
+        
+        $this->db->select('roles.rol_id,rol_nombre');
+        $this->db->distinct('roles.rol_id,rol_nombre');
+        $this->db->where('permisos.usu_id',$id);
+        $this->db->join('permisos','permisos.rol_id = roles.rol_id');
+        $roles = $this->db->get('roles');
+        return $roles->result_array();
+    }
     
     function roles(){
         
@@ -23,5 +32,22 @@ class Roles_model extends CI_Model {
         
         $this->db->insert('roles');
         
+        return $this->db->insert_id();
     } 
+    function insertapermisos($insert){
+        
+        $this->db->insert_batch('permisos_rol',$insert);
+        
+    }
+    
+    function eliminarrol($id){
+        
+        $this->db->where('rol_id',$id);
+        $this->db->delete('roles');
+    }
+    function eliminpermisosrol($id){
+        
+        $this->db->where('perRol_id',$id);
+        $this->db->delete('permisos_rol');
+    }
 }

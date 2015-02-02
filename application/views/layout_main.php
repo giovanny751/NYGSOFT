@@ -1,11 +1,61 @@
 <title>NYGSOFT.COM</title>
 
-<script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+       <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+<!--        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
+<!--        
+        <link rel="shortcut icon" href="<?php echo base_url('images/vice/favicon.png'); ?>">
+
+
+        <link href="<?php echo base_url('/assets/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/simple-line-icons/simple-line-icons.min.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/uniform/css/uniform.default.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css'); ?>" rel="stylesheet" type="text/css"/>
+         END GLOBAL MANDATORY STYLES 
+         BEGIN PAGE LEVEL PLUGIN STYLES 
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css'); ?>"/>
+
+        <link href="<?php echo base_url('/assets/global/plugins/gritter/css/jquery.gritter.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/plugins/jqvmap/jqvmap/jqvmap.css'); ?>" rel="stylesheet" type="text/css"/>
+         END PAGE LEVEL PLUGIN STYLES 
+         BEGIN PAGE STYLES 
+        <link href="<?php echo base_url('/assets/admin/pages/css/tasks.css'); ?>" rel="stylesheet" type="text/css"/>
+         END PAGE STYLES 
+         BEGIN THEME STYLES 
+        <link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/global/css/plugins.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/admin/layout/css/layout.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/assets/admin/layout/css/themes/darkblue.css'); ?>" rel="stylesheet" type="text/css" id="style_color"/>
+        <link href="<?php echo base_url('/assets/admin/layout/css/custom.css'); ?>" rel="stylesheet" type="text/css"/>
+         END THEME STYLES 
+
+        <link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">
+        <link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>        
+        
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/jquery-notific8/jquery.notific8.min.css'); ?>"/>
+
+
+
+         BEGIN THEME STYLES UMB!! 
+        <link href="<?php echo base_url('/css/style_umb.css'); ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>-->
+        <!-- END THEME STYLES UMB!! -->
+
+
+
 <script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<!--<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
+<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url('img/nygsoft.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
 <script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
@@ -14,7 +64,7 @@
 
 <link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->
 <link href="<?= base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
 <!--<script src="<?= base_url('js/jquery.smartmenus.bootstrap.min.js') ?>" type="text/javascript"></script>-->
 

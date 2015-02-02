@@ -26,22 +26,8 @@ class MY_Controller extends CI_Controller {
         // creación dinámica del menú
         parent::__construct();
         header('Pragma: no-cache');
-        $this->data['menu_completo'] = $this->session->userdata('menu');
         $this->load->library('layout', 'layout_main');
 //    $this->load->view('presentacion');
-    }
-
-    protected function build($view = null, $data = array()) {
-        if (empty($view)) {
-            $view = 'body';
-        }else{
-            redirect(base_url('index.php/presentacion/principal'));
-        }
-        // Obtener footer
-        $data = array_merge($data, $this->data);
-
-
-//                return $this->template->set_layout('home/home')->build($view, $data, false, 'assets');           
     }
 
 }

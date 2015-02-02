@@ -1,7 +1,10 @@
-<div class="row">
-    <button type="button" class="btn btn-info">Campos</button>
-</div>
-<div class="row">
-    
-</div>
-
+<form method="post" action="<?php echo base_url('index.php/reportes/abrirxml') ?>"> 
+    <div class="row">
+        <?php
+        echo $logicareportes;
+        ?>
+    </div>
+    <div class="row" align="right">
+        <input type="submit" class="btn btn-success" value="REPORTE">
+    </div>
+</form>

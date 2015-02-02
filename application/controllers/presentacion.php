@@ -12,15 +12,13 @@ class Presentacion extends My_Controller {
         $this->load->database();
         $this->load->model('ingreso_model');
         $this->load->model('Roles_model');
+        $this->load->helper('miscellaneous');
+        $this->load->helper('security');
         $this->data['user'] = $this->ion_auth->user()->row();
         $this->data['menu_completo'] = $this->session->userdata('menu');
+        validate_login($this->session->userdata('user_id'));
     }
 
-    function pruebalayout(){
-        
-        echo "SDFSDF";
-    }
-    
     function principal() {
         if (!empty($this->data['user'])) {
 //            var_dump($this->data['user']);die;

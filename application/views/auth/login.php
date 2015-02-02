@@ -23,6 +23,17 @@
 </style>
 <section>
     <div class="row" >
+        <?php 
+    if ($message) {
+                ?>
+                <div class="container" >
+                    <div class="alert alert-<?php echo $message_type; ?>">
+                        <?php echo $message; ?>
+                    </div>
+                </div>
+                <?php
+            }
+    ?>
         <form method="post" action="<?= base_url('index.php/auth/login') ?>">
             <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-sx-offset-3 contCentral">
                 <div class="row formulario">

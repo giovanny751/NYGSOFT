@@ -1,5 +1,6 @@
 <div class="container">
-    <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" method="post">
+    <center><h1><?php echo $titulo; ?></h1></center>
+    <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" onsubmit="return obligatorio('1')" method="post">
         <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-3 col-lg-3">
@@ -12,7 +13,7 @@
                     Nit    
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nit', '', 'id="emp_nit"') ?>
+                    <?php echo form_input('emp_nit', '', 'class="obligatorio" id="emp_nit"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -26,7 +27,7 @@
                     Segmento a la que pertenece
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_segmento', '', 'id="emp_segmento"') ?>
+                    <?php echo form_input('emp_segmento', '', 'class="obligatorio" id="emp_segmento"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -48,13 +49,13 @@
                     Telefono
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_telefono', '', 'id="emp_telefono"') ?>
+                    <?php echo form_input('emp_telefono', '', 'class="obligatorio" id="emp_telefono"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direccion Principal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccion', '', 'id="emp_direccion"') ?>
+                    <?php echo form_input('emp_direccion', '', 'class="obligatorio" id="emp_direccion"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -71,7 +72,7 @@
                     Direcciones Sucursales
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccioSuc', '', 'id="emp_direccioSuc"') ?>
+                    <?php echo form_input('emp_direccioSuc', '', 'class="obligatorio" id="emp_direccioSuc"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -79,13 +80,13 @@
                     Nombre del Representante Legal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nombre_repre', '', 'id="emp_nombre_repre"') ?>
+                    <?php echo form_input('emp_nombre_repre', '', 'class="obligatorio" id="emp_nombre_repre"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     CC
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numDocRepre', '', 'id="emp_numDocRepre"') ?>
+                    <?php echo form_input('emp_numDocRepre', '', 'class="obligatorio" id="emp_numDocRepre"') ?>
                 </div>
             </div>
         </div>
@@ -104,7 +105,7 @@
                     Numero Actual de Vehiculos Propios
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosPropios', '', 'id="emp_vehiculosPropios"') ?>
+                    <?php echo form_input('emp_vehiculosPropios', '', 'class="obligatorio" id="emp_vehiculosPropios"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -112,13 +113,13 @@
                     Numero actual de vehiculos contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosContratados', '', 'id="emp_vehiculosContratados"') ?>
+                    <?php echo form_input('emp_vehiculosContratados', '', 'class="obligatorio" id="emp_vehiculosContratados"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Numero Actual de vehiculos que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numeroVehiculoAdministra', '', 'id="emp_numeroVehiculoAdministra"') ?>
+                    <?php echo form_input('emp_numeroVehiculoAdministra', '', 'class="obligatorio" id="emp_numeroVehiculoAdministra"') ?>
                 </div>
             </div>
         </div>
@@ -138,7 +139,7 @@
                     Numero Actual de Conductores Contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductores', '', 'id=emp_numActConductores') ?>
+                    <?php echo form_input('emp_numActConductores', '', 'class="obligatorio" id=emp_numActConductores') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -146,7 +147,7 @@
                     Numero Actual de Conductores que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductoresAdministra', '', 'id=emp_numActConductoresAdministra') ?>
+                    <?php echo form_input('emp_numActConductoresAdministra', '', 'class="obligatorio" id=emp_numActConductoresAdministra') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -163,7 +164,7 @@
                     Cual?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_idArl_otra', '', 'id="emp_idArl_otra"') ?>
+                    <?php echo form_input('emp_idArl_otra', '', 'class="obligatorio" id="emp_idArl_otra"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">

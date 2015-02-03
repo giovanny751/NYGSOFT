@@ -15,7 +15,7 @@ class Ingresoform extends My_Controller {
     }
 
     function empresa() {
-        $this->data['id'] = encrypt_id(2);
+        $this->data['titulo']="Registro Empresa";
         $this->layout->view('ingresoform/empresa', $this->data);
     }
 

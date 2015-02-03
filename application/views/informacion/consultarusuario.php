@@ -21,7 +21,7 @@ console.log(index);
                         table += "<tr>";
                         table += "<td >" + val.infPer_nombre;
                         table += "</td>";
-                        table += '<td ><button type="button" class="btn btn-primary opcion" data-toggle="modal" data-target="#opcion" data-accion="nuevo_producto" data-url="' + val.infPer_url + '">consul</button>'
+                        table += '<td ><button type="button" class="btn btn-primary opcion" data-toggle="modal" data-target="#opcion" data-accion="pagina" data-url="' + val.infPer_url + '">consul</button>'
                         table += "</td>";
                         table += "</tr>";
 
@@ -34,20 +34,6 @@ console.log(index);
 
     });
 
-
-    $('body').delegate('.opcion','click', function () {
-        
-        
-       var texto= "<?php echo base_url('index.php/informacion/fosyga'); ?>"
-       var url = $(this).attr('data-url');
-       $('#guardar').hide();
-       $('.modal-dialog').removeClass().addClass('modal-full')
-//        $('#contenido').load(texto,{url2:url});
-        $.post(texto,{url2:url})
-                .done(function(msg){
-                        $('#contenido').html(msg);
-                })
-    });
 
 
 </script>

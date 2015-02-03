@@ -1,7 +1,7 @@
 <title>NYGSOFT.COM</title>
 
-       <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
 <!--        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
 <!--        
         <link rel="shortcut icon" href="<?php echo base_url('images/vice/favicon.png'); ?>">
@@ -47,13 +47,11 @@
          BEGIN THEME STYLES UMB!! 
         <link href="<?php echo base_url('/css/style_umb.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>-->
-        <!-- END THEME STYLES UMB!! -->
-
-
+<!-- END THEME STYLES UMB!! -->
 
 <script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>
+<!--<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
+<!--<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>-->
 <script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>
 <link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url('img/nygsoft.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
@@ -67,6 +65,7 @@
 <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->
 <link href="<?= base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
 <!--<script src="<?= base_url('js/jquery.smartmenus.bootstrap.min.js') ?>" type="text/javascript"></script>-->
+<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
 
 <style>
     .container{
@@ -89,9 +88,6 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
     foreach ($menu as $modulo)
         $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
 
-//        echo "<pre>";
-//        var_dump($i);die;
-//        
     if ($datosmodulos == 'prueba')
         echo "<ul class='nav navbar-nav'>";
     else
@@ -132,32 +128,34 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
     <div class="row">
         <?php echo $content_for_layout ?>
     </div>
-    <div class="modal fade" id="opcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">titulo</h4>
-            </div>
-            <div class="modal-body">
-                <div id="contenido"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" id="guardar">Guardar</button>
-                <!--<button type="button" class="btn btn-primary">Send message</button>-->
+
+    <div class="modal fade" id="opcion" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
+        <div id="remover" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="contenido" style="width: 100%">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cerrar" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <!--<button type="button" class="btn btn-primary">Send message</button>-->
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 <footer class="footer">
-    
-        <div class="row" style="">
-            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
-        </div>    
-    
+
+    <div class="row" style="">
+        <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
+    </div>    
+
 </footer>
 <style>
     .obligado{
@@ -165,17 +163,51 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
     }
 </style>
 <script>
-     function obligatorio(clase){
+    function obligatorio(clase) {
         var i = 0;
-        $('.obligatorio').each(function(key,val){
-           if($(this).val() == ""){
-               i++
-               $(this).addClass('obligado');
-           }else{
-               $(this).removeClass('obligado');
-           } 
+        $('.obligatorio').each(function (key, val) {
+            if ($(this).val() == "") {
+                i++
+                $(this).addClass('obligado');
+            } else {
+                $(this).removeClass('obligado');
+            }
         });
-        return i;
+        if (i > 0) {
+            alert('Faltan campos por llenar');
+            return false;
+        } else {
+            return true;
+        }
+//        return i;
     }
-    
+
+    $('body').delegate('.opcion', 'click', function () {
+
+//        var accion = $(this).attr('data-accion');
+//
+//        switch (accion) {
+//            case 'pagina':
+//                var texto = "<?php echo base_url('index.php/informacion/fosyga'); ?>";
+//                var url = $(this).attr('data-url');
+//                $('.modal-dialog').removeClass().addClass('modal-full')
+//                break;
+//            case 'nuevo_form':
+//                var texto = "<?php echo base_url('index.php/administracion/nuevo_formulario'); ?>";
+//                $('.modal-dialog').removeClass().addClass('modal-lg');
+//                var url = $(this).attr('data-formulario');
+//                $('#exampleModalLabel').html('Nuevo Formulario')
+//                break;
+//        }
+////        $('#contenido').load(texto,{url2:url});
+//        $.post(texto, {url2: url})
+//                .done(function (msg) {
+//                    $('#contenido').html(msg);
+//                    $('.modal-backdrop').css('z-index', '-1')
+//                })
+                    $('.modal-backdrop').css('z-index', '-1')
+    });
+
+
+
 </script>   

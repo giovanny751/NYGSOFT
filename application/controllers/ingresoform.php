@@ -15,15 +15,19 @@ class Ingresoform extends My_Controller {
     }
 
     function empresa() {
+        $this->data['id'] = encrypt_id(2);
         $this->layout->view('ingresoform/empresa', $this->data);
     }
+
     function guardar_emp() {
-        $post=$this->input->post();
-        $this->ingresoform_model->guardar_emp($post);
-//        print_y($post);
+        $post = $this->input->post();
+        $this->Ingresoform_model->guardar_emp($post);
     }
 
-    
+    function lisEmpresa() {
+        
+    }
+
 }
 
 /* End of file welcome.php */

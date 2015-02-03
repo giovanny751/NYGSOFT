@@ -6,8 +6,18 @@ class Ingresoform_model extends CI_Model {
         parent::__construct();
     }
 
-    function menu($padre = null, $idusuario, $tipo) {
+    function guardar_emp($post){
+        $datos = array();
+        $datos[] = $post;
+        $insertar = array();
+        foreach ($post as $key => $value) {
+            if($key!="emp_idArl_otra" && !empty($value))
+            $insertar[$key] = $value;
+        }
         
+        $this->db->insert('empresa',$insertar);
+        
+        echo $this->db->last_query();
     }
 
 }

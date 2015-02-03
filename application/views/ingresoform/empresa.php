@@ -1,12 +1,12 @@
 <div class="container">
-    <form action="<?php echo base_url('index.php/ingresoform/guardar_emp'); ?>" method="post">
+    <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" method="post">
         <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-3 col-lg-3">
                     Nombre/Razón Social
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_razonSocial', '', 'id="emp_razonSocial"') ?>
+                    <?php echo form_input('emp_razonSocial', '', 'class="obligatorio" id="emp_razonSocial"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Nit    

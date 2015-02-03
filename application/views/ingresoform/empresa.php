@@ -154,7 +154,7 @@
                     ¿La Empresa cuenta actualmente con ARL?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
+                    SI 
                     <?php echo form_radio('emp_idArl', '1', FALSE, 'id=emp_idArl') ?>
                     NO
                     <?php echo form_radio('emp_idArl', '0', TRUE, 'id=emp_idArl') ?>

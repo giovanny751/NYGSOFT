@@ -159,3 +159,23 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
         </div>    
     
 </footer>
+<style>
+    .obligado{
+        background-color: rgb(250, 255, 189);
+    }
+</style>
+<script>
+     function obligatorio(clase){
+        var i = 0;
+        $('.obligatorio').each(function(key,val){
+           if($(this).val() == ""){
+               i++
+               $(this).addClass('obligado');
+           }else{
+               $(this).removeClass('obligado');
+           } 
+        });
+        return i;
+    }
+    
+</script>   

@@ -15,7 +15,7 @@ class Ingresoform extends My_Controller {
     }
 
     function empresa() {
-        $this->data['titulo']="Registro Empresa";
+        $this->data['titulo'] = "Registro Empresa";
         $this->layout->view('ingresoform/empresa', $this->data);
     }
 
@@ -25,7 +25,17 @@ class Ingresoform extends My_Controller {
     }
 
     function lisEmpresa() {
-        
+        $this->data['titulo'] = "Empresas";
+        $this->layout->view('ingresoform/lisEmpresa', $this->data);
+    }
+
+    function get_datatable() {
+        if ($this->input->is_ajax_request()) {
+            $data = $this->Ingresoform_model->get_table();
+            echo $data;
+        } else {
+            echo 'Acceso no utorizado';
+        }
     }
 
 }

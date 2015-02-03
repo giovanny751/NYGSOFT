@@ -1,41 +1,48 @@
-<div id="otro_formulario">
-    <div class="col-md-12 col-sm-12" >
-        <div class="col-md-3 col-sm-3">
-            Formulario Numero
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <?php echo count($post['url2']) + 1 ?>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            Fomulario Nombre
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <?php echo form_input('formulario', '', '') ?>
-        </div>
-    </div>
-    <div class="col-md-12 col-sm-12">
-        <div class="col-md-3 col-sm-3">
-            Nombre campo
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <?php echo form_input('formulario', '', '') ?>
-        </div>
-    </div>
-    <div class="col-md-12 col-sm-12" >
-        <div class="col-md-3 col-sm-3">
-            Campo Valor
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <?php echo form_input('formulario', '', '') ?>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            Campo Texto
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <?php echo form_input('formulario', '', '') ?>
-        </div>
-    </div>
-    <div class="col-md-12 col-sm-12" >
-        <center><?php echo form_button('Guardar', "Guardar", 'id="agregar" class="btn btn-success"') ?><center>
-    </div>
-</div>
+
+    <form id="form1">
+        <table class="table table-striped table-hover table-bordered">
+            <tr>
+                <td>
+                    Fomulario Nombre
+                </td>
+                <td>
+                    <?php echo form_input('form_nombreForm', '', 'id="form_nombreForm" class="obligatorio"') ?>
+                </td>
+                <td>
+                    Formulario Numero
+                </td>
+                <td>
+                    <?php echo $dato = $url2 + 1 ?>
+                    <input type="hidden" name="form_formulario" id="form_formulario" value="<?php echo $dato; ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nombre campo
+                </td>
+                <td>
+                    <?php echo form_input('form_campo', '', 'id="form_campo" class="obligatorio"') ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Campo Valor
+                </td>
+                <td>
+                    <?php echo form_input('form_valor', '', 'id="form_valor" class="obligatorio"') ?>
+                </td>
+                <td>
+                    Campo Texto
+                </td>
+                <td>
+                    <?php echo form_input('form_nombre', '', 'id="form_nombre" class="obligatorio"') ?>
+                </td>
+            </tr>
+
+            </tr>
+        </table>
+    </form>
+
+<center>
+    <?php echo form_button('Guardar', "Guardar", 'class="formulario_nuevo_form" class="btn btn-success"') ?>
+</center> 

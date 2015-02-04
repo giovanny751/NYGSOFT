@@ -1,42 +1,42 @@
-    <div>
-        <h2 align="center">ADMINISTRACION DE MODULOS</h2>
-    </div>
-    <div class="row">
-        <button type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones">Nuevo Modulo</button>
-    </div>
-    <?php if (!empty($nombrepadre)) {
-        ?> <div padre="<?= $hijo ?>"  class="row devolver" ><b><?= $nombrepadre ?></b></div>
-    <?php } else { ?>
-        <div class="row devolver"><b>Principal</b></div>
-    <?php } ?>
-    <div class="row">
-        <form method="post" id="formulario">
-            <div class="table-responsive">
-                <table class="table" align="center" border="1">
-                    <thead>
-                    <th align="center">Nombre</th>
-                    <th align="center">Opción</th>
-                    <th align="center">Sub Modulo</th>
-                    </thead>
-                    <tbody id="cuerpomodulo">
-                        <?php if (empty($menu)) { ?><tr><td colspan="3" align="center">No Existen Datos</td></tr><?php } ?>
-                        <?php foreach ($menu as $modulo) { ?>
-                            <tr id="<?= $modulo['menu_id'] ?>">
-                                <td><?= $modulo['menu_nombrepadre'] ?></td>
-                                <td align="center"><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones"  idgeneral="<?= $modulo['menu_id'] ?>" nombre="<?= $modulo['menu_nombrepadre'] ?>" idpadre="<?= $modulo['menu_id'] ?>" >Opción</button>
-                                    <!--<button  >Option</button>-->
-                                </td>
-                                <td align="center"><input type="radio" class="submodulo" idgeneral="<?= $modulo['menu_id'] ?>" idpadre="<?= $modulo['menu_idpadre'] ?>" nombrepadre="<?= $modulo['menu_nombrepadre'] ?>" name="submodulo" menu="<?= $modulo['menu_idhijo'] ?>"></td>
-                            </tr>    
-                        <?php } ?>
-                    </tbody>    
-                </table>
-            </div>
-            <input type="hidden" id="menu" name="menu">
-            <input type="hidden" id="nombrepadre" name="nombrepadre">
-            <input type="hidden" id="idgeneral" name="idgeneral">
-        </form> 
-    </div>    
+<div>
+    <h2 align="center">ADMINISTRACION DE MODULOS</h2>
+</div>
+<div class="row">
+    <button type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones">Nuevo Modulo</button>
+</div>
+<?php if (!empty($nombrepadre)) {
+    ?> <div padre="<?= $hijo ?>"  class="row devolver" ><b><?= $nombrepadre ?></b></div>
+<?php } else { ?>
+    <div class="row devolver"><b>Principal</b></div>
+<?php } ?>
+<div class="row">
+    <form method="post" id="formulario">
+        <div class="table-responsive">
+            <table class="table" align="center" border="1">
+                <thead>
+                <th align="center">Nombre</th>
+                <th align="center">Opción</th>
+                <th align="center">Sub Modulo</th>
+                </thead>
+                <tbody id="cuerpomodulo">
+                    <?php if (empty($menu)) { ?><tr><td colspan="3" align="center">No Existen Datos</td></tr><?php } ?>
+                    <?php foreach ($menu as $modulo) { ?>
+                        <tr id="<?= $modulo['menu_id'] ?>">
+                            <td><?= $modulo['menu_nombrepadre'] ?></td>
+                            <td align="center"><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones"  idgeneral="<?= $modulo['menu_id'] ?>" nombre="<?= $modulo['menu_nombrepadre'] ?>" idpadre="<?= $modulo['menu_id'] ?>" >Opción</button>
+                                <!--<button  >Option</button>-->
+                            </td>
+                            <td align="center"><input type="radio" class="submodulo" idgeneral="<?= $modulo['menu_id'] ?>" idpadre="<?= $modulo['menu_idpadre'] ?>" nombrepadre="<?= $modulo['menu_nombrepadre'] ?>" name="submodulo" menu="<?= $modulo['menu_idhijo'] ?>"></td>
+                        </tr>    
+                    <?php } ?>
+                </tbody>    
+            </table>
+        </div>
+        <input type="hidden" id="menu" name="menu">
+        <input type="hidden" id="nombrepadre" name="nombrepadre">
+        <input type="hidden" id="idgeneral" name="idgeneral">
+    </form> 
+</div>    
 <div id="desicion">
     <input type="hidden" id="papa">
 
@@ -132,20 +132,19 @@
 <script>
 
     $('#desicion').hide();
-    $('body').delegate(".opciones", "click", function () {
+    $('body').delegate(".opciones", "click", function() {
         var idgeneral = $(this).attr('idgeneral');
-
         $('.eliminar').attr('generalid', idgeneral);
         $('.guardar').attr('generalid', idgeneral);
 
         var url = "<?= base_url('index.php/presentacion/consultadatosmenu') ?>";
-        $.post(url, {idgeneral: idgeneral}, function (data) {
+        $.post(url, {idgeneral: idgeneral}, function(data) {
+            $('.modal-backdrop').css('z-index', '-1');
             $('#nombre').val(data['menu_nombrepadre']);
             $('#papa').val(data['menu_idpadre']);
             $('#controlador').val(data['menu_controlador']);
             $('#accion').val(data['menu_accion']);
             $('#estado').val(data['menu_estado']);
-
         });
 
         var idpadre = $(this).attr('idpadre');
@@ -155,24 +154,24 @@
 
     });
 
-    $('body').delegate('.eliminar', 'click', function () {
+    $('body').delegate('.eliminar', 'click', function() {
 
         var idgeneral = $(this).attr('generalid');
 
         var url = "<?= base_url('index.php/presentacion/eliminarmodulo') ?>";
-        $.post(url, {idgeneral: idgeneral}, function (data) {
+        $.post(url, {idgeneral: idgeneral}, function(data) {
 
-        $('#myModal').modal('hide');
+            $('#myModal').modal('hide');
 
         });
 
     })
 
-    $('a').click(function () {
+    $('a').click(function() {
 
         var papa = $(this).attr('padre');
 
-        $('a').each(function (key, val) {
+        $('a').each(function(key, val) {
 
             if ($(this).attr('padre') > papa) {
                 $(this).remove();
@@ -186,25 +185,32 @@
         $('#redireccion').submit();
     });
 
-    $('#guardar').click(function () {
+    $('#guardar').click(function() {
         var modulo = $('#modulo').val();
         var padre = $(this).attr('padre');
         var general = $(this).attr('general');
         var url = "<?= base_url('index.php/presentacion/guardarmodulo') ?>";
-        $.post(url, {modulo: modulo, padre: padre, general: general}, function (data) {
+
+        $.post(url, {modulo: modulo, padre: padre, general: general}, function(data) {
             $('#cuerpomodulo *').remove();
             var tabla = "";
-            $.each(data, function (key, val) {
+            $.each(data, function(key, val) {
                 tabla += "<tr><td>" + val.menu_nombrepadre + "</td><td align='center'><button class='btn btn-info opciones' data-target='#myModal' data-toggle='modal' idpadre='" + val.menu_idpadre + "' nombre='" + val.menu_nombrepadre + "' idgeneral='" + val.menu_id + "' type='button'>Opcion</button></td><td align='center'><input menu='" + val.menu_idhijo + "' nombrepadre='" + val.menu_nombrepadre + "' idgeneral='" + val.menu_id + "' type='radio' name='submodulo' class='submodulo'></td></tr>";
             });
             $('#cuerpomodulo').append(tabla);
             $('#modulo').val('');
             $('#myModal2').modal('hide');
+            $.notific8('Los Datos en Formacion Fueron Guardados.', {
+                horizontalEdge: 'bottom',
+                life: 5000,
+                theme: 'amethyst',
+                heading: 'EXITO'
+            });
         });
     });
 
-    $('body').delegate('.guardar', 'click', function () {
-        
+    $('body').delegate('.guardar', 'click', function() {
+
         var id = $(this).attr('generalid');
         var nombre = $('#nombre').val();
         var controlador = $('#controlador').val();
@@ -213,14 +219,14 @@
 
         var url = "<?= base_url('index.php/presentacion/guardaratributosmenu') ?>";
 
-        $.post(url, {id:id,nombre: nombre, controlador: controlador, accion: accion, estado: estado}, function (data) {
+        $.post(url, {id: id, nombre: nombre, controlador: controlador, accion: accion, estado: estado}, function(data) {
             $('#myModal').modal('hide');
         });
 
 
     });
 
-    $('body').delegate(".submodulo", "click", function () {
+    $('body').delegate(".submodulo", "click", function() {
         var papa = $(this).attr('menu');
 
         var nombrepadre = $(this).attr('nombrepadre');

@@ -46,6 +46,7 @@
 <!-- END THEME STYLES UMB!! -->
 <script>
     var base_url_js = '<?php echo base_url(); ?>';
+    var ruta = '';
 </script>
 <script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
 <!--<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
@@ -294,7 +295,7 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
         //Tasks.initDashboardWidget();
         //ComponentsDropdowns.init();
         //FormValidation.init();
-        //UIAlertDialogApi.init();
+        UIAlertDialogApi.init();
     });
     $('.date-picker').datepicker({
                 rtl: Metronic.isRTL(),

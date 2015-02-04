@@ -7,13 +7,13 @@
                     Nombre/Razón Social
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_razonSocial', '', 'class="obligatorio" id="emp_razonSocial"') ?>
+                    <?php echo form_input('emp_razonSocial', '', 'class="form-control obligatorio" id="emp_razonSocial"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Nit    
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nit', '', 'class="obligatorio" id="emp_nit"') ?>
+                    <?php echo form_input('emp_nit', '', 'class="form-control obligatorio" id="emp_nit"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -21,13 +21,13 @@
                     Tipo de Empresa
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_idTipo', array(), 'id=emp_idTipo') ?>
+                    <?php echo form_dropdown('emp_idTipo', array(),"", 'id="emp_idTipo" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Segmento a la que pertenece
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_segmento', '', 'class="obligatorio" id="emp_segmento"') ?>
+                    <?php echo form_input('emp_segmento', '', 'class="form-control obligatorio" id="emp_segmento"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -35,13 +35,13 @@
                     Actividad Economica (CIIU)
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_ciiu1', array(), 'id="emp_ciiu1"') ?>
+                    <?php echo form_dropdown('emp_ciiu1', array(),"", 'id="emp_ciiu1" class="form-control') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Actividad Economica Secundaria (CIIU)
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_ciiu2', array(), 'id="emp_ciiu2"') ?>
+                    <?php echo form_dropdown('emp_ciiu2', array(),"", 'id="emp_ciiu2" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -49,13 +49,13 @@
                     Telefono
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_telefono', '', 'class="obligatorio" id="emp_telefono"') ?>
+                    <?php echo form_input('emp_telefono', '', 'class="form-control obligatorio" id="emp_telefono"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direccion Principal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccion', '', 'class="obligatorio" id="emp_direccion"') ?>
+                    <?php echo form_input('emp_direccion', '', 'class="form-control obligatorio" id="emp_direccion"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -64,15 +64,15 @@
                 </div>
                 <div class="col-md-3 col-lg-3">
                     SI
-                    <?php echo form_radio('emp_sucursal', '1', false, 'id="emp_sucursal"') ?>
+                    <?php echo form_radio('emp_sucursal', '1', false, 'id="emp_sucursal" class="form-control" ') ?>
                     NO
-                    <?php echo form_radio('emp_sucursal', '0', true, 'id="emp_sucursal"') ?>
+                    <?php echo form_radio('emp_sucursal', '0', true, 'id="emp_sucursal" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direcciones Sucursales
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccioSuc', '', 'class="obligatorio" id="emp_direccioSuc"') ?>
+                    <?php echo form_input('emp_direccioSuc', '', 'class="form-control obligatorio" id="emp_direccioSuc"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -80,13 +80,13 @@
                     Nombre del Representante Legal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nombre_repre', '', 'class="obligatorio" id="emp_nombre_repre"') ?>
+                    <?php echo form_input('emp_nombre_repre', '', 'class="form-control obligatorio" id="emp_nombre_repre"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     CC
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numDocRepre', '', 'class="obligatorio" id="emp_numDocRepre"') ?>
+                    <?php echo form_input('emp_numDocRepre', '', 'class="form-control obligatorio" id="emp_numDocRepre"') ?>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                     Numero Actual de Vehiculos Propios
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosPropios', '', 'class="obligatorio" id="emp_vehiculosPropios"') ?>
+                    <?php echo form_input('emp_vehiculosPropios', '', 'class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -113,13 +113,13 @@
                     Numero actual de vehiculos contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosContratados', '', 'class="obligatorio" id="emp_vehiculosContratados"') ?>
+                    <?php echo form_input('emp_vehiculosContratados', '', 'class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Numero Actual de vehiculos que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numeroVehiculoAdministra', '', 'class="obligatorio" id="emp_numeroVehiculoAdministra"') ?>
+                    <?php echo form_input('emp_numeroVehiculoAdministra', '', 'class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
                 </div>
             </div>
         </div>
@@ -139,7 +139,7 @@
                     Numero Actual de Conductores Contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductores', '', 'class="obligatorio" id=emp_numActConductores') ?>
+                    <?php echo form_input('emp_numActConductores', '', 'class="form-control obligatorio" id=emp_numActConductores') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -147,7 +147,7 @@
                     Numero Actual de Conductores que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductoresAdministra', '', 'class="obligatorio" id=emp_numActConductoresAdministra') ?>
+                    <?php echo form_input('emp_numActConductoresAdministra', '', 'class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -164,7 +164,7 @@
                     Cual?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_idArl_otra', '', 'class="obligatorio" id="emp_idArl_otra"') ?>
+                    <?php echo form_input('emp_idArl_otra', '', 'class="form-control obligatorio" id="emp_idArl_otra"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">

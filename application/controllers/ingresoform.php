@@ -51,7 +51,7 @@ class Ingresoform extends My_Controller {
         $log = array();
 
         $log[] = array('corEnv_nit' => $nit, 'corEnv_empresa' => $empresa, 'corEnv_correo' => $correo);
-
+        mail($correo,"Registro de empresas" , $message="preueba");
         $this->Ingresoform_model->guardarlogenviocorreo($log);
     }
 

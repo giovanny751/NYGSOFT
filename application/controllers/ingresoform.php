@@ -38,6 +38,23 @@ class Ingresoform extends My_Controller {
         }
     }
 
+    function ingresarempresa() {
+
+        $this->layout->view('ingresoform/ingresarempresa');
+    }
+
+    function enviocorreoempresa() {
+
+        $empresa = $this->input->post('empresa');
+        $correo = $this->input->post('correo');
+        $nit = $this->input->post('nit');
+        $log = array();
+
+        $log[] = array('corEnv_nit' => $nit, 'corEnv_empresa' => $empresa, 'corEnv_correo' => $correo);
+
+        $this->Ingresoform_model->guardarlogenviocorreo($log);
+    }
+
 }
 
 /* End of file welcome.php */

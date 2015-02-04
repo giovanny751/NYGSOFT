@@ -1,1 +1,0 @@
-hola gerson javier barbosa

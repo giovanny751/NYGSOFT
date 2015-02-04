@@ -72,11 +72,11 @@ class Ingresoform_model extends CI_Model {
 
         //CONSULTA DE REGISTROS
         $sQuery = " SELECT SQL_CALC_FOUND_ROWS " . str_replace(" , ", " ", implode(", ", $aColumns2)) . "
-                    FROM empresa ".
-                    $rWhere." ".
-                    $sWhere." ".
-                    $sOrder." ".
-                    $sLimit;
+                    FROM empresa " .
+                $rWhere . " " .
+                $sWhere . " " .
+                $sOrder . " " .
+                $sLimit;
         $sQueryprueba = $sQuery;
         //echo $sQuery;
         //mail("yeison@tellocor.com",'consulta',$sQuery);
@@ -109,7 +109,7 @@ class Ingresoform_model extends CI_Model {
 //            'emp_razonSocial',
 //            'emp_nit',
 //            'emp_idTipo'
-        
+
         $contador = 1;
         foreach ($fetch_array as $aRow) {
             $row = array();
@@ -120,7 +120,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = ($aRow['emp_razonSocial'] > 0) ? '<spam class="label label-success">SI</spam>' : '<spam class="label label-default">NO</spam>';
 //                    $row[] = '<a href="' . base_url('index.php/profile/assess/' . $aRow[$aColumns[2]] . '/' . $aRow['emp_razonSocial']) . '" class="btn default btn-xs blue-stripe">Evaluar</a>';
 //                }  else
-                    if ($aColumns[$i] != ' ') {
+                if ($aColumns[$i] != ' ') {
                     /* General output */
                     //$row[] = print_r($this->input->get());
                     //$row[] = $sQueryprueba;
@@ -132,6 +132,11 @@ class Ingresoform_model extends CI_Model {
         }
 
         return json_encode($output);
+    }
+
+    function guardarlogenviocorreo($log) {
+
+        $this->db->insert_batch('correo_envio', $log);
     }
 
 }

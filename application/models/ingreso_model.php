@@ -31,7 +31,7 @@ class Ingreso_model extends CI_Model {
         $dato = $this->db->get('modulo');
         $envio = $dato->result_array();
 
-        //echo $this->db->last_query();die;
+//        echo $this->db->last_query();die;
 
         return $envio;
     }

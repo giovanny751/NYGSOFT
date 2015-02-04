@@ -81,5 +81,10 @@ class Preguntas extends My_Controller {
         }
         $this->preguntas_model->ingresarrespuestas($array);
     }
+    function informacionusuario(){
+        
+        $this->layout->view('preguntas/informacionusuario');
+        
+    }
 
 }

@@ -14,6 +14,11 @@
                     Agregar        
                 </button>
             </div>
+            <div class="col-lg-3 col-md-3" id="consultar_formulario" style="display: none">
+                <button type="button" class="btn btn-success consultar" >
+                    Consultar        
+                </button>
+            </div>
         </div>
     </div>
     <script>
@@ -21,10 +26,20 @@
             var titulo = $('#formulario option:selected').text();
             if (titulo == 'OTRO') {
                 $('#otro_formulario').show();
+                $('#consultar_formulario').hide();
                 return false;
             } else {
                 $('#otro_formulario').hide();
+                $('#consultar_formulario').show();
             }
-        })
+        });
+        $('.consultar').click(function(){
+            $('#otro_formulario').show();
+//            $('#formulario').click()
+           $.post(url,{formulario:formulario})
+        });
+        $('#consultar_formulario').click(function(){
+            
+        });
     </script>
 </div>

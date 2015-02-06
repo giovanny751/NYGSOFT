@@ -16,7 +16,7 @@ class Login extends My_Controller {
     public function index() {
         //FUNCION PRINCIPAL PARA EL LOGIN - CARGA LA VISTA LOGIN/INDEX.PHP
         if ($this->session->userdata('logged_in')) {
-            redirect('index.php/aspirantes', 'refresh');
+            redirect('index.php/presentacion/principal', 'location');
         } else {
             $this->load->view('login/index');
         }
@@ -27,7 +27,7 @@ class Login extends My_Controller {
         echo make_hash($var);
     }
 
-    public function verify() {
+    function verify() {
         //RECOLECTAMOS LOS DATOS DE LOS CAMPOS DE USUARIO Y CONTRASE�A
         $username = $this->input->post('username');
         $pass = $this->input->post('password');

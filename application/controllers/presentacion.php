@@ -14,22 +14,20 @@ class Presentacion extends My_Controller {
         $this->load->model('Roles_model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
-        $this->data['user'] = $this->ion_auth->user()->row();
-        $this->data['menu_completo'] = $this->session->userdata('menu');
+//        $this->data['user'] = $this->ion_auth->user()->row();
+//        $this->data['menu_completo'] = $this->session->userdata('menu');
         validate_login($this->session->userdata('user_id'));
     }
 
     function principal() {
-        if (!empty($this->data['user'])) {
+//            echo $this->session->userdata('usu_correo');
+            //echo print_y($d);
 //            var_dump($this->data['user']);die;
 //            echo "hola";die;
-            $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
+        $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
 //            $this->data['content'] = "";
 
-            $this->layout->view('presentacion/principal', $this->data);
-        } else {
-            redirect('auth/login', 'refresh');
-        }
+        $this->layout->view('presentacion/principal', $this->data);
     }
 
     function modulos($datosmodulos, $html = null, $usuarioid) {
@@ -147,43 +145,43 @@ class Presentacion extends My_Controller {
     }
 
     function usuario() {
-        
+
         $this->data['roles'] = $this->Roles_model->roles();
         $this->data['usaurios'] = $this->ingreso_model->totalusuarios();
 //        $this->data['content'] = 'presentacion/usuario';
         $this->layout->view('presentacion/usuario', $this->data);
 //        $this->load->view('presentacion/usuario', $this->data);
     }
-    function permisosporrol(){
-        
+
+    function permisosporrol() {
+
         $idrol = $this->input->post('idrol');
         $idusuario = $this->input->post('idusuario');
-        $permisos = $this->permisorolporusuario($idusuario,$idrol);
-        
+        $permisos = $this->permisorolporusuario($idusuario, $idrol);
+
         echo $permisos;
-        
     }
-    function permisorolporusuario($idusuario,$idrol,$datosmodulos = 'prueba', $html = null) {
-        
-        $menu = $this->ingreso_model->permisousuarioroles($idusuario,$idrol,$datosmodulos);
+
+    function permisorolporusuario($idusuario, $idrol, $datosmodulos = 'prueba', $html = null) {
+
+        $menu = $this->ingreso_model->permisousuarioroles($idusuario, $idrol, $datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
-        
-            $html .="<ul>";
+
+        $html .="<ul>";
         foreach ($i as $padre => $nombrepapa)
             foreach ($nombrepapa as $nombrepapa => $menuidpadre)
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
-                        $html .= "<li>" . strtoupper($nombrepapa)."<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
+                        $html .= "<li>" . strtoupper($nombrepapa) . "<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
                         if (!empty($submenus[0]))
-                            $html .=$this->permisorolporusuario($idusuario,$idrol,$submenus[0]);
+                            $html .=$this->permisorolporusuario($idusuario, $idrol, $submenus[0]);
                         $html .= "</li>";
                     endforeach;
         $html.="</ul>";
         return $html;
     }
-    
 
     function consultausuario() {
 
@@ -214,6 +212,7 @@ class Presentacion extends My_Controller {
             
         }
     }
+
     function permisosusuarios() {
 
         $this->data['usuarios'] = $this->ingreso_model->usuarios();
@@ -279,20 +278,20 @@ class Presentacion extends My_Controller {
 
         $guardarpermisos = $this->ingreso_model->permisosmodulo($datos);
     }
-    
+
     function permisoroles($datosmodulos, $html = null) {
-        
+
         $menu = $this->ingreso_model->permisoroles($datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
-        
-            $html .="<ul>";
+
+        $html .="<ul>";
         foreach ($i as $padre => $nombrepapa)
             foreach ($nombrepapa as $nombrepapa => $menuidpadre)
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
-                        $html .= "<li><div>" . strtoupper($nombrepapa)."</div><div align='right'><input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'></div>";
+                        $html .= "<li><div>" . strtoupper($nombrepapa) . "</div><div align='right'><input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'></div>";
                         if (!empty($submenus[0]))
                             $html .=$this->permisoroles($submenus[0]);
                         $html .= "</li>";
@@ -300,12 +299,11 @@ class Presentacion extends My_Controller {
         $html.="</ul>";
         return $html;
     }
-    
 
     function roles() {
 
         $this->data['content'] = $this->permisoroles('prueba', null);
-        
+
         $this->data['roles'] = $this->Roles_model->roles();
 
 //        var_dump($this->data['roles']);die;
@@ -317,26 +315,27 @@ class Presentacion extends My_Controller {
 
         $nombre = $this->input->post('nombre');
         $permisorol = $this->input->post('permisorol');
-        
+
         $id = $this->Roles_model->guardarrol($nombre);
-        
+
         $insert = array();
-        
-        for($i=0;$i<count($permisorol);$i++){
-            $insert[] = array('rol_id'=>$id,'menu_id'=>$permisorol[$i]);
+
+        for ($i = 0; $i < count($permisorol); $i++) {
+            $insert[] = array('rol_id' => $id, 'menu_id' => $permisorol[$i]);
         }
-        
+
         $this->Roles_model->insertapermisos($insert);
-        
+
         $roles = $this->Roles_model->roles();
 
         $this->output->set_content_type('application/json')->set_output(json_encode($roles));
     }
-    function eliminarrol(){
-        
+
+    function eliminarrol() {
+
         $id = $this->input->post('id');
-     
-        
+
+
         $this->Roles_model->eliminarrol($id);
         $this->Roles_model->eliminpermisosrol($id);
     }
@@ -398,7 +397,7 @@ class Presentacion extends My_Controller {
                         } else {
                             $checked = '';
                         }
-                        $html .= "<li> <div>" . strtoupper($nombrepapa)."</div><div align='center'><input type='checkbox' " . $checked . " name='permisousuario[]' value='" . $padre . "'></div>";
+                        $html .= "<li> <div>" . strtoupper($nombrepapa) . "</div><div align='center'><input type='checkbox' " . $checked . " name='permisousuario[]' value='" . $padre . "'></div>";
                         if (!empty($submenus[0]))
                             $html .=$this->permisousuarios($submenus[0], null, $idusuario);
                         $html .= "</li>";
@@ -421,7 +420,7 @@ class Presentacion extends My_Controller {
         $contador = count($permisorol);
 
         for ($i = 0; $i < $contador; $i++) {
-            $permiso[] = array('usu_id' => $usuario, 'menu_id' => $permisorol[$i],'rol_id'=>$rol);
+            $permiso[] = array('usu_id' => $usuario, 'menu_id' => $permisorol[$i], 'rol_id' => $rol);
         }
 
         $this->ingreso_model->permisosusuariomenu($permiso);

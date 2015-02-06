@@ -13,22 +13,55 @@ class Preguntas extends My_Controller {
         $this->load->model('preguntas_model');
     }
 
-    function preguntasseleccion() {
+    function administracionpreguntas() {
 
-        $this->data['preguntas'] = $this->preguntas_model->todaspreguntas();
+        $this->data['tipo'] = $this->preguntas_model->tipopregunta();
+        $this->layout->view('preguntas/administracionpreguntas', $this->data);
+    }
+
+    function guardartipopregunta() {
+
+        $tipopregunta = $this->input->post('tipo');
+
+        $this->preguntas_model->guardartipopregunta($tipopregunta);
+        $tipo = $this->preguntas_model->tipopregunta();
+        $this->output->set_content_type('application/json')->set_output(json_encode($tipo));
+    }
+
+    function guardaropcionpregunta() {
+
+        $tipopregunta = $this->input->post('tipo');
+        $opcion = $this->input->post('opcion');
+
+        $this->preguntas_model->guardaropcionpregunta($tipopregunta, $opcion);
+    }
+
+    function preguntasseleccion() {
+        $this->data['tipo'] = $this->preguntas_model->tipopregunta();
+        $this->data['preguntas'] = $this->preguntas_model->todaspreguntasseleccion();
         $this->layout->view('preguntas/preguntasseleccion', $this->data);
+    }
+
+    function consultaopciones() {
+
+        $id = $this->input->post('id');
+        $opciones = $this->preguntas_model->opcionpregunta($id);
+
+        $this->output->set_content_type('application/json')->set_output(json_encode($opciones));
     }
 
     function guardarpreguntas() {
 
         $pregunta = $this->input->post('pregunta');
+        $opcionpregunta = $this->input->post('opcionpregunta');
+        $tipos = $this->input->post('tipos');
         $id = $this->input->post('id');
         $opcion = $this->input->post('opcion');
 
         if ($opcion == 1) {
-            $preguntas = $this->preguntas_model->guardarpregunta($pregunta);
+            $preguntas = $this->preguntas_model->guardarpregunta($pregunta, $opcionpregunta, $tipos);
         } else {
-            $preguntas = $this->preguntas_model->editarpregunta($pregunta, $id);
+            $preguntas = $this->preguntas_model->editarpregunta($pregunta, $id, $opcionpregunta, $tipos);
         }
     }
 
@@ -39,16 +72,22 @@ class Preguntas extends My_Controller {
     }
 
     function preguntasusuario() {
-        
+
         $id = $this->ion_auth->user()->row();
         $preguntascontestadas = $this->preguntas_model->preguntasusuario($id->id);
-        
-        $this->data['preguntas'] = "";
+
+
         $this->data['contador'] = count($preguntascontestadas);
-        if($this->data['contador'] == 0){
-            $this->data['preguntas'] = $this->preguntas_model->preguntasusuarioresponder();
+        if ($this->data['contador'] == 0) {
+            $this->data['preguntas'] = $this->preguntas_model->todaspreguntas();
+            $this->data['i'] = array();
+//        echo "<pre>";
+//        var_dump($this->data['preguntas']);die;
+            foreach ($this->data['preguntas'] as $pregunta) {
+                $this->data['i'][$pregunta['tipPre_tipo']][$pregunta['opcPre_opcion']][$pregunta['pre_id']] = $pregunta['pre_pregunta'];
+            }
         }
-        
+
         $this->layout->view('preguntas/preguntasusuario', $this->data);
     }
 
@@ -61,6 +100,8 @@ class Preguntas extends My_Controller {
         $contadorsi = count($si);
         $contadorno = count($no);
         $contadorna = count($na);
+        
+//        echo $contadorsi."***".$contadorno."***".$contadorna;die;
 
         $array = array();
         $idusuario = $this->ion_auth->user()->row()->id;
@@ -79,12 +120,15 @@ class Preguntas extends My_Controller {
                 $array[] = array('resUsu_respuesta' => "NA", 'usu_id' => $idusuario, 'pre_id' => $na[$i]);
             }
         }
+        
+//        echo "<pre>";
+//        var_dump($array);die;
         $this->preguntas_model->ingresarrespuestas($array);
     }
-    function informacionusuario(){
-        
+
+    function informacionusuario() {
+
         $this->layout->view('preguntas/informacionusuario');
-        
     }
 
 }

@@ -1,5 +1,5 @@
 <div>
-    <h2 align="center">ADMINISTRACION DE MODULOS</h2>
+    <h2 align="center">ADMINISTRACIÓN DE MODULOS</h2>
 </div>
 <div class="row">
     <button type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones">Nuevo Modulo</button>

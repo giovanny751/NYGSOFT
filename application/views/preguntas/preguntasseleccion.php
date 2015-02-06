@@ -43,6 +43,21 @@
                                 <div class="row">
                                     <textarea class="form-control obligatorio" id="pregunta"></textarea>
                                 </div>
+                                <div class="row">
+                                    <label>Tipo Pregunta</label>
+                                    <select class="form-control obligatorio" id="tipos">
+                                        <option value="">-Seleccionar-</option>
+                                        <?php foreach($tipo as $tipos){?>
+                                        <option value="<?php echo $tipos['tipPre_id']?>"><?php echo $tipos['tipPre_tipo']?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <label>Opcion Pregunta</label>
+                                    <select class="form-control obligatorio" id="opcionpregunta">
+                                        
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,13 +74,29 @@
     </div>
 </div>    
 <script>
-
     $('body').delegate('.modales', 'click', function() {
         $('#pregunta').val('');
         $('.guardar').attr('op', $(this).attr('op'));
         $('.guardar').attr('pre_id', $(this).attr('pre_id'));
+       
 
     });
+    
+    $('#tipos').change(function(){
+        
+        var id = $(this).val();
+        var url = "<?php echo base_url('index.php/preguntas/consultaopciones') ?>";
+        $.post(url, { id: id}, function(data) {
+            var option = "";
+            
+            $.each(data,function(key,val){
+                option += "<option value='"+val.opcPre_id+"' >"+val.opcPre_opcion+"</option>"; 
+            });
+            $('#opcionpregunta *').remove();
+            $('#opcionpregunta').append(option);
+        });
+    });
+    
     $('body').delegate('.eliminar', 'click', function() {
 
         var id = $(this).attr('pre_id');
@@ -81,11 +112,13 @@
         var id = $(this).attr('pre_id');
         console.log(id);
         cantidad = obligatorio($('.obligatorio'));
-        if (cantidad == 0) {
+        if (cantidad == true) {
             var pregunta = $('#pregunta').val();
+            var tipos = $('#tipos').val();
+            var opcionpregunta = $('#opcionpregunta').val();
             var url = "<?php echo base_url('index.php/preguntas/guardarpreguntas') ?>";
-            $.post(url, {pregunta: pregunta, opcion: opcion, id: id}, function(data) {
-
+            $.post(url, {opcionpregunta:opcionpregunta,tipos:tipos,pregunta: pregunta, opcion: opcion, id: id}, function(data) {
+                
             });
         }
 

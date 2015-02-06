@@ -2748,7 +2748,7 @@ Customized Bootstrap Modal
 .modal-backdrop {
   border: 0;
   outline: none;
-  z-index: 10049;
+  z-index: -1;
 }
 .modal-backdrop, .modal-backdrop.fade.in {
   background-color: #333 !important;

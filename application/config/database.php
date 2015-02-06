@@ -59,9 +59,9 @@ $tnsname = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST =127.0.0.1)(PORT =11
 
  $active_group = 'default';
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = "root";
-$db['default']['password'] = "";
+$db['default']['hostname'] = 'nygsoft.com';
+$db['default']['username'] = "nygsoft";
+$db['default']['password'] = "]4sCrQt5e+O+";
 $db['default']['database'] = "gyy";
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

@@ -138,5 +138,9 @@ class Ingresoform_model extends CI_Model {
 
         $this->db->insert_batch('correo_envio', $log);
     }
+    function guardarlogenviocorreo($log) {
+
+        $this->db->insert_batch('correo_usuario', $log);
+    }
 
 }

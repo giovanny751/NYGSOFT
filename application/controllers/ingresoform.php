@@ -49,12 +49,71 @@ class Ingresoform extends My_Controller {
         $correo = $this->input->post('correo');
         $nit = $this->input->post('nit');
         $log = array();
+        $random = rand(100000, 999999);
+        $log[] = array(
+            'corEnv_nit' => $nit,
+            'corEnv_empresa' => $empresa,
+            'corEnv_correo' => $correo,
+            'corEnv_contrasena' => $random
+        );
 
-        $log[] = array('corEnv_nit' => $nit, 'corEnv_empresa' => $empresa, 'corEnv_correo' => $correo);
-        mail($correo,"Registro de empresas" , $message="preueba");
+
+
+        $message = "<table>";
+        $message .= "<tr>";
+        $message .= "<td colspan='2' style='color:white;background-color:blue;'><center><b>" . $empresa . "</b></center></td>";
+        $message .= "</tr>";
+        $message .= "<tr>";
+        $message .= "<td>Usuario</td>";
+        $message .= "<td>" . $correo . "</td>";
+        $message .= "</tr>";
+        $message .= "<tr>";
+        $message .= "<td>Contraseña</td>";
+        $message .= "<td>" . $random . "</td>";
+        $message .= "<tr>";
+
+        $message .= "</table>";
+
+        mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
     }
+    function ingresausuario(){
+        
+        $this->layout->view('ingresoform/ingresausuario');
+        
+    }
+    function enviocorreousuario(){
+        
+        $documento = $this->input->post('documento');
+        $tipodocumento = $this->input->post('tipodocumento');
+        $correo = $this->input->post('correo');
+        $log = array();
+        $random = rand(100000, 999999);
+        $log[] = array(
+            'corUsu_documento' => $documento,
+            'tipDoc_id' => $tipodocumento,
+            'corUsu_correo' => $correo,
+            'corUsu_contrasena' => $random
+        );
+        
+        $message = "<table>";
+        $message .= "<tr>";
+        $message .= "<td colspan='2' style='color:white;background-color:blue;'><center><b>" . $documento . "</b></center></td>";
+        $message .= "</tr>";
+        $message .= "<tr>";
+        $message .= "<td>Usuario</td>";
+        $message .= "<td>" . $correo . "</td>";
+        $message .= "</tr>";
+        $message .= "<tr>";
+        $message .= "<td>Contraseña</td>";
+        $message .= "<td>" . $random . "</td>";
+        $message .= "<tr>";
 
+        $message .= "</table>";
+        
+        mail($correo, "Registro de Usuario", $message);
+        $this->Ingresoform_model->guardarlogenviocorreousuarios($log);
+    }
 }
 
 /* End of file welcome.php */

@@ -1,14 +1,21 @@
 <div class="row">
     <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
-        <label>Nit</label>
-        <input type="text" class="form-control obligatorio" id="nit" name="nit" placeholder="NIT">
+        <label>TIPO IDENTIFICACION</label>
+        <select class="form-control obligatorio" id="tipodocumento">
+            <option value="">-Seleccionar-</option>
+            <option value="1">CEDULA</option>
+        </select>
     </div>
     <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
-        <label>Empresa</label>
-        <input type="text" class="form-control obligatorio" id="empresa" name="empresa" placeholder="EMPRESA">
+        <label>DOCUMENTO</label>
+        <input type="text" class="form-control obligatorio" id="documento" name="documento" placeholder="DOCUMENTO">
     </div>
     <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
-        <label>Correo</label>
+        <label>DOCUMENTO</label>
+        <input type="text" class="form-control obligatorio" id="documento" name="documento" placeholder="DOCUMENTO">
+    </div>
+    <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
+        <label>CORREO</label>
         <input type="text" name="correo" id="correo" class="form-control obligatorio" placeholder="CORREO">
     </div>
     <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 " align="right">
@@ -18,16 +25,16 @@
 <script>
     $('#guardar').click(function(){
         
-       var empresa = $('#empresa').val(); 
+       var documento = $('#documento').val(); 
        var correo = $('#correo').val();
-       var nit = $('#nit').val();
+       var tipodocumento = $('#tipodocumento').val();
         
        var datos = obligatorio($('.obligatorio'));
        
        if(datos == true){
            
-           var url = "<?php echo base_url("index.php/ingresoform/enviocorreoempresa") ?>";
-           $.post(url,{nit:nit,empresa:empresa,correo:correo},function(){
+           var url = "<?php echo base_url("index.php/ingresoform/enviocorreousuario") ?>";
+           $.post(url,{documento:documento,tipodocumento:tipodocumento,correo:correo},function(){
                $.notific8('', {
                 horizontalEdge: 'bottom',
                 life: 5000,

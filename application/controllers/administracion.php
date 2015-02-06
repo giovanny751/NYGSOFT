@@ -36,6 +36,11 @@ class Administracion extends My_Controller {
         $this->administracion_model->guardar_formulario($post);
         echo $this->nuevo_formulario_envio();
     }
+    function empleado(){
+        
+        $this->layout->view('administracion/empleado');
+        
+    }
 
 }
 

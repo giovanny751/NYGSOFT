@@ -19,5 +19,11 @@ class administracion_model extends CI_Model {
         $dato=$dato->result_array();
         return $dato[0]['form_formulario'];
     }
+    function guardaradministracion($campos,$tabla){
+        
+        $this->db->insert_batch($tabla,$campos);
+//        echo $this->db->last_query();
+        
+    }
 
 }

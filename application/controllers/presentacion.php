@@ -7,29 +7,29 @@ class Presentacion extends My_Controller {
 
     function __construct() {
         parent::__construct();
-        $d=$this->session->userdata();
-        echo "<pre>";print_r($d);
 //        $numero = "";
 //        $this->load->js('js/jquery.min.js');
-//        $this->load->database();
+        $this->load->database();
         $this->load->model('ingreso_model');
         $this->load->model('Roles_model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
-//        $this->data['menu_completo'] = $this->session->userdata('menu');
-        $d=$this->session;
-        echo print_y($d);
-//        validate_login($this->session->userdata('user_id'));
+        $this->data['user'] = $this->ion_auth->user()->row();
+        $this->data['menu_completo'] = $this->session->userdata('menu');
+        validate_login($this->session->userdata('user_id'));
     }
 
     function principal() {
-        echo "mmm";
+        if (!empty($this->data['user'])) {
 //            var_dump($this->data['user']);die;
 //            echo "hola";die;
-//            $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
+            $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
 //            $this->data['content'] = "";
 
-//            $this->layout->view('presentacion/principal', $this->data);
+            $this->layout->view('presentacion/principal', $this->data);
+        } else {
+            redirect('auth/login', 'refresh');
+        }
     }
 
     function modulos($datosmodulos, $html = null, $usuarioid) {

@@ -14,7 +14,7 @@ class Presentacion extends My_Controller {
         $this->load->model('Roles_model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
-        $this->data['user'] = $this->ion_auth->user()->row();
+//        $this->data['user'] = $this->ion_auth->user()->row();
         $this->data['menu_completo'] = $this->session->userdata('menu');
         validate_login($this->session->userdata('user_id'));
     }
@@ -82,7 +82,7 @@ class Presentacion extends My_Controller {
 
     public function creacionmenu() {
 
-        if (!empty($this->data['user'])) {
+//        if (!empty($this->data['user'])) {
 
             $this->data['hijo'] = $this->input->post('menu');
             $this->data['nombrepadre'] = $this->input->post('nombrepadre');
@@ -105,9 +105,9 @@ class Presentacion extends My_Controller {
 //            $this->data['content'] = 'presentacion/menu';
             $this->layout->view('presentacion/menu', $this->data);
 //            $this->load->view('presentacion/menu', $this->data);
-        } else {
-            redirect('auth/login', 'refresh');
-        }
+//        } else {
+//            redirect('auth/login', 'refresh');
+//        }
     }
 
     function guardarmodulo() {

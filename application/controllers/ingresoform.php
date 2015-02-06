@@ -49,7 +49,7 @@ class Ingresoform extends My_Controller {
         $correo = $this->input->post('correo');
         $nit = $this->input->post('nit');
         $log = array();
-        $random = rand(100000, 999999);
+        $random = encrypt_id($nit);
         $log[] = array(
             'corEnv_nit' => $nit,
             'corEnv_empresa' => $empresa,
@@ -88,7 +88,7 @@ class Ingresoform extends My_Controller {
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
         $log = array();
-        $random = rand(100000, 999999);
+        $random = encrypt_id($documento);
         $log[] = array(
             'corUsu_documento' => $documento,
             'tipDoc_id' => $tipodocumento,

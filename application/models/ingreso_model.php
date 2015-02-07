@@ -11,7 +11,8 @@ class Ingreso_model extends CI_Model {
 //        echo $padre."****";die;
 //        echo $padre."*****"."<br>";
 //        $idusuario = $idusuario->id;
-
+        
+        $idusuario = 1;
 
         if ($padre != "prueba") {
             $this->db->where('menu_idpadre', $padre);

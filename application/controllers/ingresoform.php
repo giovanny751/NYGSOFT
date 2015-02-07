@@ -54,7 +54,7 @@ class Ingresoform extends My_Controller {
             'corEnv_nit' => $nit,
             'corEnv_empresa' => $empresa,
             'corEnv_correo' => $correo,
-            'corEnv_contrasena' => $random
+            'corEnv_contrasena' => $random,
         );
 
 
@@ -76,6 +76,7 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
+        $this->Ingresoform_model->ingresousuarioempresa($correo,$random,$nit);
     }
     function ingresausuario(){
         
@@ -112,7 +113,9 @@ class Ingresoform extends My_Controller {
         $message .= "</table>";
         
         mail($correo, "Registro de Usuario", $message);
-        $this->Ingresoform_model->guardarlogenviocorreousuarios($log);
+        $this->Ingresoform_model->guardarlogenviocorreousuario($log);
+        $this->Ingresoform_model->ingresousuariopagina($correo,$random,$documento);
+        
     }
 }
 

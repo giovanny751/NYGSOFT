@@ -24,7 +24,9 @@ class Presentacion extends My_Controller {
             //echo print_y($d);
 //            var_dump($this->data['user']);die;
 //            echo "hola";die;
-        $this->data['content'] = $this->modulos('prueba', null, $this->data['user']->id);
+        $this->data['user'] = 1;
+        
+        $this->data['content'] = $this->modulos('prueba', null, $this->data['user']);
 //            $this->data['content'] = "";
 
         $this->layout->view('presentacion/principal', $this->data);
@@ -80,8 +82,6 @@ class Presentacion extends My_Controller {
 
     public function creacionmenu() {
 
-        if (!empty($this->data['user'])) {
-
             $this->data['hijo'] = $this->input->post('menu');
             $this->data['nombrepadre'] = $this->input->post('nombrepadre');
             $this->data['idgeneral'] = $this->input->post('idgeneral');
@@ -102,10 +102,6 @@ class Presentacion extends My_Controller {
 
 //            $this->data['content'] = 'presentacion/menu';
             $this->layout->view('presentacion/menu', $this->data);
-//            $this->load->view('presentacion/menu', $this->data);
-        } else {
-            redirect('auth/login', 'refresh');
-        }
     }
 
     function guardarmodulo() {

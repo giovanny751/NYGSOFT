@@ -11,7 +11,7 @@ class Administracion extends My_Controller {
         $this->load->model('administracion_model');
         $this->load->helper('security');
         $this->load->helper('miscellaneous');
-        validate_login($this->session->userdata('user_id'));
+//        validate_login($this->session->userdata('user_id'));
     }
 
     function index() {
@@ -47,6 +47,25 @@ class Administracion extends My_Controller {
     function empleado() {
 
         $this->layout->view('administracion/empleado');
+    }
+
+    function vehiculo() {
+
+        $this->data['tiposervicio'] = $this->administracion_model->tiposervicio();
+        $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
+        $this->data['confirmacion'] = $this->administracion_model->confirmacion();
+
+//        var_dump($this->data['confirmacion']);die;
+
+        $this->layout->view('administracion/vehiculo', $this->data);
+    }
+
+    function guardarvehiculo() {
+
+        $vehiculo[] = $this->input->post();
+
+        $this->administracion_model->guardarvehiculo($vehiculo);
+        echo $this->db->last_query();
     }
 
     function guardaradminempleado() {
@@ -120,6 +139,43 @@ class Administracion extends My_Controller {
         }
 
         $this->administracion_model->guardaradministracion($campos, $tabla);
+    }
+
+    function usuarios() {
+
+        $this->data['usuarios'] = $this->administracion_model->usuarios();
+
+        $this->layout->view('administracion/usuarios', $this->data);
+    }
+
+    function eliminarusuario() {
+
+        $idusuario = $this->input->post('usuario');
+        $this->data['usuarios'] = $this->administracion_model->eliminarusuario($idusuario);
+    }
+    function eliminarvehiculo() {
+
+        $vehiculo = $this->input->post('vehiculo');
+        $this->data['usuarios'] = $this->administracion_model->eliminarvehiculo($vehiculo);
+    }
+
+    function cambioestado() {
+
+        $idusuario = $this->input->post('usuario');
+        $numero = $this->input->post('numero');
+        $this->data['usuarios'] = $this->administracion_model->cambioestado($idusuario,$numero );
+    }
+    function cambioestadovehiculo() {
+
+        $idusuario = $this->input->post('usuario');
+        $numero = $this->input->post('numero');
+        $this->data['usuarios'] = $this->administracion_model->cambioestadovehiculo($idusuario,$numero );
+    }
+    function reportevehiculo(){
+        
+        $this->data['vehiculos'] = $this->administracion_model->reportevehiculos();
+        $this->layout->view('administracion/reportevehiculo', $this->data);
+        
     }
 
 }

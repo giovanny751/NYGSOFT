@@ -138,9 +138,33 @@ class Ingresoform_model extends CI_Model {
 
         $this->db->insert_batch('correo_envio', $log);
     }
-    function guardarlogenviocorreo($log) {
+    function guardarlogenviocorreousuario($log) {
 
         $this->db->insert_batch('correo_usuario', $log);
+    }
+    function ingresousuariopagina($correo,$random,$documento){
+        
+        $datos[] = array(
+            'usu_correo' => $correo,
+            'usu_password' =>  $random,
+            'usu_cc' =>  $documento,
+            'usu_tipo' =>  '1'
+        );
+        
+        $this->db->insert_batch('user', $datos);
+        
+    }
+    function ingresousuarioempresa($correo,$random,$documento){
+        
+        $datos[] = array(
+            'usu_correo' => $correo,
+            'usu_password' =>  $random,
+            'usu_cc' =>  $documento,
+            'usu_tipo' =>  '2'
+        );
+        
+        $this->db->insert_batch('user', $datos);
+        
     }
 
 }

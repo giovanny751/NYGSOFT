@@ -11,6 +11,7 @@ class Preguntas extends My_Controller {
 //        $this->load->js('js/jquery.min.js');
         $this->load->database();
         $this->load->model('preguntas_model');
+        $this->data['usuario'] = 1; 
     }
 
     function administracionpreguntas() {
@@ -73,8 +74,8 @@ class Preguntas extends My_Controller {
 
     function preguntasusuario() {
 
-        $id = $this->ion_auth->user()->row();
-        $preguntascontestadas = $this->preguntas_model->preguntasusuario($id->id);
+        $id = $this->data['usuario'];
+        $preguntascontestadas = $this->preguntas_model->preguntasusuario($id);
 
 
         $this->data['contador'] = count($preguntascontestadas);
@@ -104,7 +105,7 @@ class Preguntas extends My_Controller {
 //        echo $contadorsi."***".$contadorno."***".$contadorna;die;
 
         $array = array();
-        $idusuario = $this->ion_auth->user()->row()->id;
+        $idusuario = $this->data['usuario'];
         if (!empty($si)) {
             for ($i = 0; $i < $contadorsi; $i++) {
                 $array[] = array('resUsu_respuesta' => "SI", 'usu_id' => $idusuario, 'pre_id' => $si[$i]);

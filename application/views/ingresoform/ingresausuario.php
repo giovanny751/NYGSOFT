@@ -11,10 +11,6 @@
         <input type="text" class="form-control obligatorio" id="documento" name="documento" placeholder="DOCUMENTO">
     </div>
     <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
-        <label>DOCUMENTO</label>
-        <input type="text" class="form-control obligatorio" id="documento" name="documento" placeholder="DOCUMENTO">
-    </div>
-    <div class="col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-6 col-md-6 col-xs-6 col-sm-6 ">
         <label>CORREO</label>
         <input type="text" name="correo" id="correo" class="form-control obligatorio" placeholder="CORREO">
     </div>

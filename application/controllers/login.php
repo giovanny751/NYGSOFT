@@ -29,17 +29,12 @@ class Login extends My_Controller {
 
     function verify() {
         //RECOLECTAMOS LOS DATOS DE LOS CAMPOS DE USUARIO Y CONTRASE�A
-        $username = $this->input->post('username');
-        $pass = $this->input->post('password');
-        $username = intval($username);
-        $pass = intval($pass);
 
 
         //CONSULTAMOS EL USUARIO CON BASE EN EL NUMERO DE DOCUMENTO
-        $user = $this->user_model->get_user($username, $pass);
-
+        $user = $this->user_model->get_user($this->input->post('username'), encrypt_id($this->input->post('password')));
         //VERIFICAMOS SI EL USUARIO EXISTE
-        if (sizeof($user) > 0) {
+        if (!empty($user) > 0) {
             //PREPARAMOS LAS VARIABLES QUE VAMOS A GUARDAR EN SESSION
             $newdata = array(
                 'user_id' => $user[0]->usu_id,

@@ -27,7 +27,8 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         header('Pragma: no-cache');
         $this->load->library('layout', 'layout_main');
-//    $this->load->view('presentacion');
+        $this->load->helper('miscellaneous');
+        $this->data['user']=$this->session->userdata();
     }
 
 }

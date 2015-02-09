@@ -10,12 +10,13 @@ class Ingresoform extends My_Controller {
         $this->load->database();
         $this->load->model('Ingresoform_model');
         $this->load->helper('security');
-        $this->load->helper('miscellaneous');
-        validate_login($this->session->userdata('user_id'));
+        validate_login($this->data['user']['user_id']);
+        
     }
 
     function empresa() {
         $this->data['titulo'] = "Registro Empresa";
+        $this->data['ciiu']= $this->Ingresoform_model->get_ciiu();
         $this->layout->view('ingresoform/empresa', $this->data);
     }
 

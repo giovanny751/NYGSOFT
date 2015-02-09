@@ -124,7 +124,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
         <div class="copyright">
-            <?php echo date("Y") ?> &copy; Universidad Manuela Beltr&aacute;n - Vicerrector&iacute;a de Calidad.
+            <?php echo date("Y") ?> &copy; 
         </div>
         <!-- END COPYRIGHT -->
         <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->

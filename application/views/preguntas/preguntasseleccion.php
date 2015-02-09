@@ -2,7 +2,7 @@
     <center><h3>REGISTRO DE PREGUNTAS</h3></center>
 </div>
 <div class="row">
-    <button type="button" data-toggle="modal" data-target="#myModal" op="1"  class="btn btn-info opciones modales">Nuevo Modulo</button>
+    <button type="button" data-toggle="modal" data-target="#myModal" op="1"  class="btn btn-info opciones modales">Nueva Pregunta</button>
     <div class="table-responsive ">
         <table class="table table-responsive table-striped table-bordered">
             <thead>

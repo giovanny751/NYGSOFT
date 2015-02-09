@@ -32,7 +32,7 @@ class Login extends My_Controller {
 
 
         //CONSULTAMOS EL USUARIO CON BASE EN EL NUMERO DE DOCUMENTO
-        $user = $this->user_model->get_user($this->input->post('username'), encrypt_id($this->input->post('password')));
+        $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));
         //VERIFICAMOS SI EL USUARIO EXISTE
         if (!empty($user) > 0) {
             //PREPARAMOS LAS VARIABLES QUE VAMOS A GUARDAR EN SESSION

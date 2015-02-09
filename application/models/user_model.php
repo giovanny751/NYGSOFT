@@ -15,8 +15,9 @@ class User_model extends CI_Model {
             usu_organizacion,usu_estado_psicofisico,usu_otros_conductores,usu_estado_infraestructura,usu_falta_informacion');
         $this->db->where('usu_correo',$username);
         $this->db->where('usu_password',$pass);
-        $this->db->where('usu_status','0');
+//        $this->db->where('usu_status','0');
         $query = $this->db->get('user');
+//        echo $this->db->last_query();die;
         return $query->result();
     }
     

@@ -48,6 +48,7 @@ class Ingresoform extends My_Controller {
         $empresa = $this->input->post('empresa');
         $correo = $this->input->post('correo');
         $nit = $this->input->post('nit');
+        $empresa = "";
         $log = array();
         $random = encrypt_id($nit);
         $log[] = array(
@@ -88,13 +89,15 @@ class Ingresoform extends My_Controller {
         $documento = $this->input->post('documento');
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
+        $empresa = "";
         $log = array();
         $random = encrypt_id($documento);
         $log[] = array(
             'corUsu_documento' => $documento,
             'tipDoc_id' => $tipodocumento,
             'corUsu_correo' => $correo,
-            'corUsu_contrasena' => $random
+            'corUsu_contrasena' => $random,
+            'usu_idagrego' => $empresa
         );
         
         $message = "<table>";

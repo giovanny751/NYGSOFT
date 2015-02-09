@@ -21,7 +21,7 @@
                     Tipo de Empresa
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_idTipo', array(),"", 'id="emp_idTipo" class="form-control"') ?>
+                    <?php echo form_dropdown('emp_idTipo', array(), "", 'id="emp_idTipo" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Segmento a la que pertenece
@@ -35,13 +35,39 @@
                     Actividad Economica (CIIU)
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_ciiu1', array(),"", 'id="emp_ciiu1" class="form-control') ?>
+                    <select name="emp_ciiu1" id="emp_ciiu1" class="form-control obligatorio">
+                        <option value="">Grupo :: Clase :: Descripción</option>
+                        <?php foreach ($ciiu as $value) { ?>
+                            <option value="<?php echo $value->ciiu_id; ?>"><?php echo $value->ciiu_grupo . " :: " . $value->ciiu_clase . " :: " . $value->ciiu_description; ?></option>
+                        <?php } ?>    
+                    </select>
+
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Actividad Economica Secundaria (CIIU)
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_ciiu2', array(),"", 'id="emp_ciiu2" class="form-control"') ?>
+
+                    <select name="emp_ciiu2" id="emp_ciiu2" class="form-control obligatorio">
+                        <option value="">Grupo :: Clase :: Descripción</option>
+                        <?php
+                        for ($i = 0; $i < count($ciiu); $i++) {
+                            if (!empty($value->ciiu_grupo)) {
+                                if ($i != 0) {
+                                    ?>
+                                    </optgroup>
+                                <?php } ?>
+                                <optgroup label="<?php echo $ciiu[$i]->ciiu_description; ?>">
+                                    <?php
+                                } else {
+                                    ?>
+                                    <option value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>    </optgroup>
+                    </select>
+
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">

@@ -6,23 +6,26 @@ class Layout
 
     var $obj;
     var $layout;
+    var $id;
 
     function __construct()
     {
         $this->obj =& get_instance();
-//        echo "<pre>";
-//        var_dump($this->obj);die;
+        
+        $this->id = $this->obj->session->userdata['user_id'];
         $this->layout = 'layout_main';
     }
 
-    function setLayout($layout)
-    {
-      $this->layout = $layout;
-    }
+//    function setLayout($layout)
+//    {
+//      $this->layout = $layout;
+//    }
 
     function view($view, $data=null, $return=false)
     {
         $loadedData = array();
+        $loadedData['id'] = $this->obj->session->userdata['user_id'];
+        
         $loadedData['content_for_layout'] = $this->obj->load->view($view,$data,true);
 
         if($return)

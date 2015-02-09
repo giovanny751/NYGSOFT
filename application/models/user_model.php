@@ -7,6 +7,7 @@ class User_model extends CI_Model {
     
     
     public function get_user($username,$pass){
+        echo $username.$pass;
         $this->db->select('usu_id,usu_nombres_apellido,usu_cc,gen_id,usu_edad,usu_fecha_nacimiento,ciu_id,usu_celular,usu_telF,usu_correo,
             usu_tipo_contrato,usu_confir_eps,usu_confir_pension,usu_confir_arl,usu_confir_caja_compensacio,usu_confir_des_min,usu_rol_mision,
             usu_desplazamiento_mision,usu_tipo_despla_mision,usu_nro_diaro_recorrido,usu_rol_via,usu_tipo_transporte,usu_tip_vehiculo,

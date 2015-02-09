@@ -97,9 +97,14 @@
 </style>
 <?php
 
+//echo $id."%%%";die;
+
 function modulos($datosmodulos = 'prueba', $dato = null) {
 
     $ci = &get_instance();
+    
+    
+    
     $ci->load->model("ingreso_model");
     $user = null;
     $menu = $ci->ingreso_model->menu($datosmodulos, 3, 1);

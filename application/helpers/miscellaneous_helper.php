@@ -25,6 +25,10 @@ function get_dropdown_select($array_objects, $value, $name, $select_value, $sele
 function encrypt_id($id) {
     return base64_encode(rand(111111, 999999) . $id . rand(11111, 99999));
 }
+function encrypt_fijo($id) {
+    $id=base64_encode($id);
+    return base64_encode($id);
+}
 
 function deencrypt_id($id) {
     $id = base64_decode($id);

@@ -10,12 +10,13 @@ class Ingresoform extends My_Controller {
         $this->load->database();
         $this->load->model('Ingresoform_model');
         $this->load->helper('security');
-        $this->load->helper('miscellaneous');
-        validate_login($this->session->userdata('user_id'));
+        validate_login($this->data['user']['user_id']);
+        
     }
 
     function empresa() {
         $this->data['titulo'] = "Registro Empresa";
+        $this->data['ciiu']= $this->Ingresoform_model->get_ciiu();
         $this->layout->view('ingresoform/empresa', $this->data);
     }
 
@@ -48,7 +49,7 @@ class Ingresoform extends My_Controller {
         $empresa = $this->input->post('empresa');
         $correo = $this->input->post('correo');
         $nit = $this->input->post('nit');
-        $empresa = "";
+        $empresa = $this->data['user']['user_id'];
         $log = array();
         $random = encrypt_id($nit);
         $log[] = array(
@@ -56,6 +57,7 @@ class Ingresoform extends My_Controller {
             'corEnv_empresa' => $empresa,
             'corEnv_correo' => $correo,
             'corEnv_contrasena' => $random,
+            'usu_idagrego' => $empresa
         );
 
 
@@ -89,7 +91,8 @@ class Ingresoform extends My_Controller {
         $documento = $this->input->post('documento');
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
-        $empresa = "";
+        $empresa = $this->data['user']['user_id'];
+        
         $log = array();
         $random = encrypt_id($documento);
         $log[] = array(

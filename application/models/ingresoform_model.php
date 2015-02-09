@@ -166,5 +166,9 @@ class Ingresoform_model extends CI_Model {
         $this->db->insert_batch('user', $datos);
         
     }
+    function get_ciiu(){
+        $dato=$this->db->get('ciiu');
+        return $dato->result();
+    }
 
 }

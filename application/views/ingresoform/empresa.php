@@ -21,7 +21,7 @@
                     Tipo de Empresa
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_idTipo', array(), "", 'id="emp_idTipo" class="form-control"') ?>
+                    <?php echo form_dropdown('emp_idTipo', $tipo_empresa, "", 'id="emp_idTipo" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Segmento a la que pertenece
@@ -37,9 +37,22 @@
                 <div class="col-md-3 col-lg-3">
                     <select name="emp_ciiu1" id="emp_ciiu1" class="form-control obligatorio">
                         <option value="">Grupo :: Clase :: Descripción</option>
-                        <?php foreach ($ciiu as $value) { ?>
-                            <option value="<?php echo $value->ciiu_id; ?>"><?php echo $value->ciiu_grupo . " :: " . $value->ciiu_clase . " :: " . $value->ciiu_description; ?></option>
-                        <?php } ?>    
+                        <?php
+                        for ($i = 0; $i < count($ciiu); $i++) {
+                            if (!empty($ciiu[$i]->ciiu_grupo)) {
+                                if ($i != 0) {
+                                    ?>
+                                    </optgroup>
+                                <?php } ?>
+                                <optgroup label="<?php echo $ciiu[$i]->ciiu_description; ?>">
+                                    <?php
+                                } else {
+                                    ?>
+                                    <option value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>    </optgroup>
                     </select>
 
                 </div>
@@ -52,7 +65,7 @@
                         <option value="">Grupo :: Clase :: Descripción</option>
                         <?php
                         for ($i = 0; $i < count($ciiu); $i++) {
-                            if (!empty($value->ciiu_grupo)) {
+                            if (!empty($ciiu[$i]->ciiu_grupo)) {
                                 if ($i != 0) {
                                     ?>
                                     </optgroup>
@@ -90,9 +103,9 @@
                 </div>
                 <div class="col-md-3 col-lg-3">
                     SI
-                    <?php echo form_radio('emp_sucursal', '1', false, 'id="emp_sucursal" class="form-control" ') ?>
+                    <?php echo form_radio('emp_sucursal', '1', false, 'id="" class="" ') ?>
                     NO
-                    <?php echo form_radio('emp_sucursal', '0', true, 'id="emp_sucursal" class="form-control"') ?>
+                    <?php echo form_radio('emp_sucursal', '0', true, 'id="" class=""') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direcciones Sucursales
@@ -109,7 +122,7 @@
                     <?php echo form_input('emp_nombre_repre', '', 'class="form-control obligatorio" id="emp_nombre_repre"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    CC
+                    Cedula de Ciudadania
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <?php echo form_input('emp_numDocRepre', '', 'class="form-control obligatorio" id="emp_numDocRepre"') ?>
@@ -190,7 +203,7 @@
                     Cual?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_idArl_otra', '', 'class="form-control obligatorio" id="emp_idArl_otra"') ?>
+                    <?php echo form_input('emp_Arl_otra', '', 'class="form-control obligatorio" id="emp_Arl_otra"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -291,9 +304,37 @@
             </div>
             <div class="col-md-12 col-lg-12">
                 <center>
-                    <button class="guardar">Guardar</button>
+                    <button class="guardar btn btn-success">Guardar</button>
                 </center>
             </div>
         </div>
     </form>
 </div>
+<script>
+    $('#emp_nit').validCampoFranz('0123456789');
+
+
+    $('#emp_nit').change(function () {
+        var num = $(this).val();
+        console.log(num);
+        if (isNaN(num)) {
+            $('#emp_nit').val('');
+            alert('Dato no correcto.')
+            return  false;
+        }
+
+        var url = base_url_js + "index.php/ingresoform/confir_nit";
+        var emp_nit = $(this).val();
+        if (emp_nit != "") {
+            $.post(url, {emp_nit, emp_nit})
+                    .done(function (msg) {
+                        if (msg > 0) {
+                            alert('El Nit ya se Encuentra Registrado en el Sistema')
+                            $('#emp_nit').val('');
+                        }
+                    }).fail(function (msg) {
+
+            })
+        }
+    })
+</script>

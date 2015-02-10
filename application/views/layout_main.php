@@ -99,15 +99,17 @@
 
 //echo $id."%%%";die;
 
-function modulos($datosmodulos = 'prueba', $dato = null) {
+function modulos($datosmodulos,$idusuario, $dato = null) {
 
+//    echo $idusuario;die;
+    
     $ci = &get_instance();
     
     
     
     $ci->load->model("ingreso_model");
     $user = null;
-    $menu = $ci->ingreso_model->menu($datosmodulos, 3, 1);
+    $menu = $ci->ingreso_model->menu($datosmodulos, $idusuario, 2);
     $i = array();
     foreach ($menu as $modulo)
         $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -126,7 +128,7 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
                         echo "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "'>" . strtoupper($nombrepapa) . "</a>";
                     }
                     if (!empty($submenus[0]))
-                        modulos($submenus[0]);
+                        modulos($submenus[0],$idusuario);
                     echo "</li>";
                 endforeach;
     echo "</ul>";
@@ -145,9 +147,9 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
                 <a class="navbar-brand" href="#">NYGSOFT</a>
             </div>
             <div class="navbar-collapse collapse">
-                <?= modulos(); ?>
+                <?php echo modulos('prueba',$id,null); ?>
             </div>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
     <div class="row">
         <?php echo $content_for_layout ?>
@@ -167,7 +169,6 @@ function modulos($datosmodulos = 'prueba', $dato = null) {
                 </div>
                 <div class="modal-footer">
                     <button id="cerrar" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <!--<button type="button" class="btn btn-primary">Send message</button>-->
                 </div>
             </div>
         </div>

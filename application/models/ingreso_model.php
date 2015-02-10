@@ -12,7 +12,7 @@ class Ingreso_model extends CI_Model {
 //        echo $padre."*****"."<br>";
 //        $idusuario = $idusuario->id;
         
-        $idusuario = 1;
+//        $idusuario = 1;
 
         if ($padre != "prueba") {
             $this->db->where('menu_idpadre', $padre);
@@ -28,7 +28,51 @@ class Ingreso_model extends CI_Model {
         }
         if ($tipo == 2) {
             $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario");
+//            $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario",'left');
         }
+        $dato = $this->db->get('modulo');
+        $envio = $dato->result_array();
+
+//        echo $this->db->last_query();die;
+
+        return $envio;
+    }
+    function permisousuarioroles($padre,$idrol, $idusuario) {
+
+        if ($padre != "prueba") {
+            $this->db->where('modulo.menu_idpadre', $padre);
+        } else {
+            $this->db->where('modulo.menu_idpadre', 0);
+        };
+
+        $this->db->where('rol_id', $idrol);
+        $this->db->where('menu_estado', 1);
+        $this->db->select('modulo.menu_id,modulo.menu_idpadre,modulo.menu_nombrepadre,modulo.menu_idhijo,'
+                . 'modulo.menu_controlador,modulo.menu_accion,modulo.menu_estado,permisos_rol.menu_id menudos');
+
+        $this->db->join("permisos_rol", "permisos_rol.menu_id = modulo.menu_id");
+        $dato = $this->db->get('modulo');
+        $envio = $dato->result_array();
+
+//        echo $this->db->last_query();die;
+
+        return $envio;
+    }
+
+    function permisoroles($padre = null) {
+
+//        echo $padre."****";die;
+//        echo $padre."*****"."<br>";
+//        $idusuario = $idusuario->id;
+        
+        $idusuario = 1;
+
+        if ($padre != "prueba") {
+            $this->db->where('menu_idpadre', $padre);
+        } else {
+            $this->db->where('menu_idpadre', 0);
+        };
+
         $dato = $this->db->get('modulo');
         $envio = $dato->result_array();
 
@@ -121,7 +165,7 @@ class Ingreso_model extends CI_Model {
 
     function usuarios() {
 
-        $usuarios = $this->db->get('users');
+        $usuarios = $this->db->get('user');
         return $usuarios->result_array();
     }
 
@@ -161,14 +205,14 @@ class Ingreso_model extends CI_Model {
     function totalusuarios() {
 
 //        $this->db->where();
-        $usuarios = $this->db->get('users');
+        $usuarios = $this->db->get('user');
         return $usuarios->result_array();
     }
 
     function consultausuario($id) {
 
-        $this->db->where('id', $id);
-        $usuarios = $this->db->get('users');
+        $this->db->where('usu_id', $id);
+        $usuarios = $this->db->get('user');
         return $usuarios->result_array();
     }
 

@@ -153,14 +153,14 @@ class Presentacion extends My_Controller {
 
         $idrol = $this->input->post('idrol');
         $idusuario = $this->input->post('idusuario');
-        $permisos = $this->permisorolporusuario($idusuario, $idrol);
+        $permisos = $this->permisorolporusuario('prueba', $idrol,$idusuario);
 
         echo $permisos;
     }
 
-    function permisorolporusuario($idusuario, $idrol, $datosmodulos = 'prueba', $html = null) {
+    function permisorolporusuario($datosmodulos = 'prueba', $idrol,$idusuario,$html = "") {
 
-        $menu = $this->ingreso_model->permisousuarioroles($idusuario, $idrol, $datosmodulos);
+        $menu = $this->ingreso_model->permisousuarioroles($datosmodulos,$idrol, $idusuario);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -171,8 +171,10 @@ class Presentacion extends My_Controller {
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
                         $html .= "<li>" . strtoupper($nombrepapa) . "<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
-                        if (!empty($submenus[0]))
-                            $html .=$this->permisorolporusuario($idusuario, $idrol, $submenus[0]);
+                        if (!empty($submenus[0])){
+//                            echo $submenus[0]."****";die;
+                            $html .=$this->permisorolporusuario($submenus[0],$idrol,$idusuario );
+                        }
                         $html .= "</li>";
                     endforeach;
         $html.="</ul>";
@@ -213,7 +215,7 @@ class Presentacion extends My_Controller {
 
         $this->data['usuarios'] = $this->ingreso_model->usuarios();
 
-        $this->load->view('presentacion/permisosusuarios', $this->data);
+        $this->layout->view('presentacion/permisosusuarios', $this->data);
     }
 
     function permisosmenu($iduser, $datosmodulos = 'prueba', $dato = null) {
@@ -222,7 +224,7 @@ class Presentacion extends My_Controller {
 
         $this->load->model("ingreso_model");
 
-        $menu = $this->ingreso_model->menu($iduser, $datosmodulos);
+        $menu = $this->ingreso_model->menu($iduser, $datosmodulos,1);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']][$modulo['modulo_menuid']] [] = $modulo['menu_idhijo'];

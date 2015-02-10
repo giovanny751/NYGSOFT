@@ -5,13 +5,13 @@
         <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones">Nuevo Rol</button>
     </div>
     <div class="row">
-        <div class="table-responsive">
-            <table class="table">
+    <div class="table-responsive ">
+        <table class="table table-responsive table-striped table-bordered">
                 <thead>
                 <th>Nombre</th>
                 <th>Estado</th>
-                <th>Eliminar</th>
                 <th>Opciones</th>
+                <th>Eliminar</th>
                 </thead>
                 <tbody id="cuerporol">
                     <?php foreach($roles as $datos){?>

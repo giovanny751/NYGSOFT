@@ -8,7 +8,8 @@
 </head>
 <h3 align="center">ADMINISTRACION USUARIOS</h3>
 <br>
-<table align="center">
+    <div class="table-responsive ">
+        <table class="table table-responsive table-striped table-bordered">
     <thead>
     <th style="width: 500px">Nombre Usuario</th>
         <th>Opciones</th>
@@ -17,14 +18,14 @@
     <tbody>
         <?php foreach($usuarios as $todosusuarios){?>
         <tr>
-            <td><?php echo  $todosusuarios['username'] ?></td>
-            <td><button type="button" id="opciones">Opción</button></td>
-            <td><button type="button" class="permisos" usuario="<?php echo  $todosusuarios['id'] ?>">Permisos</button></td>
+            <td><?php echo  $todosusuarios['usu_nombres_apellido'] ?></td>
+            <td align="center"><button type="button" class="btn btn-success" id="opciones">Opción</button></td>
+            <td align="center"><button type="button" class="btn btn-info permisos" usuario="<?php echo  $todosusuarios['usu_id'] ?>">Permisos</button></td>
         </tr>
         <?php } ?>
     </tbody>
 </table>
-
+</div>
 <div id="modulos">
 </div>
 
@@ -63,9 +64,6 @@
                 }]
             });
         });
-        
-        
-        
     });
     
     

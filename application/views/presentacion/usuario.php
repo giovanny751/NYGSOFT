@@ -18,8 +18,8 @@
             <tbody>
                 <?php foreach ($usaurios as $todosusuarios) { ?>
                     <tr>
-                        <td><?= $todosusuarios['username'] ?></td>
-                        <td><?= $todosusuarios['email'] ?></td>
+                        <td><?php echo $todosusuarios['usu_nombres_apellido']; ?></td>
+                        <td><?php echo $todosusuarios['usu_correo']; ?></td>
                         <td><?php
                             if (!empty($todosusuarios['phone'])) {
                                 echo $todosusuarios['phone'];
@@ -28,14 +28,14 @@
                             }
                             ?></td>
                         <td><?php
-                            if ($todosusuarios['active'] == 1)
+                            if ($todosusuarios['est_id'] == 1)
                                 echo "Activo";
                             else {
                                 echo "Inactivo";
                             }
                             ?></td>
-                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?= $todosusuarios['id'] ?>">Modificar</button></td>
-                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?= $todosusuarios['id'] ?>">Roles</button></td>
+                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo $todosusuarios['usu_id']; ?>">Modificar</button></td>
+                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?php echo $todosusuarios['usu_id']; ?>">Roles</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -189,9 +189,9 @@
         var id = $(this).attr('idpadre');
         var url = "<?= base_url('index.php/presentacion/consultausuario') ?>";
         $.post(url, {id: id}, function(data) {
-            $('#usuario').val(data.username);
-            $('#email').val(data.email);
-            $('#celular').val(data.phone);
+            $('#usuario').val(data.usu_nombres_apellido);
+            $('#email').val(data.usu_correo);
+            $('#celular').val(data.usu_telF);
         });
     });
 

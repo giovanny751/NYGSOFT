@@ -27,8 +27,8 @@ class Ingreso_model extends CI_Model {
             $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario", "left");
         }
         if ($tipo == 2) {
-            $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario");
-//            $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario",'left');
+//            $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario");
+            $this->db->join("permisos", "permisos.menu_id = modulo.menu_id and permisos.usu_id=$idusuario",'left');
         }
         $dato = $this->db->get('modulo');
         $envio = $dato->result_array();

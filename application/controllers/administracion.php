@@ -46,7 +46,11 @@ class Administracion extends My_Controller {
 
     function empleado() {
 
-        $this->layout->view('administracion/empleado');
+        $this->data['cargos'] = $this->administracion_model->cargos();
+        $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
+        
+        
+        $this->layout->view('administracion/empleado',$this->data);
     }
 
     function vehiculo() {
@@ -77,6 +81,14 @@ class Administracion extends My_Controller {
             case 'entidadsoat':
                 $campos[] = array('entSoa_nombre' => $contenido);
                 $tabla = 'entidad_soat';
+                break;
+            case 'genero':
+                $campos[] = array('gen_genero' => $contenido);
+                $tabla = 'genero';
+                break;
+            case 'grupo':
+                $campos[] = array('gruTra_nombre' => $contenido);
+                $tabla = 'grupo_trabajo';
                 break;
             case 'tipoempresa':
                 $campos[] = array('tipEmp_nombre' => $contenido);

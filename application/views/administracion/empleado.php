@@ -1,14 +1,21 @@
+<form method="post" id="fusuario">
 <div class="form-group">
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
         <label for="cargo">Cargo</label>
         <select id="cargo" name="cargo" class="form-control">
-
+            <option value=""></option>
+            <?php foreach($cargos as $cargo){ ?>
+            <option value="<?php echo $cargo['car_id'] ?>"><?php echo $cargo['car_nombre']; ?></option>
+            <?php } ?>
         </select> 
     </div>
     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
         <label for="grupo">Grupo de trabajo</label>
         <select id="grupo" name="grupo" class="form-control"> 
-
+            <option value=""></option>
+            <?php foreach($grupotrabajo as $grupo){ ?>
+            <option value="<?php echo $grupo['gruTra_id'] ?>"><?php echo $grupo['gruTra_nombre'] ?></option>
+            <?php } ?>
         </select>
     </div>
 </div>
@@ -134,7 +141,7 @@
         <label for="categoria">Categoria</label><input type="mail" class="form-control" name="categoria" id="categoria">
     </div>
 </div>
-<div class="form-group">
+<div class="row">
 <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
     <label for="experiencianos">Experiencia en años de conduccion</label><input type="text" class="form-control" name="experiencianos" id="experiencianos">
     </div>
@@ -149,12 +156,29 @@
     </div>
 </div>
 <hr>
-<div class="form-group">
-    <div  class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+    <div  class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
     <label for="factoresriesgo">Principales factores de riesgo con los que se encuentra (tanto en mision como ida y vuelta al domicilio)</label><input type="text" class="form-control" name="factoresriesgo" id="factoresriesgo">
     </div>
-    <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+    <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="causasriesgo">Causas que motivan riesgo</label>
         <select class="form-control" id="causasriesgo" name="causasriesgo"></select>
     </div>
 </div>
+</form>
+<div class="row" align="right">
+    <button type="button" class="btn btn-success guardar">Guardar</button>
+</div>
+<script>
+    $('.guardar').click(function(){
+        
+        var url = "<?php echo base_url('index.php/administracion/guardarusuario'); ?>";
+        
+        $.post(url,$('#fusuario').serialize(),function(data){
+            
+            
+            
+        });
+        
+    });
+</script>    

@@ -89,5 +89,14 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('vehiculo');
         return $dato->result_array();
     }
-
+    function cargos(){
+        
+        $cargo = $this->db->get('cargo');
+        return $cargo->result_array();
+    }
+    function grupotrabajo(){
+        
+        $grupotrabajo = $this->db->get('grupo_trabajo');
+        return $grupotrabajo->result_array();
+    }
 }

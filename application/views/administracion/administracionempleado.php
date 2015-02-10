@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="cargo">Cargo</label><input type="text" class="form-control" name="cargo" id="cargo">
     </div>
@@ -12,7 +12,21 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+        <label for="grupo">Grupo de trabajo</label><input type="text" class="form-control" name="grupo" id="grupo">
+    </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+        <button type="button" class="btn btn-success">Agregar</button>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+        <label for="genero">Genero</label><input type="text" class="form-control" name="genero" id="genero">
+    </div>
+    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+        <button type="button" class="btn btn-success">Agregar</button>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="tipocontrato">Tipo de Contrato</label><input type="text" class="form-control" name="tipocontrato" id="tipocontrato">
     </div>
@@ -26,7 +40,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="frecuenciadesplazamiento">Frecuencia Desplazamiento Mision</label><input type="text" class="form-control" name="frecuenciadesplazamiento" id="frecuenciadesplazamiento"/>
     </div>
@@ -40,7 +54,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="tipotransporte">Tipo de Transporte</label><input type="text" class="form-control" name="tipotransporte" id="tipotransporte"/>
     </div>
@@ -54,7 +68,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="categoria">Categorias</label><input type="text" class="form-control" name="categoria" id="categoria"/>
     </div>
@@ -68,7 +82,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="estadoconductor">Estado Conductor</label><input type="text" class="form-control" name="estadoconductor" id="estadoconductor"/>
     </div>
@@ -82,7 +96,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="causas">Causas que motivan riesgo</label><input type="text" class="form-control" name="causas" id="causas"/>
     </div>
@@ -90,7 +104,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="tipoempresa">Tipo Empresa</label><input type="text" class="form-control" name="tipoempresa" id="tipoempresa">
     </div>
@@ -104,7 +118,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="tiposervicio">Tipo Servicio</label><input type="text" class="form-control" name="tiposervicio" id="tiposervicio">
     </div>
@@ -118,7 +132,7 @@
         <button type="button" class="btn btn-success">Agregar</button>
     </div>
 </div>
-<div class="form-group">
+<div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <label for="entidadsoat">Entidad Soat</label><input type="text" class="form-control" name="entidadsoat" id="entidadsoat">
     </div>

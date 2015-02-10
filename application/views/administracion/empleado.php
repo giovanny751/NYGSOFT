@@ -1,4 +1,4 @@
-<form method="post" id="fusuario">
+<form method="post" id="fusuario" action="<?php echo base_url('index.php/administracion/guardarempleado'); ?>" onsubmit="return obligatorio('1')">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
             <label for="car_id">Cargo</label>
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_nombres_apellido">Nombre</label><input type='text' class="form-control obligatorio" name="usu_nombres_apellido" id="usu_nombres_apellido">
+            <label for="usu_nombres">Nombre</label><input type='text' class="form-control obligatorio" name="usu_nombres" id="usu_nombres">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_segundonombre">Segundo Nombre</label><input type='text' class="form-control obligatorio" name="usu_segundonombre" id="usu_segundonombre">
@@ -238,20 +238,9 @@
             </select>
         </div>
     </div>
+    <div class="col-md-12 col-lg-12">
+        <center><p><br>
+            <button class="guardar btn btn-success">Guardar</button>
+        </center>
+    </div>
 </form>
-<div class="row" align="right">
-    <button type="button" class="btn btn-success guardar">Guardar</button>
-</div>
-<script>
-    $('.guardar').click(function() {
-
-        var url = "<?php echo base_url('index.php/administracion/guardarempleado'); ?>";
-
-        $.post(url, $('#fusuario').serialize(), function(data) {
-
-
-
-        });
-
-    });
-</script>    

@@ -60,7 +60,7 @@ class Administracion extends My_Controller {
     function guardarempleado(){
         
         $formulario = $this->input->post();
-        
+        $this->administracion_model->guardarempleado($formulario);
     }
 
     function vehiculo() {

@@ -11,12 +11,12 @@ class Ingresoform extends My_Controller {
         $this->load->model('Ingresoform_model');
         $this->load->helper('security');
         validate_login($this->data['user']['user_id']);
+        
     }
 
-    function empresa($id=null) {
+    function empresa() {
         $this->data['titulo'] = "Registro Empresa";
-        $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
-        $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
+        $this->data['ciiu']= $this->Ingresoform_model->get_ciiu();
         $this->layout->view('ingresoform/empresa', $this->data);
     }
 
@@ -29,28 +29,10 @@ class Ingresoform extends My_Controller {
         $this->data['titulo'] = "Empresas";
         $this->layout->view('ingresoform/lisEmpresa', $this->data);
     }
-    function lisVehiculos($id) {
-        $this->data['titulo'] = "Vehiculos";
-        $this->data['id'] = $id;
-        $this->layout->view('ingresoform/lisVehiculos', $this->data);
-    }
-    function lisEmpleado() {
-        $this->data['titulo'] = "Vehiculos";
-        $this->layout->view('ingresoform/lisEmpresa', $this->data);
-    }
 
     function get_datatable() {
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_table();
-            echo $data;
-        } else {
-            echo 'Acceso no utorizado';
-        }
-    }
-    function get_datavehiculo($id) {
-        $id=deencrypt_id($id);
-        if ($this->input->is_ajax_request()) {
-            $data = $this->Ingresoform_model->get_datavehiculo($id);
             echo $data;
         } else {
             echo 'Acceso no utorizado';
@@ -141,14 +123,6 @@ class Ingresoform extends My_Controller {
         $this->Ingresoform_model->ingresousuariopagina($correo,$random,$documento);
         
     }
-
-    // verificar si existe el nit
-    function confir_nit() {
-        $post=$this->input->post();
-        $datos=$this->Ingresoform_model->confir_nit($post);
-        echo count($datos);
-    }
-
 }
 
 /* End of file welcome.php */

@@ -99,4 +99,24 @@ class administracion_model extends CI_Model {
         $grupotrabajo = $this->db->get('grupo_trabajo');
         return $grupotrabajo->result_array();
     }
+    function genero(){
+        
+        $genero = $this->db->get('genero');
+        return $genero->result_array();
+    }
+    function desicion(){
+        
+        $genero = $this->db->get('confirmacion');
+        return $genero->result_array();
+    }
+    function causas(){
+        
+        $genero = $this->db->get('causas');
+        return $genero->result_array();
+    }
+    function categoria(){
+        
+        $genero = $this->db->get('categoria');
+        return $genero->result_array();
+    }
 }

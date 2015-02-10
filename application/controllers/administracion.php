@@ -48,9 +48,19 @@ class Administracion extends My_Controller {
 
         $this->data['cargos'] = $this->administracion_model->cargos();
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
+        $this->data['genero'] = $this->administracion_model->genero();
+        $this->data['confirmacion'] = $this->administracion_model->desicion();
+        $this->data['causas'] = $this->administracion_model->causas();
+        $this->data['categoria'] = $this->administracion_model->categoria();
+        $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
         
         
         $this->layout->view('administracion/empleado',$this->data);
+    }
+    function guardarempleado(){
+        
+        $formulario = $this->input->post();
+        
     }
 
     function vehiculo() {

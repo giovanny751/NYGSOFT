@@ -24,50 +24,57 @@
     </div>
     <div class="row">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_nombres_apellido">Nombre</label><input type='text' class="form-control obligatorio" name="usu_nombres_apellido" id="usu_nombres_apellido">
+            <label for="usu_nombres">Nombre</label><input value="<?php echo $usuario[0]['usu_nombres'] ?>" type='text' class="form-control obligatorio" name="usu_nombres" id="usu_nombres">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_segundonombre">Segundo Nombre</label><input type='text' class="form-control obligatorio" name="usu_segundonombre" id="usu_segundonombre">
+            <label for="usu_segundonombre">Segundo Nombre</label><input type='text' value="<?php echo $usuario[0]['usu_segundonombre'] ?>" class="form-control obligatorio" name="usu_segundonombre" id="usu_segundonombre">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_apellido">Apellido</label><input type='text' class="form-control obligatorio" name="usu_apellido" id="usu_apellido">
+            <label for="usu_apellido">Apellido</label><input type='text' class="form-control obligatorio" value="<?php echo $usuario[0]['usu_apellido'] ?>"  name="usu_apellido" id="usu_apellido">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_segundoapellido">Segundo Apellido</label><input type='text' class="form-control obligatorio" name="usu_segundoapellido" id="usu_segundoapellido">
+            <label for="usu_segundoapellido">Segundo Apellido</label><input type='text' class="form-control obligatorio" value="<?php echo $usuario[0]['usu_segundoapellido'] ?>" name="usu_segundoapellido" id="usu_segundoapellido">
         </div>
     </div>
     <div class="row">
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_cc">Identificación</label><input type="text" class="form-control obligatorio" name="usu_cc" id="usu_cc">
+            <label for="usu_cc">Identificación</label><input type="text" value="<?php echo $usuario[0]['usu_cc'] ?>" class="form-control obligatorio" name="usu_cc" id="usu_cc">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="gen_id">Genero</label>
             <select id="gen_id" name="gen_id"  class="form-control">
                 <option value=""></option>
-                <?php foreach ($genero as $sexo) { ?>
-                    <option value="<?php echo $sexo['gen_id'] ?>"><?php echo $sexo['gen_genero'] ?></option>
+                <?php foreach ($genero as $sexo) { 
+                    if($sexo['gen_id'] == $usuario[0]['gen_id']){$selec= "selected";}
+                    else{$selec= "";}
+                    ?>
+                <option <?php echo $selec; ?> value="<?php echo $sexo['gen_id'] ?>"><?php echo $sexo['gen_genero'] ?></option>
                 <?php } ?>
             </select> 
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_edad">Edad</label><input type="text" class="form-control obligatorio" name="usu_edad" id="usu_edad">
+            <label for="usu_edad">Edad</label><input type="text"  value="<?php echo $usuario[0]['usu_edad'] ?>" class="form-control obligatorio" name="usu_edad" id="usu_edad">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="date" class="form-control obligatorio" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
+            <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="date"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio date-picker" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
         </div>
     </div>
     <div class="row">
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="ciu_id">Ciudad</label><select id="ciu_id" name="ciu_id" class="form-control"></select>
+            <label for="ciu_id">Ciudad</label>
+            <select id="ciu_id" name="ciu_id" class="form-control"></select>
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_celular">Celular</label><input type="text" class="form-control obligatorio" name="usu_celular" id="usu_celular">
+            <label for="usu_celular">Celular</label>
+            <input type="text" value="<?php echo $usuario[0]['usu_celular'] ?>" class="form-control obligatorio" name="usu_celular" id="usu_celular">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_telF">Telefono</label><input type="text" class="form-control obligatorio" name="usu_telF" id="usu_telF">
+            <label for="usu_telF">Telefono</label>
+            <input type="text" class="form-control obligatorio"  value="<?php echo $usuario[0]['usu_telF'] ?>" name="usu_telF" id="usu_telF">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="usu_correo">Correo</label><input type="mail" class="form-control obligatorio" name="usu_correo" id="usu_correo">
+            <label for="usu_correo">Correo</label>
+            <input type="mail"  value="<?php echo $usuario[0]['usu_correo'] ?>" class="form-control obligatorio" name="usu_correo" id="usu_correo">
         </div>
     </div>
     <br>
@@ -76,7 +83,8 @@
     </div><br>
     <div  class="row">
         <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-            <label for="tipCon_id">Tipo de Contrato</label><select class="form-control" id="tipCon_id" name="tipCon_id"></select>
+            <label for="tipCon_id">Tipo de Contrato</label>
+            <select class="form-control" id="tipCon_id" name="tipCon_id"></select>
         </div>
         <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
             <label for="usu_confir_eps">Tiene EPS</label>
@@ -141,7 +149,7 @@
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_tipo_despla_mision">Tipo de desplazamiento en mision</label>
-            <input type="text" class="form-control obligatorio" name="usu_tipo_despla_mision" id="usu_tipo_despla_mision">
+            <input type="text"  value="<?php echo $usuario[0]['usu_tipo_despla_mision'] ?>" class="form-control obligatorio" name="usu_tipo_despla_mision" id="usu_tipo_despla_mision">
         </div>
     </div>
     <div class="row">
@@ -156,7 +164,7 @@
         </div>
         <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
             <label for="usu_nro_diaro_recorrido">No recorridos diarios</label>
-            <input type="text" class="form-control obligatorio" name="usu_nro_diaro_recorrido" id="usu_nro_diaro_recorrido">
+            <input type="text" class="form-control obligatorio"  value="<?php echo $usuario[0]['usu_nro_diaro_recorrido'] ?>" name="usu_nro_diaro_recorrido" id="usu_nro_diaro_recorrido">
         </div>
     </div>
     <div class="row">
@@ -185,11 +193,11 @@
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_fecha_vigencia_licencia">Fecha de vigencia de la licencia de conduccion</label>
-            <input type="date" class="form-control" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
+            <input type="date" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>"  class="form-control date-picker" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_fecha_expedicion_cc">Fecha de Expedicion Cedula</label>
-            <input type="date" class="form-control" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
+            <input type="date"  value="<?php echo $usuario[0]['usu_fecha_expedicion_cc'] ?>" class="form-control date-picker" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="cat_id">Categoria</label>
@@ -204,10 +212,11 @@
     <div class="row">
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_experiecia_anos">Experiencia en años de conduccion</label>
-            <input type="text" class="form-control" name="usu_experiecia_anos" id="usu_experiecia_anos">
+            <input type="text"  value="<?php echo $usuario[0]['usu_experiecia_anos'] ?>"  class="form-control" name="usu_experiecia_anos" id="usu_experiecia_anos">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-            <label for="restriccionesconductor">Fecha de vigencia de la licencia de conduccion</label><input type="text" class="form-control" name="restriccionesconductor" id="restriccionesconductor">
+            <label for="usu_fecha_vigencialic">Fecha de vigencia de la licencia de conduccion</label>
+            <input type="date" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_estado_conductor">Estado Conductor</label>
@@ -217,7 +226,7 @@
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_runt_num">No de Inscripcion ante el RUNT</label>
-            <input type="text" class="form-control" name="usu_runt_num" id="usu_runt_num">
+            <input type="text" value="<?php echo $usuario[0]['usu_runt_num'] ?>" class="form-control" name="usu_runt_num" id="usu_runt_num">
         </div>
     </div>
     <hr>

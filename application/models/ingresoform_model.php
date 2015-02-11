@@ -271,7 +271,8 @@ class Ingresoform_model extends CI_Model {
             'usu_tipo' => '1'
         );
 
-        $this->db->insert_batch('user', $datos);
+        $usuario = $this->db->insert_batch('user', $datos);
+        return $this->db->insert_id();
     }
 
     function ingresousuarioempresa($correo, $random, $documento) {
@@ -284,6 +285,7 @@ class Ingresoform_model extends CI_Model {
         );
 
         $this->db->insert_batch('user', $datos);
+        return $this->db->insert_id();
     }
 
     // lista de la tabla ciiu
@@ -304,5 +306,33 @@ class Ingresoform_model extends CI_Model {
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
-
+    function permisosusuarioempresa($idusuario){
+        $data = array(
+            array('menu_id'=>9,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>39,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>44,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>45,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>46,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>47,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>48,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>49,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>50,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>51,'rol_id'=>50,'usu_id'=>$idusuario)
+        );
+        
+        $this->db->insert_batch('permisos',$data); 
+        
+    }
+    function permisosusuariousuario($idusuario){
+        $data = array(
+            array('menu_id'=>9,'rol_id'=>49,'usu_id'=>$idusuario),
+            array('menu_id'=>40,'rol_id'=>49,'usu_id'=>$idusuario),
+            array('menu_id'=>41,'rol_id'=>49,'usu_id'=>$idusuario),
+            array('menu_id'=>42,'rol_id'=>49,'usu_id'=>$idusuario),
+            array('menu_id'=>43,'rol_id'=>49,'usu_id'=>$idusuario)
+        );
+        
+        $this->db->insert_batch('permisos',$data); 
+        
+    }
 }

@@ -51,7 +51,8 @@ class Ingresoform extends My_Controller {
         $nit = $this->input->post('nit');
         $empresa = $this->data['user']['user_id'];
         $log = array();
-        $random = encrypt_id($nit);
+//        $random = encrypt_id($nit);
+        $random = '12345';
         $log[] = array(
             'corEnv_nit' => $nit,
             'corEnv_empresa' => $empresa,
@@ -79,7 +80,8 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
-        $this->Ingresoform_model->ingresousuarioempresa($correo,$random,$nit);
+        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo,$random,$nit);
+        $this->Ingresoform_model->permisosusuarioempresa($idusuario);
     }
     function ingresausuario(){
         
@@ -94,7 +96,8 @@ class Ingresoform extends My_Controller {
         $empresa = $this->data['user']['user_id'];
         
         $log = array();
-        $random = encrypt_id($documento);
+//        $random = encrypt_id($documento);
+        $random = '12345';
         $log[] = array(
             'corUsu_documento' => $documento,
             'tipDoc_id' => $tipodocumento,
@@ -120,7 +123,10 @@ class Ingresoform extends My_Controller {
         
         mail($correo, "Registro de Usuario", $message);
         $this->Ingresoform_model->guardarlogenviocorreousuario($log);
-        $this->Ingresoform_model->ingresousuariopagina($correo,$random,$documento);
+        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo,$random,$documento);
+     
+        
+        $this->Ingresoform_model->permisosusuariousuario($idusuario);
         
     }
 }

@@ -18,7 +18,7 @@
             <tbody>
                 <?php foreach ($usaurios as $todosusuarios) { ?>
                     <tr>
-                        <td><?php echo $todosusuarios['usu_nombres_apellido']; ?></td>
+                        <td><?php echo $todosusuarios['usu_nombres']; ?></td>
                         <td><?php echo $todosusuarios['usu_correo']; ?></td>
                         <td><?php
                             if (!empty($todosusuarios['phone'])) {

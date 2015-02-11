@@ -45,7 +45,9 @@ class Administracion extends My_Controller {
     }
 
     function empleado() {
-
+        
+        
+         $id = $this->data['user'];
         $this->data['cargos'] = $this->administracion_model->cargos();
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
         $this->data['genero'] = $this->administracion_model->genero();
@@ -53,6 +55,7 @@ class Administracion extends My_Controller {
         $this->data['causas'] = $this->administracion_model->causas();
         $this->data['categoria'] = $this->administracion_model->categoria();
         $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
+        $this->data['usuario'] = $this->administracion_model->datosusuario($id['user_id']);
         
         
         $this->layout->view('administracion/empleado',$this->data);
@@ -60,6 +63,9 @@ class Administracion extends My_Controller {
     function guardarempleado(){
         
         $formulario = $this->input->post();
+        $id = $this->data['user'];
+        
+        $this->administracion_model->guardarempleado($formulario,$id['user_id']);
         
     }
 

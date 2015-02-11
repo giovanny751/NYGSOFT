@@ -21,11 +21,11 @@ class Presentacion extends My_Controller {
 
     function principal() {
 //            echo $this->session->userdata('usu_correo');
-            //echo print_y($d);
+        //echo print_y($d);
 //            var_dump($this->data['user']);die;
 //            echo "hola";die;
         $this->data['user'] = 1;
-        
+
         $this->data['content'] = $this->modulos('prueba', null, $this->data['user']);
 //            $this->data['content'] = "";
 
@@ -56,11 +56,7 @@ class Presentacion extends My_Controller {
     }
 
     function principal_menu() {
-        if (!empty($this->data['user'])) {
-            return $menu = $this->load->view('presentacion/modulos');
-        } else {
-            redirect('auth/login', 'refresh');
-        }
+        return $menu = $this->load->view('presentacion/modulos');
     }
 
     function administracionmenu() {
@@ -82,26 +78,26 @@ class Presentacion extends My_Controller {
 
     public function creacionmenu() {
 
-            $this->data['hijo'] = $this->input->post('menu');
-            $this->data['nombrepadre'] = $this->input->post('nombrepadre');
-            $this->data['idgeneral'] = $this->input->post('idgeneral');
+        $this->data['hijo'] = $this->input->post('menu');
+        $this->data['nombrepadre'] = $this->input->post('nombrepadre');
+        $this->data['idgeneral'] = $this->input->post('idgeneral');
 
 //            echo $this->data['idgeneral'];
 
-            if (empty($this->data['idgeneral']))
-                $this->data['hijo'] = 0;
+        if (empty($this->data['idgeneral']))
+            $this->data['hijo'] = 0;
 
-            $this->data['menu'] = $this->ingreso_model->consultahijos($this->data['idgeneral']);
+        $this->data['menu'] = $this->ingreso_model->consultahijos($this->data['idgeneral']);
 
 //            var_dump($this->data['menu'] );
 
-            if (!empty($this->data['idgeneral'])) {
+        if (!empty($this->data['idgeneral'])) {
 
-                $this->data['menu'] = $this->ingreso_model->hijos($this->data['idgeneral']);
-            }
+            $this->data['menu'] = $this->ingreso_model->hijos($this->data['idgeneral']);
+        }
 
 //            $this->data['content'] = 'presentacion/menu';
-            $this->layout->view('presentacion/menu', $this->data);
+        $this->layout->view('presentacion/menu', $this->data);
     }
 
     function guardarmodulo() {
@@ -153,14 +149,14 @@ class Presentacion extends My_Controller {
 
         $idrol = $this->input->post('idrol');
         $idusuario = $this->input->post('idusuario');
-        $permisos = $this->permisorolporusuario('prueba', $idrol,$idusuario);
+        $permisos = $this->permisorolporusuario('prueba', $idrol, $idusuario);
 
         echo $permisos;
     }
 
-    function permisorolporusuario($datosmodulos = 'prueba', $idrol,$idusuario,$html = "") {
+    function permisorolporusuario($datosmodulos = 'prueba', $idrol, $idusuario, $html = "") {
 
-        $menu = $this->ingreso_model->permisousuarioroles($datosmodulos,$idrol, $idusuario);
+        $menu = $this->ingreso_model->permisousuarioroles($datosmodulos, $idrol, $idusuario);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -171,9 +167,9 @@ class Presentacion extends My_Controller {
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
                         $html .= "<li>" . strtoupper($nombrepapa) . "<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
-                        if (!empty($submenus[0])){
+                        if (!empty($submenus[0])) {
 //                            echo $submenus[0]."****";die;
-                            $html .=$this->permisorolporusuario($submenus[0],$idrol,$idusuario );
+                            $html .=$this->permisorolporusuario($submenus[0], $idrol, $idusuario);
                         }
                         $html .= "</li>";
                     endforeach;
@@ -224,7 +220,7 @@ class Presentacion extends My_Controller {
 
         $this->load->model("ingreso_model");
 
-        $menu = $this->ingreso_model->menu($iduser, $datosmodulos,1);
+        $menu = $this->ingreso_model->menu($iduser, $datosmodulos, 1);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']][$modulo['modulo_menuid']] [] = $modulo['menu_idhijo'];

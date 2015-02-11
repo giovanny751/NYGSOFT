@@ -119,4 +119,16 @@ class administracion_model extends CI_Model {
         $genero = $this->db->get('categoria');
         return $genero->result_array();
     }
+    function guardarempleado($data,$id){
+        
+        $this->db->where('usu_id',$id);
+        $this->db->update('user',$data);
+        
+    }
+    function datosusuario($id){
+        
+        $this->db->where('usu_id',$id);
+        $user = $this->db->get('user');
+        return $user->result_array();
+    }
 }

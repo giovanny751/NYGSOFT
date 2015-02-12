@@ -1,3 +1,7 @@
+<div class="widgetTitle">
+    <h5><i class="glyphicon glyphicon-ok"></i> ACTUALIZACIÓN DE DATOS</h5>
+</div>
+<div class='well'>
 <form method="post" id="fusuario">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -226,7 +230,7 @@
         </div>
         <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="usu_runt_num">No de Inscripcion ante el RUNT</label>
-            <input type="text" value="<?php echo $usuario[0]['usu_runt_num'] ?>" class="form-control" name="usu_runt_num" id="usu_runt_num">
+            <input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control" name="usu_runt_num" id="usu_runt_num">
         </div>
     </div>
     <hr>
@@ -250,6 +254,7 @@
 </form>
 <div class="row" align="right">
     <button type="button" class="btn btn-success guardar">Guardar</button>
+</div>
 </div>
 <script>
     $('.guardar').click(function() {

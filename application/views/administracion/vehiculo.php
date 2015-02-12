@@ -1,3 +1,7 @@
+<div class="widgetTitle">
+    <h5><i class="glyphicon glyphicon-ok"></i> AGREGAR VEHICULOS</h5>
+</div>
+<div class='well'>
 <form method="post" id="fvehiculo">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -29,11 +33,11 @@
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_numlicencia">No licencia trancito</label>
-            <input type="date" class="form-control" name="veh_numlicencia" id="veh_numlicencia">
+            <input type="text" class="form-control" name="veh_numlicencia" id="veh_numlicencia">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_marca">Marca</label>
-            <input type="date" class="form-control" name="veh_marca" id="veh_marca">
+            <input type="text" class="form-control" name="veh_marca" id="veh_marca">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_linea">Linea</label>
@@ -47,11 +51,11 @@
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_modelo">Modelo</label>
-            <input type="date" class="form-control" name="veh_modelo" id="veh_modelo">
+            <input type="text" class="form-control" name="veh_modelo" id="veh_modelo">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_capacidad">Capacidad de Carga</label>
-            <input type="date" class="form-control" name="veh_capacidad" id="veh_capacidad">
+            <input type="text" class="form-control" name="veh_capacidad" id="veh_capacidad">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_cilindraje">Cilindraje</label>
@@ -82,11 +86,11 @@
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fechaultmantenimiento">Fecha ultimo Mantenimiento</label>
-            <input type="date" class="form-control" name="veh_fechaultmantenimiento" id="veh_fechaultmantenimiento">
+            <input type="date" class="form-control date-picker" name="veh_fechaultmantenimiento" id="veh_fechaultmantenimiento">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fechaproxmantenimiento">Fecha proximo Mantenimiento</label>
-            <input type="date" class="form-control" name="veh_fechaproxmantenimiento" id="veh_fechaproxmantenimiento">
+            <input type="date" class="form-control date-picker" name="veh_fechaproxmantenimiento" id="veh_fechaproxmantenimiento">
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_realizamantenimiento">Centro donde realiza el mantenimiento</label>
@@ -159,25 +163,25 @@
             <label for="veh_nombrepropietario">Nombre del Propietario</label>
             <input type="text" id="veh_nombrepropietario" name="veh_nombrepropietario" class='form-control'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_identificacion">Cedula</label>
             <input type="text" id="veh_identificacion" name="veh_identificacion" class='form-control'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_direccion">Direccion</label>
             <input type="text" id="veh_direccion" name="veh_direccion" class='form-control'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_telefono">Telefono</label>
             <input type="text" id="veh_telefono" name="veh_telefono" class='form-control'>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_correo">Correo Electronico</label>
             <input type="text" id="veh_correo" name="veh_correo" class='form-control'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_comparendos">Posee actualmente deudas de comparendos</label>
             <select id="veh_comparendos" name="veh_comparendos" class='form-control'>
                 <option value=""></option>
@@ -189,7 +193,7 @@
     </div>
     <br><hr><br>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_soatvigente">Tiene Soat Vigente</label>
             <select id="veh_soatvigente" name="veh_soatvigente" class='form-control'>
                 <option value=""></option>
@@ -198,27 +202,27 @@
                 <?php } ?>
             </select>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_numerosoat">Numero Soat</label>
             <input type="text" id="veh_numerosoat" name="veh_numerosoat" class='form-control'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fechainiciosoat">Fecha Vigencia</label>
-            <input type="date" id="veh_fechainiciosoat" name="veh_fechainiciosoat" class='form-control'>
+            <input type="date" id="veh_fechainiciosoat date-picker" name="veh_fechainiciosoat" class='form-control date-picker'>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fechafinsoat">Fecha fin vigencia</label>
-            <input type="date" id="veh_fechafinsoat" name="veh_fechafinsoat" class='form-control'>
+            <input type="date" id="veh_fechafinsoat date-picker" name="veh_fechafinsoat" class='form-control date-picker'>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_entidadexpsoat">Entidad expide el soat</label>
             <select id="veh_entidadexpsoat" name="veh_entidadexpsoat" class='form-control'>
 
             </select>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_rtm">Tiene RTM vigente</label>
             <select id="veh_rtm" name="veh_rtm" class='form-control'>
                 <option value=""></option>
@@ -229,11 +233,11 @@
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fecinirtm">Fecha Inicio Vigencia</label>
-            <input type="date" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control'>
+            <input type="date" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control date-picker'>
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
             <label for="veh_fecfinrtm">Fecha fin vigencia</label>
-            <input type="date" id="veh_fecfinrtm" name="veh_fecfinrtm" class='form-control'>
+            <input type="date" id="veh_fecfinrtm" name="veh_fecfinrtm" class='form-control date-picker'>
         </div>
     </div>
     <br><hr><br>
@@ -255,16 +259,17 @@
     <div class="row">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_feciniafiliacion">Fecha Inicio vigencia</label>
-            <input type="date" id="veh_feciniafiliacion" name="veh_feciniafiliacion" class='form-control'>
+            <input type="date" id="veh_feciniafiliacion date-picker" name="veh_feciniafiliacion" class='form-control date-picker'>
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
             <label for="veh_fecfinafiliacion">Fecha Fin Vigencia</label>
-            <input type="date" id="veh_fecfinafiliacion" name="veh_fecfinafiliacion" class='form-control'>
+            <input type="date" id="veh_fecfinafiliacion" name="veh_fecfinafiliacion" class='form-control date-picker'>
         </div>
     </div>
 </form>
 <div class="row" align="right">
     <button type="button" class="btn btn-success" id="guardar">Guardar</button>
+</div>
 </div>
 <script>
     $('#guardar').click(function() {

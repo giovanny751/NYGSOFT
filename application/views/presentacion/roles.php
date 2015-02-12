@@ -18,7 +18,7 @@
                     <tr>
                         <td><?php echo $datos['rol_nombre']; ?></td>
                         <td><?php echo $datos['rol_estado']; ?></td>
-                        <td><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-info opciones">Opciones</button></td>
+                        <td><button type="button" rol="<?php echo $datos['rol_id']; ?>"  data-toggle="modal" data-target="#myModal"  class="btn btn-info modificar">Opciones</button></td>
                         <td><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
                     </tr>
                     <?php }?>
@@ -32,19 +32,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modificacion</h4>
+                <h4 class="modal-title" id="myModalLabel">Modificación</h4>
             </div>
             <div class="col-md-12 col-lg-12 col-sm-12 col-sx-12">
                 <div class=" marginV20">
                     <div class="widgetTitle">
                         <h5><i class="glyphicon glyphicon-pencil"></i> Nuevo</h5>
                     </div>
-                    <div class="well">
+                    <div class="well" >
                         <form id="nuevorol" method="post">
-                        <div class="form-group">
-                                <label >Nombre</label><input type="text" id="nombre" name="nombre" class="form-control">
+                        <div class="form-group agregarrol">
+                                
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"  style="overflow: scroll;height: 250px;">
                                 <label>Permisos </label>
                                 <?php 
                                 echo $content;
@@ -118,10 +118,21 @@ $('body').delegate('.eliminar','click',function(){
     });
     
     $('.opciones').click(function(){
-        
+    $('.seleccionados').prop('checked',false);
+        $('.agregarrol').append('<label >Nombre</label><input type="text" id="nombre" name="nombre" class="form-control">');
         $('#nombre').val('');
         $('.seleccionados').prop('checked',false);
     });
     
-    
+    $('.modificar').click(function(){
+        $('.agregarrol *').remove();
+        var url = "<?php echo base_url('index.php/presentacion/rolesasignados'); ?>";
+        var id = $(this).attr('rol');
+        $.post(url,{id:id},function(data){
+            $.each(data,function(key,val){
+                $('.seleccionados[value='+val.menu_id+']').prop('checked',true);
+            });
+        });
+        
+    });
 </script>

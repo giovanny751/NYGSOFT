@@ -66,7 +66,8 @@ class Administracion extends My_Controller {
         $id = $this->data['user'];
         
         $this->administracion_model->guardarempleado($formulario,$id['user_id']);
-        
+//        $this->administracion_model->guardarempleado($formulario);
+
     }
 
     function vehiculo() {

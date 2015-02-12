@@ -254,6 +254,11 @@ class Ingreso_model extends CI_Model {
     function permisosusuariomenu($permiso) {
         $this->db->insert_batch('permisos', $permiso);
     }
-
+    function rolesasignados($id){
+        $this->db->select('permisos_rol.menu_id');
+        $this->db->where('rol_id',$id);
+        $rol = $this->db->get('permisos_rol');
+        return $rol->result_array();
+    }
 
 }

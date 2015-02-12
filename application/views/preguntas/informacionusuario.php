@@ -1,9 +1,15 @@
-<div class="row" align="justify"> 
-<h5>VISTA  1  (Bienvenida)</h5>  
+<div class="widgetTitle">
+    <h5><i class="glyphicon glyphicon-ok"></i> INFORMACIÓN PARA CONTESTAR LAS PREGUNTAS </h5>
+</div>
+<div class="well" align="justify"> 
+    <div class="widgetTitle">
+    <h5> VISTA  1  (Bienvenida)</h5>
+</div>
 <br>
 <p>Bienvenido  a  la  plataforma  virtual  que  le  ayudará  a  ser  parte  del  PESV  (plan  estratégico  de  seguridad  vial)  para  su  empresa.    Seguramente  se  preguntará  ¿qué  es  el  PESV?  Y  ¿Qué  tengo  yo  que  ver  con  esto?.  Responderemos  estas  y  otras  preguntas  a  medida  que  avancemos  en  el  desarrollo  de  esta  guía.</p>  
-
-<h5>VISTA  2  (Preguntas  frecuentes  antes  de  comenzar)</h5>  
+<div class="widgetTitle">
+    <h5> VISTA  2  (Preguntas  frecuentes  antes  de  comenzar)</h5>
+</div>
 <br>
 ¿Qué  es  el  PESV?  
 <br>
@@ -17,7 +23,9 @@ Dichas  acciones  están  encaminadas  a  alcanzar  la  seguridad  vial  como  a
 
 de  tránsito.    Recuerde  que  la  prioridad  sobre  la  vía  la  tiene  LA  VIDA.</p>  
 
-<h5>VISTA  3  (Diagnostico)</h5>  
+<div class="widgetTitle">
+    <h5> VISTA  3  (Diagnostico)</h5>
+</div>  
 <br>
 <p>A  continuación  usted  debe  responder  las  siguientes  preguntas,  que  le  ayudarán  a    su  empresa  a  diseñar  un  plan  estratégico  de  seguridad  vial,  teniendo  en  cuenta  a  cada  uno  de  sus  empleados.</p>  
 
@@ -34,9 +42,10 @@ de  tránsito.    Recuerde  que  la  prioridad  sobre  la  vía  la  tiene  LA  
 <p>Bajo:  Bajo  grado  de  accidente  o  incidente  de  tránsito  </p>
 
 <p style="color:red">Nota:  En  esta  sección  debe  aparecer  el  listado  de  riesgos.  </p>
-
-<h5>VISTA  4  (Autoevaluación)</h5>  
-
+<div class="widgetTitle">
+    <h5> VISTA  4  (Autoevaluación)</h5>
+</div>  
+  
 <p style="color:red">NOTA:  La  vista  de  autoevaluación  no  está  dentro  del  alcance  de  esta  propuesta.  <p>
 
 <center style="color: blue"><b>Vista  de  información.</b></center>  

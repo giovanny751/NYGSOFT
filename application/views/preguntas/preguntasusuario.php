@@ -1,3 +1,4 @@
+<div class="well">
 <?php
 if ($contador == 0) {
     echo "<div class='row'><form method='post' id='fusuario'>";
@@ -70,3 +71,4 @@ if ($contador == 0) {
         </div>
     </div>
 <?php } ?>
+</div>

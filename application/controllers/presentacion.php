@@ -448,6 +448,13 @@ class Presentacion extends My_Controller {
         //$pais = $this->ingreso_model->paises();
         //$this->output->set_content_type('application/json')->set_output(json_encode($pais));
     }
+    function rolesasignados(){
+        
+        $id = $this->input->post('id');
+        $roles = $this->ingreso_model->rolesasignados($id);
+        
+        $this->output->set_content_type('application/json')->set_output(json_encode($roles));
+    }
 
 }
 

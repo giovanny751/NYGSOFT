@@ -119,6 +119,7 @@ class administracion_model extends CI_Model {
         $genero = $this->db->get('categoria');
         return $genero->result_array();
     }
+
     function guardarempleado($data,$id){
         
         $this->db->where('usu_id',$id);
@@ -131,4 +132,12 @@ class administracion_model extends CI_Model {
         $user = $this->db->get('user');
         return $user->result_array();
     }
+//    function guardarempleado($post) {
+//        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";
+//        $this->db->where('usu_cc', $post['usu_cc']);
+//        $this->db->update('user', $post);
+//        if (($this->db->affected_rows()) > 0) {
+//            $this->db->insert('user', $post);
+//        }
+//    }
 }

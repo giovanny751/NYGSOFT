@@ -308,21 +308,30 @@ class Presentacion extends My_Controller {
     function guardarroles() {
 
         $nombre = $this->input->post('nombre');
+
+        if (!empty($nombre)) {
+
+            $permisorol = $this->input->post('permisorol');
+            $id = $this->Roles_model->guardarrol($nombre);
+            $insert = array();
+            for ($i = 0; $i < count($permisorol); $i++) {
+                $insert[] = array('rol_id' => $id, 'menu_id' => $permisorol[$i]);
+            }
+            $this->Roles_model->insertapermisos($insert);
+            $roles = $this->Roles_model->roles();
+            $this->output->set_content_type('application/json')->set_output(json_encode($roles));
+        }else{
+            $id = $this->input->post('rol');
+            $this->Roles_model->eliminpermisosrol($id);
+            
+        }
+        
         $permisorol = $this->input->post('permisorol');
-
-        $id = $this->Roles_model->guardarrol($nombre);
-
         $insert = array();
-
         for ($i = 0; $i < count($permisorol); $i++) {
             $insert[] = array('rol_id' => $id, 'menu_id' => $permisorol[$i]);
         }
-
         $this->Roles_model->insertapermisos($insert);
-
-        $roles = $this->Roles_model->roles();
-
-        $this->output->set_content_type('application/json')->set_output(json_encode($roles));
     }
 
     function eliminarrol() {
@@ -448,11 +457,12 @@ class Presentacion extends My_Controller {
         //$pais = $this->ingreso_model->paises();
         //$this->output->set_content_type('application/json')->set_output(json_encode($pais));
     }
-    function rolesasignados(){
-        
+
+    function rolesasignados() {
+
         $id = $this->input->post('id');
         $roles = $this->ingreso_model->rolesasignados($id);
-        
+
         $this->output->set_content_type('application/json')->set_output(json_encode($roles));
     }
 

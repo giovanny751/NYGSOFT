@@ -45,9 +45,9 @@ class Roles_model extends CI_Model {
         $this->db->where('rol_id',$id);
         $this->db->delete('roles');
     }
-    function eliminpermisosrol($id){
+    function eliminpermisosrol($idrol){
         
-        $this->db->where('perRol_id',$id);
+        $this->db->where('rol_id',$idrol);
         $this->db->delete('permisos_rol');
     }
 }

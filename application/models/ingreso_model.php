@@ -261,5 +261,12 @@ class Ingreso_model extends CI_Model {
         $rol = $this->db->get('permisos_rol');
         return $rol->result_array();
     }
+    function eliminapermisosusuario($rol,$usuario){
+        
+        $this->db->where('rol_id',$rol);
+        $this->db->where('usu_id',$usuario);
+        $this->db->delete('permisos');
+        
+    }
 
 }

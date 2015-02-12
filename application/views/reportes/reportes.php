@@ -20,8 +20,8 @@
                             <tr>
                                 <td><?php echo $totalreportes['rep_nombre']; ?></td>
                                 <!--<td><?php echo $totalreportes['rep_estado']; ?></td>-->
-                                <td><button  data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones" repid="<?php echo $totalreportes['rep_id']; ?>">Opciones</button></td>
-                                <td><button    class="btn btn-success reporte" repid="<?php echo $totalreportes['rep_id']; ?>">Reporte</button></td>
+                                <td align="center"><button  data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones" repid="<?php echo $totalreportes['rep_id']; ?>">Opciones</button></td>
+                                <td align="center"><button    class="btn btn-success reporte" repid="<?php echo $totalreportes['rep_id']; ?>">Reporte</button></td>
                             </tr>
                             <?php
                         }

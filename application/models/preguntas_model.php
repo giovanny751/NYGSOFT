@@ -39,6 +39,7 @@ class Preguntas_model extends CI_Model {
     function todaspreguntas(){
         
         $this->db->where('pre_estado !=',3);
+        $this->db->where('pre_estado !=',2);
         $this->db->select('preguntas.pre_id,tipo_pregunta.tipPre_id,opcion_pregunta.opcPre_id,tipo_pregunta.tipPre_tipo,opcion_pregunta.opcPre_opcion,preguntas.pre_pregunta');
         $this->db->join('tipo_pregunta','tipo_pregunta.tipPre_id = preguntas.tipPre_id'); 
         $this->db->join('opcion_pregunta','preguntas.opcPre_id = opcion_pregunta.opcPre_id'); 
@@ -88,5 +89,17 @@ class Preguntas_model extends CI_Model {
         $tipo = array();
         $tipo[] = array('tipPre_id'=>$tipopregunta,'opcPre_opcion'=>$opcion);
         $this->db->insert_batch('opcion_Pregunta',$tipo);
+    }
+    function actualizacionestadopregunta($id,$estado){
+        
+        $this->db->where('pre_id',$id);
+        if($estado == 1){
+            $this->db->set('pre_estado',2);
+        } else{
+            $this->db->set('pre_estado',1);
+        }
+        
+        $this->db->update('preguntas');
+        
     }
 }

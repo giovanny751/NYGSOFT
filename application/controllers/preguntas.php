@@ -77,7 +77,6 @@ class Preguntas extends My_Controller {
         $id = $this->data['usuario'];
         $preguntascontestadas = $this->preguntas_model->preguntasusuario($id);
 
-
         $this->data['contador'] = count($preguntascontestadas);
         if ($this->data['contador'] == 0) {
             $this->data['preguntas'] = $this->preguntas_model->todaspreguntas();
@@ -130,6 +129,12 @@ class Preguntas extends My_Controller {
     function informacionusuario() {
 
         $this->layout->view('preguntas/informacionusuario');
+    }
+    function cambiodeestadopregunta(){
+        
+        $id = $this->input->post('id');
+        $estado = $this->input->post('estado');
+        $this->preguntas_model->actualizacionestadopregunta($id,$estado);
     }
 
 }

@@ -1,13 +1,21 @@
-<div class="row">
+<div class="widgetTitle">
+    <h5><i class="glyphicon glyphicon-ok"></i> TIPO DE PREGUNTA </h5>
+</div>
+<div class="well">
+    <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <label>Tipo de Pregunta</label>
-        <input type="text" class="form-control" name="tipopregunta" id="tipopregunta">
+        <input type="text" class="form-control" placeholder="TIPO DE PREGUNTA" name="tipopregunta" id="tipopregunta">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <button type="button" class="btn btn-success" id="guardartipo">Guardar Tipo</button>
     </div>
+    </div>
 </div>
-<div class="row">
+<div class="widgetTitle">
+    <h5><i class="glyphicon glyphicon-ok"></i> AGREGAR OPCIONES DE PREGUNTA </h5>
+</div>
+<div class="well">
+    <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6">
         <label>Tipo de Pregunta</label>
         <select class="form-control" id="tipopreguntados">
@@ -22,6 +30,7 @@
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <button type="button" class="btn btn-success" id="guardaropcion">Guardar Opcion</button>
+    </div>
     </div>
 </div>
 <script>

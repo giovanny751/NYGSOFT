@@ -417,15 +417,12 @@ class Presentacion extends My_Controller {
     function guardarpermisos() {
         $rol = $this->input->post('roluser');
         $usuario = $this->input->post('usuarioid');
+        $this->ingreso_model->eliminapermisosusuario($rol,$usuario);
         $permisorol = $this->input->post('permisorol');
-
         $permiso = array();
-        $contador = count($permisorol);
-
-        for ($i = 0; $i < $contador; $i++) {
+        for ($i = 0; $i < count($permisorol); $i++) {
             $permiso[] = array('usu_id' => $usuario, 'menu_id' => $permisorol[$i], 'rol_id' => $rol);
         }
-
         $this->ingreso_model->permisosusuariomenu($permiso);
     }
 

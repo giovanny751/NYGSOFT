@@ -34,9 +34,10 @@ class Ingresoform extends My_Controller {
         $this->data['id'] = $id;
         $this->layout->view('ingresoform/lisVehiculos', $this->data);
     }
-    function lisEmpleado() {
-        $this->data['titulo'] = "Vehiculos";
-        $this->layout->view('ingresoform/lisEmpresa', $this->data);
+    function lisEmpleado($id) {
+        $this->data['titulo'] = "Empleado";
+        $this->data['id'] = $id;
+        $this->layout->view('ingresoform/lisEmpleado', $this->data);
     }
 
     function get_datatable() {
@@ -51,6 +52,15 @@ class Ingresoform extends My_Controller {
         $id=deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_datavehiculo($id);
+            echo $data;
+        } else {
+            echo 'Acceso no utorizado';
+        }
+    }
+    function get_dataEmpleado($id) {
+        $id=deencrypt_id($id);
+        if ($this->input->is_ajax_request()) {
+            $data = $this->Ingresoform_model->get_dataEmpleado($id);
             echo $data;
         } else {
             echo 'Acceso no utorizado';

@@ -236,7 +236,125 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                } else
+                if ($aColumns[$i] != ' ') {
+                    /* General output */
+                    //$row[] = print_r($this->input->get());
+                    //$row[] = $sQueryprueba;
+                    $row[] = $aRow[$aColumns[$i]];
+                }
+            }
+            $output['aaData'][] = $row;
+            $contador++;
+        }
+
+        return json_encode($output);
+    }
+    function get_dataEmpleado($id = null) {
+        //CAMPOS
+        $aColumns = array(
+            'veh_nombrepropietario',
+            'veh_placa',
+            'veh_numlicencia',
+            'veh_marca',
+            'veh_capacidad',
+            'veh_id',
+        );
+        //LLAVE PRIMARIA
+        $sIndexColumn = "veh_nombrepropietario";
+        //TABLA
+        $sTable = "vehiculo join empresa on empresa.emp_id=vehiculo.emp_id";
+        if ($id != null)
+            $rWhere = "where vehiculo.emp_id=" . $id . " ";
+        else
+            $rWhere = "where 1=1  ";
+
+        $aColumns2 = array();
+        foreach ($aColumns as $aColumn) {
+            $aColumns2[] = $aColumn;
+        }
+
+        //CONTRADOR DE PAGINACION
+        $sLimit = "";
+        if (isset($_GET['start']) && $_GET['length'] != '-1') {
+            $sLimit = "LIMIT " . intval($_GET['start']) . ", " .
+                    intval($_GET['length']);
+        }
+
+        //ORDENAR
+        $sOrder = "";
+        if (isset($_GET['order'])) {
+            $sOrder = "ORDER BY  ";
+            $sOrder .= $aColumns2[$_GET['order'][0]['column']] . "
+                    " . ($_GET['order'][0]['dir'] === 'asc' ? 'asc' : 'desc') . ", ";
+            $sOrder = substr_replace($sOrder, "", -2);
+            if ($sOrder == "ORDER BY") {
+                $sOrder = "";
+            }
+        }
+
+        //FILTRO
+        $sWhere = '';
+        if (isset($_GET['search']['value']) && $_GET['search']['value'] != "") {
+            $data = $_GET['search']['value'];
+            $sWhere = " AND (";
+            for ($i = 0; $i < count($aColumns2); $i++) {
+                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . mysql_real_escape_string($data) . '%' . "' OR ";
+            }
+            $sWhere = substr_replace($sWhere, "", -3);
+            $sWhere .= ')';
+        }
+
+        //CONSULTA DE REGISTROS
+        $sQuery = " SELECT SQL_CALC_FOUND_ROWS " . str_replace(" , ", " ", implode(", ", $aColumns2)) . "
+                    FROM " . $sTable . " " .
+                $rWhere . " " .
+                $sWhere . " " .
+                $sOrder . " " .
+                $sLimit;
+        $sQueryprueba = $sQuery;
+        //echo $sQuery;
+        //mail("yeison@tellocor.com",'consulta',$sQuery);
+        $rResult = $this->db->query($sQuery);
+
+        //CONSULTA DE GRAN TOTAL
+        $sQuery = "SELECT FOUND_ROWS() AS total";
+
+        $rResultFilterTotal = $this->db->query($sQuery);
+        $aResultFilterTotal = $rResultFilterTotal->result();
+        $iFilteredTotal = $aResultFilterTotal[0]->total;
+
+        //CONSULTA TOTAL DE REGISTROS (SIN FILTRO)
+        $sQuery = " SELECT COUNT(" . $sIndexColumn . ") AS total FROM   $sTable ";
+        $rResultTotal = $this->db->query($sQuery);
+        $aResultTotal = $rResultTotal->result();
+        $iTotal = $aResultTotal[0]->total;
+
+        //GENERAR ARRAY DE RESPUESTA
+        $output = array(
+            "sEcho" => 0,
+            "iTotalRecords" => $iTotal,
+            "iTotalDisplayRecords" => $iFilteredTotal,
+            "aaData" => array()
+        );
+
+        $fetch_array = $rResult->result_array();
+
+//        'emp_id',
+//            'emp_razonSocial',
+//            'emp_nit',
+//            'emp_idTipo'
+
+        $contador = 1;
+        foreach ($fetch_array as $aRow) {
+            $row = array();
+            for ($i = 0; $i < count($aColumns); $i++) {
+//                if ($aColumns[$i] == "emp_id") {
+//                    $row[] = $contador;
+//                } else
+                if ($aColumns[$i] == "veh_id") {
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */

@@ -136,8 +136,8 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
     echo "</ul>";
 }
 ?>
-<div class='container'>
-    <div class="row">
+<!--<div class='container'>-->
+    <!--<div class="row">-->
         <div class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -152,7 +152,7 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
                 <?php echo modulos('prueba',$id,null); ?>
             </div>
         </div>
-    </div>
+    <!--</div>-->
     <div class="row">
         <?php echo $content_for_layout ?>
     </div>
@@ -175,7 +175,7 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
             </div>
         </div>
     </div>
-</div>
+<!--</div>-->
 <footer class="footer">
 
     <div class="row" style="">

@@ -15,7 +15,7 @@ class Ingresoform_model extends CI_Model {
         }
     }
 
-    function get_table() {
+    function get_table($id) {
         //CAMPOS
         $aColumns = array(
             'emp_nit',
@@ -29,7 +29,10 @@ class Ingresoform_model extends CI_Model {
         $sIndexColumn = "emp_nit";
         //TABLA
         $sTable = "empresa";
-        $rWhere = "where 1=1 ";
+        if ($id != null)
+            $rWhere = "where emp_id=" . $id . " ";
+        else
+            $rWhere = "where 1=1  ";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {

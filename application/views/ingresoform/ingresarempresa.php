@@ -30,7 +30,10 @@
         var datos = obligatorio($('.obligatorio'));
 
         if (datos == true) {
-
+            Metronic.blockUI({
+                target: '.container',
+                message: 'Cargando...'
+            });
             var url = "<?php echo base_url("index.php/ingresoform/enviocorreoempresa") ?>";
             $.post(url, {nit: nit, empresa: empresa, correo: correo}, function() {
                 $.notific8('', {
@@ -39,8 +42,49 @@
                     theme: 'amethyst',
                     heading: 'Correo enviado Con exito'
                 });
+                $('#empresa').val('');
+                $('#correo').val('');
+                $('#nit').val('');
+                Metronic.unblockUI('.container');
             });
         }
 
     });
+
+    $('#nit').validCampoFranz('0123456789');
+
+
+    $('#nit').change(function() {
+        var num = $(this).val();
+        console.log(num);
+        if (isNaN(num)) {
+            $('#emp_nit').val('');
+            alert('Dato no correcto.')
+            return  false;
+        }
+
+        var url = base_url_js + "index.php/ingresoform/confir_nit";
+        var emp_nit = $(this).val();
+        if (emp_nit != "") {
+            Metronic.blockUI({
+                target: '.container',
+                message: 'Cargando...'
+            });
+            $.post(url, {emp_nit, emp_nit})
+                    .done(function(msg) {
+                        if (msg > 0) {
+                            $.notific8('El Nit ya se Encuentra Registrado en el Sistema', {
+                                horizontalEdge: 'bottom',
+                                theme: 'ruby',
+                                heading: 'ERROR',
+                                sticky: false
+                            });
+                            $('#nit').val('');
+                        }
+                        Metronic.unblockUI('.container');
+                    }).fail(function(msg) {
+                Metronic.unblockUI('.container');
+            })
+        }
+    })
 </script>    

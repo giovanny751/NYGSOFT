@@ -28,7 +28,7 @@ class Ingresoform extends My_Controller {
     function lisEmpresa($id=null) {
         $this->data['id'] = $id;
         if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
-            $this->data['id'] = $this->data['user']['emp_id'];
+            $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
         $this->data['titulo'] = "Empresas";
         $this->layout->view('ingresoform/lisEmpresa', $this->data);
@@ -38,7 +38,7 @@ class Ingresoform extends My_Controller {
         $this->data['titulo'] = "Vehiculos";
         $this->data['id'] = $id;
         if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
-            $this->data['id'] = $this->data['user']['emp_id'];
+            $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
         $this->layout->view('ingresoform/lisVehiculos', $this->data);
     }
@@ -47,21 +47,22 @@ class Ingresoform extends My_Controller {
         $this->data['titulo'] = "Empleado";
         $this->data['id'] = $id;
         if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
-            $this->data['id'] = $this->data['user']['emp_id'];
+            $this->data['id'] = encrypt_id($this->data['user']['emp_id']);  
         }
         $this->layout->view('ingresoform/lisEmpleado', $this->data);
     }
 
-    function get_datatable() {
+    function get_datatable($id=null) {
+        $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
-            $data = $this->Ingresoform_model->get_table();
+            $data = $this->Ingresoform_model->get_table($id);
             echo $data;
         } else {
             echo 'Acceso no utorizado';
         }
     }
 
-    function get_datavehiculo($id) {
+    function get_datavehiculo($id=NULL) {
         $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_datavehiculo($id);
@@ -71,7 +72,7 @@ class Ingresoform extends My_Controller {
         }
     }
 
-    function get_dataEmpleado($id) {
+    function get_dataEmpleado($id=NULL) {
         $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_dataEmpleado($id);
@@ -91,7 +92,7 @@ class Ingresoform extends My_Controller {
         $empresa = $this->input->post('empresa');
         $correo = $this->input->post('correo');
         $nit = $this->input->post('nit');
-        $empresa = $this->data['user']['user_id'];
+        $user_id = $this->data['user']['user_id'];
         $log = array();
 //        $random = encrypt_id($nit);
         $random = '12345';
@@ -100,7 +101,7 @@ class Ingresoform extends My_Controller {
             'corEnv_empresa' => $empresa,
             'corEnv_correo' => $correo,
             'corEnv_contrasena' => $random,
-            'usu_idagrego' => $empresa
+            'usu_idagrego' => $user_id
         );
 
 

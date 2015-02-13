@@ -13,7 +13,7 @@ class Ingresoform extends My_Controller {
         validate_login($this->data['user']['user_id']);
     }
 
-    function empresa($id=null) {
+    function empresa($id = null) {
         $this->data['titulo'] = "Registro Empresa";
         $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
         $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
@@ -25,18 +25,30 @@ class Ingresoform extends My_Controller {
         $this->Ingresoform_model->guardar_emp($post);
     }
 
-    function lisEmpresa() {
+    function lisEmpresa($id=null) {
+        $this->data['id'] = $id;
+        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
+            $this->data['id'] = $this->data['user']['emp_id'];
+        }
         $this->data['titulo'] = "Empresas";
         $this->layout->view('ingresoform/lisEmpresa', $this->data);
     }
-    function lisVehiculos($id) {
+
+    function lisVehiculos($id = null) {
         $this->data['titulo'] = "Vehiculos";
         $this->data['id'] = $id;
+        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
+            $this->data['id'] = $this->data['user']['emp_id'];
+        }
         $this->layout->view('ingresoform/lisVehiculos', $this->data);
     }
-    function lisEmpleado($id) {
+
+    function lisEmpleado($id = null) {
         $this->data['titulo'] = "Empleado";
         $this->data['id'] = $id;
+        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
+            $this->data['id'] = $this->data['user']['emp_id'];
+        }
         $this->layout->view('ingresoform/lisEmpleado', $this->data);
     }
 
@@ -48,8 +60,9 @@ class Ingresoform extends My_Controller {
             echo 'Acceso no utorizado';
         }
     }
+
     function get_datavehiculo($id) {
-        $id=deencrypt_id($id);
+        $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_datavehiculo($id);
             echo $data;
@@ -57,8 +70,9 @@ class Ingresoform extends My_Controller {
             echo 'Acceso no utorizado';
         }
     }
+
     function get_dataEmpleado($id) {
-        $id=deencrypt_id($id);
+        $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_dataEmpleado($id);
             echo $data;
@@ -108,21 +122,22 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
-        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo,$random,$nit);
+        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo, $random, $nit);
         $this->Ingresoform_model->permisosusuarioempresa($idusuario);
     }
-    function ingresausuario(){
-        
+
+    function ingresausuario() {
+
         $this->layout->view('ingresoform/ingresausuario');
-        
     }
-    function enviocorreousuario(){
-        
+
+    function enviocorreousuario() {
+
         $documento = $this->input->post('documento');
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
         $empresa = $this->data['user']['user_id'];
-        
+
         $log = array();
 //        $random = encrypt_id($documento);
         $random = '12345';
@@ -133,7 +148,7 @@ class Ingresoform extends My_Controller {
             'corUsu_contrasena' => $random,
             'usu_idagrego' => $empresa
         );
-        
+
         $message = "<table>";
         $message .= "<tr>";
         $message .= "<td colspan='2' style='color:white;background-color:blue;'><center><b>" . $documento . "</b></center></td>";
@@ -148,20 +163,19 @@ class Ingresoform extends My_Controller {
         $message .= "<tr>";
 
         $message .= "</table>";
-        
+
         mail($correo, "Registro de Usuario", $message);
         $this->Ingresoform_model->guardarlogenviocorreousuario($log);
-        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo,$random,$documento);
-     
-        
+        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo, $random, $documento);
+
+
         $this->Ingresoform_model->permisosusuariousuario($idusuario);
-        
     }
 
     // verificar si existe el nit
     function confir_nit() {
-        $post=$this->input->post();
-        $datos=$this->Ingresoform_model->confir_nit($post);
+        $post = $this->input->post();
+        $datos = $this->Ingresoform_model->confir_nit($post);
         echo count($datos);
     }
 

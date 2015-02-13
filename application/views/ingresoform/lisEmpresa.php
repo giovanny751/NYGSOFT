@@ -1,5 +1,5 @@
 <script>
-    ruta = "ingresoform/get_datatable";
+    ruta = "ingresoform/get_datatable/<?php echo $id ?>";
 </script>
 <center><h1><?php echo $titulo; ?></h1></center>
 <div class="portlet box green">

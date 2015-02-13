@@ -80,22 +80,12 @@ class Login extends My_Controller {
                 'usu_otros_conductores' => $user[0]->usu_otros_conductores,
                 'usu_estado_infraestructura' => $user[0]->usu_estado_infraestructura,
                 'usu_falta_informacion' => $user[0]->usu_falta_informacion,
+                'emp_id' => $user[0]->emp_id,
+                'usu_tipo' => $user[0]->usu_tipo,
                 'logged_in' => TRUE,
             );
             $this->session->set_userdata($newdata);
             
-//            $d = $this->session->userdata();
-//            
-//            print_y($d);die;
-//            
-//            echo print_y($d['user_id']);die;
-//            echo print_y($d['user_id']);
-////            $this->session->set_userdata($newdata);
-//            $d = $this->session;
-//            echo print_y($d);die;
-//            echo "***********";
-//            echo print_y($d->userdata['user_id']);
-//            die();
             redirect('index.php/presentacion/principal', 'location');
         } else {
             $this->session->set_flashdata(array('message' => 'Su n&uacute;mero de documento no se encuentra registrado en el sistema.', 'message_type' => 'warning'));

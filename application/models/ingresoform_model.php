@@ -447,7 +447,8 @@ class Ingresoform_model extends CI_Model {
             array('menu_id'=>48,'rol_id'=>50,'usu_id'=>$idusuario),
             array('menu_id'=>49,'rol_id'=>50,'usu_id'=>$idusuario),
             array('menu_id'=>50,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>51,'rol_id'=>50,'usu_id'=>$idusuario)
+            array('menu_id'=>51,'rol_id'=>50,'usu_id'=>$idusuario),
+            array('menu_id'=>67,'rol_id'=>50,'usu_id'=>$idusuario)
         );
         
         $this->db->insert_batch('permisos',$data); 

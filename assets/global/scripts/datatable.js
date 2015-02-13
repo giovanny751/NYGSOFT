@@ -1,6 +1,6 @@
 /***
- Wrapper/Helper Class for datagrid based on jQuery Datatable Plugin
- ***/
+Wrapper/Helper Class for datagrid based on jQuery Datatable Plugin
+***/
 var Datatable = function() {
 
     var tableOptions; // main options
@@ -20,9 +20,10 @@ var Datatable = function() {
         } else {
             $('.table-group-actions > span', tableWrapper).text("");
         }
-    }
+    };
 
     return {
+
         //main function to initiate the module
         init: function(options) {
 
@@ -42,10 +43,11 @@ var Datatable = function() {
                 dataTable: {
                     "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
                     "pageLength": 10, // default records per page
-                    "language": {// language settings
+                    "language": { // language settings
                         // metronic spesific
                         "metronicGroupActions": "_TOTAL_ records selected:  ",
                         "metronicAjaxRequestGeneralError": "Could not complete request. Please check your internet connection",
+
                         // data tables spesific
                         "lengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
                         "info": "<span class='seperator'>|</span>Found total _TOTAL_ records",
@@ -61,17 +63,19 @@ var Datatable = function() {
                             "pageOf": "of"
                         }
                     },
+
                     "orderCellsTop": true,
-                    "columnDefs": [{// define columns sorting options(by default all columns are sortable extept the first checkbox column)
-                            'orderable': false,
-                            'targets': [0]
-                        }],
+                    "columnDefs": [{ // define columns sorting options(by default all columns are sortable extept the first checkbox column)
+                        'orderable': false,
+                        'targets': [0]
+                    }],
+
                     "pagingType": "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
                     "autoWidth": false, // disable fixed width and enable fluid table
                     "processing": false, // enable/disable display message box on record load
                     "serverSide": true, // enable/disable server side ajax loading
 
-                    "ajax": {// define ajax settings
+                    "ajax": { // define ajax settings
                         "url": "", // ajax URL
                         "type": "POST", // request type
                         "timeout": 20000,
@@ -133,6 +137,7 @@ var Datatable = function() {
                             Metronic.unblockUI(tableContainer);
                         }
                     },
+
                     "drawCallback": function(oSettings) { // run some code on table redraw
                         if (tableInitialized === false) { // check if table has been initialized
                             tableInitialized = true; // set table initialized
@@ -140,6 +145,11 @@ var Datatable = function() {
                         }
                         Metronic.initUniform($('input[type="checkbox"]', table)); // reinitialize uniform checkboxes on each table reload
                         countSelectedRecords(); // reset selected records indicator
+
+                        // callback for ajax data load
+                        if (tableOptions.onDataLoad) {
+                            tableOptions.onDataLoad.call(undefined, the);
+                        }
                     }
                 }
             }, options);
@@ -201,17 +211,18 @@ var Datatable = function() {
                 the.resetFilter();
             });
         },
+
         submitFilter: function() {
             the.setAjaxParam("action", tableOptions.filterApplyAction);
 
             // get all typeable inputs
-            $('textarea.form-filter, select.form-filter, input.form-filter', table).each(function() {
+            $('textarea.form-filter, select.form-filter, input.form-filter:not([type="radio"],[type="checkbox"])', table).each(function() {
                 the.setAjaxParam($(this).attr("name"), $(this).val());
             });
 
             // get all checkboxes
             $('input.form-filter[type="checkbox"]:checked', table).each(function() {
-                the.setAjaxParam($(this).attr("name"), $(this).val());
+                the.addAjaxParam($(this).attr("name"), $(this).val());
             });
 
             // get all radio buttons
@@ -221,6 +232,7 @@ var Datatable = function() {
 
             dataTable.ajax.reload();
         },
+
         resetFilter: function() {
             $('textarea.form-filter, select.form-filter, input.form-filter', table).each(function() {
                 $(this).val("");
@@ -232,9 +244,11 @@ var Datatable = function() {
             the.addAjaxParam("action", tableOptions.filterCancelAction);
             dataTable.ajax.reload();
         },
+
         getSelectedRowsCount: function() {
             return $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', table).size();
         },
+
         getSelectedRows: function() {
             var rows = [];
             $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', table).each(function() {
@@ -243,9 +257,11 @@ var Datatable = function() {
 
             return rows;
         },
+
         setAjaxParam: function(name, value) {
             ajaxParams[name] = value;
         },
+
         addAjaxParam: function(name, value) {
             if (!ajaxParams[name]) {
                 ajaxParams[name] = [];
@@ -262,18 +278,23 @@ var Datatable = function() {
                 ajaxParams[name].push(value);
             }
         },
+
         clearAjaxParams: function(name, value) {
             ajaxParams = {};
         },
+
         getDataTable: function() {
             return dataTable;
         },
+
         getTableWrapper: function() {
             return tableWrapper;
         },
+
         gettableContainer: function() {
             return tableContainer;
         },
+
         getTable: function() {
             return table;
         }

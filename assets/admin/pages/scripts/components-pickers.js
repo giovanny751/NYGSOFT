@@ -6,13 +6,14 @@ var ComponentsPickers = function () {
             $('.date-picker').datepicker({
                 rtl: Metronic.isRTL(),
                 orientation: "left",
-                autoclose: true,
-                format: 'yyyy-mm-dd'
+                autoclose: true
             });
             //$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
         }
+
+        /* Workaround to restrict daterange past date select: http://stackoverflow.com/questions/11933173/how-to-restrict-the-selectable-date-ranges-in-bootstrap-datepicker */
     }
-    /*
+
     var handleTimePickers = function () {
 
         if (jQuery().timepicker) {
@@ -54,7 +55,7 @@ var ComponentsPickers = function () {
                 startDate: moment().subtract('days', 29),
                 endDate: moment(),
                 minDate: '01/01/2012',
-                maxDate: '12/31/2014',
+                maxDate: '12/31/2018',
             },
             function (start, end) {
                 $('#defaultrange input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -68,7 +69,7 @@ var ComponentsPickers = function () {
                 startDate: moment().subtract('days', 29),
                 endDate: moment(),
                 minDate: '01/01/2012',
-                maxDate: '12/31/2014',
+                maxDate: '12/31/2018',
             },
             function (start, end) {
                 $('#defaultrange_modal input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -129,6 +130,10 @@ var ComponentsPickers = function () {
     }
 
     var handleDatetimePicker = function () {
+
+        if (!jQuery().datetimepicker) {
+            return;
+        }
 
         $(".form_datetime").datetimepicker({
             autoclose: true,
@@ -202,17 +207,17 @@ var ComponentsPickers = function () {
         $('.colorpicker-rgba').colorpicker();
     }
    
-*/
+
     return {
         //main function to initiate the module
         init: function () {
             handleDatePickers();
-           /* handleTimePickers();
+            handleTimePickers();
             handleDatetimePicker();
             handleDateRangePickers();
             handleClockfaceTimePickers();
-            handleColorPicker();*/
+            handleColorPicker();
         }
     };
-    
+
 }();

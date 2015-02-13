@@ -103,7 +103,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <div class="form-actions" align="center">
-
+                <button class="btn btn-large btn-danger" title="" data-original-title="Politica sus datos seran almacenados en nuestra base de datos" data-toggle="confirmation">
+                    Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
+                </button>
                 <button type="submit" class="btn blue">
                     Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
                 </button>
@@ -158,7 +160,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="<?php echo base_url('/assets/admin/layout/scripts/quick-sidebar.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/admin/layout/scripts/demo.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/admin/pages/scripts/login-soft.js') ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('/assets/admin/pages/scripts/login-soft.js') ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('/assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js') ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('/assets/admin/pages/scripts/ui-confirmations.js') ?>" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
+        
         <script>
             jQuery(document).ready(function() {
                 Metronic.init(); // init metronic core components
@@ -166,6 +172,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 QuickSidebar.init(); // init quick sidebar
                 Demo.init(); // init demo features
                 Login.init();
+                UIConfirmations.init(); // init page demo
                 // init background slide images
                 $.backstretch([
                     base_url_js + "/assets/admin/pages/media/bg/1.jpg",

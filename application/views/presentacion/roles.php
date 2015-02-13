@@ -1,6 +1,4 @@
-<div class="row" align="center">
-    <h3>ADMINISTRACIÃ“N DE ROLES</h3>
-</div>
+<div class="alert alert-info"><center><b>ADMINISTRACIÓN DE ROLES</b></center></div>
 <div class="row">
     <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones">Nuevo Rol</button>
 </div>

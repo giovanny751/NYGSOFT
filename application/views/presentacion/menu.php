@@ -1,6 +1,4 @@
-<div>
-    <h2 align="center">ADMINISTRACIÃ“N DE MODULOS</h2>
-</div>
+<div class="alert alert-info"><center><b>ADMINISTRACIÓN DE MODULOS</b></center></div>
 <div class="row">
     <button type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones">Nuevo Modulo</button>
 </div>

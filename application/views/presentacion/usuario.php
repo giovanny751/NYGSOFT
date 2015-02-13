@@ -1,6 +1,4 @@
-<div class="row" align="center">
-    <h3>REGISTRO USUARIO</h3>
-</div>
+<div class="alert alert-info"><center><b>REGISTRO USUARIO</b></center></div>
 <div class="row">
     <button data-toggle="modal" data-target="#myModal"  type="button" id="insertarusuario" class="btn btn-success">Ingresar Usuario</button>
 </div>

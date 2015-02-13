@@ -8,8 +8,6 @@ class Preguntas extends My_Controller {
     function __construct() {
         parent::__construct();
         
-        echo phpinfo();die;
-        
 //        $numero = "";
 //        $this->load->js('js/jquery.min.js');
         $this->load->database();

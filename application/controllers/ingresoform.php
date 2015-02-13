@@ -121,9 +121,9 @@ class Ingresoform extends My_Controller {
 
         $message .= "</table>";
 
-        mail($correo, "Registro de empresas", $message);
+//        mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
-        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo, $random, $nit);
+        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo, $random, $nit,$empresa);
         $this->Ingresoform_model->permisosusuarioempresa($idusuario);
     }
 

@@ -396,14 +396,23 @@ class Ingresoform_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function ingresousuarioempresa($correo, $random, $documento) {
+    function ingresousuarioempresa($correo, $random, $documento,$empresa) {
 
+        $datos2 = array(
+            'emp_nit' => $documento,
+            'emp_razonSocial' => $empresa,
+        );
+
+        $this->db->insert('empresa', $datos2);
+        $id=  $this->db->insert_id();
         $datos[] = array(
             'usu_correo' => $correo,
             'usu_password' => $random,
             'usu_cc' => $documento,
+            'emp_id' => $id,
             'usu_tipo' => '2'
         );
+        
 
         $this->db->insert_batch('user', $datos);
         return $this->db->insert_id();

@@ -103,15 +103,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <div class="form-actions" align="center">
-                <button class="btn btn-large btn-danger" title="" data-original-title="Politica sus datos seran almacenados en nuestra base de datos" data-toggle="confirmation">
-                    Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
-                </button>
-                <button type="submit" class="btn blue">
+                <button class="btn btn-large btn blue" title="" data-original-title="Politica sus datos seran almacenados en nuestra base de datos" data-toggle="confirmation">
                     Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>
-
-           
             <?php if ($this->session->flashdata('message')) { ?>
                 <div class="alert alert-<?php echo $this->session->flashdata('message_type'); ?>">
                     <?php echo $this->session->flashdata('message'); ?>

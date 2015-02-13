@@ -77,18 +77,19 @@
 <link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>
 
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>  
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/estilos.css'); ?>"/>  
-        
-        <link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">
-        <link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">
-        
-        <link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
-        
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>  
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/estilos.css'); ?>"/>  
+
+<link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">
+
+<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
+
 <style>
+    body { padding-top: 70px; }
     .container{
         margin-top: 5%;
         /*position: fixed;*/    
@@ -101,14 +102,14 @@
 
 //echo $id."%%%";die;
 
-function modulos($datosmodulos,$idusuario, $dato = null) {
+function modulos($datosmodulos, $idusuario, $dato = null) {
 
 //    echo $idusuario;die;
-    
+
     $ci = &get_instance();
-    
-    
-    
+
+
+
     $ci->load->model("ingreso_model");
     $user = null;
     $menu = $ci->ingreso_model->menu($datosmodulos, $idusuario, 2);
@@ -130,51 +131,65 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
                         echo "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "'>" . strtoupper($nombrepapa) . "</a>";
                     }
                     if (!empty($submenus[0]))
-                        modulos($submenus[0],$idusuario);
+                        modulos($submenus[0], $idusuario);
                     echo "</li>";
                 endforeach;
     echo "</ul>";
 }
 ?>
 <!--<div class='container'>-->
-    <!--<div class="row">-->
-        <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">NYGSOFT</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">NYGSOFT</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <?php echo modulos('prueba',$id,null); ?>
-            </div>
+<div class="row" >
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">NYGSOFT</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NYGSOFT</a>
         </div>
-    <!--</div>-->
-    <div class="row">
+        <div class="navbar-collapse collapse">
+            <?php echo modulos('prueba', $id, null); ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><?php echo $nombre; ?></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Cerrar sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" >
         <?php echo $content_for_layout ?>
     </div>
+</div>
+<div class="modal fade" id="opcion" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
+    <div id="remover" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="contenido" style="width: 100%">
 
-    <div class="modal fade" id="opcion" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
-        <div id="remover" class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel"></h4>
                 </div>
-                <div class="modal-body">
-                    <div id="contenido" style="width: 100%">
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cerrar" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cerrar" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
+</div>
 <!--</div>-->
 <footer class="footer">
 
@@ -208,7 +223,7 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
 <script>
     function obligatorio(clase) {
         var i = 0;
-        $('.obligatorio').each(function (key, val) {
+        $('.obligatorio').each(function(key, val) {
             if ($(this).val() == "") {
                 i++
                 $(this).addClass('obligado');
@@ -225,7 +240,7 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
 //        return i;
     }
 
-    $('body').delegate('.opcion', 'click', function () {
+    $('body').delegate('.opcion', 'click', function() {
 
         var accion = $(this).attr('data-accion');
 
@@ -244,31 +259,31 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
         }
 //        $('#contenido').load(texto,{url2:url});
         $.post(texto, {url2: url})
-                .done(function (msg) {
-                    $('#contenido').html(msg);
-                    $('.modal-backdrop').css('z-index', '-1')
-                })
+                .done(function(msg) {
+            $('#contenido').html(msg);
+            $('.modal-backdrop').css('z-index', '-1')
+        })
 
     });
 
-    $('.container').delegate('.formulario_nuevo_form', 'click', function () {
+    $('.container').delegate('.formulario_nuevo_form', 'click', function() {
         var accion = obligatorio();
         if (accion == true) {
             $('.modal-backdrop').css('z-index', '1')
             var url = "<?php echo base_url('index.php/administracion/guardar_formulario'); ?>";
             $.post(url, $('#form1').serialize())
-                    .done(function (msg) {
-                        $.notific8('Los Datos en Formacion Fueron Guardados.', {
-                            horizontalEdge: 'bottom',
-                            life: 5000,
-                            theme: 'amethyst',
-                            heading: 'EXITO'
-                        });
-                        $('.modal-backdrop').css('z-index', '-1');
-                        $('#opcion').modal('hide');
-                        $('#general').html('');
-                        $('#general').html(msg);
-                    }).fail(function (msg) {
+                    .done(function(msg) {
+                $.notific8('Los Datos en Formacion Fueron Guardados.', {
+                    horizontalEdge: 'bottom',
+                    life: 5000,
+                    theme: 'amethyst',
+                    heading: 'EXITO'
+                });
+                $('.modal-backdrop').css('z-index', '-1');
+                $('#opcion').modal('hide');
+                $('#general').html('');
+                $('#general').html(msg);
+            }).fail(function(msg) {
                 $.notific8('Error al Guardar', {
                     horizontalEdge: 'bottom',
                     theme: 'ruby',
@@ -283,7 +298,7 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
 
 
 
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
         Metronic.init(); // init metronic core componets
 //        Layout.init(); // init layout
         TableAjax.init();
@@ -306,23 +321,23 @@ function modulos($datosmodulos,$idusuario, $dato = null) {
         UIAlertDialogApi.init();
     });
     $('.date-picker').datepicker({
-                rtl: Metronic.isRTL(),
-                autoclose: true
-            });
+        rtl: Metronic.isRTL(),
+        autoclose: true
+    });
 </script>
 <style>
     .caption {
-    display: inline-block;
-    float: left;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 18px;
-    padding: 10px 0;
-}
-.portlet.box, .portlet-title {
-    border-bottom: 1px solid #eee;
-    color: #fff;
-    margin-bottom: 0;
-    padding: 0 10px;
-}
+        display: inline-block;
+        float: left;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 18px;
+        padding: 10px 0;
+    }
+    .portlet.box, .portlet-title {
+        border-bottom: 1px solid #eee;
+        color: #fff;
+        margin-bottom: 0;
+        padding: 0 10px;
+    }
 </style>

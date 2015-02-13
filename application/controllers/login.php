@@ -38,7 +38,10 @@ class Login extends My_Controller {
             //PREPARAMOS LAS VARIABLES QUE VAMOS A GUARDAR EN SESSION
             $newdata = array(
                 'user_id' => $user[0]->usu_id,
-                'usu_nombres_apellido' => $user[0]->usu_nombres_apellido,
+                'usu_nombres' => $user[0]->usu_nombres,
+                'usu_segundonombre' => $user[0]->usu_segundonombre,
+                'usu_apellido' => $user[0]->usu_apellido,
+                'usu_segundoapellido' => $user[0]->usu_segundoapellido,
                 'usu_cc' => $user[0]->usu_cc,
                 'gen_id' => $user[0]->gen_id,
                 'usu_edad' => $user[0]->usu_edad,

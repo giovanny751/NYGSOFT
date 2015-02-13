@@ -89,13 +89,28 @@
 <link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
 
 <style>
-    body { padding-top: 70px; }
-    .container{
-        margin-top: 5%;
-        /*position: fixed;*/    
-    }
+    /*    
+        body { 
+            padding-top: 70px; 
+        }*/
+    /*    .container{
+            margin-top: 5%;
+            position: fixed;    
+        }*/
     .row{
         margin-top: 1%;
+    }
+    .footer {
+        /*background-color: #f5f5f5;*/
+        bottom: 0;
+        height: 80px;
+        position: fixed;
+        width: 100%;
+    }
+    .contenido{
+        
+        height: 60px;
+        
     }
 </style>
 <?php
@@ -167,7 +182,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container contenido">
     <div class="row" >
         <?php echo $content_for_layout ?>
     </div>
@@ -192,12 +207,12 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 </div>
 <!--</div>-->
 <footer class="footer">
-
     <div class="row" style="">
-        <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
-        <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
-    </div>    
-
+        <div class="container">
+            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
+        </div>  
+    </div>  
 </footer>
 <style>
     .obligado{

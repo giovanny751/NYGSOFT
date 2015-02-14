@@ -101,13 +101,6 @@
     .row{
         margin-top: 1%;
     }
-    .footer {
-        /*background-color: #f5f5f5;*/
-        bottom: 0;
-        height: 80px;
-        position: fixed;
-        width: 100%;
-    }
     .contenido{
         
         height: 60px;
@@ -246,7 +239,12 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             }
         });
         if (i > 0) {
-//            alert('Faltan campos por llenar');
+                        $.notific8('Faltan campos por llenar', {
+                horizontalEdge: 'bottom',
+                life: 5000,
+                theme: 'ruby sticky',
+                heading: 'Campos faltantes'
+            });
             return false;
         } else {
             return true;

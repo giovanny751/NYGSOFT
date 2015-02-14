@@ -43,7 +43,7 @@
             $.notific8('No coinciden las contraseñas', {
                 horizontalEdge: 'bottom',
                 life: 5000,
-                theme: 'amethyst',
+                theme: 'ruby sticky',
                 heading: 'CONTRASEÑAS'
             });
         }

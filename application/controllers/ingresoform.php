@@ -142,8 +142,8 @@ class Ingresoform extends My_Controller {
     }
 
     function ingresausuario() {
-
-        $this->layout->view('ingresoform/ingresausuario');
+        $this->data['empresa'] = get_dropdown($this->Ingresoform_model->empresa(),'emp_id','emp_razonSocial');
+        $this->layout->view('ingresoform/ingresausuario', $this->data);
     }
 
     function enviocorreousuario() {
@@ -151,7 +151,8 @@ class Ingresoform extends My_Controller {
         $documento = $this->input->post('documento');
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
-        $empresa = $this->data['user']['user_id'];
+        $user_id = $this->data['user']['user_id'];
+        $empresa= $this->input->post('emp_id');
 
         $log = array();
 //        $random = encrypt_id($documento);
@@ -161,7 +162,8 @@ class Ingresoform extends My_Controller {
             'tipDoc_id' => $tipodocumento,
             'corUsu_correo' => $correo,
             'corUsu_contrasena' => $random,
-            'usu_idagrego' => $empresa
+            'usu_idagrego' => $user_id,
+            'emp_id' => $empresa
         );
 
         $message = "<table>";
@@ -181,7 +183,7 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de Usuario", $message);
         $this->Ingresoform_model->guardarlogenviocorreousuario($log);
-        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo, $random, $documento);
+        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo, $random, $documento,$empresa);
 
 
         $this->Ingresoform_model->permisosusuariousuario($idusuario);

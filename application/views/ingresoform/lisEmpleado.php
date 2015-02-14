@@ -11,11 +11,11 @@
         <table class="table table-striped table-bordered table-hover" id="datatable_ajax">
             <thead>
                 <tr>
-                    <th>NIT</th>
-                    <th>Razon Social</th>
-                    <th>Telefono</th>
-                    <th>Dirección</th>
-                    <th>Nombre Reprecentante</th>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Segundo Nombre</th>
+                    <th>Apellido</th>
+                    <th>Segundo Apellido</th>
                     <th>Accion</th>
                 </tr>
             </thead>

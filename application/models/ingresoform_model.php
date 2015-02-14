@@ -15,7 +15,7 @@ class Ingresoform_model extends CI_Model {
 //        }
     }
 
-    function get_table($id) {
+    function get_table($id = NULL) {
         //CAMPOS
         $aColumns = array(
             'emp_nit',
@@ -239,7 +239,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/'.encrypt_id($id).'/'. encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -254,14 +254,15 @@ class Ingresoform_model extends CI_Model {
 
         return json_encode($output);
     }
+
     function get_dataEmpleado($id = null) {
         //CAMPOS
         $aColumns = array(
+            'usu_cc',
             'usu_nombres',
             'usu_segundonombre',
             'usu_apellido',
             'usu_segundoapellido',
-            'usu_cc',
             'usu_id',
         );
         //LLAVE PRIMARIA
@@ -356,7 +357,7 @@ class Ingresoform_model extends CI_Model {
 //                if ($aColumns[$i] == "emp_id") {
 //                    $row[] = $contador;
 //                } else
-                if ($aColumns[$i] == "veh_id") {
+                if ($aColumns[$i] == "usu_id") {
                     $row[] = '<a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
                 } else
                 if ($aColumns[$i] != ' ') {
@@ -383,20 +384,21 @@ class Ingresoform_model extends CI_Model {
         $this->db->insert_batch('correo_usuario', $log);
     }
 
-    function ingresousuariopagina($correo, $random, $documento) {
+    function ingresousuariopagina($correo, $random, $documento,$empresa) {
 
         $datos[] = array(
             'usu_correo' => $correo,
             'usu_password' => $random,
             'usu_cc' => $documento,
-            'usu_tipo' => '1'
+            'usu_tipo' => '1',
+            'emp_id' => $empresa
         );
 
         $usuario = $this->db->insert_batch('user', $datos);
         return $this->db->insert_id();
     }
 
-    function ingresousuarioempresa($correo, $random, $documento,$empresa) {
+    function ingresousuarioempresa($correo, $random, $documento, $empresa) {
 
         $datos2 = array(
             'emp_nit' => $documento,
@@ -404,7 +406,7 @@ class Ingresoform_model extends CI_Model {
         );
 
         $this->db->insert('empresa', $datos2);
-        $id=  $this->db->insert_id();
+        $id = $this->db->insert_id();
         $datos[] = array(
             'usu_correo' => $correo,
             'usu_password' => $random,
@@ -412,7 +414,7 @@ class Ingresoform_model extends CI_Model {
             'emp_id' => $id,
             'usu_tipo' => '2'
         );
-        
+
 
         $this->db->insert_batch('user', $datos);
         return $this->db->insert_id();
@@ -429,9 +431,11 @@ class Ingresoform_model extends CI_Model {
         $dato = $this->db->get('tipo_empresa');
         return $dato->result();
     }
+
     //datos de empresa
-    function empresa($id) {
-        $this->db->where('emp_id',$id);
+    function empresa($id = null) {
+        if (!empty($id))
+            $this->db->where('emp_id', $id);
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
@@ -442,34 +446,35 @@ class Ingresoform_model extends CI_Model {
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
-    function permisosusuarioempresa($idusuario){
+
+    function permisosusuarioempresa($idusuario) {
         $data = array(
-            array('menu_id'=>9,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>39,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>44,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>45,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>46,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>47,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>48,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>49,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>50,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>51,'rol_id'=>50,'usu_id'=>$idusuario),
-            array('menu_id'=>67,'rol_id'=>50,'usu_id'=>$idusuario)
+            array('menu_id' => 9, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 39, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 44, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 45, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 46, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 47, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 48, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 49, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 50, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 51, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 67, 'rol_id' => 50, 'usu_id' => $idusuario)
         );
-        
-        $this->db->insert_batch('permisos',$data); 
-        
+
+        $this->db->insert_batch('permisos', $data);
     }
-    function permisosusuariousuario($idusuario){
+
+    function permisosusuariousuario($idusuario) {
         $data = array(
-            array('menu_id'=>9,'rol_id'=>49,'usu_id'=>$idusuario),
-            array('menu_id'=>40,'rol_id'=>49,'usu_id'=>$idusuario),
-            array('menu_id'=>41,'rol_id'=>49,'usu_id'=>$idusuario),
-            array('menu_id'=>42,'rol_id'=>49,'usu_id'=>$idusuario),
-            array('menu_id'=>43,'rol_id'=>49,'usu_id'=>$idusuario)
+            array('menu_id' => 9, 'rol_id' => 49, 'usu_id' => $idusuario),
+            array('menu_id' => 40, 'rol_id' => 49, 'usu_id' => $idusuario),
+            array('menu_id' => 41, 'rol_id' => 49, 'usu_id' => $idusuario),
+            array('menu_id' => 42, 'rol_id' => 49, 'usu_id' => $idusuario),
+            array('menu_id' => 43, 'rol_id' => 49, 'usu_id' => $idusuario)
         );
-        
-        $this->db->insert_batch('permisos',$data); 
-        
+
+        $this->db->insert_batch('permisos', $data);
     }
+
 }

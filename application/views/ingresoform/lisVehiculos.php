@@ -1,8 +1,9 @@
 <script>
     ruta = "ingresoform/get_datavehiculo/<?php echo $id ?>";
 </script>
-<center><h1><?php echo $titulo; ?></h1></center>
-
+<div class='alert alert-info'>
+    <center><b><?php echo $titulo; ?></b></center>
+</div>
 <div class="portlet box green">
     <div class="caption">
         &nbsp;&nbsp;<i class="fa fa-users"></i>

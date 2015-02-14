@@ -2,6 +2,7 @@
     ruta = "ingresoform/get_datavehiculo/<?php echo $id ?>";
 </script>
 <center><h1><?php echo $titulo; ?></h1></center>
+
 <div class="portlet box green">
     <div class="caption">
         &nbsp;&nbsp;<i class="fa fa-users"></i>
@@ -23,4 +24,9 @@
             </tbody>
         </table>
     </div>
+</div>
+<div>
+    <center><p><br>
+        <a href="<?php echo base_url('index.php/administracion/vehiculo/' . $id); ?>" class="btn green" >Nuevo Vehiculo</a>
+    </center>
 </div>

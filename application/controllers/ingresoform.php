@@ -45,7 +45,12 @@ class Ingresoform extends My_Controller {
 
     function lisVehiculos($id = null) {
         $this->data['titulo'] = "Vehiculos";
-        $this->data['id'] = $id;
+        if($id==NULL){
+            $this->data['id'] = $this->data['user']['emp_id'];
+        }else{
+            $this->data['id'] = $id;
+        }
+        
         if ($this->data['user']['usu_tipo'] != 0 && $this->data['user']['usu_tipo'] != 3) {
             $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }

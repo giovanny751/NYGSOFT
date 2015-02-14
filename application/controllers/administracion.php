@@ -70,27 +70,33 @@ class Administracion extends My_Controller {
 //        $this->administracion_model->guardarempleado($formulario);
     }
 
-    function vehiculo($id = null) {
-            $this->data['titulo'] = "Registro Empresa";
-            $id = deencrypt_id($id);
-            $this->data['vehiculo'] = $this->administracion_model->vehiculo($id);
-            echo print_y($this->data['vehiculo']);
-            $this->data['tiposervicio'] = $this->administracion_model->tiposervicio();
-            $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
-            $this->data['confirmacion'] = $this->administracion_model->confirmacion();
+    function vehiculo($id_emp = null,$id = null) {
+        $this->data['titulo'] = "Registro Empresa";
+        $this->data['id']= deencrypt_id($id);
+        if ($id_emp == NULL) {
+            $this->data['id_emp']=  $this->data['user']['emp_id'];
+            if ($this->data['user']['emp_id']==0) {
+                redirect('index.php/presentacion/principal', 'location');
+            }
+        }else{
+            $this->data['id_emp']=deencrypt_id($id_emp);
+        }
+
+        $this->data['vehiculo'] = $this->administracion_model->vehiculo($this->data['id']);
+        $this->data['tiposervicio'] = $this->administracion_model->tiposervicio();
+        $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
+        $this->data['confirmacion'] = $this->administracion_model->confirmacion();
 
 //        var_dump($this->data['confirmacion']);die;
 
-            $this->layout->view('administracion/vehiculo', $this->data);
-        
+        $this->layout->view('administracion/vehiculo', $this->data);
     }
 
     function guardarvehiculo() {
 
-        $vehiculo[] = $this->input->post();
-
+        $vehiculo = $this->input->post();
         $this->administracion_model->guardarvehiculo($vehiculo);
-        echo $this->db->last_query();
+        redirect('index.php/ingresoform/lisVehiculos', 'location');
     }
 
     function guardaradminempleado() {

@@ -5,10 +5,10 @@ class administracion_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
-    
+
     //datos de vehiculo
     function vehiculo($id) {
-        $this->db->where('veh_id',$id);
+        $this->db->where('veh_id', $id);
         $dato = $this->db->get('vehiculo');
         return $dato->result();
     }
@@ -36,8 +36,13 @@ class administracion_model extends CI_Model {
     }
 
     function guardarvehiculo($vehiculo) {
-
-        $this->db->insert_batch('vehiculo', $vehiculo);
+        if (empty($vehiculo['veh_id'])) {
+            $this->db->insert('vehiculo', $vehiculo);
+        } else {
+            $this->db->where('emp_id', $vehiculo['emp_id']);
+            $this->db->where('veh_id', $vehiculo['veh_id']);
+            $this->db->update('vehiculo', $vehiculo);
+        }
     }
 
     function confirmacion() {
@@ -70,6 +75,7 @@ class administracion_model extends CI_Model {
         $this->db->where('usu_id', $id);
         $this->db->delete('user');
     }
+
     function eliminarvehiculo($id) {
 
         $this->db->where('veh_id', $id);
@@ -82,6 +88,7 @@ class administracion_model extends CI_Model {
         $this->db->set('est_id', $estado);
         $this->db->update('user');
     }
+
     function cambioestadovehiculo($id, $estado) {
 
         $this->db->where('veh_id', $id);
@@ -92,53 +99,60 @@ class administracion_model extends CI_Model {
     function reportevehiculos() {
 
         $this->db->where('est_id !=', 3);
-        $this->db->join('tipo_vehiculo','vehiculo.tipVeh_id = tipo_vehiculo.tipVeh_id');
+        $this->db->join('tipo_vehiculo', 'vehiculo.tipVeh_id = tipo_vehiculo.tipVeh_id');
         $dato = $this->db->get('vehiculo');
         return $dato->result_array();
     }
-    function cargos(){
-        
+
+    function cargos() {
+
         $cargo = $this->db->get('cargo');
         return $cargo->result_array();
     }
-    function grupotrabajo(){
-        
+
+    function grupotrabajo() {
+
         $grupotrabajo = $this->db->get('grupo_trabajo');
         return $grupotrabajo->result_array();
     }
-    function genero(){
-        
+
+    function genero() {
+
         $genero = $this->db->get('genero');
         return $genero->result_array();
     }
-    function desicion(){
-        
+
+    function desicion() {
+
         $genero = $this->db->get('confirmacion');
         return $genero->result_array();
     }
-    function causas(){
-        
+
+    function causas() {
+
         $genero = $this->db->get('causas');
         return $genero->result_array();
     }
-    function categoria(){
-        
+
+    function categoria() {
+
         $genero = $this->db->get('categoria');
         return $genero->result_array();
     }
 
-    function guardarempleado($data,$id){
-        
-        $this->db->where('usu_id',$id);
-        $this->db->update('user',$data);
-        
+    function guardarempleado($data, $id) {
+
+        $this->db->where('usu_id', $id);
+        $this->db->update('user', $data);
     }
-    function datosusuario($id){
-        
-        $this->db->where('usu_id',$id);
+
+    function datosusuario($id) {
+
+        $this->db->where('usu_id', $id);
         $user = $this->db->get('user');
         return $user->result_array();
     }
+
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";
 //        $this->db->where('usu_cc', $post['usu_cc']);

@@ -239,7 +239,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/'.encrypt_id($id).'/'. encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -257,21 +257,21 @@ class Ingresoform_model extends CI_Model {
     function get_dataEmpleado($id = null) {
         //CAMPOS
         $aColumns = array(
-            'veh_nombrepropietario',
-            'veh_placa',
-            'veh_numlicencia',
-            'veh_marca',
-            'veh_capacidad',
-            'veh_id',
+            'usu_nombres',
+            'usu_segundonombre',
+            'usu_apellido',
+            'usu_segundoapellido',
+            'usu_cc',
+            'usu_id',
         );
         //LLAVE PRIMARIA
-        $sIndexColumn = "veh_nombrepropietario";
+        $sIndexColumn = "usu_nombres";
         //TABLA
-        $sTable = "vehiculo join empresa on empresa.emp_id=vehiculo.emp_id";
+        $sTable = "user";
         if ($id != null)
-            $rWhere = "where vehiculo.emp_id=" . $id . " ";
+            $rWhere = "where usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
         else
-            $rWhere = "where 1=1  ";
+            $rWhere = "where usu_tipo<>2 and  usu_tipo<>0 and";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -357,7 +357,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */

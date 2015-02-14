@@ -239,11 +239,11 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             }
         });
         if (i > 0) {
-                        $.notific8('Faltan campos por llenar', {
+                        $.notific8('', {
                 horizontalEdge: 'bottom',
                 life: 5000,
                 theme: 'ruby sticky',
-                heading: 'Campos faltantes'
+                heading: 'FALTAN CAMPOS POR LLENAR'
             });
             return false;
         } else {

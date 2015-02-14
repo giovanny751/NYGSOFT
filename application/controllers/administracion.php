@@ -44,10 +44,14 @@ class Administracion extends My_Controller {
         $this->layout->view('administracion/administracionempleado');
     }
 
-    function empleado() {
+    function empleado($id = null) {
 
-
-        $id = $this->data['user'];
+        if(!empty($id)){
+            $id = deencrypt_id($id);
+        }else{
+            $id = $this->data['user']['user_id'];
+        }
+        
         $this->data['cargos'] = $this->administracion_model->cargos();
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
         $this->data['genero'] = $this->administracion_model->genero();
@@ -55,7 +59,13 @@ class Administracion extends My_Controller {
         $this->data['causas'] = $this->administracion_model->causas();
         $this->data['categoria'] = $this->administracion_model->categoria();
         $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
-        $this->data['usuario'] = $this->administracion_model->datosusuario($id['user_id']);
+        $this->data['usuario'] = $this->administracion_model->datosusuario($id);
+        $this->data['ciudad'] = $this->administracion_model->ciudad();
+        $this->data['tipocontrato'] = $this->administracion_model->tipocontrato();
+        $this->data['frecuencia'] = $this->administracion_model->frecuencia();
+        $this->data['tipotrasporte'] = $this->administracion_model->tipotrasporte();
+        $this->data['factoresriesgo'] = $this->administracion_model->factoresriesgo();
+        $this->data['estadoconductor'] = $this->administracion_model->estadoconductor();
 
 
         $this->layout->view('administracion/empleado', $this->data);

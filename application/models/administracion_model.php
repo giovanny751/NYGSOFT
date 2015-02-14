@@ -152,6 +152,36 @@ class administracion_model extends CI_Model {
         $user = $this->db->get('user');
         return $user->result_array();
     }
+    function ciudad(){
+        
+        $ciudad = $this->db->get('ciudad');
+        return $ciudad->result_array();
+    }
+    function tipocontrato(){
+        
+        $ciudad = $this->db->get('tipo_contrato');
+        return $ciudad->result_array();
+    }
+    function frecuencia(){
+        
+        $ciudad = $this->db->get('frecuencia_desplazamiento');
+        return $ciudad->result_array();
+    }
+    function tipotrasporte(){
+        
+        $ciudad = $this->db->get('tipo_transporte');
+        return $ciudad->result_array();
+    }
+    function factoresriesgo(){
+        
+        $ciudad = $this->db->get('factores_riesgo');
+        return $ciudad->result_array();
+    }
+    function estadoconductor(){
+        
+        $ciudad = $this->db->get('estado_conductor');
+        return $ciudad->result_array();
+    }
 
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";

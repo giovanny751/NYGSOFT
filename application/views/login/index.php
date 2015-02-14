@@ -103,7 +103,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
             </div>
             <div class="form-actions" align="center">
-                <button class="btn btn-large btn blue" title="" data-original-title="Politica sus datos seran almacenados en nuestra base de datos" data-toggle="confirmation">
+                <button class="btn btn-large btn blue" title="" data-original-title="Politica sus datos seran almacenados en nuestra base de datos">
                     Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>

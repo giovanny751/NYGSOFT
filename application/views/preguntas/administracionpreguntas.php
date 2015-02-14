@@ -1,18 +1,18 @@
-<div class="widgetTitle">
-    <h5><i class="glyphicon glyphicon-ok"></i> TIPO DE PREGUNTA </h5>
+<div class="widgetTitle" style="margin-top: 20px;">
+    <h5><i class="glyphicon glyphicon-ok"></i> CATEGORIAS </h5>
 </div>
 <div class="well">
     <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control" placeholder="TIPO DE PREGUNTA" name="tipopregunta" id="tipopregunta">
+        <input type="text" class="form-control" placeholder="CATEGORIA" name="tipopregunta" id="tipopregunta">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardartipo">Guardar Tipo</button>
+        <button type="button" class="btn btn-success" id="guardartipo">Guardar Categoria</button>
     </div>
     </div>
 </div>
 <div class="widgetTitle">
-    <h5><i class="glyphicon glyphicon-ok"></i> AGREGAR OPCIONES DE PREGUNTA </h5>
+    <h5><i class="glyphicon glyphicon-ok"></i> AGREGAR SUB-CATEGORIAS</h5>
 </div>
 <div class="well">
     <div class="row">
@@ -26,10 +26,10 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <label>Opcion Pregunta</label>
-        <input type="text" class="form-control" id="opcion" placeholder="OPCIÓN">
+        <input type="text" class="form-control" id="opcion" placeholder="SUB-CATEGORIA">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardaropcion">Guardar Opcion</button>
+        <button type="button" class="btn btn-success" id="guardaropcion">Guardar Sub-Categoria</button>
     </div>
     </div>
 </div>

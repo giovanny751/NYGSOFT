@@ -75,7 +75,7 @@ class Preguntas_model extends CI_Model {
     function opcionpregunta($id = null){
         
         if(!empty($id))$this->db->where('tipPre_id',$id);
-        $opcion = $this->db->get('opcion_Pregunta');
+        $opcion = $this->db->get('opcion_pregunta');
         return $opcion->result_array();
     }
     
@@ -88,7 +88,7 @@ class Preguntas_model extends CI_Model {
     function guardaropcionpregunta($tipopregunta,$opcion){
         $tipo = array();
         $tipo[] = array('tipPre_id'=>$tipopregunta,'opcPre_opcion'=>$opcion);
-        $this->db->insert_batch('opcion_Pregunta',$tipo);
+        $this->db->insert_batch('opcion_pregunta',$tipo);
     }
     function actualizacionestadopregunta($id,$estado){
         

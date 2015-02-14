@@ -52,7 +52,7 @@
                                     <textarea class="form-control obligatorio" id="pregunta"></textarea>
                                 </div>
                                 <div class="row">
-                                    <label>Tipo Pregunta</label>
+                                    <label>Categoria</label>
                                     <select class="form-control obligatorio" id="tipos">
                                         <option value="">-Seleccionar-</option>
                                         <?php foreach ($tipo as $tipos) { ?>
@@ -61,7 +61,7 @@
                                     </select>
                                 </div>
                                 <div class="row">
-                                    <label>Opcion Pregunta</label>
+                                    <label>Sub-Categoria</label>
                                     <select class="form-control obligatorio" id="opcionpregunta">
 
                                     </select>

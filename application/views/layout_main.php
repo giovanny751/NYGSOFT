@@ -1,5 +1,6 @@
 <title>NYGSOFT.COM</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
 <!--        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
@@ -167,15 +168,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         <div class="navbar-collapse collapse">
             <?php echo modulos('prueba', $id, null); ?>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><?php echo $nombre; ?></a></li>
+                <li><a href="#"><b><?php echo strtoupper($nombre); ?></b></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Cambiar Contraseña</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Cerrar sesion</a></li>
+                        <li><a href="<?php echo base_url('index.php/login/logout');?>">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>

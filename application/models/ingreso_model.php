@@ -268,5 +268,12 @@ class Ingreso_model extends CI_Model {
         $this->db->delete('permisos');
         
     }
+    function guardarcontrasena($contrasena,$id){
+        
+        $this->db->where('usu_id',$id);
+        $this->db->set('usu_password',$contrasena);
+        $this->db->update('user');
+        
+    }
 
 }

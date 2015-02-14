@@ -172,7 +172,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Cambiar Contrase�a</a></li>
+                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena');?>">Cambiar Contraseña</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url('index.php/login/logout');?>">Cerrar sesion</a></li>
                     </ul>
@@ -208,7 +208,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 <footer class="footer">
     <div class="row" style="">
         <div class="container">
-            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright © <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
+            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright Â© <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
         </div>  
     </div>  
@@ -246,7 +246,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             }
         });
         if (i > 0) {
-            alert('Faltan campos por llenar');
+//            alert('Faltan campos por llenar');
             return false;
         } else {
             return true;
@@ -332,7 +332,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         //Tasks.initDashboardWidget();
         //ComponentsDropdowns.init();
         //FormValidation.init();
-        UIAlertDialogApi.init();
+//        UIAlertDialogApi.init();
+        UINotific8.init();
     });
     $('.date-picker').datepicker({
         rtl: Metronic.isRTL(),

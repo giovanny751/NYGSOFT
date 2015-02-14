@@ -462,6 +462,18 @@ class Presentacion extends My_Controller {
 
         $this->output->set_content_type('application/json')->set_output(json_encode($roles));
     }
+    function recordarcontrasena(){
+        
+        $this->layout->view('presentacion/recordarcontrasena');
+        
+    }
+    function guardarcontrasena(){
+        
+        $contrasena = $this->input->post('password');
+        $user_id = $this->data['user']['user_id'];
+        $this->ingreso_model->guardarcontrasena($contrasena,$user_id);
+        
+    }
 
 }
 

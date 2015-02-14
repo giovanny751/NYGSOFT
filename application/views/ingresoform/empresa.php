@@ -47,8 +47,15 @@
                                 <optgroup label="<?php echo $ciiu[$i]->ciiu_description; ?>">
                                     <?php
                                 } else {
+                                    
+                                    if($empresa[0]->emp_ciiu1==$ciiu[$i]->ciiu_id){
+                                        $sele="selected='selected'";
+                                    }else{
+                                        $sele="";
+                                    }
+                                    
                                     ?>
-                                    <option value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
+                                    <option <?php echo $sele; ?> value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
                                     <?php
                                 }
                             }
@@ -61,7 +68,7 @@
                 </div>
                 <div class="col-md-3 col-lg-3">
 
-                    <select name="emp_ciiu2" id="emp_ciiu2" class="form-control obligatorio">
+                    <select name="emp_ciiu2" id="emp_ciiu2" class="form-control">
                         <option value="">Grupo :: Clase :: Descripción</option>
                         <?php
                         for ($i = 0; $i < count($ciiu); $i++) {
@@ -73,8 +80,14 @@
                                 <optgroup label="<?php echo $ciiu[$i]->ciiu_description; ?>">
                                     <?php
                                 } else {
+                                    if($empresa[0]->emp_ciiu2==$ciiu[$i]->ciiu_id){
+                                        $sele="selected='selected'";
+                                    }else{
+                                        $sele="";
+                                    }
+                                    
                                     ?>
-                                    <option value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
+                                    <option <?php echo $sele;?> value="<?php echo $ciiu[$i]->ciiu_id; ?>"><?php echo $ciiu[$i]->ciiu_grupo . " :: " . $ciiu[$i]->ciiu_clase . " :: " . $ciiu[$i]->ciiu_description; ?></option>
                                     <?php
                                 }
                             }
@@ -272,6 +285,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
+                <input type="hidden" value="<?php echo $id; ?>" id="emp_id" name="emp_id">
                 <center>
                     <button class="guardar btn btn-success">Guardar</button>
                 </center>

@@ -5,6 +5,13 @@ class administracion_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
+    
+    //datos de vehiculo
+    function vehiculo($id) {
+        $this->db->where('veh_id',$id);
+        $dato = $this->db->get('vehiculo');
+        return $dato->result();
+    }
 
     function formulario_general() {
         $datos = $this->db->get('adminFormularios');

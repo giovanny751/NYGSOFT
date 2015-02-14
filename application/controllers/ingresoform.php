@@ -20,6 +20,7 @@ class Ingresoform extends My_Controller {
             $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
 //            print_y($this->data['empresa']);
             $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
+            $this->data['id'] = $id;
             $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
             $this->layout->view('ingresoform/empresa', $this->data);
         } else {
@@ -30,6 +31,7 @@ class Ingresoform extends My_Controller {
     function guardar_emp() {
         $post = $this->input->post();
         $this->Ingresoform_model->guardar_emp($post);
+        redirect('index.php/ingresoform/lisEmpresa', 'location');
     }
 
     function lisEmpresa($id = null) {

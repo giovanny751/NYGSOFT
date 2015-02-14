@@ -11,7 +11,7 @@ class Administracion extends My_Controller {
         $this->load->model('administracion_model');
         $this->load->helper('security');
         $this->load->helper('miscellaneous');
-//        validate_login($this->session->userdata('user_id'));
+        validate_login($this->session->userdata('user_id'));
     }
 
     function index() {
@@ -45,9 +45,9 @@ class Administracion extends My_Controller {
     }
 
     function empleado() {
-        
-        
-         $id = $this->data['user'];
+
+
+        $id = $this->data['user'];
         $this->data['cargos'] = $this->administracion_model->cargos();
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
         $this->data['genero'] = $this->administracion_model->genero();
@@ -56,29 +56,33 @@ class Administracion extends My_Controller {
         $this->data['categoria'] = $this->administracion_model->categoria();
         $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
         $this->data['usuario'] = $this->administracion_model->datosusuario($id['user_id']);
-        
-        
-        $this->layout->view('administracion/empleado',$this->data);
+
+
+        $this->layout->view('administracion/empleado', $this->data);
     }
-    function guardarempleado(){
-        
+
+    function guardarempleado() {
+
         $formulario = $this->input->post();
         $id = $this->data['user'];
-        
-        $this->administracion_model->guardarempleado($formulario,$id['user_id']);
-//        $this->administracion_model->guardarempleado($formulario);
 
+        $this->administracion_model->guardarempleado($formulario, $id['user_id']);
+//        $this->administracion_model->guardarempleado($formulario);
     }
 
-    function vehiculo() {
-
-        $this->data['tiposervicio'] = $this->administracion_model->tiposervicio();
-        $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
-        $this->data['confirmacion'] = $this->administracion_model->confirmacion();
+    function vehiculo($id = null) {
+            $this->data['titulo'] = "Registro Empresa";
+            $id = deencrypt_id($id);
+            $this->data['vehiculo'] = $this->administracion_model->vehiculo($id);
+            echo print_y($this->data['vehiculo']);
+            $this->data['tiposervicio'] = $this->administracion_model->tiposervicio();
+            $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
+            $this->data['confirmacion'] = $this->administracion_model->confirmacion();
 
 //        var_dump($this->data['confirmacion']);die;
 
-        $this->layout->view('administracion/vehiculo', $this->data);
+            $this->layout->view('administracion/vehiculo', $this->data);
+        
     }
 
     function guardarvehiculo() {
@@ -182,6 +186,7 @@ class Administracion extends My_Controller {
         $idusuario = $this->input->post('usuario');
         $this->data['usuarios'] = $this->administracion_model->eliminarusuario($idusuario);
     }
+
     function eliminarvehiculo() {
 
         $vehiculo = $this->input->post('vehiculo');
@@ -192,19 +197,20 @@ class Administracion extends My_Controller {
 
         $idusuario = $this->input->post('usuario');
         $numero = $this->input->post('numero');
-        $this->data['usuarios'] = $this->administracion_model->cambioestado($idusuario,$numero );
+        $this->data['usuarios'] = $this->administracion_model->cambioestado($idusuario, $numero);
     }
+
     function cambioestadovehiculo() {
 
         $idusuario = $this->input->post('usuario');
         $numero = $this->input->post('numero');
-        $this->data['usuarios'] = $this->administracion_model->cambioestadovehiculo($idusuario,$numero );
+        $this->data['usuarios'] = $this->administracion_model->cambioestadovehiculo($idusuario, $numero);
     }
-    function reportevehiculo(){
-        
+
+    function reportevehiculo() {
+
         $this->data['vehiculos'] = $this->administracion_model->reportevehiculos();
         $this->layout->view('administracion/reportevehiculo', $this->data);
-        
     }
 
 }

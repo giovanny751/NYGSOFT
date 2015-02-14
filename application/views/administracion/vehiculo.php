@@ -1,3 +1,56 @@
+<?php
+if(count($vehiculo)>0){
+    $vehiculo[0]->veh_id
+            veh_id
+tipVeh_id
+tipSer_id
+veh_placa
+veh_numlicencia
+veh_marca
+veh_linea
+veh_color
+veh_modelo
+veh_capacidad
+veh_cilindraje
+veh_vin
+veh_chasis
+tipCar_id
+veh_kilometraje
+veh_fechaultmantenimiento
+veh_fechaproxmantenimiento
+veh_realizamantenimiento
+veh_seguridadactiva
+veh_seguridadpaciva
+veh_planifica
+veh_preestablecidas
+veh_inspecciondiaria
+veh_puntoscriticos
+veh_nombrepropietario
+veh_identificacion
+veh_direccion
+veh_telefono
+veh_correo
+veh_comparendos
+veh_soatvigente
+veh_numerosoat
+veh_fechainiciosoat
+veh_fechafinsoat
+veh_entidadexpsoat
+veh_rtm
+veh_fecinirtm
+veh_fecfinrtm
+veh_tarjetaoperacion
+veh_empresaafiliacion
+veh_feciniafiliacion
+veh_fecfinafiliacion
+usu_id
+est_id
+emp_id
+
+}
+
+?>
+
 <div class="widgetTitle">
     <h5><i class="glyphicon glyphicon-ok"></i> AGREGAR VEHICULOS</h5>
 </div>

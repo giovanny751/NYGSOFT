@@ -8,11 +8,11 @@ class Ingresoform_model extends CI_Model {
 
     function guardar_emp($post) {
         $post['emp_razonSocial'] = $post['emp_razonSocial'] . " ";
-        $this->db->where('emp_nit', $post['emp_nit']);
+        $this->db->where('emp_id', $post['emp_id']);
         $this->db->update('empresa', $post);
-        if (($this->db->affected_rows()) > 0) {
-            $this->db->insert('empresa', $post);
-        }
+//        if (($this->db->affected_rows()) > 0) {
+//            $this->db->insert('empresa', $post);
+//        }
     }
 
     function get_table($id) {

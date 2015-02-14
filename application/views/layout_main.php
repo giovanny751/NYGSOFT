@@ -101,9 +101,9 @@
     .row{
         margin-top: 1%;
     }
-    .contenido{
+    .container{
         
-        height: 60px;
+        padding-top: 83px;
         
     }
 </style>
@@ -174,8 +174,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         </div>
     </div>
 </div>
-<div class="container contenido">
-    <div class="row" >
+<div class="container ">
+    <div class="row contenido" >
         <?php echo $content_for_layout ?>
     </div>
 </div>

@@ -125,6 +125,9 @@ class Preguntas extends My_Controller {
 //        echo "<pre>";
 //        var_dump($array);die;
         $this->preguntas_model->ingresarrespuestas($array);
+        
+        redirect('index.php/preguntas/preguntasusuario', 'location');
+        
     }
 
     function informacionusuario() {

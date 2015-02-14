@@ -66,7 +66,7 @@ class Preguntas_model extends CI_Model {
     function ingresarrespuestas($array){
         
         $this->db->insert_batch('respuesta_usuario',$array);
-        echo $this->db->last_query();
+//        echo $this->db->last_query();
     }
     function tipopregunta(){
         $tipo = $this->db->get('tipo_pregunta');

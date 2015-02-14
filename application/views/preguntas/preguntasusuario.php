@@ -51,9 +51,13 @@ if ($contador == 0) {
             if (h == 0) {
                 var url = "<?php echo base_url('index.php/preguntas/guardarpreguntasusuario') ?>";
 
-                $.post(url, $('#fusuario').serialize(), function(data) {
+                $('form').attr('action',url);
+                
+                $('form').submit();
 
-                });
+//                $.post(url, $('#fusuario').serialize(), function(data) {
+
+//                });
             }else{
                 $.notific8('POR FAVOR RESPONDER TODAS LAS PREGUNTAS', {
                         horizontalEdge: 'bottom',

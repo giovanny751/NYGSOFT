@@ -7,13 +7,13 @@
                     Nombre/Razón Social
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_razonSocial', '', 'class="form-control obligatorio" id="emp_razonSocial"') ?>
+                    <?php echo form_input('emp_razonSocial', $empresa[0]->emp_razonSocial, 'class="form-control obligatorio" id="emp_razonSocial"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    Nit    
+                    Nit  
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nit', '', 'class="form-control obligatorio" id="emp_nit"') ?>
+                    <?php echo form_input('emp_nit', $empresa[0]->emp_nit, 'class="form-control obligatorio" id="emp_nit"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -21,13 +21,13 @@
                     Tipo de Empresa
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_dropdown('emp_idTipo', $tipo_empresa, "", 'id="emp_idTipo" class="form-control"') ?>
+                    <?php echo form_dropdown('emp_idTipo', $tipo_empresa, $empresa[0]->emp_idTipo, 'id="emp_idTipo" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Segmento a la que pertenece
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_segmento', '', 'class="form-control obligatorio" id="emp_segmento"') ?>
+                    <?php echo form_input('emp_segmento', $empresa[0]->emp_segmento, 'class="form-control obligatorio" id="emp_segmento"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -88,13 +88,13 @@
                     Telefono
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_telefono', '', 'class="form-control obligatorio" id="emp_telefono"') ?>
+                    <?php echo form_input('emp_telefono', $empresa[0]->emp_telefono, 'class="form-control obligatorio" id="emp_telefono"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direccion Principal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccion', '', 'class="form-control obligatorio" id="emp_direccion"') ?>
+                    <?php echo form_input('emp_direccion', $empresa[0]->emp_direccion, 'class="form-control obligatorio" id="emp_direccion"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -102,16 +102,13 @@
                     Sucursales
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_sucursal', '1', false, 'id="" class="" ') ?>
-                    NO
-                    <?php echo form_radio('emp_sucursal', '0', true, 'id="" class=""') ?>
+                    <?php echo form_dropdown('emp_sucursal', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_sucursal, 'id="emp_sucursal" class="form-control obligatorio" ') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Direcciones Sucursales
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_direccioSuc', '', 'class="form-control obligatorio" id="emp_direccioSuc"') ?>
+                    <?php echo form_input('emp_direccioSuc', $empresa[0]->emp_direccioSuc, 'class="form-control obligatorio" id="emp_direccioSuc"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -119,13 +116,13 @@
                     Nombre del Representante Legal
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_nombre_repre', '', 'class="form-control obligatorio" id="emp_nombre_repre"') ?>
+                    <?php echo form_input('emp_nombre_repre', $empresa[0]->emp_nombre_repre, 'class="form-control obligatorio" id="emp_nombre_repre"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Cedula de Ciudadania
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numDocRepre', '', 'class="form-control obligatorio" id="emp_numDocRepre"') ?>
+                    <?php echo form_input('emp_numDocRepre', $empresa[0]->emp_numDocRepre, 'class="form-control obligatorio" id="emp_numDocRepre"') ?>
                 </div>
             </div>
         </div>
@@ -135,16 +132,13 @@
                     ¿La Empresa, Posee, Contrato o Administra vehiculos?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_administraVehiculos', '1', FALSE, 'id="emp_administraVehiculos"') ?>
-                    NO
-                    <?php echo form_radio('emp_administraVehiculos', '0', TRUE, 'id="emp_administraVehiculos"') ?>
+                    <?php echo form_dropdown('emp_administraVehiculos', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_administraVehiculos, 'id="emp_administraVehiculos" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Numero Actual de Vehiculos Propios
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosPropios', '', 'class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
+                    <?php echo form_input('emp_vehiculosPropios',$empresa[0]->emp_vehiculosPropios, 'class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -152,13 +146,13 @@
                     Numero actual de vehiculos contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_vehiculosContratados', '', 'class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
+                    <?php echo form_input('emp_vehiculosContratados', $empresa[0]->emp_vehiculosContratados, 'class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Numero Actual de vehiculos que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numeroVehiculoAdministra', '', 'class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
+                    <?php echo form_input('emp_numeroVehiculoAdministra', $empresa[0]->emp_numeroVehiculoAdministra, 'class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
                 </div>
             </div>
         </div>
@@ -168,17 +162,13 @@
                     ¿la empresa contrata o administra conductores?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_adminConductores', '1', FALSE, 'id=emp_adminConductores') ?>
-                    NO
-                    <?php echo form_radio('emp_adminConductores', '0', TRUE, 'id=emp_adminConductores') ?>
-
+                    <?php echo form_dropdown('emp_adminConductores', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_adminConductores, 'id="emp_adminConductores" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Numero Actual de Conductores Contratados
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductores', '', 'class="form-control obligatorio" id=emp_numActConductores') ?>
+                    <?php echo form_input('emp_numActConductores', $empresa[0]->emp_numActConductores, 'class="form-control obligatorio" id=emp_numActConductores') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -186,7 +176,7 @@
                     Numero Actual de Conductores que administra
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_numActConductoresAdministra', '', 'class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
+                    <?php echo form_input('emp_numActConductoresAdministra', $empresa[0]->emp_numActConductoresAdministra, 'class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -194,16 +184,13 @@
                     ¿La Empresa cuenta actualmente con ARL?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI 
-                    <?php echo form_radio('emp_idArl', '1', FALSE, 'id=emp_idArl') ?>
-                    NO
-                    <?php echo form_radio('emp_idArl', '0', TRUE, 'id=emp_idArl') ?>
+                    <?php echo form_dropdown('emp_idArl', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_idArl, 'id="emp_idArl" class="form-control"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Cual?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_input('emp_Arl_otra', '', 'class="form-control obligatorio" id="emp_Arl_otra"') ?>
+                    <?php echo form_input('emp_Arl_otra', $empresa[0]->emp_Arl_otra, 'class="form-control" id="emp_Arl_otra"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -211,10 +198,7 @@
                     ¿La Empresa cuenta actualente con HSEQ?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_hseq', '1', FALSE, 'id=emp_hseq') ?>
-                    NO
-                    <?php echo form_radio('emp_hseq', '0', TRUE, 'id=emp_hseq') ?>
+                    <?php echo form_dropdown('emp_hseq', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_hseq, 'id"=emp_hseq" class="form-control" ') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -222,10 +206,7 @@
                     ¿Cuenta con un procedimiento para seleccion de conductores?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_seleccionConductores', '1', FALSE, 'id="emp_seleccionConductores"') ?>
-                    NO
-                    <?php echo form_radio('emp_seleccionConductores', '0', TRUE, 'id="emp_seleccionConductores"') ?>
+                    <?php echo form_dropdown('emp_seleccionConductores', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_seleccionConductores, 'id="emp_seleccionConductores" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -233,10 +214,7 @@
                     ¿Realiza pruebas de ingreso a los conductores?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_ingresoConductores', '1', FALSE, 'id="emp_ingresoConductores"') ?>
-                    NO
-                    <?php echo form_radio('emp_ingresoConductores', '0', TRUE, 'id="emp_ingresoConductores"') ?>
+                    <?php echo form_dropdown('emp_ingresoConductores', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_ingresoConductores, 'id="emp_ingresoConductores" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -244,13 +222,13 @@
                     Examenes Medicos
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_checkbox('emp_examenesMedicos', '1', FALSE, 'id="emp_examenesMedicos"') ?>
+                    <?php echo form_checkbox('emp_examenesMedicos', '1', ((($empresa[0]->emp_examenesMedicos)==1)?TRUE:FALSE) , 'id="emp_examenesMedicos"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Prueba Teorica
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_checkbox('emp_pruebasTeoricas', '1', FALSE, 'id="emp_pruebasTeoricas"') ?>
+                    <?php echo form_checkbox('emp_pruebasTeoricas', '1', ((($empresa[0]->emp_pruebasTeoricas)==1)?TRUE:FALSE), 'id="emp_pruebasTeoricas"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -258,13 +236,13 @@
                     Examentes psocosensometricos
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_checkbox('emp_examenesPsicosensometricos', '1', FALSE, 'id="emp_examenesPsicosensometricos"') ?>
+                    <?php echo form_checkbox('emp_examenesPsicosensometricos', '1', ((($empresa[0]->emp_examenesPsicosensometricos)==1)?TRUE:FALSE), 'id="emp_examenesPsicosensometricos"') ?>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     Prueba tactica
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <?php echo form_checkbox('emp_pruebaTactica', '1', FALSE, 'id="emp_pruebaTactica"') ?>
+                    <?php echo form_checkbox('emp_pruebaTactica', '1', ((($empresa[0]->emp_examenesPsicosensometricos)==1)?TRUE:FALSE), 'id="emp_pruebaTactica"') ?>
                 </div>
             </div>
         </div>
@@ -274,10 +252,7 @@
                     ¿La empresa realiza capacitacion en seguridad vial?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_capacitaPruebaVial', '1', FALSE, 'id="emp_capacitaPruebaVial"') ?>
-                    NO
-                    <?php echo form_radio('emp_capacitaPruebaVial', '0', TRUE, 'id="emp_capacitaPruebaVial"') ?>
+                    <?php echo form_dropdown('emp_capacitaPruebaVial', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_capacitaPruebaVial, 'id="emp_capacitaPruebaVial" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -285,10 +260,7 @@
                     ¿La empresa cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_procedimientoAtencion', '1', FALSE, 'id="emp_procedimientoAtencion"') ?>
-                    NO
-                    <?php echo form_radio('emp_procedimientoAtencion', '0', TRUE, 'id="emp_procedimientoAtencion"') ?>
+                    <?php echo form_dropdown('emp_procedimientoAtencion', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_procedimientoAtencion, 'id="emp_procedimientoAtencion" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -296,10 +268,7 @@
                     ¿La empresa posee historicos de acciodentes y/o incidentes de trancito?
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    SI
-                    <?php echo form_radio('emp_historicoAccidente', '1', FALSE, 'id="emp_historicoAccidente"') ?>
-                    NO
-                    <?php echo form_radio('emp_historicoAccidente', '0', TRUE, 'id="emp_historicoAccidente"') ?>
+                    <?php echo form_dropdown('emp_historicoAccidente', array('2'=>'No','1'=>'Si'), $empresa[0]->emp_historicoAccidente, 'id="emp_historicoAccidente" class="form-control"') ?>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">

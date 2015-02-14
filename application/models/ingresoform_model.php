@@ -429,6 +429,12 @@ class Ingresoform_model extends CI_Model {
         $dato = $this->db->get('tipo_empresa');
         return $dato->result();
     }
+    //datos de empresa
+    function empresa($id) {
+        $this->db->where('emp_id',$id);
+        $dato = $this->db->get('empresa');
+        return $dato->result();
+    }
 
     // verificar si existe el nit
     function confir_nit($post) {

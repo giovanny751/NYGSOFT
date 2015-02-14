@@ -14,10 +14,17 @@ class Ingresoform extends My_Controller {
     }
 
     function empresa($id = null) {
-        $this->data['titulo'] = "Registro Empresa";
-        $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
-        $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
-        $this->layout->view('ingresoform/empresa', $this->data);
+        if (!empty($id)) {
+            $this->data['titulo'] = "Registro Empresa";
+            $id=  deencrypt_id($id);
+            $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
+//            print_y($this->data['empresa']);
+            $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
+            $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
+            $this->layout->view('ingresoform/empresa', $this->data);
+        } else {
+            redirect('index.php/presentacion/principal', 'location');
+        }
     }
 
     function guardar_emp() {
@@ -25,9 +32,9 @@ class Ingresoform extends My_Controller {
         $this->Ingresoform_model->guardar_emp($post);
     }
 
-    function lisEmpresa($id=null) {
+    function lisEmpresa($id = null) {
         $this->data['id'] = $id;
-        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
+        if ($this->data['user']['usu_tipo'] != 0 && $this->data['user']['usu_tipo'] != 3) {
             $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
         $this->data['titulo'] = "Empresas";
@@ -37,7 +44,7 @@ class Ingresoform extends My_Controller {
     function lisVehiculos($id = null) {
         $this->data['titulo'] = "Vehiculos";
         $this->data['id'] = $id;
-        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
+        if ($this->data['user']['usu_tipo'] != 0 && $this->data['user']['usu_tipo'] != 3) {
             $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
         $this->layout->view('ingresoform/lisVehiculos', $this->data);
@@ -46,13 +53,13 @@ class Ingresoform extends My_Controller {
     function lisEmpleado($id = null) {
         $this->data['titulo'] = "Empleado";
         $this->data['id'] = $id;
-        if ($this->data['user']['usu_tipo']!=0 && $this->data['user']['usu_tipo']!=3) {
-            $this->data['id'] = encrypt_id($this->data['user']['emp_id']);  
+        if ($this->data['user']['usu_tipo'] != 0 && $this->data['user']['usu_tipo'] != 3) {
+            $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
         $this->layout->view('ingresoform/lisEmpleado', $this->data);
     }
 
-    function get_datatable($id=null) {
+    function get_datatable($id = null) {
         $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_table($id);
@@ -62,7 +69,7 @@ class Ingresoform extends My_Controller {
         }
     }
 
-    function get_datavehiculo($id=NULL) {
+    function get_datavehiculo($id = NULL) {
         $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_datavehiculo($id);
@@ -72,7 +79,7 @@ class Ingresoform extends My_Controller {
         }
     }
 
-    function get_dataEmpleado($id=NULL) {
+    function get_dataEmpleado($id = NULL) {
         $id = deencrypt_id($id);
         if ($this->input->is_ajax_request()) {
             $data = $this->Ingresoform_model->get_dataEmpleado($id);
@@ -123,7 +130,7 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de empresas", $message);
         $this->Ingresoform_model->guardarlogenviocorreo($log);
-        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo, $random, $nit,$empresa);
+        $idusuario = $this->Ingresoform_model->ingresousuarioempresa($correo, $random, $nit, $empresa);
         $this->Ingresoform_model->permisosusuarioempresa($idusuario);
     }
 

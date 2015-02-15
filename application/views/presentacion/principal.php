@@ -5,6 +5,7 @@
         Bienvenido
     </h5>
 </div>
-<div>
+
+<div class="">
     <?php echo $inicio[0]->ini_p_inicio; ?>
 </div>

@@ -14,19 +14,18 @@ class Login extends My_Controller {
     }
 
     public function index() {
-        
-        
+
+
 //        var_dump($this->session->userdata);die;
-        
         //FUNCION PRINCIPAL PARA EL LOGIN - CARGA LA VISTA LOGIN/INDEX.PHP
         if (!empty($this->session->userdata('user_id'))) {
 //             echo "hola2";die;
-            
+
             redirect('index.php/presentacion/principal', 'location');
         } else {
-            
+
 //            echo "hola1";die;
-            
+
             $this->load->view('login/index');
         }
     }
@@ -36,21 +35,37 @@ class Login extends My_Controller {
         echo make_hash($var);
     }
 
+    public function politica() {
+        $this->data['username'] = $this->input->post('username');
+        $this->data['password'] = $this->input->post('password');
+        $this->user_model->listo_politica($this->data['username'], $this->data['password']);
+        $this->verify();
+    }
+
     function verify() {
         //RECOLECTAMOS LOS DATOS DE LOS CAMPOS DE USUARIO Y CONTRASE�A
         //CONSULTAMOS EL USUARIO CON BASE EN EL NUMERO DE DOCUMENTO
-        $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));
+        $this->data['username'] = $this->input->post('username');
+        $this->data['password'] = $this->input->post('password');
+        $user = $this->user_model->get_user($this->data['username'], $this->data['password']);
         //VERIFICAMOS SI EL USUARIO EXISTE
         if (!empty($user) > 0) {
+            if ($user[0]->usu_politicas == 0) {
+                $this->data['inicio'] = $this->user_model->admin_inicio();
+                $this->load->view('login/politicas', $this->data);
+            } else {
+                $this->acceso($user);
+                redirect('index.php/presentacion/principal', 'location');
+            }
             //PREPARAMOS LAS VARIABLES QUE VAMOS A GUARDAR EN SESSION
-
-            $this->acceso($user);
-
-            redirect('index.php/presentacion/principal', 'location');
         } else {
             $this->session->set_flashdata(array('message' => 'Su n&uacute;mero de documento no se encuentra registrado en el sistema.', 'message_type' => 'warning'));
             redirect('', 'refresh');
         }
+    }
+
+    public function confirm() {
+        
     }
 
     public function logout() {
@@ -60,15 +75,15 @@ class Login extends My_Controller {
         redirect('index.php/login', 'location');
     }
 
-    function acceso($user = null,$id=NULL) {
+    function acceso($user = null, $id = NULL) {
         $i = 0;
         if (!empty($id)) {
             $user = $this->user_model->validacionusuario(deencrypt_id($id));
             $i = 1;
         }
-        
+
 //        echo print_y($user);die;
-        
+
         $newdata = array(
             'user_id' => $user[0]->usu_id,
             'usu_nombres' => $user[0]->usu_nombres,
@@ -122,9 +137,8 @@ class Login extends My_Controller {
             'logged_in' => TRUE
         );
         $this->session->set_userdata($newdata);
-        
-        if($i == 1)
-        {
+
+        if ($i == 1) {
             $ruta = 'index.php/presentacion/principal';
             redirect($ruta, 'location');
         }

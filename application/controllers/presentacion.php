@@ -7,28 +7,18 @@ class Presentacion extends My_Controller {
 
     function __construct() {
         parent::__construct();
-//        $numero = "";
-//        $this->load->js('js/jquery.min.js');
         $this->load->database();
         $this->load->model('ingreso_model');
         $this->load->model('Roles_model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
-//        $this->data['user'] = $this->ion_auth->user()->row();
-//        $this->data['menu_completo'] = $this->session->userdata('menu');
         validate_login($this->session->userdata('user_id'));
     }
 
     function principal() {
-//            echo $this->session->userdata('usu_correo');
-        //echo print_y($d);
-//            var_dump($this->data['user']);die;
-//            echo "hola";die;
         $this->data['user'] = 1;
-
+        $this->data['inicio']= $this->ingreso_model->admin_inicio();
         $this->data['content'] = $this->modulos('prueba', null, $this->data['user']);
-//            $this->data['content'] = "";
-
         $this->layout->view('presentacion/principal', $this->data);
     }
 

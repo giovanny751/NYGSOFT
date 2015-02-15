@@ -16,8 +16,8 @@ $(document).ready(function() {
         ]
     });
 
-    $('.textarea_umb').summernote({
-        height: 100,
+    $('.textareasumer').summernote({
+        height: 400,
         toolbar: [
             //['style', ['style']], // no style button
             ['style', ['bold', 'italic', 'underline', 'clear']],

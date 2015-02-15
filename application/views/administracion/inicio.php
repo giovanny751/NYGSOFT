@@ -24,7 +24,7 @@
     <div >
         <p>
             <?php
-            echo form_textarea('ini_politicas', $inicio[0]->ini_politicas, 'id="ini_politicas" class="textarea_umb" style="height: 1300px" ');
+            echo form_textarea('ini_politicas', $inicio[0]->ini_politicas, 'id="ini_politicas" class="textareasumer"  ');
             ?>
         </p>
         <center>
@@ -35,7 +35,7 @@
     <div>
         <p>
             <?php
-            echo form_textarea('ini_p_inicio', $inicio[0]->ini_p_inicio, 'id="ini_p_inicio" class="textarea_umb" style="height: 300px"');
+            echo form_textarea('ini_p_inicio', $inicio[0]->ini_p_inicio, 'id="ini_p_inicio" class="textareasumer" ');
             ?>
         </p>
         <center>

@@ -182,6 +182,14 @@ class administracion_model extends CI_Model {
         $ciudad = $this->db->get('estado_conductor');
         return $ciudad->result_array();
     }
+    function guardar_admin_inicio($post){
+        $this->db->where('ini_id', 1);
+        $this->db->update('inicio', $post);
+    }
+    function admin_inicio(){
+//        $this->db->where('ini_id', 1);
+        $this->db->get('inicio');
+    }
 
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";

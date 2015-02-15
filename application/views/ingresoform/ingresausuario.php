@@ -50,6 +50,9 @@
                             heading: 'Correo enviado Con exito'
                         });
                         Metronic.unblockUI('.container');
+                        $('#documento').val('');
+                        $('#correo').val('');
+                        $('#tipodocumento').val('');
                     }).fail(function() {
                 $.notific8('', {
                     horizontalEdge: 'bottom',

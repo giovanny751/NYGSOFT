@@ -230,6 +230,16 @@ class Administracion extends My_Controller {
         $this->data['vehiculos'] = $this->administracion_model->reportevehiculos();
         $this->layout->view('administracion/reportevehiculo', $this->data);
     }
+    function administracion(){
+        $this->data['inicio']=$this->administracion_model->admin_inicio();
+        echo "<p><br><p>";
+        echo print_y($this->data['inicio']);
+        $this->layout->view('administracion/inicio', $this->data);
+    }
+    function guardar_admin_inicio(){
+        $post=$this->input->post();
+        $this->administracion_model->guardar_admin_inicio();
+    }
 
 }
 

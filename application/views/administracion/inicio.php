@@ -13,10 +13,10 @@
 </script>
 
 <div class="widgetTitle">
-<center><h5>
-<i class="glyphicon glyphicon-ok"></i>
-Administrador de inicio 
-</h5></center>
+    <center><h5>
+            <i class="glyphicon glyphicon-ok"></i>
+            Administrador de inicio 
+        </h5></center>
 </div>
 <p><br>
 <div id="accordion">
@@ -24,7 +24,7 @@ Administrador de inicio
     <div >
         <p>
             <?php
-            echo form_textarea('ini_politicas', $inicio[0]->ini_politicas, 'id="ini_politicas" class="textarea_umb" style="height: 300px" ');
+            echo form_textarea('ini_politicas', $inicio[0]->ini_politicas, 'id="ini_politicas" class="textarea_umb" style="height: 1300px" ');
             ?>
         </p>
         <center>
@@ -44,25 +44,31 @@ Administrador de inicio
     </div>
 </div>
 <script>
-    $('#g_politicas').click(function(){
-        var ini_politicas=$('#ini_politicas').code();
-        var url=base_url_js+"administracion/guardar_admin_inicio";
-        $.post(url,{ini_politicas:ini_politicas})
-                .done(function(msg){
-                    
-                }).fail(function(msg){
-                    
-                })
+    $('#g_politicas').click(function() {
+        var ini_politicas = $('#ini_politicas').code();
+        var url = base_url_js + "/index.php/administracion/guardar_admin_inicio";
+        modal('.container', 'cargando');
+        $.post(url, {ini_politicas: ini_politicas})
+                .done(function(msg) {
+                    quit_modal('.container');
+                    alerta('verde', 'Los Datos Fueron Guardados con Exito');
+                }).fail(function(msg) {
+                    quit_modal('.container');
+            alerta('rojo', 'Error al Guardar');
+        })
     })
-    $('#g_p_inicio').click(function(){
-        var ini_p_inicio=$('#ini_p_inicio').code();
-        var url=base_url_js+"administracion/guardar_admin_inicio";
-        $.post(url,{ini_p_inicio:ini_p_inicio})
-                .done(function(msg){
-                    
-                }).fail(function(msg){
-                    
-                })
+    $('#g_p_inicio').click(function() {
+        var ini_p_inicio = $('#ini_p_inicio').code();
+        var url = base_url_js + "/index.php/administracion/guardar_admin_inicio";
+        modal('.container', 'cargando');
+        $.post(url, {ini_p_inicio: ini_p_inicio})
+                .done(function(msg) {
+                    alerta('verde', 'Los Datos Fueron Guardados con Exito');
+                    quit_modal('.container');
+                }).fail(function(msg) {
+            alerta('rojo', 'Error al Guardar');
+            quit_modal('.container');
+        })
     })
 </script>
 

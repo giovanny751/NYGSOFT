@@ -52,27 +52,27 @@
 //COLORES DE ALERTAS DE METRONIC
 //    --------------------------------------------------------------------------
 
-    function alerta(color,texto)
+    function alerta(color, texto)
     {
-        switch(color){
+        switch (color) {
             case "rojo":
                 var alerta = 'ruby sticky';
-             break;
+                break;
             case "morado":
                 var alerta = 'amethyst sticky';
-             break;
+                break;
             case "azul":
                 var alerta = 'teal sticky';
-             break;
+                break;
             case "amarillo":
                 var alerta = 'lemon sticky';
-             break;
+                break;
             case "verde":
                 var alerta = 'lime sticky';
-             break;
+                break;
             case "naranja":
                 var alerta = 'tangerine sticky';
-             break;
+                break;
             default:
                 break;
         }
@@ -195,7 +195,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             <a class="navbar-brand" href="#">NYGSOFT</a>
         </div>
         <div class="navbar-collapse collapse">
-<?php echo modulos('prueba', $id, null); ?>
+            <?php echo modulos('prueba', $id, null); ?>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><b><?php echo strtoupper($nombre); ?></b></a></li>
                 <li class="dropdown">
@@ -212,7 +212,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 </div>
 <div class="container ">
     <div class="row contenido" >
-<?php echo $content_for_layout ?>
+        <?php echo $content_for_layout ?>
     </div>
 </div>
 <div class="modal fade" id="opcion" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
@@ -308,9 +308,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 //        $('#contenido').load(texto,{url2:url});
         $.post(texto, {url2: url})
                 .done(function(msg) {
-            $('#contenido').html(msg);
-            $('.modal-backdrop').css('z-index', '-1')
-        })
+                    $('#contenido').html(msg);
+                    $('.modal-backdrop').css('z-index', '-1')
+                })
 
     });
 
@@ -321,17 +321,17 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             var url = "<?php echo base_url('index.php/administracion/guardar_formulario'); ?>";
             $.post(url, $('#form1').serialize())
                     .done(function(msg) {
-                $.notific8('Los Datos en Formacion Fueron Guardados.', {
-                    horizontalEdge: 'bottom',
-                    life: 5000,
-                    theme: 'amethyst',
-                    heading: 'EXITO'
-                });
-                $('.modal-backdrop').css('z-index', '-1');
-                $('#opcion').modal('hide');
-                $('#general').html('');
-                $('#general').html(msg);
-            }).fail(function(msg) {
+                        $.notific8('Los Datos en Formacion Fueron Guardados.', {
+                            horizontalEdge: 'bottom',
+                            life: 5000,
+                            theme: 'amethyst',
+                            heading: 'EXITO'
+                        });
+                        $('.modal-backdrop').css('z-index', '-1');
+                        $('#opcion').modal('hide');
+                        $('#general').html('');
+                        $('#general').html(msg);
+                    }).fail(function(msg) {
                 $.notific8('Error al Guardar', {
                     horizontalEdge: 'bottom',
                     theme: 'ruby',
@@ -373,6 +373,15 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         rtl: Metronic.isRTL(),
         autoclose: true
     });
+    function modal(target,message) {
+        Metronic.blockUI({
+            target: target,
+            message: message
+        });
+    }
+    function quit_modal(target) {
+        Metronic.unblockUI(target);
+    }
 </script>
 <style>
     .caption {

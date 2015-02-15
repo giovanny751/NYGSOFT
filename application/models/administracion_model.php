@@ -187,8 +187,9 @@ class administracion_model extends CI_Model {
         $this->db->update('inicio', $post);
     }
     function admin_inicio(){
-//        $this->db->where('ini_id', 1);
-        $this->db->get('inicio');
+        $this->db->where('ini_id', 1);
+        $dato = $this->db->get('inicio');
+        return $dato->result();
     }
 
 //    function guardarempleado($post) {

@@ -344,6 +344,7 @@
             <div  class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
                 <label for="facRis_id">Principales factores de riesgo con los que se encuentra (tanto en mision como ida y vuelta al domicilio)</label>
                 <select type="text" class="form-control" name="facRis_id" id="facRis_id">
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($factoresriesgo as $factores) {
                         if ($factores['facRis_id'] == $usuario[0]['facRis_id'])
@@ -358,7 +359,7 @@
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="cau_id">Causas que motivan riesgo</label>
                 <select class="form-control" id="cau_id" name="cau_id">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($causas as $causa) {
                         if ($causa['cau_id'] == $usuario[0]['cau_id'])

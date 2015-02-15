@@ -61,10 +61,14 @@ class Login extends My_Controller {
     }
 
     function acceso($user = null,$id=NULL) {
-
+        $i = 0;
         if (!empty($id)) {
             $user = $this->user_model->validacionusuario(deencrypt_id($id));
+            $i = 1;
         }
+        
+//        echo print_y($user);die;
+        
         $newdata = array(
             'user_id' => $user[0]->usu_id,
             'usu_nombres' => $user[0]->usu_nombres,
@@ -79,7 +83,7 @@ class Login extends My_Controller {
             'usu_celular' => $user[0]->usu_celular,
             'usu_telF' => $user[0]->usu_telF,
             'usu_correo' => $user[0]->usu_correo,
-            'usu_tipo_contrato' => $user[0]->usu_tipo_contrato,
+//            'usu_tipo_contrato' => $user[0]->usu_tipo_contrato,
             'usu_confir_eps' => $user[0]->usu_confir_eps,
             'usu_confir_pension' => $user[0]->usu_confir_pension,
             'usu_confir_arl' => $user[0]->usu_confir_arl,
@@ -91,12 +95,12 @@ class Login extends My_Controller {
             'usu_nro_diaro_recorrido' => $user[0]->usu_nro_diaro_recorrido,
             'usu_rol_via' => $user[0]->usu_rol_via,
             'usu_tipo_transporte' => $user[0]->usu_tipo_transporte,
-            'usu_tip_vehiculo' => $user[0]->usu_tip_vehiculo,
+            'tipVeh_id' => $user[0]->tipVeh_id,
             'usu_date_vigencia_conduc' => $user[0]->usu_date_vigencia_conduc,
             'usu_date_expire_licen' => $user[0]->usu_date_expire_licen,
             'usu_categoria' => $user[0]->usu_categoria,
             'usu_restricciones' => $user[0]->usu_restricciones,
-            'usu_estado_conductor' => $user[0]->usu_estado_conductor,
+            'estCon_id' => $user[0]->estCon_id,
             'usu_runt_num' => $user[0]->usu_runt_num,
             'usu_estado_infra_vehiculo' => $user[0]->usu_estado_infra_vehiculo,
             'usu_organi_trabajo' => $user[0]->usu_organi_trabajo,
@@ -114,9 +118,16 @@ class Login extends My_Controller {
             'usu_falta_informacion' => $user[0]->usu_falta_informacion,
             'emp_id' => $user[0]->emp_id,
             'usu_tipo' => $user[0]->usu_tipo,
-            'logged_in' => TRUE,
+            'tipCon_id' => $user[0]->tipCon_id,
+            'logged_in' => TRUE
         );
         $this->session->set_userdata($newdata);
+        
+        if($i == 1)
+        {
+            $ruta = 'index.php/presentacion/principal';
+            redirect($ruta, 'location');
+        }
     }
 
 }

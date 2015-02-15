@@ -74,12 +74,14 @@ class Administracion extends My_Controller {
     function guardarempleado() {
 
         $formulario = $this->input->post();
-        $id = $this->data['user'];
-
-        $this->administracion_model->guardarempleado($formulario, $id['user_id']);
+        $id = $this->data['user']['user_id'];
+        $ruta = 'index.php/login/acceso/pp/'.encrypt_id($id);
+//        echo $ruta;die;
+//        
+        $this->administracion_model->guardarempleado($formulario, $id);
 //        $this->administracion_model->guardarempleado($formulario);
         
-        redirect('index.php/login/acceso/pp/'.deencrypt_id($id['user_id']), 'location');
+        redirect($ruta, 'location');
     }
 
     function vehiculo($id_emp = null,$id = null) {

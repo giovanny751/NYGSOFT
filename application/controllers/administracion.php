@@ -45,7 +45,7 @@ class Administracion extends My_Controller {
     }
 
     function empleado($id = null) {
-
+        
         if(!empty($id)){
             $id = deencrypt_id($id);
         }else{
@@ -78,6 +78,8 @@ class Administracion extends My_Controller {
 
         $this->administracion_model->guardarempleado($formulario, $id['user_id']);
 //        $this->administracion_model->guardarempleado($formulario);
+        
+        redirect('index.php/login/acceso/pp/'.deencrypt_id($id['user_id']), 'location');
     }
 
     function vehiculo($id_emp = null,$id = null) {

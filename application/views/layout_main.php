@@ -1,6 +1,6 @@
 <title>NYGSOFT.COM</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
 <!--        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
@@ -48,6 +48,42 @@
 <script>
     var base_url_js = '<?php echo base_url(); ?>';
     var ruta = '';
+//    --------------------------------------------------------------------------
+//COLORES DE ALERTAS DE METRONIC
+//    --------------------------------------------------------------------------
+
+    function alerta(color,texto)
+    {
+        switch(color){
+            case "rojo":
+                var alerta = 'ruby sticky';
+             break;
+            case "morado":
+                var alerta = 'amethyst sticky';
+             break;
+            case "azul":
+                var alerta = 'teal sticky';
+             break;
+            case "amarillo":
+                var alerta = 'lemon sticky';
+             break;
+            case "verde":
+                var alerta = 'lime sticky';
+             break;
+            case "naranja":
+                var alerta = 'tangerine sticky';
+             break;
+            default:
+                break;
+        }
+        $.notific8('', {
+            horizontalEdge: 'bottom',
+            life: 5000,
+            theme: alerta,
+            heading: texto
+        });
+    }
+
 </script>
 <script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
 <!--<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
@@ -102,9 +138,9 @@
         margin-top: 1%;
     }
     .container{
-        
+
         padding-top: 83px;
-        
+
     }
 </style>
 <?php
@@ -159,15 +195,15 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             <a class="navbar-brand" href="#">NYGSOFT</a>
         </div>
         <div class="navbar-collapse collapse">
-            <?php echo modulos('prueba', $id, null); ?>
+<?php echo modulos('prueba', $id, null); ?>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><b><?php echo strtoupper($nombre); ?></b></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena');?>">Cambiar Contraseña</a></li>
+                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena'); ?>">Cambiar Contraseña</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url('index.php/login/logout');?>">Cerrar sesion</a></li>
+                        <li><a href="<?php echo base_url('index.php/login/logout'); ?>">Cerrar sesion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -176,7 +212,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 </div>
 <div class="container ">
     <div class="row contenido" >
-        <?php echo $content_for_layout ?>
+<?php echo $content_for_layout ?>
     </div>
 </div>
 <div class="modal fade" id="opcion" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-modal="true">
@@ -239,7 +275,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             }
         });
         if (i > 0) {
-                        $.notific8('', {
+            $.notific8('', {
                 horizontalEdge: 'bottom',
                 life: 5000,
                 theme: 'ruby sticky',

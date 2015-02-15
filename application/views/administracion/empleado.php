@@ -207,7 +207,7 @@
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_rol_mision">Cual es su rol en la via en mision</label>
-                <input type="text" class="form-control" name="usu_rol_mision" id="usu_rol_mision">
+                <input type="text"  value="<?php echo $usuario[0]['usu_rol_mision']; ?>" class="form-control" name="usu_rol_mision" id="usu_rol_mision">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_desplazamiento_mision">con que frecuencia realiza desplazamiento en mision</label>

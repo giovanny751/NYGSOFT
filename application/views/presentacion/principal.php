@@ -1,6 +1,10 @@
 
-
-<?php
-
-//echo "dfsdf";   
-//echo $content;
+<div class="widgetTitle">
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>
+        Bienvenido
+    </h5>
+</div>
+<div>
+    <?php echo $inicio[0]->ini_p_inicio; ?>
+</div>

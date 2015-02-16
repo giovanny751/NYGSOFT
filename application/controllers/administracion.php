@@ -45,13 +45,13 @@ class Administracion extends My_Controller {
     }
 
     function empleado($id = null) {
-        
-        if(!empty($id)){
+
+        if (!empty($id)) {
             $id = deencrypt_id($id);
-        }else{
+        } else {
             $id = $this->data['user']['user_id'];
         }
-        
+
         $this->data['cargos'] = $this->administracion_model->cargos();
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
         $this->data['genero'] = $this->administracion_model->genero();
@@ -75,25 +75,25 @@ class Administracion extends My_Controller {
 
         $formulario = $this->input->post();
         $id = $this->data['user']['user_id'];
-        $ruta = 'index.php/login/acceso/pp/'.encrypt_id($id);
+        $ruta = 'index.php/login/acceso/pp/' . encrypt_id($id);
 //        echo $ruta;die;
 //        
         $this->administracion_model->guardarempleado($formulario, $id);
 //        $this->administracion_model->guardarempleado($formulario);
-        
+
         redirect($ruta, 'location');
     }
 
-    function vehiculo($id_emp = null,$id = null) {
+    function vehiculo($id_emp = null, $id = null) {
         $this->data['titulo'] = "Registro Empresa";
-        $this->data['id']= deencrypt_id($id);
+        $this->data['id'] = deencrypt_id($id);
         if ($id_emp == NULL) {
-            $this->data['id_emp']=  $this->data['user']['emp_id'];
-            if ($this->data['user']['emp_id']==0) {
+            $this->data['id_emp'] = $this->data['user']['emp_id'];
+            if ($this->data['user']['emp_id'] == 0) {
                 redirect('index.php/presentacion/principal', 'location');
             }
-        }else{
-            $this->data['id_emp']=deencrypt_id($id_emp);
+        } else {
+            $this->data['id_emp'] = deencrypt_id($id_emp);
         }
 
         $this->data['vehiculo'] = $this->administracion_model->vehiculo($this->data['id']);
@@ -119,6 +119,10 @@ class Administracion extends My_Controller {
         $contenido = $this->input->post('contenido');
 
         switch ($name) {
+            case 'rol':
+                $campos[] = array('rol_nombre' => $contenido);
+                $tabla = 'rol';
+                break;
             case 'entidadsoat':
                 $campos[] = array('entSoa_nombre' => $contenido);
                 $tabla = 'entidad_soat';
@@ -232,51 +236,118 @@ class Administracion extends My_Controller {
         $this->data['vehiculos'] = $this->administracion_model->reportevehiculos();
         $this->layout->view('administracion/reportevehiculo', $this->data);
     }
-    function administracion(){
-        $this->data['inicio']=$this->administracion_model->admin_inicio();
+
+    function administracion() {
+        $this->data['inicio'] = $this->administracion_model->admin_inicio();
         $this->layout->view('administracion/inicio', $this->data);
     }
-    function guardar_admin_inicio(){
-        $post=$this->input->post();
+
+    function guardar_admin_inicio() {
+        $post = $this->input->post();
         $this->administracion_model->guardar_admin_inicio($post);
     }
-    function pesv(){
-        
+
+    function pesv() {
+
         $this->layout->view('administracion/pesv', $this->data);
-        
     }
-    function guardarintroduccion(){
-        
+
+    function guardarintroduccion() {
+
         $introduccion = $this->input->post('introduccion');
         $id = $this->data['user']['user_id'];
+
+        $this->administracion_model->guardarintroduccion($introduccion, $id);
+    }
+
+    function guardarobjetivos() {
+
+        $general = $this->input->post('objetivos');
+        $especifico = $this->input->post('objetivosespecificos');
+        $id = $this->data['user']['user_id'];
+        $data = array();
+        if (!empty($general)) {
+            $data = array();
+            for ($i = 0; $i < count($general); $i++) {
+
+                $data[] = array(
+                    'objGen_objetivo' => $general[$i],
+                    'emp_id' => $id
+                );
+            }
+            $tabla = 'objetivos_generales';
+            $this->administracion_model->guardarobjetivos($data, $tabla);
+        }
+        $data = array();
+        if (!empty($especifico)) {
+            for ($i = 0; $i < count($general); $i++) {
+
+                $data[] = array(
+                    'objEsp_objetivo' => $especifico[$i],
+                    'emp_id' => $id
+                );
+            }
+            $tabla = 'objetivos_especificos';
+            $this->administracion_model->guardarobjetivos($data, $tabla);
+        }
+    }
+
+    function guardarmiembros() {
         
-        $this->administracion_model->guardarintroduccion($introduccion,$id);
+        $cargo = $this->input->post('cargo');
+        $nombre = $this->input->post('nombre');
+        $id = $this->data['user']['user_id'];
+        $data = array();
+        for($i = 0; $i < count($cargo);$i++){
+            $data[] = array(
+                'mie_cargo'=>$cargo[$i],
+                'mie_nombre'=>$nombre[$i],
+                'emp_id'=>$id
+            );
+        }
+        
+        $this->administracion_model->miembros($data);
         
     }
-    function guardarobjetivos(){
+
+    function guardarresponsables() {
         
-        
-        
-    }
-    function guardarresponsables(){
-        
-        
-        
-    }
-    function guardarcomite(){
-        
-        
-        
-    }
-    function guardarprioridades(){
-        
-        
+        $cargo = $this->input->post('cargo');
+        $nombre = $this->input->post('nombre');
+        $id = $this->data['user']['user_id'];
+        $data = array();
+        for($i = 0; $i < count($cargo);$i++){
+            $data[] = array(
+                'res_cargo'=>$cargo[$i],
+                'res_nombre'=>$nombre[$i],
+                'emp_id'=>$id
+            );
+        }
+        $this->administracion_model->guardarresponsables($data);
         
     }
-    function guardapolitica(){
+
+    function guardarcomite() {
         
-        
-        
+        $cargo = $this->input->post('cargo');
+        $nombre = $this->input->post('nombre');
+        $id = $this->data['user']['user_id'];
+        $data = array();
+        for($i = 0; $i < count($cargo);$i++){
+            $data[] = array(
+                'com_cargo'=>$cargo[$i],
+                'com_nombre'=>$nombre[$i],
+                'emp_id'=>$id
+            );
+        }
+        $this->administracion_model->guardarcomite($data);
+    }
+
+    function guardapolitica() {
+
+        $politica = $this->input->post('politica');
+        $empresa = $this->data['user']['user_id'];
+        $this->administracion_model->guardapolitica($politica, $empresa);
     }
 
 }

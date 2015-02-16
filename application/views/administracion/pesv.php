@@ -55,7 +55,7 @@
                             <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
                             <div class="row agregar">
                                 <div class="principaldos">
-                                    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivosespecificos" placeholder="Objetivos Especificos"></div>
+                                    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos"></div>
                                     <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
                                     <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
                                 </div>
@@ -131,7 +131,7 @@
                     <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                            <textarea class="form-control politica" style="width: 1139px; height: 258px;"></textarea>
+                            <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"></textarea>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
@@ -192,10 +192,10 @@
 
     $('#guardarpolitica').click(function() {
 
-        var url = "<?php echo base_url('index.php/administracion/guardapolitica'); ?>";
-        var politica = $('.politica').val();
+        var url = "<?php echo base_url('index.php/administracion/guardapolitica     '); ?>";
+        var politica = $('#politica').val();
 
-        console.log(politica);
+//        console.log(politica);
         $.post(url, {politica: politica})
                 .done(function(msn) {
             alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
@@ -330,12 +330,22 @@
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
+    $('#guardarmiembros').click(function() {
+        var introduccion = $('#introduccion').val();
+        var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
+        $.post(url, $('#miembros').serialize())
+                .done(function(msn) {
+            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+        }).fail(function(msg) {
+            alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+        });
+    });
     $('#guardarobjetivos').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardarobjetivos'); ?>";
         $.post(url, $('#objetivos').serialize())
                 .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
         }).fail(function(msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -357,7 +367,7 @@
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         $.post(url, $('#comite').serialize())
                 .done(function(msn) {
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
         }).fail(function(msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -368,7 +378,7 @@
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         $.post(url, $('#prioridades').serialize())
                 .done(function(msn) {
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
         }).fail(function(msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

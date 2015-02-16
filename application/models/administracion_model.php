@@ -201,6 +201,40 @@ class administracion_model extends CI_Model {
         $this->db->insert('introduccion',$data);
         
     }
+    function guardapolitica($politica,$id){
+        
+       $data = array(
+           'pol_politica'=> $politica,
+           'emp_id' => $id
+       ); 
+        
+        $this->db->insert('politicas',$data);
+        
+    }
+    function guardarobjetivos($data,$tabla){
+        
+        $this->db->insert_batch($tabla,$data);
+        
+    }
+    function miembros($data){
+        
+        $this->db->insert_batch('miembros',$data);
+        
+    }
+    function guardarresponsables($data){
+        
+        $this->db->insert_batch('responsables',$data);
+        
+//        echo $this->db->last_query();
+        
+    }
+    function guardarcomite($data){
+        
+        $this->db->insert_batch('comite',$data);
+        
+//        echo $this->db->last_query();
+        
+    }
     
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";

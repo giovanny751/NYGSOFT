@@ -147,13 +147,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END PAGE LEVEL SCRIPTS -->
 
         <script>
-            $('#aceptar').click(function{
-               var user="<?php echo $username ?>" 
-               var pass="<?php echo $password ?>" 
-               $('#username').val(user);
-               $('#password').val(pass);
+            $('#aceptar').click(function() {
+                var user = "<?php echo $username ?>";
+                var pass = "<?php echo $password ?>";
+                $('#username').val(user);
+                $('#password').val(pass);
             });
-            
+
             jQuery(document).ready(function() {
                 Metronic.init(); // init metronic core components
                 Layout.init(); // init current layout
@@ -274,6 +274,16 @@ License: You must have a valid license purchased only from themeforest(the above
     .login .content2 .select2-container a span img {
         margin-left: 4px;
     }
+    .caption {
+        display: inline-block;
+        float: left;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 18px;
+        padding: 10px 0;
+        color: #fff;
+    }
+    
 </style>
 
 

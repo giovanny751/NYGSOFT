@@ -8,7 +8,7 @@ class Presentacion extends My_Controller {
     function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->model('ingreso_model');
+        $this->load->model('Ingreso_model');
         $this->load->model('Roles_model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
@@ -16,15 +16,13 @@ class Presentacion extends My_Controller {
     }
 
     function principal() {
-        $this->data['user'] = 1;
-        $this->data['inicio']= $this->ingreso_model->admin_inicio();
-        $this->data['content'] = $this->modulos('prueba', null, $this->data['user']);
+        $this->data['inicio']= $this->Ingreso_model->admin_inicio();
+        $this->data['content'] = $this->modulos('prueba', null, $this->data['user']['user_id']);
         $this->layout->view('presentacion/principal', $this->data);
     }
-
     function modulos($datosmodulos, $html = null, $usuarioid) {
         $tipo = 2;
-        $menu = $this->ingreso_model->menu($datosmodulos, $usuarioid, $tipo);
+        $menu = $this->Ingreso_model->menu($datosmodulos, $usuarioid, $tipo);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -58,7 +56,7 @@ class Presentacion extends My_Controller {
 
         $idgeneral = $this->input->post('idgeneral');
         if (!empty($idgeneral)) {
-            $datos = $this->ingreso_model->consultamenu($idgeneral);
+            $datos = $this->Ingreso_model->consultamenu($idgeneral);
 
             $this->output->set_content_type('application/json')->set_output(json_encode($datos[0]));
         } else {
@@ -77,13 +75,13 @@ class Presentacion extends My_Controller {
         if (empty($this->data['idgeneral']))
             $this->data['hijo'] = 0;
 
-        $this->data['menu'] = $this->ingreso_model->consultahijos($this->data['idgeneral']);
+        $this->data['menu'] = $this->Ingreso_model->consultahijos($this->data['idgeneral']);
 
 //            var_dump($this->data['menu'] );
 
         if (!empty($this->data['idgeneral'])) {
 
-            $this->data['menu'] = $this->ingreso_model->hijos($this->data['idgeneral']);
+            $this->data['menu'] = $this->Ingreso_model->hijos($this->data['idgeneral']);
         }
 
 //            $this->data['content'] = 'presentacion/menu';
@@ -97,10 +95,10 @@ class Presentacion extends My_Controller {
             $modulo = $this->input->post('modulo');
             $padre = $this->input->post('padre');
             $general = $this->input->post('general');
-            $actualizamodulo = $this->ingreso_model->actualizahijos($general);
+            $actualizamodulo = $this->Ingreso_model->actualizahijos($general);
 
-            $guardamodulo = $this->ingreso_model->guardarmodulo($modulo, $padre, $general);
-            $menu = $this->ingreso_model->cargamenu($general);
+            $guardamodulo = $this->Ingreso_model->guardarmodulo($modulo, $padre, $general);
+            $menu = $this->Ingreso_model->cargamenu($general);
 
 
             $this->output->set_content_type('application/json')->set_output(json_encode($menu));
@@ -120,7 +118,7 @@ class Presentacion extends My_Controller {
             $estado = $this->input->post('estado');
             $nombre = $this->input->post('nombre');
 
-            $this->ingreso_model->guardaatributos($idgeneral, $controlador, $accion, $estado, $nombre);
+            $this->Ingreso_model->guardaatributos($idgeneral, $controlador, $accion, $estado, $nombre);
         } else {
             redirect('auth/login', 'refresh');
         }
@@ -129,7 +127,7 @@ class Presentacion extends My_Controller {
     function usuario() {
 
         $this->data['roles'] = $this->Roles_model->roles();
-        $this->data['usaurios'] = $this->ingreso_model->totalusuarios();
+        $this->data['usaurios'] = $this->Ingreso_model->totalusuarios();
 //        $this->data['content'] = 'presentacion/usuario';
         $this->layout->view('presentacion/usuario', $this->data);
 //        $this->load->view('presentacion/usuario', $this->data);
@@ -146,7 +144,7 @@ class Presentacion extends My_Controller {
 
     function permisorolporusuario($datosmodulos = 'prueba', $idrol, $idusuario, $html = "") {
 
-        $menu = $this->ingreso_model->permisousuarioroles($datosmodulos, $idrol, $idusuario);
+        $menu = $this->Ingreso_model->permisousuarioroles($datosmodulos, $idrol, $idusuario);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -171,7 +169,7 @@ class Presentacion extends My_Controller {
 
         $id = $this->input->post('id');
         if (!empty($id)) {
-            $usuario = $this->ingreso_model->consultausuario($id);
+            $usuario = $this->Ingreso_model->consultausuario($id);
             $this->output->set_content_type('application/json')->set_output(json_encode($usuario[0]));
         } else {
             redirect('auth/login', 'refresh');
@@ -184,14 +182,14 @@ class Presentacion extends My_Controller {
         $email = $this->input->post('email');
         $contrasena = $this->input->post('contrasena');
 
-        $enviodatos = $this->ingreso_model->guardarusuario($usuario, $email, $contrasena);
+        $enviodatos = $this->Ingreso_model->guardarusuario($usuario, $email, $contrasena);
     }
 
     function eliminarmodulo() {
 
         $idgeneral = $this->input->post('idgeneral');
         if (!empty($idgeneral)) {
-            $eliminar = $this->ingreso_model->eliminar($idgeneral);
+            $eliminar = $this->Ingreso_model->eliminar($idgeneral);
         } else {
             
         }
@@ -199,7 +197,7 @@ class Presentacion extends My_Controller {
 
     function permisosusuarios() {
 
-        $this->data['usuarios'] = $this->ingreso_model->usuarios();
+        $this->data['usuarios'] = $this->Ingreso_model->usuarios();
 
         $this->layout->view('presentacion/permisosusuarios', $this->data);
     }
@@ -208,9 +206,9 @@ class Presentacion extends My_Controller {
 
 //        echo $iduser;die;
 
-        $this->load->model("ingreso_model");
+        $this->load->model("Ingreso_model");
 
-        $menu = $this->ingreso_model->menu($iduser, $datosmodulos, 1);
+        $menu = $this->Ingreso_model->menu($iduser, $datosmodulos, 1);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']][$modulo['modulo_menuid']] [] = $modulo['menu_idhijo'];
@@ -247,7 +245,7 @@ class Presentacion extends My_Controller {
 
         $this->data['user'] = $this->input->post('usuario');
 
-        $eliminarpermisos = $this->ingreso_model->eliminarpermisos($this->data['user']);
+        $eliminarpermisos = $this->Ingreso_model->eliminarpermisos($this->data['user']);
 
         $usuario = $this->input->post();
 //        echo "<pre>";
@@ -260,12 +258,12 @@ class Presentacion extends My_Controller {
             $datos[] = array('user_id' => $this->data['user'], 'modulo_menuid' => $modulos);
         }
 
-        $guardarpermisos = $this->ingreso_model->permisosmodulo($datos);
+        $guardarpermisos = $this->Ingreso_model->permisosmodulo($datos);
     }
 
     function permisoroles($datosmodulos, $html = null) {
 
-        $menu = $this->ingreso_model->permisoroles($datosmodulos);
+        $menu = $this->Ingreso_model->permisoroles($datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
@@ -341,13 +339,13 @@ class Presentacion extends My_Controller {
         $estado = $this->input->post('estado');
         $id = $this->input->post('id');
 
-        $this->ingreso_model->guardaratributosmenu($nombre, $controlador, $accion, $estado, $id);
+        $this->Ingreso_model->guardaratributosmenu($nombre, $controlador, $accion, $estado, $id);
     }
 
     function administracionareas() {
 
-        $this->data['cargos'] = $this->ingreso_model->areas();
-        $this->data['pais'] = $this->ingreso_model->paises();
+        $this->data['cargos'] = $this->Ingreso_model->areas();
+        $this->data['pais'] = $this->Ingreso_model->paises();
 
         $this->layout->view('presentacion/administracionareas', $this->data);
     }
@@ -356,9 +354,9 @@ class Presentacion extends My_Controller {
 
         $area = $this->input->post('area');
 
-        $this->ingreso_model->guardararea($area);
+        $this->Ingreso_model->guardararea($area);
 
-        $areas = $this->ingreso_model->areas();
+        $areas = $this->Ingreso_model->areas();
         $this->output->set_content_type('application/json')->set_output(json_encode($areas));
     }
 
@@ -367,13 +365,13 @@ class Presentacion extends My_Controller {
         $area = $this->input->post('area');
         $cargo = $this->input->post('cargo');
 
-        $this->ingreso_model->guardarcargo($area, $cargo);
+        $this->Ingreso_model->guardarcargo($area, $cargo);
     }
 
     function permisousuarios($datosmodulos, $html = null, $idusuario) {
 
         $tipo = 1;
-        $menu = $this->ingreso_model->menu($datosmodulos, $idusuario, $tipo);
+        $menu = $this->Ingreso_model->menu($datosmodulos, $idusuario, $tipo);
         $i = array();
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion'], $modulo['menudos']);
@@ -407,22 +405,22 @@ class Presentacion extends My_Controller {
     function guardarpermisos() {
         $rol = $this->input->post('roluser');
         $usuario = $this->input->post('usuarioid');
-        $this->ingreso_model->eliminapermisosusuario($rol,$usuario);
+        $this->Ingreso_model->eliminapermisosusuario($rol,$usuario);
         $permisorol = $this->input->post('permisorol');
         $permiso = array();
         for ($i = 0; $i < count($permisorol); $i++) {
             $permiso[] = array('usu_id' => $usuario, 'menu_id' => $permisorol[$i], 'rol_id' => $rol);
         }
-        $this->ingreso_model->permisosusuariomenu($permiso);
+        $this->Ingreso_model->permisosusuariomenu($permiso);
     }
 
     function guardarpais() {
 
         $pais = $this->input->post('pais');
-        $this->ingreso_model->guardarpais($pais);
+        $this->Ingreso_model->guardarpais($pais);
 
 
-        $pais = $this->ingreso_model->paises();
+        $pais = $this->Ingreso_model->paises();
         $this->output->set_content_type('application/json')->set_output(json_encode($pais));
     }
 
@@ -433,22 +431,22 @@ class Presentacion extends My_Controller {
 
         $insertar[] = array('pai_id' => $pais, 'ciu_nombre' => $ciudad);
 
-        $this->ingreso_model->guardarciudad($insertar);
+        $this->Ingreso_model->guardarciudad($insertar);
     }
 
     function guardartipoproducto() {
 
         $tipoproducto = $this->input->post('tipoproducto');
-        $this->ingreso_model->guardartipoproducto($tipoproducto);
+        $this->Ingreso_model->guardartipoproducto($tipoproducto);
 
-        //$pais = $this->ingreso_model->paises();
+        //$pais = $this->Ingreso_model->paises();
         //$this->output->set_content_type('application/json')->set_output(json_encode($pais));
     }
 
     function rolesasignados() {
 
         $id = $this->input->post('id');
-        $roles = $this->ingreso_model->rolesasignados($id);
+        $roles = $this->Ingreso_model->rolesasignados($id);
 
         $this->output->set_content_type('application/json')->set_output(json_encode($roles));
     }
@@ -461,7 +459,7 @@ class Presentacion extends My_Controller {
         
         $contrasena = $this->input->post('password');
         $user_id = $this->data['user']['user_id'];
-        $this->ingreso_model->guardarcontrasena($contrasena,$user_id);
+        $this->Ingreso_model->guardarcontrasena($contrasena,$user_id);
         
     }
 

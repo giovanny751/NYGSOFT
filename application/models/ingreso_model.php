@@ -276,9 +276,7 @@ class Ingreso_model extends CI_Model {
         
     }
     function admin_inicio(){
-        $this->db->where('ini_id', 1);
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
-
 }

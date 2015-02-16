@@ -476,5 +476,10 @@ class Ingresoform_model extends CI_Model {
 
         $this->db->insert_batch('permisos', $data);
     }
+    function segmento(){
+        
+       $segmento = $this->db->get('segmento');
+       return $segmento->result_array(); 
+    }
 
 }

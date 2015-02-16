@@ -173,6 +173,16 @@
         </div>
     </div>
     <div class="row">
+        <div>
+            <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                <label for="tiposervicio">Segmento</label><input type="text" class="form-control" name="segmento" id="segmento">
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <button type="button" class="btn btn-success">Agregar</button>
+            </div>
+        </div> 
+    </div>
+    <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
             <label for="entidadsoat">Entidad Soat</label><input type="text" class="form-control" name="entidadsoat" id="entidadsoat">
         </div>

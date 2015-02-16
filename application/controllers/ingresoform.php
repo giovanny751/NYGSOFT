@@ -14,21 +14,19 @@ class Ingresoform extends My_Controller {
     }
 
     function empresa($id = null) {
+        
         if (!empty($id)) {
-            $id = deencrypt_id($id);
-        } else {
-            $id = $this->data['user']['emp_id'];
-            if (!empty($id)) {
-                redirect('index.php/presentacion/principal', 'location');
-            }
-        }
-        $this->data['titulo'] = "Registro Empresa";
-        $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
+            $this->data['titulo'] = "Registro Empresa";
+            $id=  deencrypt_id($id);
+            $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
 //            print_y($this->data['empresa']);
-        $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
-        $this->data['id'] = $id;
-        $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
-        $this->layout->view('ingresoform/empresa', $this->data);
+            $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
+            $this->data['id'] = $id;
+            $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
+            $this->layout->view('ingresoform/empresa', $this->data);
+        } else {
+            redirect('index.php/presentacion/principal', 'location');
+        }
     }
 
     function guardar_emp() {
@@ -48,12 +46,12 @@ class Ingresoform extends My_Controller {
 
     function lisVehiculos($id = null) {
         $this->data['titulo'] = "Vehiculos";
-        if ($id == NULL) {
+        if($id==NULL){
             $this->data['id'] = $this->data['user']['emp_id'];
-        } else {
+        }else{
             $this->data['id'] = $id;
         }
-
+        
         if ($this->data['user']['usu_tipo'] != 0 && $this->data['user']['usu_tipo'] != 3) {
             $this->data['id'] = encrypt_id($this->data['user']['emp_id']);
         }
@@ -145,7 +143,7 @@ class Ingresoform extends My_Controller {
     }
 
     function ingresausuario() {
-        $this->data['empresa'] = get_dropdown($this->Ingresoform_model->empresa(), 'emp_id', 'emp_razonSocial');
+        $this->data['empresa'] = get_dropdown($this->Ingresoform_model->empresa(),'emp_id','emp_razonSocial');
         $this->layout->view('ingresoform/ingresausuario', $this->data);
     }
 
@@ -155,7 +153,7 @@ class Ingresoform extends My_Controller {
         $tipodocumento = $this->input->post('tipodocumento');
         $correo = $this->input->post('correo');
         $user_id = $this->data['user']['user_id'];
-        $empresa = $this->input->post('emp_id');
+        $empresa= $this->input->post('emp_id');
 
         $log = array();
 //        $random = encrypt_id($documento);
@@ -186,7 +184,7 @@ class Ingresoform extends My_Controller {
 
         mail($correo, "Registro de Usuario", $message);
         $this->Ingresoform_model->guardarlogenviocorreousuario($log);
-        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo, $random, $documento, $empresa);
+        $idusuario = $this->Ingresoform_model->ingresousuariopagina($correo, $random, $documento,$empresa);
 
 
         $this->Ingresoform_model->permisosusuariousuario($idusuario);

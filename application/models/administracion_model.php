@@ -29,7 +29,7 @@ class administracion_model extends CI_Model {
         return $dato[0]['form_formulario'];
     }
 
-    function guardaradministracion($campos, $tabla) {
+    function    guardaradministracion($campos, $tabla) {
 
         $this->db->insert_batch($tabla, $campos);
 //        echo $this->db->last_query();
@@ -191,7 +191,17 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
-
+    function guardarintroduccion($introduccion,$id){
+        
+       $data = array(
+           'int_introduccion'=> $introduccion,
+           'usu_id' => $id
+       ); 
+        
+        $this->db->insert('introduccion',$data);
+        
+    }
+    
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";
 //        $this->db->where('usu_cc', $post['usu_cc']);

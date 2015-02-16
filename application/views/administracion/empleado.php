@@ -74,7 +74,20 @@
                 </select> 
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_edad">Edad</label><input type="text"  value="<?php echo $usuario[0]['usu_edad'] ?>" class="form-control obligatorio" name="usu_edad" id="usu_edad">
+                <label for="usu_edad">Edad</label>
+                
+                <select class="form-control obligatorio" name="usu_edad" id="usu_edad">
+                    <?php for($i= 16; $i < 81;$i++){ 
+                        if($i == $usuario[0]['usu_edad']){
+                            $select = 'selected';
+                        }
+                        else{
+                            $select = ""; 
+                        }
+                        ?>
+                    <option <?php echo $select; ?> $select value="<?php echo $i ?>"><?php echo $i ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="text"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio date-picker" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">

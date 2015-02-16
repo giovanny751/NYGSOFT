@@ -144,7 +144,7 @@ class Administracion extends My_Controller {
                 $tabla = 'cargo';
                 break;
             case 'ciudad':
-                $campos[] = array('car_nombre' => $contenido);
+                $campos[] = array('ciu_nombre' => $contenido);
                 $tabla = 'ciudad';
                 break;
             case 'tipocontrato':
@@ -247,7 +247,10 @@ class Administracion extends My_Controller {
     }
     function guardarintroduccion(){
         
+        $introduccion = $this->input->post('introduccion');
+        $id = $this->data['user']['user_id'];
         
+        $this->administracion_model->guardarintroduccion($introduccion,$id);
         
     }
     function guardarobjetivos(){
@@ -270,7 +273,7 @@ class Administracion extends My_Controller {
         
         
     }
-    function guardarpolitica(){
+    function guardapolitica(){
         
         
         

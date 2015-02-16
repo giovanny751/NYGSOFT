@@ -98,8 +98,11 @@
                 <label for="ciu_id">Ciudad</label>
                 <select id="ciu_id" name="ciu_id" class="form-control">
                     <option value="">-Seleccionar-</option>
-                    <?php foreach ($ciudad as $ciu) { ?>
-                        <option <?php echo $selec; ?>  value="<?php echo $ciu['ciu_id']; ?>"><?php echo $ciu['ciu_nombre']; ?></option>
+                    <?php foreach ($ciudad as $ciu) { 
+                        if($ciu['ciu_id'] == $usuario[0]['ciu_id'] )$select = "selected";
+                        else $select = "";
+                        ?>
+                        <option <?php echo $select  ; ?>  value="<?php echo $ciu['ciu_id']; ?>"><?php echo $ciu['ciu_nombre']; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -332,7 +335,16 @@
         <div class="row">
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_experiecia_anos">Experiencia en años de conduccion</label>
-                <input type="text"  value="<?php echo $usuario[0]['usu_experiecia_anos'] ?>"  class="form-control" name="usu_experiecia_anos" id="usu_experiecia_anos">
+                <select class="form-control" name="usu_experiecia_anos" id="usu_experiecia_anos">
+                    <option value=""></option>
+                    <?php for($i = 1; $i < 50; $i++){ 
+                        if($i == $usuario[0]['usu_experiecia_anos'] )$select = "selected";
+                        else $select = "";
+                        ?>
+                    <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                    <?php } ?>
+                </select>
+                
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_vigencialic">Fecha de vigencia de la licencia de conduccion</label>

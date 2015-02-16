@@ -14,18 +14,11 @@ class Login extends My_Controller {
     }
 
     public function index() {
-
-
-//        var_dump($this->session->userdata);die;
         //FUNCION PRINCIPAL PARA EL LOGIN - CARGA LA VISTA LOGIN/INDEX.PHP
-        if (!empty($this->session->userdata('user_id'))) {
-//             echo "hola2";die;
-
+        $datos=$this->session->userdata('user_id');
+        if (!empty($datos)) {
             redirect('index.php/presentacion/principal', 'location');
         } else {
-
-//            echo "hola1";die;
-
             $this->load->view('login/index');
         }
     }

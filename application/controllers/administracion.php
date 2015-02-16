@@ -245,6 +245,36 @@ class Administracion extends My_Controller {
         $this->layout->view('administracion/pesv', $this->data);
         
     }
+    function guardarintroduccion(){
+        
+        
+        
+    }
+    function guardarobjetivos(){
+        
+        
+        
+    }
+    function guardarresponsables(){
+        
+        
+        
+    }
+    function guardarcomite(){
+        
+        
+        
+    }
+    function guardarprioridades(){
+        
+        
+        
+    }
+    function guardarpolitica(){
+        
+        
+        
+    }
 
 }
 

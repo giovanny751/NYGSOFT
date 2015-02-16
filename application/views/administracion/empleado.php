@@ -1,5 +1,5 @@
 
-<?php // echo $usuario[0]['gruTra_id'];die; ?>
+<?php // echo $usuario[0]['gruTra_id'];die;  ?>
 <div class="widgetTitle">
     <h5><i class="glyphicon glyphicon-ok"></i> ACTUALIZACIÓN DE DATOS</h5>
 </div>
@@ -77,7 +77,7 @@
                 <label for="usu_edad">Edad</label><input type="text"  value="<?php echo $usuario[0]['usu_edad'] ?>" class="form-control obligatorio" name="usu_edad" id="usu_edad">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="date"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio date-picker" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
+                <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="text"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio date-picker" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
             </div>
         </div>
         <div class="row">
@@ -288,11 +288,17 @@
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_vigencia_licencia">Fecha de vigencia de la licencia de conduccion</label>
-                <input type="date" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>"  class="form-control date-picker" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
+<!--                <div class="input-group input-medium date date-picker" data-date-start-date="+0d" data-date-format="dd-mm-yyyy">
+                    <input class="form-control" type="text" readonly="">
+                    <span class="input-group-btn">
+                        <button class="btn default" type="button">
+                    </span>
+                </div>-->
+                <input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>"  class="form-control date-picker" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_expedicion_cc">Fecha de Expedicion Cedula</label>
-                <input type="date"  value="<?php echo $usuario[0]['usu_fecha_expedicion_cc'] ?>" class="form-control date-picker" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
+                <input type="text"  value="<?php echo $usuario[0]['usu_fecha_expedicion_cc'] ?>" class="form-control date-picker" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="cat_id">Categoria</label>
@@ -317,7 +323,7 @@
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_vigencialic">Fecha de vigencia de la licencia de conduccion</label>
-                <input type="date" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">
+                <input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_estado_conductor">Estado Conductor</label>

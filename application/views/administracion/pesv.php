@@ -33,50 +33,53 @@
                         <button type="button" id="guardarintroduccion" class="btn btn-success">Gardar</button>
                     </div>
                 </div>
-                <div class="tab-pane" id="portlet_tab2">
-                    <form method="post" id="guardarobjetivos">
-                        <div  class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-md-8 col-xs-8 col-sm-8">
-                            <div class="alert alert-info"><center>OBJETIVOS GENERALES</center></div>
-                            <div>
-                                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivos" placeholder="Objetivos Generales"></div>
-                                <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info">Agregar</button></div>
-                                <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger">Eliminar</button></div>
-                            </div>
+            </div>
+            <div class="tab-pane" id="portlet_tab2">
+                <form method="post" id="guardarobjetivos">
+                    <div  class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                        <div class="alert alert-info"><center>OBJETIVOS GENERALES</center></div>
+                        <div>
+                            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivos" placeholder="Objetivos Generales"></div>
+                            <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info">Agregar</button></div>
+                            <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger">Eliminar</button></div>
                         </div>
-                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
-                        <div style="margin-top:15px;" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-md-8 col-xs-8 col-sm-8" style="margin-top:15px">
-                            <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
-                            <div class="row">
-                                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivos" placeholder="Objetivos Especificos"></div>
-                                <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info">Agregar</button></div>
-                                <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger">Eliminar</button></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
-                    </form>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarobjetivos" class="btn btn-success">Gardar</button>
                     </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab3">
-                    <div class="alert alert-info"><center><p>Los  miembros  de  la  alta  dirección  que  aparecen  a  continuación:  </p></center></div>
-                    <form method="post" id="miembros">
+                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                    <div style="margin-top:15px;" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-md-8 col-xs-8 col-sm-8" style="margin-top:15px">
+                        <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
                         <div class="row">
-                            <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                            </div>
-                            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                            </div>
-                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info">Agregar</button></div>
-                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger">Eliminar</button></div>
+                            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivos" placeholder="Objetivos Especificos"></div>
+                            <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info">Agregar</button></div>
+                            <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger">Eliminar</button></div>
                         </div>
-                    </form>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                </form>
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                    <button type="button" id="guardarobjetivos" class="btn btn-success">Gardar</button>
                 </div>
+            </div>
+
+            <div class="tab-pane" id="portlet_tab3">
+                <div class="alert alert-info"><center><p>Los  miembros  de  la  alta  dirección  que  aparecen  a  continuación:  </p></center></div>
+                <form method="post" id="miembros">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                            <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                            <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                        </div>
+                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info">Agregar</button></div>
+                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger">Eliminar</button></div>
+                    </div>
+                </form>
+
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                     <button type="button" id="guardarmiembros" class="btn btn-success">Gardar</button>
                 </div>
             </div>
+
             <div class="tab-pane" id="portlet_tab4">
                 <div class="alert alert-info"><center><p>Como  responsable  del  PESV  se  a  delegado  por  la  Alta  gerencia  a: </p></center></div>
                 <form method="post" id="responsables">
@@ -150,22 +153,23 @@
                 <div class="alert alert-info"><center><p>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </p></center></div>
                 <center><p class="alert alert-danger">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
                 <div class="row">
-                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                        <label>No Prioridad</label><input type="text" class="form-control" name="prioridad" placeholder="Prioridad">
-                    </div>
-                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                        <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo" placeholder="Riesgo">
-                    </div>
-                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info">Agregar</button></div>
-                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger">Eliminar</button></div>
+                    <form method="post" id="prioridades">
+                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                            <label>No Prioridad</label><input type="text" class="form-control" name="prioridad" placeholder="Prioridad">
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                            <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo" placeholder="Riesgo">
+                        </div>
+                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info">Agregar</button></div>
+                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger">Eliminar</button></div>
+                    </form>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                    <button type="button" id="guardarintroduccion" class="btn btn-success">Gardar</button>
+                    <button type="button" id="guardarprioridades" class="btn btn-success">Gardar</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <script>
     $('#guardarintroduccion').click(function() {
@@ -204,6 +208,17 @@
 
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         $.post(url, $('#comite').serialize())
+                .done(function(msn) {
+            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
+            alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+        });
+
+    });
+    $('#guardarprioridades').click(function() {
+
+        var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
+        $.post(url, $('#prioridades').serialize())
                 .done(function(msn) {
             alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
         }).fail(function(msg) {

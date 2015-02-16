@@ -240,6 +240,11 @@ class Administracion extends My_Controller {
         $post=$this->input->post();
         $this->administracion_model->guardar_admin_inicio($post);
     }
+    function pesv(){
+        
+        $this->layout->view('administracion/pesv', $this->data);
+        
+    }
 
 }
 

@@ -74,12 +74,10 @@
                         <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger">Eliminar</button></div>
                     </div>
                 </form>
-
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                     <button type="button" id="guardarmiembros" class="btn btn-success">Gardar</button>
                 </div>
             </div>
-
             <div class="tab-pane" id="portlet_tab4">
                 <div class="alert alert-info"><center><p>Como  responsable  del  PESV  se  a  delegado  por  la  Alta  gerencia  a: </p></center></div>
                 <form method="post" id="responsables">

@@ -15,7 +15,6 @@ class Ingresoform extends My_Controller {
 
     function empresa($id = null) {
         if (!empty($id)) {
-            $this->data['titulo'] = "Registro Empresa";
             $id = deencrypt_id($id);
         } else {
             $id = $this->data['user']['emp_id'];
@@ -23,7 +22,7 @@ class Ingresoform extends My_Controller {
                 redirect('index.php/presentacion/principal', 'location');
             }
         }
-        
+        $this->data['titulo'] = "Registro Empresa";
         $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
 //            print_y($this->data['empresa']);
         $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();

@@ -1,4 +1,4 @@
-<div class="container">
+
     <center><h1><?php echo $titulo; ?></h1></center>
     <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" onsubmit="return obligatorio('1')" method="post">
         <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">
@@ -292,7 +292,7 @@
             </div>
         </div>
     </form>
-</div>
+
 <script>
     $('#emp_nit').validCampoFranz('0123456789');
 

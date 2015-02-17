@@ -146,6 +146,8 @@ class administracion_model extends CI_Model {
 
         $this->db->where('usu_id', $id);
         $this->db->update('user', $data);
+        
+//        echo $this->db->last_query();die;
     }
     function guardarfactores($factores){
         

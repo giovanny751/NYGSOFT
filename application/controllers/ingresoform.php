@@ -16,18 +16,16 @@ class Ingresoform extends My_Controller {
     function empresa($id = null) {
 
         if ($id == NULL) {
-            $id = $this->data['user']['emp_id'];
+            $this->data['id']=$id = $this->data['user']['emp_id'];
         } else {
-            $id = $id;
+            $this->data['id']=$id = deencrypt_id($id);
         }
 
         if (!empty($id)) {
             $this->data['titulo'] = "Registro Empresa";
-            $id = deencrypt_id($id);
             $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
 //            print_y($this->data['empresa']);
             $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
-            $this->data['id'] = $id;
             $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
             $this->layout->view('ingresoform/empresa', $this->data);
         } else {

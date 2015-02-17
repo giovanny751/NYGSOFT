@@ -27,7 +27,7 @@
                 Segmento a la que pertenece
             </div>
             <div class="col-md-3 col-lg-3">
-                <select class="form-control obligatorio" name="emp_segmento" id="emp_segmento">
+                <select class="form-control" name="emp_segmento" id="emp_segmento">
                     <option value="">-Seleccionar-</option>
                     <?php foreach ($segmento as $segment) { 
                         if($empresa[0]->emp_segmento == $segment['seg_id'])$select= 'selected';

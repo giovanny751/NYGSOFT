@@ -204,7 +204,7 @@
                 vacio.val('');
                 alerta('verde','DATOS GUARDADOS CORRECTAMENTE');
             }).fail(function(){
-                alerta('verde','ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+                alerta('rojo','ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
             });
         } else {
             alerta('azul','POR FAVOR INGRESAR LA INFORMACIÓN');

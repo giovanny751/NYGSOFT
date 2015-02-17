@@ -129,9 +129,11 @@ class administracion_model extends CI_Model {
     }
 
     function causas() {
-
-        $genero = $this->db->get('causas');
-        return $genero->result_array();
+        
+        $this->db->join('causas_usuario','causas_usuario.cau_id = causas.cau_id','left');
+        $causas = $this->db->get('causas');
+//        echo $this->db->last_query();
+        return $causas->result_array();
     }
 
     function categoria() {
@@ -144,6 +146,14 @@ class administracion_model extends CI_Model {
 
         $this->db->where('usu_id', $id);
         $this->db->update('user', $data);
+    }
+    function guardarfactores($factores){
+        
+        $this->db->insert_batch('factor_usuario',$factores);
+    }
+    function guardarcausas($causas){
+        
+        $this->db->insert_batch('causas_usuario',$causas);
     }
 
     function datosusuario($id) {
@@ -174,6 +184,7 @@ class administracion_model extends CI_Model {
     }
     function factoresriesgo(){
         
+        $this->db->join('factor_usuario','factor_usuario.facRis_id = factores_riesgo.facRis_id','left');
         $ciudad = $this->db->get('factores_riesgo');
         return $ciudad->result_array();
     }
@@ -181,6 +192,16 @@ class administracion_model extends CI_Model {
         
         $ciudad = $this->db->get('estado_conductor');
         return $ciudad->result_array();
+    }
+    function rol(){
+        
+        $rol = $this->db->get('rol');
+        return $rol->result_array();
+    }
+    function tipodesplazamiento(){
+        
+        $rol = $this->db->get('tipo_desplazamiento');
+        return $rol->result_array();
     }
     function guardar_admin_inicio($post){
         $this->db->where('ini_id', 1);
@@ -234,6 +255,14 @@ class administracion_model extends CI_Model {
         
 //        echo $this->db->last_query();
         
+    }
+    function eliminafactores($id){
+        $this->db->where('usu_id',$id);
+        $this->db->delete('factor_usuario');
+    }
+    function eliminacausas($id){
+        $this->db->where('usu_id',$id);
+        $this->db->delete('causas_usuario');
     }
     
 //    function guardarempleado($post) {

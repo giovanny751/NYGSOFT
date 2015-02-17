@@ -65,7 +65,9 @@ class Administracion extends My_Controller {
         $this->data['frecuencia'] = $this->administracion_model->frecuencia();
         $this->data['tipotrasporte'] = $this->administracion_model->tipotrasporte();
         $this->data['factoresriesgo'] = $this->administracion_model->factoresriesgo();
+        $this->data['tipodesplazamiento'] = $this->administracion_model->tipodesplazamiento();
         $this->data['estadoconductor'] = $this->administracion_model->estadoconductor();
+        $this->data['rol'] = $this->administracion_model->rol();
 
 
         $this->layout->view('administracion/empleado', $this->data);
@@ -77,9 +79,53 @@ class Administracion extends My_Controller {
         $id = $this->data['user']['user_id'];
         $ruta = 'index.php/login/acceso/pp/' . encrypt_id($id);
 //        echo $ruta;die;
-//        
-        $this->administracion_model->guardarempleado($formulario, $id);
+        $data = array();
+        $factoresriesgo = $this->input->post('facRis_id');
+        $causas = $this->input->post('cau_id');
+
+//------------------------------------------------------------------------------
+//                      ELIMINA FACTORES        
+//------------------------------------------------------------------------------      
+        $this->administracion_model->eliminafactores($id);
+//------------------------------------------------------------------------------
+//                      ELIMINA CAUSAS       
+//------------------------------------------------------------------------------        
+        $this->administracion_model->eliminacausas($id);
+        $factores = array();
+        foreach ($factoresriesgo as $campo => $valor) {
+            $factores[] = array(
+                'facRis_id' => $valor,
+                'usu_id' => $id
+            );
+        }
+
+        if (!empty($factoresriesgo))
+            $this->administracion_model->guardarfactores($factores);
+
+        $causales = array();
+        foreach ($causas as $campo => $valor) {
+            $causales[] = array(
+                'cau_id' => $valor,
+                'usu_id' => $id
+            );
+        }
+
+        if (!empty($causas))
+            $this->administracion_model->guardarcausas($causales);
+
+        foreach ($formulario as $campo => $valor) {
+            if ($campo != 'facRis_id' && $campo != 'cau_id')
+                $data[$campo] = $valor;
+        }
+//        echo "<pre>";
+//        var_dump($data);die;
+
+
+
+        $this->administracion_model->guardarempleado($data, $id);
 //        $this->administracion_model->guardarempleado($formulario);
+
+
 
         redirect($ruta, 'location');
     }
@@ -122,6 +168,10 @@ class Administracion extends My_Controller {
             case 'rol':
                 $campos[] = array('rol_nombre' => $contenido);
                 $tabla = 'rol';
+                break;
+            case 'segmento':
+                $campos[] = array('seg_nombre' => $contenido);
+                $tabla = 'segmento';
                 break;
             case 'entidadsoat':
                 $campos[] = array('entSoa_nombre' => $contenido);
@@ -190,6 +240,10 @@ class Administracion extends My_Controller {
             case 'causas':
                 $campos[] = array('cau_nombre' => $contenido);
                 $tabla = 'causas';
+                break;
+            case 'tiposervicio':
+                $campos[] = array('tipSer_nombre' => $contenido);
+                $tabla = 'tipo_servicio';
                 break;
             default:
                 break;
@@ -293,51 +347,49 @@ class Administracion extends My_Controller {
     }
 
     function guardarmiembros() {
-        
+
         $cargo = $this->input->post('cargo');
         $nombre = $this->input->post('nombre');
         $id = $this->data['user']['user_id'];
         $data = array();
-        for($i = 0; $i < count($cargo);$i++){
+        for ($i = 0; $i < count($cargo); $i++) {
             $data[] = array(
-                'mie_cargo'=>$cargo[$i],
-                'mie_nombre'=>$nombre[$i],
-                'emp_id'=>$id
+                'mie_cargo' => $cargo[$i],
+                'mie_nombre' => $nombre[$i],
+                'emp_id' => $id
             );
         }
-        
+
         $this->administracion_model->miembros($data);
-        
     }
 
     function guardarresponsables() {
-        
+
         $cargo = $this->input->post('cargo');
         $nombre = $this->input->post('nombre');
         $id = $this->data['user']['user_id'];
         $data = array();
-        for($i = 0; $i < count($cargo);$i++){
+        for ($i = 0; $i < count($cargo); $i++) {
             $data[] = array(
-                'res_cargo'=>$cargo[$i],
-                'res_nombre'=>$nombre[$i],
-                'emp_id'=>$id
+                'res_cargo' => $cargo[$i],
+                'res_nombre' => $nombre[$i],
+                'emp_id' => $id
             );
         }
         $this->administracion_model->guardarresponsables($data);
-        
     }
 
     function guardarcomite() {
-        
+
         $cargo = $this->input->post('cargo');
         $nombre = $this->input->post('nombre');
         $id = $this->data['user']['user_id'];
         $data = array();
-        for($i = 0; $i < count($cargo);$i++){
+        for ($i = 0; $i < count($cargo); $i++) {
             $data[] = array(
-                'com_cargo'=>$cargo[$i],
-                'com_nombre'=>$nombre[$i],
-                'emp_id'=>$id
+                'com_cargo' => $cargo[$i],
+                'com_nombre' => $nombre[$i],
+                'emp_id' => $id
             );
         }
         $this->administracion_model->guardarcomite($data);

@@ -12,7 +12,7 @@ class Preguntas extends My_Controller {
 //        $this->load->js('js/jquery.min.js');
         $this->load->database();
         $this->load->model('preguntas_model');
-        $this->data['usuario'] = 1; 
+        $this->data['usuario'] = $this->data['user']['user_id']; 
     }
 
     function administracionpreguntas() {

@@ -242,12 +242,12 @@
                 </select>
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_desplazamiento_mision">con que frecuencia realiza desplazamiento en mision</label>
-                <select  class="form-control" name="usu_desplazamiento_mision" id="usu_desplazamiento_mision">
+                <label for="usu_frecuenciadesmision">con que frecuencia realiza desplazamiento en mision</label>
+                <select  class="form-control" name="usu_frecuenciadesmision" id="usu_frecuenciadesmision">
                     <option value=""></option>
                     <?php
                     foreach ($frecuencia as $frecuenciamision) {
-                        if ($frecuenciamision['freDes_id'] == $usuario[0]['usu_desplazamiento_mision'])
+                        if ($frecuenciamision['freDes_id'] == $usuario[0]['usu_frecuenciadesmision'])
                             $selec = "selected";
                         else
                             $selec = "";
@@ -268,7 +268,7 @@
                         else
                             $selec = "";
                         ?>
-                        <option value="<?php echo $desplazamiento['tipDes_id'] ?>"><?php echo $desplazamiento['tipDes_nombre'] ?></option>
+                    <option <?php echo $selec; ?> value="<?php echo $desplazamiento['tipDes_id'] ?>"><?php echo $desplazamiento['tipDes_nombre'] ?></option>
 <?php } ?>
                 </select>
             </div>
@@ -417,13 +417,13 @@
                 </p>
                 <div class="table-responsive ">
                     <table class="table table-responsive table-striped table-bordered" >
-<?php
-foreach ($factoresriesgo as $factores) {
-    if (!empty($factores['facUsu_id']))
-        $select = 'checked';
-    else
-        $select = '';
-    ?>
+                            <?php
+                            foreach ($factoresriesgo as $factores) {
+                                if (!empty($factores['facUsu_id']))
+                                    $select = 'checked';
+                                else
+                                    $select = '';
+                                ?>
                             <tr>
                                 <td><?php echo $factores['facRis_nombre']; ?></td>
                                 <td><input <?php echo $select; ?> type="checkbox" name="facRis_id[]" class="icheckbox_minimal-blue checked" value="<?php echo $factores['facRis_id']; ?>"></td>

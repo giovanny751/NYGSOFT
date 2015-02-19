@@ -99,6 +99,7 @@ class Login extends My_Controller {
             'usu_confir_des_min' => $user[0]->usu_confir_des_min,
             'usu_rol_mision' => $user[0]->usu_rol_mision,
             'usu_desplazamiento_mision' => $user[0]->usu_desplazamiento_mision,
+            'usu_frecuenciadesmision' => $user[0]->usu_frecuenciadesmision,
             'usu_tipo_despla_mision' => $user[0]->usu_tipo_despla_mision,
             'usu_nro_diaro_recorrido' => $user[0]->usu_nro_diaro_recorrido,
             'usu_rol_via' => $user[0]->usu_rol_via,

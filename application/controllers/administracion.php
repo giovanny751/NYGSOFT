@@ -56,7 +56,7 @@ class Administracion extends My_Controller {
         $this->data['grupotrabajo'] = $this->administracion_model->grupotrabajo();
         $this->data['genero'] = $this->administracion_model->genero();
         $this->data['confirmacion'] = $this->administracion_model->desicion();
-        $this->data['causas'] = $this->administracion_model->causas();
+        $this->data['causas'] = $this->administracion_model->causas($id);
         $this->data['categoria'] = $this->administracion_model->categoria();
         $this->data['tipovehiculo'] = $this->administracion_model->tipovehiculo();
         $this->data['usuario'] = $this->administracion_model->datosusuario($id);
@@ -64,7 +64,7 @@ class Administracion extends My_Controller {
         $this->data['tipocontrato'] = $this->administracion_model->tipocontrato();
         $this->data['frecuencia'] = $this->administracion_model->frecuencia();
         $this->data['tipotrasporte'] = $this->administracion_model->tipotrasporte();
-        $this->data['factoresriesgo'] = $this->administracion_model->factoresriesgo();
+        $this->data['factoresriesgo'] = $this->administracion_model->factoresriesgo($id);
         $this->data['tipodesplazamiento'] = $this->administracion_model->tipodesplazamiento();
         $this->data['estadoconductor'] = $this->administracion_model->estadoconductor();
         $this->data['rol'] = $this->administracion_model->rol();

@@ -128,9 +128,10 @@ class administracion_model extends CI_Model {
         return $genero->result_array();
     }
 
-    function causas() {
+    function causas($id) {
         
-        $this->db->join('causas_usuario','causas_usuario.cau_id = causas.cau_id','left');
+        $this->db->select('causas.cau_nombre,causas.cau_id,causas_usuario.usu_id');
+        $this->db->join('causas_usuario','causas_usuario.cau_id = causas.cau_id and usu_id='.$id,'left');
         $causas = $this->db->get('causas');
 //        echo $this->db->last_query();
         return $causas->result_array();
@@ -184,10 +185,12 @@ class administracion_model extends CI_Model {
         $ciudad = $this->db->get('tipo_transporte');
         return $ciudad->result_array();
     }
-    function factoresriesgo(){
+    function factoresriesgo($id){
         
-        $this->db->join('factor_usuario','factor_usuario.facRis_id = factores_riesgo.facRis_id','left');
+        $this->db->select('factores_riesgo.facRis_id,factores_riesgo.facRis_nombre,factor_usuario.facUsu_id');
+        $this->db->join('factor_usuario','factor_usuario.facRis_id = factores_riesgo.facRis_id and usu_id='.$id,'left');
         $ciudad = $this->db->get('factores_riesgo');
+//        echo $this->db->last_query();die;
         return $ciudad->result_array();
     }
     function estadoconductor(){

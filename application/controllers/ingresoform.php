@@ -9,6 +9,7 @@ class Ingresoform extends My_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('Ingresoform_model');
+        $this->load->model('Administracion_model');
         $this->load->helper('security');
         validate_login($this->data['user']['user_id']);
     }
@@ -26,6 +27,7 @@ class Ingresoform extends My_Controller {
             $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
 //            print_y($this->data['empresa']);
             $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
+            $this->data['segmento'] = $this->Ingresoform_model->segmento();
             $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
             $this->layout->view('ingresoform/empresa', $this->data);
         } else {

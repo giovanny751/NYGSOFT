@@ -7,6 +7,7 @@
 </div>
 <div class='well'>
     <form method="post" id="fusuario" action='<?php echo base_url('index.php/administracion/guardarempleado'); ?>' onsubmit="return obligatorio('1')">
+        <input type="hidden" value="<?php echo $funcionario; ?>" name="funcionario">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="car_id">Cargo</label>
@@ -77,19 +78,8 @@
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_edad">Edad</label>
-
-                <select class="form-control obligatorio" name="usu_edad" id="usu_edad">
-                    <?php
-                    for ($i = 16; $i < 81; $i++) {
-                        if ($i == $usuario[0]['usu_edad']) {
-                            $select = 'selected';
-                        } else {
-                            $select = "";
-                        }
-                        ?>
-                        <option <?php echo $select; ?> $select value="<?php echo $i ?>"><?php echo $i ?></option>
-                    <?php } ?>
-                </select>
+                <input type="text" class="form-control obligatorio" value="<?php echo $usuario[0]['usu_edad'] ?>"  disabled="disabled" name="usu_edad" id="usu_edad">
+                
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="text"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio fecha" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
@@ -97,7 +87,8 @@
         </div>
         <div class="row">
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="ciu_id">Ciudad</label>
+                <label for="ciu_id">Ciudad Donde labora
+                </label>
                 <select id="ciu_id" name="ciu_id" class="form-control">
                     <option value="">-Seleccionar-</option>
                     <?php
@@ -120,8 +111,8 @@
                 <input type="text" class="form-control obligatorio"  value="<?php echo $usuario[0]['usu_telF'] ?>" name="usu_telF" id="usu_telF">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <!--<label for="usu_correo">Correo</label>-->
-                <input type="hidden"  value="<?php echo $usuario[0]['usu_correo'] ?>" class="form-control obligatorio" name="usu_correo" id="usu_correo">
+                <label for="usu_correo">Correo</label>
+                <input type="text" disabled="disabled"  value="<?php echo $usuario[0]['usu_correo'] ?>" class="form-control">
             </div>
         </div>
         <br>
@@ -280,10 +271,10 @@
             <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="usu_rol_via">Rol en la via en in-itiniere(desde casa a trabajo y viceversa)</label>
                 <select  class="form-control" id="usu_rol_via" name="usu_rol_via">
-                    <option>-Seleccionar-</option>
-                    <option value="Peaton">Peaton</option>
-                    <option value="Pasajero">Pasajero</option>
-                    <option value="Conductor">Conductor</option>
+                    <option value="">-Seleccionar-</option>
+                    <option <?php if($usuario[0]['usu_rol_via'] == "Peaton")echo 'selected'; ?> value="Peaton">Peaton</option>
+                    <option <?php if($usuario[0]['usu_rol_via'] == "Pasajero")echo 'selected'; ?> value="Pasajero">Pasajero</option>
+                    <option <?php if($usuario[0]['usu_rol_via'] == "Conductor")echo 'selected'; ?> value="Conductor">Conductor</option>
                 </select>
             </div>
             <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -461,4 +452,26 @@ foreach ($causas as $causa) {
         $(".fecha").datepicker({
             dateFormat: "dd/mm/yy"
         });
+        
+        $('#validar').click(function() {
+    //Utilizamos una expresion regular
+    var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+ 
+    //Se utiliza la funcion test() nativa de JavaScript
+    if (regex.test($('#email').val().trim())) {
+        alert('Correo validado');
+    }
+    else {
+        alert('La direccion de correo no es valida');
+    }
+});
+
+$('#usu_fecha_nacimiento').change(function(){
+fecha = new Date($('#usu_fecha_nacimiento').val())
+hoy = new Date()
+ed = parseInt((hoy -fecha)/365/24/60/60/1000)
+console.log(ed)
+document.getElementById('usu_edad').value = ed;
+})
+
 </script>    

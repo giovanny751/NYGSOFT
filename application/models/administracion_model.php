@@ -29,7 +29,7 @@ class administracion_model extends CI_Model {
         return $dato[0]['form_formulario'];
     }
 
-    function    guardaradministracion($campos, $tabla) {
+    function guardaradministracion($campos, $tabla) {
 
         $this->db->insert_batch($tabla, $campos);
 //        echo $this->db->last_query();
@@ -48,6 +48,16 @@ class administracion_model extends CI_Model {
     function confirmacion() {
 
         $dato = $this->db->get('confirmacion');
+        return $dato->result_array();
+    }
+    function tipovinculacion() {
+
+        $dato = $this->db->get('tipo_vinculacion');
+        return $dato->result_array();
+    }
+    function tipocarroceria() {
+
+        $dato = $this->db->get('tipo_carroceria');
         return $dato->result_array();
     }
 
@@ -129,9 +139,9 @@ class administracion_model extends CI_Model {
     }
 
     function causas($id) {
-        
-        $this->db->select('causas.cau_nombre,causas.cau_id,causas_usuario.usu_id');
-        $this->db->join('causas_usuario','causas_usuario.cau_id = causas.cau_id and usu_id='.$id,'left');
+
+        $this->db->select('causas.cau_nombre,causas.cau_id,causas_usuario.usu_id,causas_usuario.cauUsu_id');
+        $this->db->join('causas_usuario', 'causas_usuario.cau_id = causas.cau_id and usu_id=' . $id, 'left');
         $causas = $this->db->get('causas');
 //        echo $this->db->last_query();
         return $causas->result_array();
@@ -147,16 +157,18 @@ class administracion_model extends CI_Model {
 
         $this->db->where('usu_id', $id);
         $this->db->update('user', $data);
-        
+
 //        echo $this->db->last_query();die;
     }
-    function guardarfactores($factores){
-        
-        $this->db->insert_batch('factor_usuario',$factores);
+
+    function guardarfactores($factores) {
+
+        $this->db->insert_batch('factor_usuario', $factores);
     }
-    function guardarcausas($causas){
-        
-        $this->db->insert_batch('causas_usuario',$causas);
+
+    function guardarcausas($causas) {
+
+        $this->db->insert_batch('causas_usuario', $causas);
     }
 
     function datosusuario($id) {
@@ -165,111 +177,292 @@ class administracion_model extends CI_Model {
         $user = $this->db->get('user');
         return $user->result_array();
     }
-    function ciudad(){
-        
+
+    function ciudad() {
+
         $ciudad = $this->db->get('ciudad');
         return $ciudad->result_array();
     }
-    function tipocontrato(){
-        
+
+    function tipocontrato() {
+
         $ciudad = $this->db->get('tipo_contrato');
         return $ciudad->result_array();
     }
-    function frecuencia(){
-        
+
+    function frecuencia() {
+
         $ciudad = $this->db->get('frecuencia_desplazamiento');
         return $ciudad->result_array();
     }
-    function tipotrasporte(){
-        
+
+    function tipotrasporte() {
+
         $ciudad = $this->db->get('tipo_transporte');
         return $ciudad->result_array();
     }
-    function factoresriesgo($id){
-        
+
+    function factoresriesgo($id) {
+
         $this->db->select('factores_riesgo.facRis_id,factores_riesgo.facRis_nombre,factor_usuario.facUsu_id');
-        $this->db->join('factor_usuario','factor_usuario.facRis_id = factores_riesgo.facRis_id and usu_id='.$id,'left');
+        $this->db->join('factor_usuario', 'factor_usuario.facRis_id = factores_riesgo.facRis_id and usu_id=' . $id, 'left');
         $ciudad = $this->db->get('factores_riesgo');
 //        echo $this->db->last_query();die;
         return $ciudad->result_array();
     }
-    function estadoconductor(){
-        
+
+    function estadoconductor() {
+
         $ciudad = $this->db->get('estado_conductor');
         return $ciudad->result_array();
     }
-    function rol(){
-        
+
+    function rol() {
+
         $rol = $this->db->get('rol');
         return $rol->result_array();
     }
-    function tipodesplazamiento(){
-        
+
+    function tipodesplazamiento() {
+
         $rol = $this->db->get('tipo_desplazamiento');
         return $rol->result_array();
     }
-    function guardar_admin_inicio($post){
+
+    function guardar_admin_inicio($post) {
         $this->db->where('ini_id', 1);
         $this->db->update('inicio', $post);
     }
-    function admin_inicio(){
+
+    function admin_inicio() {
         $this->db->where('ini_id', 1);
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
-    function guardarintroduccion($introduccion,$id){
+
+    function visualizacionintroduccion($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('introduccion');
+        return $dato->result_array();
+    }
+
+    function visualizacionobjgen($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('objetivos_generales');
+        return $dato->result_array();
+    }
+
+    function visualizacionobjesp($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('objetivos_especificos');
+        return $dato->result_array();
+    }
+    function visualizacionmiembros($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('miembros');
+        return $dato->result_array();
+    }
+    function visualizacionresponsables($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('responsables');
+        return $dato->result_array();
+    }
+    function visualizacioncomite($id) {
+
+        $this->db->where('emp_id', $id);
+        $dato = $this->db->get('comite');
+        return $dato->result_array();
+    }
+
+    function consultaingtroduccion($id) {
+
+        $this->db->where('emp_id', $id);
+        $datos = $this->db->get('introduccion');
+        return $datos->result_array();
+    }
+
+    function actualizaintroduccion($introduccion, $id) {
+
+        $this->db->set('int_introduccion', $introduccion);
+        $this->db->where('emp_id', $id);
+        $datos = $this->db->update('introduccion');
+    }
+
+    function guardarintroduccion($introduccion, $id) {
+
+        $data = array(
+            'int_introduccion' => $introduccion,
+            'emp_id' => $id
+        );
+
+        $this->db->insert('introduccion', $data);
+    }
+
+    function guardapolitica($politica, $id) {
+
+        $data = array(
+            'pol_politica' => $politica,
+            'emp_id' => $id
+        );
+
+        $this->db->insert('politicas', $data);
+    }
+    function actualizarpolitica($politica, $id) {
+
+        $this->db->where('emp_id',$id);
+        $this->db->set('pol_politica',$politica );
+        $this->db->update('politicas');
+    }
+    function verificapolitica($id){
         
-       $data = array(
-           'int_introduccion'=> $introduccion,
-           'usu_id' => $id
-       ); 
+        $this->db->where('emp_id',$id);
+        $politica = $this->db->get('politicas');
+        return $politica->result_array();
+    }
+    function verificaprioridad($id){
         
-        $this->db->insert('introduccion',$data);
+        $this->db->where('emp_id',$id);
+        $politica = $this->db->get('prioridades');
+        return $politica->result_array();
+    }
+    function eliminarprioridades($id){
+        
+        $this->db->where('pri_id',$id);
+        $this->db->delete('prioridades');
         
     }
-    function guardapolitica($politica,$id){
+    function insertaprioridades($data){
         
-       $data = array(
-           'pol_politica'=> $politica,
-           'emp_id' => $id
-       ); 
-        
-        $this->db->insert('politicas',$data);
-        
+        $this->db->insert_batch('prioridades',$data);
     }
-    function guardarobjetivos($data,$tabla){
-        
-        $this->db->insert_batch($tabla,$data);
-        
+
+    function guardarobjetivos($data, $tabla) {
+
+        $this->db->insert_batch($tabla, $data);
     }
-    function miembros($data){
-        
-        $this->db->insert_batch('miembros',$data);
-        
+
+    function miembros($data) {
+
+        $this->db->insert_batch('miembros', $data);
     }
-    function guardarresponsables($data){
+    function eliminarmiembros($id){
         
-        $this->db->insert_batch('responsables',$data);
-        
+        $this->db->where('emp_id',$id);
+        $this->db->delete('miembros');
+    }
+
+    function guardarresponsables($data) {
+
+        $this->db->insert_batch('responsables', $data);
+
 //        echo $this->db->last_query();
-        
     }
-    function guardarcomite($data){
-        
-        $this->db->insert_batch('comite',$data);
-        
+    function eliminarresponsables($id) {
+
+        $this->db->where('emp_id',$id);
+        $this->db->delete('responsables');
+
 //        echo $this->db->last_query();
-        
     }
-    function eliminafactores($id){
-        $this->db->where('usu_id',$id);
+    function eliminarcomite($id) {
+
+        $this->db->where('emp_id',$id);
+        $this->db->delete('comite');
+
+//        echo $this->db->last_query();
+    }
+
+    function guardarcomite($data) {
+
+        $this->db->insert_batch('comite', $data);
+
+//        echo $this->db->last_query();
+    }
+
+    function eliminafactores($id) {
+        $this->db->where('usu_id', $id);
         $this->db->delete('factor_usuario');
     }
-    function eliminacausas($id){
-        $this->db->where('usu_id',$id);
+
+    function eliminacausas($id) {
+        $this->db->where('usu_id', $id);
         $this->db->delete('causas_usuario');
     }
+    function estadisticas($id){
+        
+        $datos = $this->db->query("
+            
+            select 
+		(select count(usu_confir_arl) from user where emp_id = $id) arl,
+		(select sum(if(usu_confir_arl = '',1,0)) from user where emp_id = $id) arlnula,
+		(select sum(if(usu_confir_arl = 1,1,0)) from user where emp_id = $id) arlsi,
+		(select sum(if(usu_confir_arl = 2,1,0)) from user where emp_id = $id) arlno ,
+		(select count(usu_confir_pension) from user where emp_id = $id) pension,
+		(select sum(if(usu_confir_pension = '',1,0)) from user where emp_id = $id) pensionnula ,
+		(select sum(if(usu_confir_pension = 1,1,0)) from user where emp_id = $id) pensionsi ,
+		(select sum(if(usu_confir_pension = 2,1,0)) from user where emp_id = $id) pensionno,
+		(select count(usu_confir_eps) from user where emp_id = $id) eps,
+		(select sum(if(usu_confir_eps = '',1,0)) from user where emp_id = $id) epsnula,
+		(select sum(if(usu_confir_eps = 1,1,0)) from user where emp_id = $id) epssi,
+		(select sum(if(usu_confir_eps = 2,1,0)) from user where emp_id = $id) epsno,
+		(select count(usu_confir_caja_compensacio) from user where emp_id = $id) cajacompensacion,
+		(select sum(if(usu_confir_caja_compensacio = '',1,0)) from user where emp_id = $id) cajacompensacionnula,
+		(select sum(if(usu_confir_caja_compensacio = 1,1,0)) from user where emp_id = $id) cajacompensacionsi,
+		(select sum(if(usu_confir_caja_compensacio = 2,1,0)) from user where emp_id = $id) cajacompensacionno,
+                (select count(usu_desplazamiento_mision) from user where emp_id = $id) usu_desplazamiento_mision,
+		(select sum(if(usu_desplazamiento_mision = '',1,0)) from user where emp_id = $id) usu_desplazamiento_misionnula,
+		(select sum(if(usu_desplazamiento_mision = 1,1,0)) from user where emp_id = $id) usu_desplazamiento_misionsi,
+		(select sum(if(usu_desplazamiento_mision = 2,1,0)) from user where emp_id = $id) usu_desplazamiento_misionno
+
+            ");
+        return $datos->result();
+    }
+    function itiniere($id){
+        
+        $datos = $this->db->query("
+            
+            select 
+		(select count(usu_confir_arl) from user where emp_id = $id) total,
+		(select sum(if(usu_rol_via = '',1,0)) from user where emp_id = $id) sininfo,
+		(select sum(if(usu_rol_via = 'Conductor',1,0)) from user where emp_id = $id) conductor,
+		(select sum(if(usu_rol_via = 'Pasajero',1,0)) from user where emp_id = $id) pasajero, 
+		(select sum(if(usu_rol_via = 'Peaton',1,0)) from user where emp_id = $id) peaton
+            ");
+        
+//        echo $this->db->last_query();die;
+        return $datos->result();
+    }
+    function tipotransporte($id){
+        
+        $datos = $this->db->query("
+            select 
+		(select count(usu_tipo_transporte) from user where emp_id = $id) total,
+		(select sum(if(usu_tipo_transporte = '',1,0)) from user where emp_id = $id) sininfo,
+		(select sum(if(usu_tipo_transporte = '3',1,0)) from user where emp_id = $id) monopatin,
+		(select sum(if(usu_tipo_transporte = '4',1,0)) from user where emp_id = $id) Patines,
+		(select sum(if(usu_tipo_transporte = '5',1,0)) from user where emp_id = $id) Bicicleta, 
+		(select sum(if(usu_tipo_transporte = '6',1,0)) from user where emp_id = $id) Moto,
+		(select sum(if(usu_tipo_transporte = '7',1,0)) from user where emp_id = $id) Transporteautomotorparticular,
+		(select sum(if(usu_tipo_transporte = '8',1,0)) from user where emp_id = $id) Transporteautomotorpublico
+            ");
+        
+//        echo $this->db->last_query();die;
+        return $datos->result();
+    }
+    function eliminabjetivos($id,$tabla,$campo){
+        
+        $this->db->where('emp_id',$id);
+        $this->db->delete($tabla);
+        
+        
+    }
     
+
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";
 //        $this->db->where('usu_cc', $post['usu_cc']);

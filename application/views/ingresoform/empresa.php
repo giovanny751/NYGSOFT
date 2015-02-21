@@ -284,7 +284,7 @@
         </div>
         <div class="col-md-12 col-lg-12">
             <div class="col-md-3 col-lg-3">
-                ¿La empresa posee historicos de acciodentes y/o incidentes de trancito?
+                ¿La empresa posee historicos de acciodentes y/o incidentes de transito?
             </div>
             <div class="col-md-3 col-lg-3">
 <?php echo form_dropdown('emp_historicoAccidente', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_historicoAccidente, 'id="emp_historicoAccidente" class="form-control"') ?>

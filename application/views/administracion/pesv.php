@@ -2,8 +2,16 @@
     label{
         color:black;
     }
+    #container {
+	height: 400px; 
+	min-width: 310px; 
+	max-width: 800px;
+	margin: 0 auto;
+}
 </style>
-
+<script src="<?php echo base_url('js/reportes/highcharts.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('js/reportes/highcharts-3d.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('js/reportes/exporting.js') ?>" type="text/javascript"></script>
 <div class="portlet box blue tabbable">
     <div class="portlet-title">
         <div class="caption">
@@ -20,14 +28,16 @@
                 <li><a href="#portlet_tab5" data-toggle="tab">COMITE </a></li>
                 <li><a href="#portlet_tab6" data-toggle="tab">POLÍTICA </a></li>
                 <li><a href="#portlet_tab7" data-toggle="tab">COMUNICACIÓN </a></li>
+                <li><a href="#portlet_tab10" data-toggle="tab">ESTADISTICAS </a></li>
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
                 <li><a href="#portlet_tab9" data-toggle="tab">PRIORIDADES</a></li>
+                <li><a href="#portlet_tab11" data-toggle="tab">CRONOGRAMA</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="portlet_tab1">
                     <div class="alert alert-info"><center><p>INTRODUCCIÓN</p></center></div>
                     <div>
-                        <textarea id="introduccion" class="form-control" style="width: 1139px; height: 258px;"></textarea>
+                        <textarea id="introduccion" class="form-control" style="width: 1139px; height: 258px;"><?php if(!empty($introduccion[0]['int_introduccion']))echo $introduccion[0]['int_introduccion'] ?></textarea>
                     </div>
                     <div align="center" style="margin-top:15px;">
                         <button type="button" id="guardarintroduccion" class="btn btn-success">Gardar</button>
@@ -39,15 +49,33 @@
                         <div  class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-md-8 col-xs-8 col-sm-8" id="objetivosgen">
                             <div class="alert alert-info"><center>OBJETIVOS GENERALES</center></div>
                             <div class="principal">
-                                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                                    <input type="text" class="form-control" name="objetivos[]" placeholder="Objetivos Generales">
-                                </div>
-                                <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                    <button type="button" class="btn btn-info agregarobjetivo" >Agregar</button>
-                                </div>
-                                <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                    <button type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button>
-                                </div>
+                                <?php if (empty($general)) { ?>
+                                    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                                        <input type="text" class="form-control" name="objetivos[]" placeholder="Objetivos Generales">
+                                    </div>
+                                    <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <button type="button" class="btn btn-info agregarobjetivo" >Agregar</button>
+                                    </div>
+                                    <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <button dato="general" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button>
+                                    </div>
+                                    <?php
+                                } else {
+                                    foreach ($general as $gen) {
+                                        ?>
+                                        <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                                            <input type="text" value="<?php echo $gen['objGen_objetivo'] ?>" class="form-control" name="objetivos[]" placeholder="Objetivos Generales">
+                                        </div>
+                                        <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <button objid="<?php echo $gen['objGen_id'] ?>" type="button" class="btn btn-info agregarobjetivo" >Agregar</button>
+                                        </div>
+                                        <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <button dato="general" doc="<?php echo $gen['objGen_id'] ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
@@ -55,9 +83,21 @@
                             <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
                             <div class="row agregar">
                                 <div class="principaldos">
-                                    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos"></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                    <?php if (empty($especificos)) { ?>
+                                        <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input  type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos"></div>
+                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
+                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button  dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                        <?php
+                                    } else {
+                                        foreach ($especificos as $esp) {
+                                            ?>
+                                            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input value="<?php echo $esp['objEsp_objetivo'] ?>" type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos"></div>
+                                            <div esp="<?php echo $esp['objEsp_objetivo'] ?>" align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
+                                            <div esp="" align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><button doc="<?php echo $esp['objEsp_objetivo'] ?>" dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -72,14 +112,34 @@
                     <form method="post" id="miembros">
                         <div class="row miembros">
                             <div clas="principalmiembros">
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                </div>
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                </div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
+                                <?php if (empty($miembros)) { ?>
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                    </div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                                    <?php
+                                } else {
+
+                                    foreach ($miembros as $miembro) {
+                                        ?>
+                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Nombre</label><input type="text" value="<?php echo $miembro['mie_nombre'] ?>" class="form-control" name="nombre[]" placeholder="Nombre">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Cargo</label><input type="text" value="<?php echo $miembro['mie_cargo'] ?>" class="form-control" name="cargo[]" placeholder="Cargo">
+                                        </div>
+                                        <div  miemid="<?php echo $miembro['mie_id'] ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
+                                        <div  miemid="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $miembro['mie_id'] ?>" dato="compromiso" type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
+                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>      
+                                    <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </form>
@@ -92,14 +152,30 @@
                     <form method="post" id="responsables">
                         <div class="row datosresponsable">
                             <div class="row responsable">
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                </div>
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                </div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarresponsable">Eliminar</button></div>
+<?php if (empty($responsables)) { ?>
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                    </div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="responsable" type="button" class="btn btn-danger eliminarresponsable">Eliminar</button></div>
+                                    <?php
+                                } else {
+                                    foreach ($responsables as $responsable) {
+                                        ?>
+                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Nombre</label><input type="text" value="<?php echo $responsable['res_cargo']; ?>" class="form-control" name="nombre[]" placeholder="Nombre">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Cargo</label><input type="text" value="<?php echo $responsable['res_nombre']; ?>" class="form-control" name="cargo[]" placeholder="Cargo">
+                                        </div>
+                                        <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
+                                        <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $responsable['res_id']; ?>" type="button"  dato="responsable" class="btn btn-danger eliminarresponsable">Eliminar</button></div>
+                                    <?php }
+                                }
+                                ?>
                             </div>
                         </div>
                     </form>    
@@ -112,14 +188,30 @@
                     <form method="post" id="comite">
                         <div class="comite">
                             <div class="row principalcomite">
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                </div>
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                </div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarcomite">Eliminar</button></div>
+<?php if (empty($comites)) { ?>
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                    </div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="comite" type="button" class="btn btn-danger eliminarcomite">Eliminar</button></div>
+                                    <?php
+                                } else {
+                                    foreach ($comites as $comite) {
+                                        ?>
+                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Nombre</label><input value="<?php echo $comite['com_nombre']; ?>" type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Cargo</label><input value="<?php echo $comite['com_cargo']; ?>" type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                        </div>
+                                        <div com="<?php echo $comite['com_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="comite" doc="<?php echo $comite['com_id']; ?>" type="button" class="btn btn-danger eliminarcomite">Eliminar</button></div>
+    <?php }
+}
+?>
                             </div>
                         </div>
                     </form>    
@@ -131,7 +223,7 @@
                     <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                            <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"></textarea>
+                            <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
@@ -150,10 +242,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane" id="portlet_tab10">
+                    <div class="alert alert-info"><center><p>ESTADISTICAS</p></center></div>
+                    <div class="row" id="container">
+                    </div>
+                </div>
                 <div class="tab-pane" id="portlet_tab8">
                     <div class="alert alert-info"><center><p>DIAGNÓSTICO</p></center></div>
                     <div class="row">
-                        <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
+                        <div align="justify" class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="color:black">
                             <p>Los  formularios  del  diagnostico  realizado  para  la  empresa  se  pueden  ver  en  el  anexo  1  de  este  documento.  Los  resultados  obtenidos  se  pueden  ver  en  el  anexo  2.  De  dichos  resultados  se  identificaron  y  priorizaron  los  siguientes  riesgos: </p>  
 
                             <p>Nota:  Los  anexos  a  los  que  se  refiere  esta  parte  son:  Anexo  1  (fromularios  en  PDF)  y  Anexo  2  (los  reportes  que  debe  arrojar  el  aplicativo). </p>  
@@ -167,14 +264,32 @@
                         <div class="row principalpriorida">
 
                             <div class="infoprioridades">
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                </div>
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo" placeholder="Riesgo">
-                                </div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
+<?php if (empty($prioridades)) { ?>
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                    </div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+<?php
+} else {
+    foreach ($prioridades as $prioridad) {
+        ?>
+                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                        </div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
+                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+    <?php }
+}
+?>
                             </div>
 
                         </div>
@@ -183,12 +298,109 @@
                         <button type="button" id="guardarprioridades" class="btn btn-success">Gardar</button>
                     </div>
                 </div>
+                <div class="tab-pane" id="portlet_tab11">
+                    <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
+
+                    <div class="row datosresponsable">
+                        <div class="row responsable">
+                        </div>
+                    </div>
+                    </
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script>
 
+
+
+//------------------------------------------------------------------------------
+//Grafica
+//------------------------------------------------------------------------------
+$(function () {
+    $('#container').highcharts({
+
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                viewDistance: 25,
+                depth: 40
+            },
+            marginTop: 80,
+            marginRight: 40
+        },
+
+        title: {
+            text: 'REPORTE GENERAL DE USUARIOS'
+        },
+
+        xAxis: {
+            categories: [
+                'Tienen Arl', 
+                'Cotiza Sistema Pension',
+                'Tienen Eps',
+                'Caja Compensacion', 
+                'Realiza desplazamientos en misión'
+            ]
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'EMPLEADOS'
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+        },
+
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                depth: 40
+            }
+        },
+
+        series: [{
+            name: 'Si',
+            data: [<?php echo $estadistica[0]->arlsi ?>, 
+                <?php echo $estadistica[0]->pensionsi ?>, 
+                <?php echo $estadistica[0]->epssi ?>, 
+                <?php echo $estadistica[0]->cajacompensacionsi ?>,
+                <?php echo $estadistica[0]->usu_desplazamiento_misionsi ?>
+                ],
+            stack: 'male'
+        }, {
+            name: 'No',
+            data: [<?php echo $estadistica[0]->arlno ?>, 
+                <?php echo $estadistica[0]->pensionno ?>, 
+                <?php echo $estadistica[0]->epsno ?>, 
+                <?php echo $estadistica[0]->cajacompensacionno ?>,
+                <?php echo $estadistica[0]->usu_desplazamiento_misionno ?>
+                ],
+            stack: 'male'
+        }, {
+            name: 'NO CONTESTADAS',
+            data: [<?php echo $estadistica[0]->arlnula ?>, 
+                <?php echo $estadistica[0]->pensionnula ?>, 
+                <?php echo $estadistica[0]->epsnula ?>, 
+                <?php echo $estadistica[0]->cajacompensacionnula ?>,
+                <?php echo $estadistica[0]->usu_desplazamiento_misionnula ?>
+                ],
+            stack: 'male'
+        }
+    ]
+    });
+});
+
+//------------------------------------------------------------------------------
 
     $('#guardarpolitica').click(function() {
 
@@ -279,6 +491,16 @@
 
     });
     $('body').delegate('.eliminarobjetivo', 'click', function() {
+
+        var id = $(this).attr('objid');
+        var dato = $(this).attr('dato');
+        var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
+
+        $.post(url, {id: id, dato: dato}).done(function(msg) {
+
+        }).fail(function(msg) {
+
+        });
 
         $(this).parents('.principal').remove();
     });

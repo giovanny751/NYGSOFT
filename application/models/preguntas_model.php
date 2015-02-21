@@ -52,9 +52,6 @@ class Preguntas_model extends CI_Model {
     function preguntasusuario($id){
 //        $this->db->where('pre_estado',1);
 //        $this->db->where('pre_estado',3);
-        
-//        echo $id;die;
-        
         $this->db->where('respuesta_usuario.usu_id',$id);
         $this->db->join('respuesta_usuario','respuesta_usuario.pre_id = preguntas.pre_id');
         $preguntas = $this->db->get('preguntas');

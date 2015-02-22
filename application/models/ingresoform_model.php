@@ -118,9 +118,9 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "emp_id") {
-                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs">Vehiculos</a>' .
-                            '<a href="' . base_url('index.php/ingresoform/lisEmpleado/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-primary btn-xs">Empleados</a>' .
-                            '<a href="' . base_url('index.php/ingresoform/empresa/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-info btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs" title="Vehiculos"><i class="fa fa-car"></i></a>' .
+                            '<a href="' . base_url('index.php/ingresoform/lisEmpleado/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-primary btn-xs" title="Empleados"><i class="fa fa-group"></i></a>' .
+                            '<a href="' . base_url('index.php/ingresoform/empresa/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-info btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -239,7 +239,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -358,7 +358,7 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "usu_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs">Editar</a>';
+                    $row[] = '<center><a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a></center>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */

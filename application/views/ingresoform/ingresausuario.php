@@ -43,17 +43,17 @@
             var url = "<?php echo base_url("index.php/ingresoform/enviocorreousuario") ?>";
             $.post(url, {emp_id: emp_id, documento: documento, tipodocumento: tipodocumento, correo: correo})
                     .done(function() {
-                        $.notific8('', {
-                            horizontalEdge: 'bottom',
-                            life: 5000,
-                            theme: 'amethyst',
-                            heading: 'Correo enviado Con exito'
-                        });
-                        Metronic.unblockUI('.container');
-                        $('#documento').val('');
-                        $('#correo').val('');
-                        $('#tipodocumento').val('');
-                    }).fail(function() {
+                $.notific8('', {
+                    horizontalEdge: 'bottom',
+                    life: 5000,
+                    theme: 'amethyst',
+                    heading: 'Correo enviado Con exito'
+                });
+                Metronic.unblockUI('.container');
+                $('#documento').val('');
+                $('#correo').val('');
+                $('#tipodocumento').val('');
+            }).fail(function() {
                 $.notific8('', {
                     horizontalEdge: 'bottom',
                     life: 5000,
@@ -64,5 +64,26 @@
             })
         }
 
+    });
+
+    $('#documento').validCampoFranz('0123456789');
+    $('#documento').change(function() {
+        if (isNaN($(this).val())) {
+            alert('valor no valido');
+            $(this).val('');
+        }
+    })
+    $('#correo').change(function() {
+        //Utilizamos una expresion regular
+        var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+        //Se utiliza la funcion test() nativa de JavaScript
+        if (regex.test($('#correo').val().trim())) {
+
+        }
+        else {
+            alert('La direccion de correo no es valida');
+            $('#correo').val('');
+        }
     });
 </script>    

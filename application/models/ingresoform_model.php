@@ -118,8 +118,8 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "emp_id") {
-                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs" title="Vehiculos"><i class="fa fa-car"></i></a>' .
-                            '<a href="' . base_url('index.php/ingresoform/lisEmpleado/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-primary btn-xs" title="Empleados"><i class="fa fa-group"></i></a>' .
+                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs" title="Vehiculo"><i class="fa fa-car"></i></a>' .
+                            '<a href="' . base_url('index.php/ingresoform/lisEmpleado/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-primary btn-xs" title="Empleado"><i class="fa fa-group"></i></a>' .
                             '<a href="' . base_url('index.php/ingresoform/empresa/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-info btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
@@ -151,9 +151,9 @@ class Ingresoform_model extends CI_Model {
         //TABLA
         $sTable = "vehiculo join empresa on empresa.emp_id=vehiculo.emp_id";
         if ($id != null)
-            $rWhere = "where vehiculo.emp_id=" . $id . " ";
+            $rWhere = "where vehiculo.emp_id=" . $id . " and veh_status <> 3 ";
         else
-            $rWhere = "where 1=1  ";
+            $rWhere = "where veh_status <> 3 ";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -239,7 +239,8 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "veh_id") {
-                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>'
+                    .'<a href="' . base_url('index.php/administracion/vehicuo_el/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '"  title="Eliminar" class="btn red btn-xs"><i class="fa fa-eraser"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -270,9 +271,9 @@ class Ingresoform_model extends CI_Model {
         //TABLA
         $sTable = "user";
         if ($id != null)
-            $rWhere = "where usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
+            $rWhere = "where usu_status<>3 and usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
         else
-            $rWhere = "where usu_tipo<>2 and  usu_tipo<>0 and";
+            $rWhere = "where usu_status<>3 and usu_tipo<>2 and  usu_tipo<>0 and";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -358,7 +359,8 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "usu_id") {
-                    $row[] = '<center><a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a></center>';
+                    $row[] = '<a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>'
+                    .'<a href="' . base_url('index.php/administracion/empleado_el/' . encrypt_id($aRow['usu_id'])) . '" class="btn red btn-xs" title="Eliminar"><i class="fa fa-eraser"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -459,6 +461,7 @@ class Ingresoform_model extends CI_Model {
             array('menu_id' => 49, 'rol_id' => 50, 'usu_id' => $idusuario),
             array('menu_id' => 50, 'rol_id' => 50, 'usu_id' => $idusuario),
             array('menu_id' => 51, 'rol_id' => 50, 'usu_id' => $idusuario),
+            array('menu_id' => 76, 'rol_id' => 50, 'usu_id' => $idusuario),
             array('menu_id' => 67, 'rol_id' => 50, 'usu_id' => $idusuario)
         );
 

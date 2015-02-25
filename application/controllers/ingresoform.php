@@ -17,15 +17,15 @@ class Ingresoform extends My_Controller {
     function empresa($id = null) {
 
         if ($id == NULL) {
-            $this->data['id']=$id = $this->data['user']['emp_id'];
+            $this->data['id'] = $id = $this->data['user']['emp_id'];
         } else {
-            $this->data['id']=$id = deencrypt_id($id);
+            $this->data['id'] = $id = deencrypt_id($id);
         }
 
         if (!empty($id)) {
             $this->data['titulo'] = "Registro Empresa";
             $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
-//            print_y($this->data['empresa']);
+//            print_y($this->data['empresa']);die;
             $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
             $this->data['segmento'] = $this->Ingresoform_model->segmento();
             $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
@@ -149,7 +149,12 @@ class Ingresoform extends My_Controller {
     }
 
     function ingresausuario() {
-        $this->data['empresa'] = get_dropdown($this->Ingresoform_model->empresa(), 'emp_id', 'emp_razonSocial');
+        
+        if (!empty($this->data['user']['emp_id']))
+            $id = $this->data['user']['emp_id'];
+        else
+            $id = '';
+        $this->data['empresa'] = get_dropdown($this->Ingresoform_model->empresa($id), 'emp_id', 'emp_razonSocial');
         $this->layout->view('ingresoform/ingresausuario', $this->data);
     }
 

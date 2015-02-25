@@ -2,6 +2,7 @@
 <?php
 if ($contador == 0) {
     echo "<div class='row'><form method='post' id='fusuario'>";
+    echo "<input type='hidden' value='".$tipo."' name='tipousuario'>";
     foreach ($i as $tipo => $preguntaopcion) {
         echo "<div class='table-responsive'>
             <table class='table table-responsive table-striped table-bordered'>";

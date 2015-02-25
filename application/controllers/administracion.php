@@ -44,8 +44,20 @@ class Administracion extends My_Controller {
         $this->layout->view('administracion/administracionempleado');
     }
 
+    function empleado_el($id = null) {
+        $this->administracion_model->empleado_el($id);
+//        ingresoform/lisEmpresa
+        redirect('index.php/ingresoform/lisEmpresa', 'location');
+    }
+    function vehicuo_el($id_emp=null,$id = null) {
+        $this->administracion_model->vehiculo_el($id);
+//        ingresoform/lisEmpresa
+        redirect('index.php/ingresoform/lisVehiculos/'.$id_emp, 'location');
+    }
     function empleado($id = null) {
 
+//        $tipousuario = $this->data['user']['tipUsu_id'];
+        
         if (!empty($id)) {
             $id = deencrypt_id($id);
             $this->data['id'] = $id;
@@ -70,7 +82,9 @@ class Administracion extends My_Controller {
         $this->data['factoresriesgo'] = $this->administracion_model->factoresriesgo($id);
         $this->data['tipodesplazamiento'] = $this->administracion_model->tipodesplazamiento();
         $this->data['estadoconductor'] = $this->administracion_model->estadoconductor();
+        $this->data['restricciones'] = $this->administracion_model->restricciones();
         $this->data['rol'] = $this->administracion_model->rol();
+        $this->data['confirmacion'] = $this->administracion_model->confirmacion();
 
         $this->data['funcionario'] = $id;
         $this->layout->view('administracion/empleado', $this->data);
@@ -343,36 +357,52 @@ class Administracion extends My_Controller {
         
         $id = $this->input->post('id');
         $dato = $this->input->post('dato');
+        $ideliminar = $this->input->post('doc');
+        
+        $idempresa = $this->data['user']['emp_id'];
         
         switch ($dato) {
             case 'especifico':
                 $tabla = "objetivos_especificos";
+                $campo = 'objEsp_id'; 
+                
                 
                 break;
             case 'general':
                 $tabla = "objetivos_generales";
+                $campo = 'objGen_id'; 
+                
                 
                 break;
             case 'compromiso':
                 $tabla = "miembros";
+                $campo = 'mie_id'; 
+                
                 
                 break;
             case 'responsable':
                 $tabla = "responsables";
+                $campo = 'res_id'; 
+                
                 
                 break;
             case 'comite':
                 $tabla = "comite";
+                $campo = 'com_id'; 
+                
                 
                 break;
-            case 'comite':
-                $tabla = "prioridad";
+            case 'prioridad':
+                $tabla = "prioridades";
+                $campo = 'pri_id'; 
+                
                 
                 break;
 
             default:
                 break;
         }
+        $this->administracion_model->eliminarpesv($tabla,$campo,$id,$idempresa);
     }
 
     function guardarintroduccion() {

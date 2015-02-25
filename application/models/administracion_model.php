@@ -216,6 +216,11 @@ class administracion_model extends CI_Model {
         $ciudad = $this->db->get('estado_conductor');
         return $ciudad->result_array();
     }
+    function restricciones() {
+
+        $ciudad = $this->db->get('restricciones');
+        return $ciudad->result_array();
+    }
 
     function rol() {
 
@@ -284,6 +289,15 @@ class administracion_model extends CI_Model {
         $this->db->where('emp_id', $id);
         $datos = $this->db->get('introduccion');
         return $datos->result_array();
+    }
+    function eliminarpesv($tabla,$campo,$id,$idempresa){
+        
+        $this->db->where('emp_id',$idempresa);
+        $this->db->where($campo,$id);
+        $this->db->delete($tabla);
+        
+        echo $this->db->last_query();
+        
     }
 
     function actualizaintroduccion($introduccion, $id) {
@@ -460,6 +474,18 @@ class administracion_model extends CI_Model {
         $this->db->delete($tabla);
         
         
+    }
+    function empleado_el($id){
+        $id=  deencrypt_id($id);
+       $this->db->set('usu_status','3');
+       $this->db->where('usu_id',$id);
+        $this->db->update('user'); 
+    }
+    function vehiculo_el($id){
+        $id=  deencrypt_id($id);
+       $this->db->set('veh_status','3');
+       $this->db->where('veh_id',$id);
+        $this->db->update('vehiculo'); 
     }
     
 

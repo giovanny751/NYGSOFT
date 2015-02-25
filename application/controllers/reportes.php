@@ -7,61 +7,41 @@ class reportes extends My_Controller {
 
     function __construct() {
         parent::__construct();
-//        $numero = "";
-
-        $this->load->database();
         $this->load->model('Reportes_model');
-        $this->data['menu_completo'] = $this->session->userdata('menu');
-        $this->data['user'] = $this->ion_auth->user()->row();
     }
 
     public function creacionreporte() {
 
-        if (!empty($this->data['user'])) {
 
-            $this->data['hijo'] = $this->input->post('menu');
-            $this->data['nombrepadre'] = $this->input->post('nombrepadre');
-            $this->data['idgeneral'] = $this->input->post('idgeneral');
+        $this->data['hijo'] = $this->input->post('menu');
+        $this->data['nombrepadre'] = $this->input->post('nombrepadre');
+        $this->data['idgeneral'] = $this->input->post('idgeneral');
 
-//            echo $this->data['idgeneral'];
+        if (empty($this->data['idgeneral']))
+            $this->data['hijo'] = 0;
 
-            if (empty($this->data['idgeneral']))
-                $this->data['hijo'] = 0;
+        $this->data['menu'] = $this->Reportes_model->consultahijos($this->data['idgeneral']);
 
-            $this->data['menu'] = $this->Reportes_model->consultahijos($this->data['idgeneral']);
+        if (!empty($this->data['idgeneral'])) {
 
-//            var_dump($this->data['menu'] );
-
-            if (!empty($this->data['idgeneral'])) {
-
-                $this->data['menu'] = $this->Reportes_model->hijos($this->data['idgeneral']);
-            }
-
-//            $this->data['content'] = 'presentacion/menu';
-            $this->layout->view('reportes/creacionreporte', $this->data);
-//            $this->load->view('presentacion/menu', $this->data);
-        } else {
-            redirect('auth/login', 'refresh');
+            $this->data['menu'] = $this->Reportes_model->hijos($this->data['idgeneral']);
         }
+
+        $this->layout->view('reportes/creacionreporte', $this->data);
     }
 
     function guardarmodulo() {
 
+        $modulo = $this->input->post('modulo');
+        $padre = $this->input->post('padre');
+        $general = $this->input->post('general');
+        $actualizamodulo = $this->Reportes_model->actualizahijos($general);
 
-        if (!empty($this->data['user'])) {
-            $modulo = $this->input->post('modulo');
-            $padre = $this->input->post('padre');
-            $general = $this->input->post('general');
-            $actualizamodulo = $this->Reportes_model->actualizahijos($general);
-
-            $guardamodulo = $this->Reportes_model->guardarmodulo($modulo, $padre, $general);
-            $menu = $this->Reportes_model->cargamenu($general);
+        $guardamodulo = $this->Reportes_model->guardarmodulo($modulo, $padre, $general);
+        $menu = $this->Reportes_model->cargamenu($general);
 
 
-            $this->output->set_content_type('application/json')->set_output(json_encode($menu));
-        } else {
-            redirect('auth/login', 'refresh');
-        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($menu));
     }
 
     function consultadatosmenu() {
@@ -132,26 +112,39 @@ class reportes extends My_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($reportes));
     }
 
-    function logicareportes($datosmodulos = 'prueba', $dato = null) {
+    function logicareportes($datosmodulos = 'prueba', $report = null) {
 
 
-        $informacion = $this->Reportes_model->visualizacionreporte($datosmodulos, 3, 1);
+        $informacion = $this->Reportes_model->visualizacionreporte($datosmodulos);
         $i = array();
         foreach ($informacion as $modulo)
             $i[$modulo['rep_id']][$modulo['rep_nombrepadre']][$modulo['rep_idpadre']] [] = array($modulo['rep_idhijo']);
 
 
-        $report = "<ul >";
-        foreach ($i as $padre => $nombrepapa)
-            foreach ($nombrepapa as $nombrepapa => $menuidpadre)
-                foreach ($menuidpadre as $modulos => $menu)
+
+
+        $report .= "<ul>";
+        foreach ($i as $padre => $nombrepapa):
+//                        if ($padre == 14) {
+//                            echo "<pre>";
+//                            var_dump($report);
+//                            die;
+//                        }  
+            foreach ($nombrepapa as $nombrepapa => $menuidpadre):
+                foreach ($menuidpadre as $modulos => $menu):
                     foreach ($menu as $submenus):
-                        $report .= "<li>" . strtoupper($nombrepapa) . "<input type='radio' value='".$padre."' name='seleccionreporte'>";
-                        if (!empty($submenus[0]))
-                            $this->logicareportes($submenus[0]);
+                        $report .= "<li>" . strtoupper($nombrepapa) . "<input type='radio' value='" . $padre . "' name='seleccionreporte'>";
+//        if (!empty($submenus[0]))
+                            $report = $this->logicareportes($submenus[0], $report);
                         $report .= "</li>";
                     endforeach;
+                endforeach;
+            endforeach;
+        endforeach;
+        
         $report .= "</ul>";
+        
+
 
         return $report;
     }
@@ -159,8 +152,9 @@ class reportes extends My_Controller {
     function informacionreporte() {
 
 
-        $this->data['logicareportes'] = $this->logicareportes($datosmodulos = 'prueba', $dato = null);
+        $this->data['logicareportes'] = $this->logicareportes($datosmodulos = 'prueba');
 
+//        echo $this->data['logicareportes'];die;
 
         $this->layout->view('reportes/informacionreporte', $this->data);
     }
@@ -168,11 +162,16 @@ class reportes extends My_Controller {
     function abrirxml() {
 
         $idreporte = $this->input->post('seleccionreporte');
+
+        $reporte = $this->Reportes_model->consultareporte($idreporte);
+
+//        var_dump($reporte);die;
         
-        $reporte =  $this->Reportes_model->consultareporte($idreporte);
+        if(!empty($reporte[0]['rep_query'])){
+        
         
         $query = $reporte[0]['rep_query'];
-        
+
 
         $t = <<< EOF
 <?xml version="1.0" encoding="iso-8859-1"?>    
@@ -182,17 +181,14 @@ $query
 EOF;
 
         $this->data['xml'] = @simplexml_load_string($t);
-        
+
 //        $calcular = $this->data['xml']->calculate;
-        
 //        foreach($this->data['xml']->calculate as $campo => $alias){
 //            echo $campo."***".$alias."<br>";
 //        }
 //        die;
 //            $xml   = simplexml_load_string($this->data['xml'], 'SimpleXMLElement', LIBXML_NOCDATA);
-
 //            $array = json_decode(json_encode($xml), TRUE);
-        
 //            var_dump($array);die;
 //        
 //        echo "<pre>";
@@ -200,8 +196,15 @@ EOF;
 //        
         $this->data['informacion'] = $this->Reportes_model->ejecucionquery($this->data['xml']->query);
 //        $this->data['totales'] = $this->Reportes_model->totales($this->data['xml']->query,$calcular);
-                
-        $this->layout->view('reportes/abrirxml',$this->data);
+        
+                    $this->data['opcion'] = 1;
+
+                    $this->layout->view('reportes/abrirxml', $this->data);
+        }else{
+            $this->data['opcion'] = 2;
+             $this->data['info'] =  "<div class='alert alert-info'><center>NO HAY REPORTE</center></div>";
+             $this->layout->view('reportes/abrirxml', $this->data);
+        }
 
     }
 

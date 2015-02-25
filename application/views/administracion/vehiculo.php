@@ -10,7 +10,7 @@
     <form method="post" action="<?php echo base_url('index.php/administracion/guardarvehiculo'); ?>" onsubmit="return obligatorio('1')" >
         <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                <label for="tipVeh_id">Tipo Vehiculo</label>
+                <label for="tipVeh_id">Tipo Vehículo</label>
                 <select id="tipVeh_id" name="tipVeh_id" class="form-control obligado" class="obligatorio">
                     <option value="">-Seleccionar-</option>
                     <?php
@@ -40,7 +40,7 @@
                 </select>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                <label for="tipVin_id">Tipo Vinculacion</label>
+                <label for="tipVin_id">Tipo Vinculación</label>
                 <select id="tipVin_id" name="tipVin_id" class="form-control obligado">
                     <option value="">-Seleccionar</option>
                     <?php
@@ -72,7 +72,7 @@
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_marca)) echo $vehiculo[0]->veh_marca ?>" class="form-control obligado" name="veh_marca" id="veh_marca">
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_linea">Linea</label>
+                <label for="veh_linea">Línea</label>
                 <input type="text"   value="<?php if (!empty($vehiculo[0]->veh_linea)) echo $vehiculo[0]->veh_linea ?>" class="form-control obligado" name="veh_linea" id="veh_linea">
             </div>
         </div>
@@ -107,9 +107,15 @@
                 <label for="tipCar_id">Tipo Carroceria</label>
                 <select class="form-control obligado" name="tipCar_id" id="tipCar_id" >
                     <option value="">-Seleccionar-</option>
-                    <?php foreach ($tipocarroceria as $tipo){?>
-                    <option value="<?php echo $tipo['tipCar_id'] ?>"><?php echo $tipo['tipCar_nombre'] ?></option>
-                    <?php } ?>
+                    <?php
+                    foreach ($tipocarroceria as $tipo) {
+                        if ($tipo['tipCar_id'] == $vehiculo[0]->tipCar_id)
+                            $sele = "selected='selected'";
+                        else
+                            $sele = "";
+                        ?>
+                        <option <?php echo $sele; ?> value="<?php echo $tipo['tipCar_id'] ?>"><?php echo $tipo['tipCar_nombre'] ?></option>
+<?php } ?>
                 </select>
             </div>
         </div>
@@ -136,41 +142,39 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="veh_seguridadactiva">El vehiculo cuenta con seguridad activa</label>
+                <label for="veh_seguridadactiva">El vehículo cuenta con seguridad activa</label>
                 <select class="form-control obligado" name="veh_seguridadactiva" id="veh_seguridadactiva">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
-                        if ($validacion['con_id'] == $vehiculo[0]->veh_seguridadactiva) {
+                        if ($validacion['con_id'] == $vehiculo[0]->veh_seguridadactiva)
                             $sele = "selected='selected'";
-                        } else {
+                        else
                             $sele = "";
-                        }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="veh_seguridadpaciva">El vehiculo cuenta con seguridad pasiva</label>
+                <label for="veh_seguridadpaciva">El vehículo cuenta con seguridad pasiva</label>
                 <select class="form-control obligado" name="veh_seguridadpaciva" id="veh_seguridadpaciva">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
-                        if ($validacion['con_id'] == $veh_seguridadpaciva) {
+                        if ($validacion['con_id'] == $vehiculo[0]->veh_seguridadpaciva)
                             $sele = "selected='selected'";
-                        } else {
+                        else
                             $sele = "";
-                        }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="veh_planifica">Esta planificada la modernizacion del vehiculo</label>
+                <label for="veh_planifica">Esta planificada la modernizacion del vehículo</label>
                 <select class="form-control obligado" name="veh_planifica" id="veh_planifica">
                     <option value=""></option>
                     <?php
@@ -182,7 +186,7 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -198,13 +202,13 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="veh_inspecciondiaria">Realiza inspeccion diaria del vehiculo</label>
+                <label for="veh_inspecciondiaria">Realiza inspeccion diaria del vehículo</label>
                 <select class="form-control obligado" name="veh_inspecciondiaria" id="veh_inspecciondiaria">
                     <option value=""></option>
                     <?php
@@ -216,7 +220,7 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -231,7 +235,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
         </div>
@@ -259,8 +263,8 @@
                 <label for="veh_correo">Correo Electronico</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_correo)) echo $vehiculo[0]->veh_correo ?>" id="veh_correo" name="veh_correo" class='form-control'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_comparendos">Posee actualmente deudas de comparendos</label>
+<!--            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="veh_comparendos">Deudas de comparendos</label>
                 <select id="veh_comparendos" name="veh_comparendos" class='form-control'>
                     <option value=""></option>
                     <?php
@@ -271,14 +275,14 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
-            </div>
+            </div>-->
         </div>
         <br><hr><br>
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_soatvigente">Tiene Soat Vigente</label>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_soatvigente">Tiene SOAT Vigente</label>
                 <select id="veh_soatvigente" name="veh_soatvigente" class='form-control'>
                     <option value=""></option>
                     <?php
@@ -289,30 +293,32 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?>value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_numerosoat">Numero Soat</label>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_numerosoat">Número SOAT</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_numerosoat)) echo $vehiculo[0]->veh_numerosoat ?>" id="veh_numerosoat" name="veh_numerosoat" class='form-control'>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_fechainiciosoat">Fecha Vigencia</label>
+                <label for="veh_fechainiciosoat">Fecha expedición</label>
                 <input type="date"  value="<?php if (!empty($vehiculo[0]->veh_fechainiciosoat)) echo $vehiculo[0]->veh_fechainiciosoat ?>" id="veh_fechainiciosoat" name="veh_fechainiciosoat" class='form-control fecha'>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_fechafinsoat">Fecha fin vigencia</label>
+                <label for="veh_fechafinsoat">Fecha vencimiento</label>
                 <input type="date"  value="<?php if (!empty($vehiculo[0]->veh_fechafinsoat)) echo $vehiculo[0]->veh_fechafinsoat ?>" id="veh_fechafinsoat" name="veh_fechafinsoat" class='form-control fecha'>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_entidadexpsoat">Entidad expide el soat</label>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_entidadexpsoat">Entidad expide el SOAT</label>
                 <select id="veh_entidadexpsoat" name="veh_entidadexpsoat" class='form-control'>
                     <option value="">-Seleccionar-</option>
                 </select>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+
+        </div>
+        <div class="row">
+
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_rtm">Tiene RTM vigente</label>
                 <select id="veh_rtm" name="veh_rtm" class='form-control'>
                     <option value=""></option>
@@ -324,22 +330,30 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_fecinirtm">Fecha Inicio Vigencia</label>
-                <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control fecha'>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_fecinirtm">Numero RTM</label>
+                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_numrtm" name="veh_numrtm" class='form-control'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-">
-                <label for="veh_fecfinrtm">Fecha fin vigencia</label>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="veh_fecinirtm">Fecha expedición</label>
+                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control fecha'/>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="veh_fecfinrtm">Fecha vencimiento</label>
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_fecfinrtm)) echo $vehiculo[0]->veh_fecfinrtm ?>"  id="veh_fecfinrtm" name="veh_fecfinrtm" class='form-control fecha'>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_codexpedicion">No concecutivo RUNT</label>
+                <input type="text"  id="veh_codexpedicion" value="<?php if (!empty($vehiculo[0]->veh_codexpedicion)) echo $vehiculo[0]->veh_codexpedicion ?>" name="veh_codexpedicion" class='form-control'>
             </div>
         </div>
         <br><hr><br>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="veh_tarjetaoperacion">para prestar los servicios de transporte, esta obligado a tener tarjeta de operacion</label>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="veh_tarjetaoperacion">Obligado a portar tarjeta de operación</label>
                 <select id="veh_tarjetaoperacion" name="veh_tarjetaoperacion" class='form-control'>
                     <option value="">-Seleccionar-</option>
                     <?php
@@ -350,21 +364,19 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-                    <?php } ?>
+<?php } ?>
                 </select>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+            <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
                 <label for="veh_empresaafiliacion">Nombre de la empresa a la que se encuentra afiliado</label>
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_empresaafiliacion)) echo $vehiculo[0]->veh_empresaafiliacion ?>" id="veh_empresaafiliacion" name="veh_empresaafiliacion" class='form-control'>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_feciniafiliacion">Fecha Inicio vigencia</label>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_feciniafiliacion">Fecha Expedición</label>
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_feciniafiliacion)) echo $vehiculo[0]->veh_feciniafiliacion ?>" id="veh_feciniafiliacion fecha" name="veh_feciniafiliacion" class='form-control fecha'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_fecfinafiliacion">Fecha Fin Vigencia</label>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <label for="veh_fecfinafiliacion">Fecha Vencimiento</label>
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_fecfinafiliacion)) echo $vehiculo[0]->veh_fecfinafiliacion ?>" id="veh_fecfinafiliacion" name="veh_fecfinafiliacion" class='form-control fecha'>
             </div>
         </div>
@@ -384,9 +396,9 @@
 
 
         $('#veh_fechainiciosoat').change(function() {
-            var fecha=$('#veh_fechainiciosoat').val();
-            fecha=fecha.split('/');
-            var ano=parseInt(fecha[2])+1;
-            $('#veh_fechafinsoat').val(fecha[0]+'/'+fecha[1]+'/'+ano);
+            var fecha = $('#veh_fechainiciosoat').val();
+            fecha = fecha.split('/');
+            var ano = parseInt(fecha[2]) + 1;
+            $('#veh_fechafinsoat').val(fecha[0] + '/' + fecha[1] + '/' + ano);
         })
 </script>    

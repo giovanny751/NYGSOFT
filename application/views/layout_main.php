@@ -192,7 +192,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">NYGSOFT</a>
+            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">NYGSOFT</a>
         </div>
         <div class="navbar-collapse collapse">
             <?php echo modulos('prueba', $id, null); ?>

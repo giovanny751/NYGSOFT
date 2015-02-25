@@ -1,4 +1,4 @@
- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <?php // echo $usuario[0]['gruTra_id'];die;    ?>
@@ -48,13 +48,13 @@
                 <label for="usu_nombres">Nombre</label><input value="<?php echo $usuario[0]['usu_nombres'] ?>" type='text' class="form-control obligatorio" name="usu_nombres" id="usu_nombres">
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_segundonombre">Segundo Nombre</label><input type='text' value="<?php echo $usuario[0]['usu_segundonombre'] ?>" class="form-control obligatorio" name="usu_segundonombre" id="usu_segundonombre">
+                <label for="usu_segundonombre">Segundo nombre</label><input type='text' value="<?php echo $usuario[0]['usu_segundonombre'] ?>" class="form-control obligatorio" name="usu_segundonombre" id="usu_segundonombre">
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_apellido">Apellido</label><input type='text' class="form-control obligatorio" value="<?php echo $usuario[0]['usu_apellido'] ?>"  name="usu_apellido" id="usu_apellido">
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_segundoapellido">Segundo Apellido</label><input type='text' class="form-control obligatorio" value="<?php echo $usuario[0]['usu_segundoapellido'] ?>" name="usu_segundoapellido" id="usu_segundoapellido">
+                <label for="usu_segundoapellido">Segundo apellido</label><input type='text' class="form-control obligatorio" value="<?php echo $usuario[0]['usu_segundoapellido'] ?>" name="usu_segundoapellido" id="usu_segundoapellido">
             </div>
         </div>
         <div class="row">
@@ -62,6 +62,10 @@
                 <label for="usu_cc">Identificación</label><input type="text" value="<?php echo $usuario[0]['usu_cc'] ?>" class="form-control obligatorio" name="usu_cc" id="usu_cc">
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="usu_fecha_expedicion_cc">Fecha de expedición documento</label>
+                <input type="text"  value="<?php echo $usuario[0]['usu_fecha_expedicion_cc'] ?>" class="form-control fecha" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
+            </div>
+            <div  class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="gen_id">Genero</label>
                 <select id="gen_id" name="gen_id"  class="form-control">
                     <option value=""></option>
@@ -76,18 +80,18 @@
                     <?php } ?>
                 </select> 
             </div>
-            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+            <div  class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
                 <label for="usu_edad">Edad</label>
                 <input type="text" class="form-control obligatorio" value="<?php echo $usuario[0]['usu_edad'] ?>"  disabled="disabled" name="usu_edad" id="usu_edad">
-                
+
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_nacimiento">Fecha Nacimiento</label><input type="text"  value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio fecha" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
+                <label for="usu_fecha_nacimiento">Fecha nacimiento</label><input type="text" value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio fecha" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
             </div>
         </div>
         <div class="row">
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="ciu_id">Ciudad Donde labora
+                <label for="ciu_id">Ciudad donde labora
                 </label>
                 <select id="ciu_id" name="ciu_id" class="form-control">
                     <option value="">-Seleccionar-</option>
@@ -151,7 +155,7 @@
                 </select>
             </div>
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                <label for="usu_confir_pension">Cotiza Sistema Pension</label>
+                <label for="usu_confir_pension">Cotiza sistema Pension</label>
                 <select class="form-control obligatorio" name="usu_confir_pension" id="usu_confir_pension">
                     <option value=""></option>
                     <?php
@@ -183,7 +187,7 @@
                 </select>
             </div>
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                <label for="usu_confir_caja_compensacio">Tiene Caja Compensación</label>
+                <label for="usu_confir_caja_compensacio">Tiene caja compensación</label>
                 <select class="form-control obligatorio" name="usu_confir_caja_compensacio" id="usu_confir_caja_compensacio">
                     <option value=""></option>
                     <?php
@@ -229,11 +233,11 @@
                             $select = "";
                         ?>
                         <option <?php echo $select; ?> value="<?php echo $roles['rol_id'] ?>"><?php echo $roles['rol_nombre'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_frecuenciadesmision">con que frecuencia realiza desplazamiento en mision</label>
+                <label for="usu_frecuenciadesmision">Frecuencia desplazamiento en mision</label>
                 <select  class="form-control" name="usu_frecuenciadesmision" id="usu_frecuenciadesmision">
                     <option value=""></option>
                     <?php
@@ -244,7 +248,7 @@
                             $selec = "";
                         ?>
                         <option <?php echo $selec; ?>  value="<?php echo $frecuenciamision['freDes_id'] ?>"><?php echo $frecuenciamision['freDes_nombre'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>                   
                 </select>
             </div>
@@ -259,8 +263,8 @@
                         else
                             $selec = "";
                         ?>
-                    <option <?php echo $selec; ?> value="<?php echo $desplazamiento['tipDes_id'] ?>"><?php echo $desplazamiento['tipDes_nombre'] ?></option>
-<?php } ?>
+                        <option <?php echo $selec; ?> value="<?php echo $desplazamiento['tipDes_id'] ?>"><?php echo $desplazamiento['tipDes_nombre'] ?></option>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -268,16 +272,16 @@
             <hr>
         </div>
         <div class="row">
-            <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="usu_rol_via">Rol en la via en in-itiniere(desde casa a trabajo y viceversa)</label>
+            <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                <label for="usu_rol_via">Rol en la via en in-itiniere(Hogar-Trabajo-Hogar)</label>
                 <select  class="form-control" id="usu_rol_via" name="usu_rol_via">
                     <option value="">-Seleccionar-</option>
-                    <option <?php if($usuario[0]['usu_rol_via'] == "Peaton")echo 'selected'; ?> value="Peaton">Peaton</option>
-                    <option <?php if($usuario[0]['usu_rol_via'] == "Pasajero")echo 'selected'; ?> value="Pasajero">Pasajero</option>
-                    <option <?php if($usuario[0]['usu_rol_via'] == "Conductor")echo 'selected'; ?> value="Conductor">Conductor</option>
+                    <option <?php if ($usuario[0]['usu_rol_via'] == "Peaton") echo 'selected'; ?> value="Peaton">Peaton</option>
+                    <option <?php if ($usuario[0]['usu_rol_via'] == "Pasajero") echo 'selected'; ?> value="Pasajero">Pasajero</option>
+                    <option <?php if ($usuario[0]['usu_rol_via'] == "Conductor") echo 'selected'; ?> value="Conductor">Conductor</option>
                 </select>
             </div>
-            <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+            <div  class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="usu_nro_diaro_recorrido">No recorridos diarios</label>
                 <select class="form-control obligatorio" name="usu_nro_diaro_recorrido" id="usu_nro_diaro_recorrido">
                     <option value="">-Seleccionar-</option>
@@ -289,13 +293,11 @@
                             $selec = "";
                         ?>
                         <option <?php echo $selec; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
-        </div>
-        <div class="row">
-            <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <label for="usu_tipo_transporte">Tipo de transporte que usa para realizar el despazamiento in-itinere (transporte publico,automotor,moto o ciclo, bicicleta, Transporte de la empresa, otro)</label>
+                        <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <label for="usu_tipo_transporte">Tipo de transporte usado en el despazamiento in-itinere(Hogar-Trabajo-Hogar)</label>
                 <select name="usu_tipo_transporte" id="usu_tipo_transporte" class="form-control">
                     <option value=''>-Seleccionar-</option>
                     <?php
@@ -306,7 +308,7 @@
                             $selec = "";
                         ?>                    
                         <option <?php echo $selec; ?>  value='<?php echo $transporte['tipTra_id']; ?>'><?php echo $transporte['tipTra_nombre']; ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -319,6 +321,7 @@
             <hr>
         </div>
         <div class="row">
+
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="tipVeh_id">Tipo de vehiculo que conduce</label>
                 <select id="tipVeh_id" class="form-control" name="tipVeh_id">
@@ -331,19 +334,11 @@
                             $selec = "";
                         ?>
                         <option <?php echo $selec; ?>  value="<?php echo $tipo['tipVeh_id'] ?>"><?php echo $tipo['tipVeh_nombre'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_vigencia_licencia">Fecha de vigencia de la licencia de conduccion</label>
-                <input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>"  class="form-control fecha" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
-            </div>
-            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_expedicion_cc">Fecha de Expedicion Cedula</label>
-                <input type="text"  value="<?php echo $usuario[0]['usu_fecha_expedicion_cc'] ?>" class="form-control fecha" name="usu_fecha_expedicion_cc" id="usu_fecha_expedicion_cc">
-            </div>
-            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="cat_id">Categoria</label>
+                <label for="cat_id">Categoria licencia conduccion</label>
                 <select class="form-control" name="cat_id" id="cat_id">
                     <option value=""></option>
                     <?php
@@ -354,8 +349,17 @@
                             $selec = "";
                         ?>
                         <option <?php echo $selec; ?>  value="<?php echo $categorias['cat_id'] ?>"><?php echo $categorias['cat_nombre'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
+            </div>
+            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="usu_fecha_vigencia_licencia">Fecha de expedición</label>
+                <input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>"  class="form-control fecha" name="usu_fecha_vigencia_licencia" id="usu_fecha_vigencia_licencia">
+            </div>
+            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="usu_fecha_vigencialic">Fecha de vencimiento</label>
+                <input type="text"  value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control obligatorio fecha" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">
+                <!--<input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control fecha" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">-->
             </div>
         </div>
         <div class="row">
@@ -371,14 +375,8 @@
                             $select = "";
                         ?>
                         <option <?php echo $select; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
-
-            </div>
-            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_vigencialic">Fecha de vigencia de la licencia de conduccion</label>
-                <input type="text"  value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control obligatorio fecha" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">
-                <!--<input type="text" value="<?php echo $usuario[0]['usu_fecha_vigencia_licencia'] ?>" class="form-control fecha" name="usu_fecha_vigencialic" id="usu_fecha_vigencialic">-->
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_estado_conductor">Estado Conductor</label>
@@ -392,29 +390,59 @@
                             $selec = "";
                         ?>
                         <option <?php echo $selec; ?>  value='<?php echo $estado['estCon_id']; ?>'><?php echo $estado['estCon_nombre']; ?></option>
-<?php } ?>
+                    <?php } ?>
+                </select>
+            </div>
+            <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="usu_estado_conductor">Restricciones del conductor</label>
+                <select class="form-control" name="res_id" id="res_id">
+                    <option value=''></option>
+                    <?php
+                    foreach ($restricciones as $res) {
+                        if ($res['res_id'] == $usuario[0]['res_id'])
+                            $selec = "selected";
+                        else
+                            $selec = "";
+                        ?>
+                        <option <?php echo $selec; ?>  value='<?php echo $res['res_id']; ?>'><?php echo $res['res_nombre']; ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_runt_num">No de Inscripcion ante el RUNT</label>
                 <input type="text" value="<?php echo $usuario[0]['usu_runt_num'] ?>" class="form-control" name="usu_runt_num" id="usu_runt_num">
             </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                <label for="veh_comparendos">Deudas de comparendos</label>
+                <select id="veh_comparendos" name="veh_comparendos" class='form-control'>
+                    <option value="">-Seleccionar-</option>
+                    <?php
+                    foreach ($confirmacion as $validacion) {
+                        if ($validacion['con_id'] == $usuario[0]['veh_comparendos'] )
+                            $sele = "selected='selected'";
+                        else
+                            $sele = "";
+                        ?>
+                        <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
         </div>
         <hr>
         <div class="row">
-            <div  class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+            <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <p class="alert alert-info" align="center">
                     Principales factores de riesgo con los que se encuentra (tanto en mision como ida y vuelta al domicilio)
                 </p>
                 <div class="table-responsive ">
                     <table class="table table-responsive table-striped table-bordered" >
-                            <?php
-                            foreach ($factoresriesgo as $factores) {
-                                if (!empty($factores['facUsu_id']))
-                                    $select = 'checked';
-                                else
-                                    $select = '';
-                                ?>
+                        <?php
+                        foreach ($factoresriesgo as $factores) {
+                            if (!empty($factores['facUsu_id']))
+                                $select = 'checked';
+                            else
+                                $select = '';
+                            ?>
                             <tr>
                                 <td><?php echo $factores['facRis_nombre']; ?></td>
                                 <td><input <?php echo $select; ?> type="checkbox" name="facRis_id[]" class="icheckbox_minimal-blue checked" value="<?php echo $factores['facRis_id']; ?>"></td>
@@ -423,22 +451,22 @@
                     </table>
                 </div>
             </div>
-            <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+            <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <p class="alert alert-info"  align="center">Causas que motivan riesgo</p>
                 <div class="table-responsive ">
                     <table class="table table-responsive table-striped table-bordered">
-<?php
-foreach ($causas as $causa) {
-    if (!empty($causa['cauUsu_id']))
-        $select = 'checked';
-    else
-        $select = '';
-    ?>
+                        <?php
+                        foreach ($causas as $causa) {
+                            if (!empty($causa['cauUsu_id']))
+                                $select = 'checked';
+                            else
+                                $select = '';
+                            ?>
                             <tr>
                                 <td><?php echo $causa['cau_nombre'] ?></td>
                                 <td><input  <?php echo $select; ?>  type="checkbox" name="cau_id[]" class="icheckbox_minimal-blue checked" value=" <?php echo $causa['cau_id'] ?>"></td>
                             </tr>
-<?php } ?>
+                        <?php } ?>
                     </table>
                 </div>
             </div>
@@ -452,26 +480,26 @@ foreach ($causas as $causa) {
         $(".fecha").datepicker({
             dateFormat: "dd/mm/yy"
         });
-        
-        $('#validar').click(function() {
-    //Utilizamos una expresion regular
-    var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
- 
-    //Se utiliza la funcion test() nativa de JavaScript
-    if (regex.test($('#email').val().trim())) {
-        alert('Correo validado');
-    }
-    else {
-        alert('La direccion de correo no es valida');
-    }
-});
 
-$('#usu_fecha_nacimiento').change(function(){
-fecha = new Date($('#usu_fecha_nacimiento').val())
-hoy = new Date()
-ed = parseInt((hoy -fecha)/365/24/60/60/1000)
-console.log(ed)
-document.getElementById('usu_edad').value = ed;
-})
+        $('#validar').click(function() {
+            //Utilizamos una expresion regular
+            var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+            //Se utiliza la funcion test() nativa de JavaScript
+            if (regex.test($('#email').val().trim())) {
+                alert('Correo validado');
+            }
+            else {
+                alert('La direccion de correo no es valida');
+            }
+        });
+
+        $('#usu_fecha_nacimiento').change(function() {
+            fecha = new Date($('#usu_fecha_nacimiento').val())
+            hoy = new Date()
+            ed = parseInt((hoy - fecha) / 365 / 24 / 60 / 60 / 1000)
+            console.log(ed)
+            document.getElementById('usu_edad').value = ed;
+        })
 
 </script>    

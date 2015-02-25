@@ -1,5 +1,13 @@
 <div class="row">
-    <div class="alert alert-info"><center><b>REGISTRO DE PREGUNTAS</b></center></div>
+    <div class="col-lg-11 col-sm-11 col-xs-11 col-md-11">
+        <div class="alert alert-info"><center><b>REGISTRO DE PREGUNTAS</b></center></div>
+    </div>
+    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+        <a href="<?php base_url('index.php/preguntas/selecciontipo') ?>">
+            <button type="button" class="btn btn-warning">Devolver</button>
+        </a>
+    </div>
+
 </div>
 <div class="row">
     <button type="button" data-toggle="modal" data-target="#myModal" op="1"  class="btn btn-info opciones modales">Nueva Pregunta</button>
@@ -74,7 +82,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-offset-10 col-lg-offset-10 col-sm-offset-10 col-sx-offset-10 margenlogo' align='center' >
-                        <button type="button" class="guardar btn btn-success">Guardar</button>
+                        <button type="button" class="guardar btn btn-success" tipo="<?php echo $tipousuario; ?>">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -98,8 +106,8 @@
             var numero = 1;
         }
 
-        $(this).replaceWith('<button type="button" estado="'+numero+'" pre_id="'+id+'" class="btn btn-'+estilo+' estado" >' + nombre + '</button>');
-                $.post(url, {id: id, estado: estado}, function() {
+        $(this).replaceWith('<button type="button" estado="' + numero + '" pre_id="' + id + '" class="btn btn-' + estilo + ' estado" >' + nombre + '</button>');
+        $.post(url, {id: id, estado: estado}, function() {
 
         });
     });
@@ -143,6 +151,7 @@
 
         var opcion = $(this).attr('op');
         var id = $(this).attr('pre_id');
+        var tipousuario = $(this).attr('tipo');
         console.log(id);
         cantidad = obligatorio($('.obligatorio'));
         if (cantidad == true) {
@@ -150,7 +159,7 @@
             var tipos = $('#tipos').val();
             var opcionpregunta = $('#opcionpregunta').val();
             var url = "<?php echo base_url('index.php/preguntas/guardarpreguntas') ?>";
-            $.post(url, {opcionpregunta: opcionpregunta, tipos: tipos, pregunta: pregunta, opcion: opcion, id: id}, function(data) {
+            $.post(url, {tipousuario: tipousuario, opcionpregunta: opcionpregunta, tipos: tipos, pregunta: pregunta, opcion: opcion, id: id}, function(data) {
 
             });
         }

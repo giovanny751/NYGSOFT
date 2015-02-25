@@ -6,12 +6,14 @@ class Reportes_model extends CI_Model {
         parent::__construct();       
     }
     
-    function visualizacionreporte($padre = null, $idusuario, $tipo){
+    function visualizacionreporte($padre = null){
         
         if ($padre != "prueba") {
             $this->db->where('rep_idpadre', $padre);
+//            echo $padre."paso por aca<br>";
         } else {
             $this->db->where('rep_idpadre', 0);
+//             echo $padre."xxxxxxxx  paso por aca<br>";
         };
         
         $reporte = $this->db->get('reporte');

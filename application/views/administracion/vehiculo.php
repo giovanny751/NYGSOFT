@@ -96,7 +96,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
-                <label for="veh_vin">No VIN</label>
+                <label for="veh_vin">No VIN (Motor)</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_vin)) echo $vehiculo[0]->veh_vin ?>"  class="form-control obligado" name="veh_vin" id="veh_vin">
             </div>
             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
@@ -312,6 +312,12 @@
                 <label for="veh_entidadexpsoat">Entidad expide el SOAT</label>
                 <select id="veh_entidadexpsoat" name="veh_entidadexpsoat" class='form-control'>
                     <option value="">-Seleccionar-</option>
+                    <?php foreach($entidades as $entidad){ 
+                        if($entidad['entSoa_id'] == $vehiculo[0]->veh_entidadexpsoat) $select = "selected";
+                        else $select = ""; 
+                        ?>
+                    <option <?php echo $select; ?> value="<?php echo $entidad['entSoa_id'] ;?>"><?php echo $entidad['entSoa_nombre'] ;?></option>
+                    <?php } ?>
                 </select>
             </div>
 

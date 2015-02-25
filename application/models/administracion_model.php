@@ -60,6 +60,11 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('tipo_carroceria');
         return $dato->result_array();
     }
+    function entidades() {
+
+        $dato = $this->db->get('entidad_soat');
+        return $dato->result_array();
+    }
 
     function tipovehiculo() {
 

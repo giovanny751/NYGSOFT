@@ -25,8 +25,9 @@ function get_dropdown_select($array_objects, $value, $name, $select_value, $sele
 function encrypt_id($id) {
     return base64_encode(rand(111111, 999999) . $id . rand(11111, 99999));
 }
+
 function encrypt_fijo($id) {
-    $id=base64_encode($id);
+    $id = base64_encode($id);
     return base64_encode($id);
 }
 
@@ -112,15 +113,15 @@ function get_state_folder($id) {
     }
 }
 
-function get_color_state_folder($state_name){
+function get_color_state_folder($state_name) {
     switch ($state_name) {
-        case 'Admitido': return '<span class="badge badge-success">'.$state_name.'</span>';
+        case 'Admitido': return '<span class="badge badge-success">' . $state_name . '</span>';
             break;
-        case 'No Admitido': return '<span class="badge badge-danger">'.$state_name.'</span>';
+        case 'No Admitido': return '<span class="badge badge-danger">' . $state_name . '</span>';
             break;
-        default: return '<span class="badge badge-default">'.$state_name.'</span>';
+        default: return '<span class="badge badge-default">' . $state_name . '</span>';
             break;
-    }    
+    }
 }
 
 function state_folder() {
@@ -138,12 +139,40 @@ function state_folder() {
         '10' => 'Recalificar Analista',
     );
 }
-function max_folio($id){
+
+function max_folio($id) {
     $CI = & get_instance();
-    $SQL="select (Maximo+1) consecutivo 
+    $SQL = "select (Maximo+1) consecutivo 
   from VW_FOLIO_MAYOR
-  where id=".$id;
-    $datos=$CI->db->query($SQL);
-    $datos=$datos->result();
+  where id=" . $id;
+    $datos = $CI->db->query($SQL);
+    $datos = $datos->result();
     return $datos[0]->consecutivo;
 }
+
+function pdf($html) {
+        ob_clean();
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+// set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Nicola Asuni');
+        $pdf->SetTitle('TCPDF Example 002');
+        $pdf->SetSubject('TCPDF Tutorial');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+// remove default header/footer
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+// set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+// set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+// set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+// set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $pdf->SetFont('times', '', 12);
+        $pdf->AddPage();
+        $pdf->writeHTML($html, true, false, true, false, '');
+        $pdf->Output('example_002.pdf', 'I');
+    }

@@ -13,6 +13,7 @@
 <script src="<?php echo base_url('js/reportes/highcharts.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('js/reportes/highcharts-3d.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('js/exporting.js') ?>" type="text/javascript"></script>
+<div style="text-align: right"><a href="<?php echo base_url('index.php/Administracion/pesv_pdf')?>" target="_black" class="btn green"> Imprimir PDF</a></div>
 <div class="portlet box blue tabbable">
     <div class="portlet-title">
         <div class="caption">
@@ -115,234 +116,236 @@
                         <button type="button" id="guardarobjetivos" class="btn btn-success">Gardar</button>
                     </div>
                 </div>
-                <div class="tab-pane" id="portlet_tab3">
-                    <div class="alert alert-info"><center><p>Los  miembros  de  la  alta  dirección  que  aparecen  a  continuación:  </p></center></div>
-                    <form method="post" id="miembros">
-                        <div class="row miembros">
+            </div>
+            <div class="tab-pane" id="portlet_tab3">
+                <div class="alert alert-info"><center><p>Los  miembros  de  la  alta  dirección  que  aparecen  a  continuación:  </p></center></div>
+                <form method="post" id="miembros">
+                    <div class="row miembros">
 
-                            <?php if (empty($miembros)) { ?>
+                        <?php if (empty($miembros)) { ?>
+                            <div clas="principal">
+                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                </div>
+                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                </div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
+                                <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                            </div>
+                            <?php
+                        } else {
+
+                            foreach ($miembros as $miembro) {
+                                ?>
                                 <div clas="principal">
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre</label><input type="text" value="<?php echo $miembro['mie_nombre'] ?>" class="form-control" name="nombre[]" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Cargo</label><input type="text" value="<?php echo $miembro['mie_cargo'] ?>" class="form-control" name="cargo[]" placeholder="Cargo">
+                                    </div>
+                                    <div  miemid="<?php echo $miembro['mie_id'] ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
+                                    <div  miemid="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $miembro['mie_id'] ?>" dato="compromiso" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>  
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </div>
+                </form>
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                    <button type="button" id="guardarmiembros" class="btn btn-success">Gardar</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="portlet_tab4">
+                <div class="alert alert-info"><center><p>Como  responsable  del  PESV  se  a  delegado  por  la  Alta  gerencia  a: </p></center></div>
+                <form method="post" id="responsables">
+                    <div class="row datosresponsable">
+                        <div class="row responsable">
+                            <?php if (empty($responsables)) { ?>
+                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
+                                </div>
+                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
+                                </div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="responsable" type="button" class="btn btn-danger eliminarresponsable">Eliminar</button></div>
+                                <?php
+                            } else {
+                                foreach ($responsables as $responsable) {
+                                    ?>
+                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Nombre</label><input type="text" value="<?php echo $responsable['res_cargo']; ?>" class="form-control" name="nombre[]" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                        <label>Cargo</label><input type="text" value="<?php echo $responsable['res_nombre']; ?>" class="form-control" name="cargo[]" placeholder="Cargo">
+                                    </div>
+                                    <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
+                                    <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $responsable['res_id']; ?>" type="button"  dato="responsable" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </form>    
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                    <button type="button" id="guardarresponsables" class="btn btn-success">Gardar</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="portlet_tab5">
+                <div class="alert alert-info"><center><p>El  CSV  (comité  de  seguridad  vial)  designado  por  la  alta  gerencia,  está  conformado  por:  </p></center></div>
+                <form method="post" id="comite">
+                    <div class="comite">
+                        <div class="row">
+                            <?php if (empty($comites)) { ?>
+                                <div class="principal">
                                     <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
                                     </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="comite" type="button" class="btn btn-danger eliminarcomite">Eliminar</button></div>
                                 </div>
                                 <?php
                             } else {
-
-                                foreach ($miembros as $miembro) {
-                                    ?>
-                                    <div clas="principal">
-                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Nombre</label><input type="text" value="<?php echo $miembro['mie_nombre'] ?>" class="form-control" name="nombre[]" placeholder="Nombre">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Cargo</label><input type="text" value="<?php echo $miembro['mie_cargo'] ?>" class="form-control" name="cargo[]" placeholder="Cargo">
-                                        </div>
-                                        <div  miemid="<?php echo $miembro['mie_id'] ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                        <div  miemid="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $miembro['mie_id'] ?>" dato="compromiso" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>  
-                                    </div>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </div>
-                    </form>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarmiembros" class="btn btn-success">Gardar</button>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab4">
-                    <div class="alert alert-info"><center><p>Como  responsable  del  PESV  se  a  delegado  por  la  Alta  gerencia  a: </p></center></div>
-                    <form method="post" id="responsables">
-                        <div class="row datosresponsable">
-                            <div class="row responsable">
-                                <?php if (empty($responsables)) { ?>
-                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                    </div>
-                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                    </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="responsable" type="button" class="btn btn-danger eliminarresponsable">Eliminar</button></div>
-                                    <?php
-                                } else {
-                                    foreach ($responsables as $responsable) {
-                                        ?>
-                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Nombre</label><input type="text" value="<?php echo $responsable['res_cargo']; ?>" class="form-control" name="nombre[]" placeholder="Nombre">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Cargo</label><input type="text" value="<?php echo $responsable['res_nombre']; ?>" class="form-control" name="cargo[]" placeholder="Cargo">
-                                        </div>
-                                        <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarresponsable">Agregar</button></div>
-                                        <div res="<?php echo $responsable['res_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $responsable['res_id']; ?>" type="button"  dato="responsable" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </form>    
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarresponsables" class="btn btn-success">Gardar</button>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab5">
-                    <div class="alert alert-info"><center><p>El  CSV  (comité  de  seguridad  vial)  designado  por  la  alta  gerencia,  está  conformado  por:  </p></center></div>
-                    <form method="post" id="comite">
-                        <div class="comite">
-                            <div class="row">
-                                <?php if (empty($comites)) { ?>
-                                    <div class="principal">
-                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                        </div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="comite" type="button" class="btn btn-danger eliminarcomite">Eliminar</button></div>
-                                    </div>
-                                    <?php
-                                } else {
-                                    foreach ($comites as $comite) {
-                                        ?>
-                                        <div class="principal">
-                                            <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                                <label>Nombre</label><input value="<?php echo $comite['com_nombre']; ?>" type="text" class="form-control" name="nombre[]" placeholder="Nombre">
-                                            </div>
-                                            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                                <label>Cargo</label><input value="<?php echo $comite['com_cargo']; ?>" type="text" class="form-control" name="cargo[]" placeholder="Cargo">
-                                            </div>
-                                            <div com="<?php echo $comite['com_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
-                                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="comite" doc="<?php echo $comite['com_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
-
-                            </div>
-                    </form>    
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarcomite" class="btn btn-success">Gardar</button>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab6">
-                    <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                            <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarpolitica" class="btn btn-success">Gardar</button>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab7">
-                    <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
-                    <div class="row">
-                        <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
-                            <p>El  lider  de  la  organización  garantizará  que  las  acciones  de  este  PESV  sea  informadas  a  todos  los  involucrados  a  través  de  carteleras,  boletines  y  comunicados.</p>  
-
-                            <p>Nota:  La  opción  de  comunicación,  debe  poder  ser  fexible  para  cada  organización.  (Boletines,  correo  electrponico,  página  web,  etc,  etc) </p> 
-
-                            <p>La  politica  de  seguridad  vial  se  mantendrá  en  un  lugar  visible  y  disponible  para  ser  consultada  por  los  miembros  de  la  organización.  El  Plan  Estratégico  de  Seguridad  Vial,  debe  ser  comunicado  a  todos  los  empleados. </p> 
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab10">
-                    <div class="alert alert-info"><center><p>ESTADISTICAS</p></center></div>
-                    <div class="row" >
-                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                            <div id="container"></div>
-                        </div>
-                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-                            <div id="categoria"></div>
-                        </div>
-                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-                            <div id="tipotransporte"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab8">
-                    <div class="alert alert-info"><center><p>DIAGNÓSTICO</p></center></div>
-                    <div class="row">
-                        <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
-                            <p>Los  formularios  del  diagnostico  realizado  para  la  empresa  se  pueden  ver  en  el  anexo  1  de  este  documento.  Los  resultados  obtenidos  se  pueden  ver  en  el  anexo  2.  De  dichos  resultados  se  identificaron  y  priorizaron  los  siguientes  riesgos: </p>  
-
-                            <p>Nota:  Los  anexos  a  los  que  se  refiere  esta  parte  son:  Anexo  1  (fromularios  en  PDF)  y  Anexo  2  (los  reportes  que  debe  arrojar  el  aplicativo). </p>  
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab9">
-                    <div class="alert alert-info"><center><p>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </p></center></div>
-                    <center><p class="alert alert-danger">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
-                    <form method="post" id="prioridades">
-                        <div class="row principalpriorida">
-
-
-                            <?php if (empty($prioridades)) { ?>
-                                <div class="principal">
-                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                    </div>
-                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
-                                    </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-
-                                    </div> 
-                                </div> 
-                                <?php
-                            } else {
-                                foreach ($prioridades as $prioridad) {
+                                foreach ($comites as $comite) {
                                     ?>
                                     <div class="principal">
                                         <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                            <label>Nombre</label><input value="<?php echo $comite['com_nombre']; ?>" type="text" class="form-control" name="nombre[]" placeholder="Nombre">
                                         </div>
                                         <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                            <label>Cargo</label><input value="<?php echo $comite['com_cargo']; ?>" type="text" class="form-control" name="cargo[]" placeholder="Cargo">
                                         </div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+                                        <div com="<?php echo $comite['com_id']; ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarcomite">Agregar</button></div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="comite" doc="<?php echo $comite['com_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
                                     </div>
                                     <?php
                                 }
                             }
                             ?>
 
-
                         </div>
-                    </form>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarprioridades" class="btn btn-success">Gardar</button>
-                    </div>
-                </div>
-                <div class="tab-pane" id="portlet_tab11">
-                    <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
-
-                    <div class="row datosresponsable">
-                        <div class="row responsable">
-                        </div>
-                    </div>
-                    </
+                </form>    
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                    <button type="button" id="guardarcomite" class="btn btn-success">Gardar</button>
                 </div>
             </div>
         </div>
+        <div class="tab-pane" id="portlet_tab6">
+            <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                    <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
+                </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                <button type="button" id="guardarpolitica" class="btn btn-success">Gardar</button>
+            </div>
+        </div>
+        <div class="tab-pane" id="portlet_tab7">
+            <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
+            <div class="row">
+                <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
+                    <p>El  lider  de  la  organización  garantizará  que  las  acciones  de  este  PESV  sea  informadas  a  todos  los  involucrados  a  través  de  carteleras,  boletines  y  comunicados.</p>  
+
+                    <p>Nota:  La  opción  de  comunicación,  debe  poder  ser  fexible  para  cada  organización.  (Boletines,  correo  electrponico,  página  web,  etc,  etc) </p> 
+
+                    <p>La  politica  de  seguridad  vial  se  mantendrá  en  un  lugar  visible  y  disponible  para  ser  consultada  por  los  miembros  de  la  organización.  El  Plan  Estratégico  de  Seguridad  Vial,  debe  ser  comunicado  a  todos  los  empleados. </p> 
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="portlet_tab10">
+            <div class="alert alert-info"><center><p>ESTADISTICAS</p></center></div>
+            <div class="row" >
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                    <div id="container"></div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
+                    <div id="categoria"></div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
+                    <div id="tipotransporte"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="portlet_tab8">
+            <div class="alert alert-info"><center><p>DIAGNÓSTICO</p></center></div>
+            <div class="row">
+                <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
+                    <p>Los  formularios  del  diagnostico  realizado  para  la  empresa  se  pueden  ver  en  el  anexo  1  de  este  documento.  Los  resultados  obtenidos  se  pueden  ver  en  el  anexo  2.  De  dichos  resultados  se  identificaron  y  priorizaron  los  siguientes  riesgos: </p>  
+
+                    <p>Nota:  Los  anexos  a  los  que  se  refiere  esta  parte  son:  Anexo  1  (fromularios  en  PDF)  y  Anexo  2  (los  reportes  que  debe  arrojar  el  aplicativo). </p>  
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="portlet_tab9">
+            <div class="alert alert-info"><center><p>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </p></center></div>
+            <center><p class="alert alert-danger">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
+            <form method="post" id="prioridades">
+                <div class="row principalpriorida">
+
+
+                    <?php if (empty($prioridades)) { ?>
+                        <div class="principal">
+                            <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                            </div>
+                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
+                            <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+
+                            </div> 
+                        </div> 
+                        <?php
+                    } else {
+                        foreach ($prioridades as $prioridad) {
+                            ?>
+                            <div class="principal">
+                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                </div>
+                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                    <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                </div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
+                                <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
+
+
+                </div>
+            </form>
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                <button type="button" id="guardarprioridades" class="btn btn-success">Gardar</button>
+            </div>
+        </div>
+        <div class="tab-pane" id="portlet_tab11">
+            <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
+
+            <div class="row datosresponsable">
+                <div class="row responsable">
+                </div>
+            </div>
+            </
+        </div>
     </div>
+</div>
+</div>
 </div>
 <script>
 
@@ -351,7 +354,7 @@
 //------------------------------------------------------------------------------
 //Grafica
 //------------------------------------------------------------------------------
-    $(function() {
+    $(function () {
 
         $('#tipotransporte').highcharts({
             chart: {
@@ -523,21 +526,21 @@
 
 //------------------------------------------------------------------------------
 
-    $('#guardarpolitica').click(function() {
+    $('#guardarpolitica').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardapolitica     '); ?>";
         var politica = $('#politica').val();
 
 //        console.log(politica);
         $.post(url, {politica: politica})
-                .done(function(msn) {
-            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
-    $('body').delegate('.agregarprioridad', 'click', function() {
+    $('body').delegate('.agregarprioridad', 'click', function () {
 
         var contenido = '  <div class="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -553,7 +556,7 @@
         $('.principalpriorida').append(contenido);
 
     });
-    $('body').delegate('.agregarcomite', 'click', function() {
+    $('body').delegate('.agregarcomite', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -569,11 +572,11 @@
         $('.comite').append(contenido);
 
     });
-    $('body').delegate('.eliminarcomite', 'click', function() {
+    $('body').delegate('.eliminarcomite', 'click', function () {
 
         $(this).parents('.principalcomite').remove();
     });
-    $('body').delegate('.agregarresponsable', 'click', function() {
+    $('body').delegate('.agregarresponsable', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -589,11 +592,11 @@
         $('.datosresponsable').append(contenido);
 
     });
-    $('body').delegate('.eliminarresponsable', 'click', function() {
+    $('body').delegate('.eliminarresponsable', 'click', function () {
 
         $(this).parents('.responsable').remove();
     });
-    $('body').delegate('.agregarobjetivo', 'click', function() {
+    $('body').delegate('.agregarobjetivo', 'click', function () {
 
         var contenido = ' <div class="principal">\n\
                             <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">\n\
@@ -607,7 +610,7 @@
         $('#objetivosgen').append(contenido);
 
     });
-    $('body').delegate('.eliminarobjetivo', 'click', function() {
+    $('body').delegate('.eliminarobjetivo', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
@@ -615,23 +618,23 @@
 
         $(this).parents('.infoprioridades').remove();
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
         $(this).parents('.principal').remove();
     });
-    $('body').delegate('.eliminarpecifico', 'click', function() {
+    $('body').delegate('.eliminarpecifico', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
         var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
@@ -639,7 +642,7 @@
     });
 //
 //
-    $('body').delegate('.agregarmiembro', 'click', function() {
+    $('body').delegate('.agregarmiembro', 'click', function () {
 
         var contenido = '<div clas="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -654,7 +657,7 @@
         $('.miembros').append(contenido);
     });
 //
-    $('body').delegate('.agregarespecifico', 'click', function() {
+    $('body').delegate('.agregarespecifico', 'click', function () {
 
         var contenido = ' <div class="principal">\n\
                                     <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8"><input type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos"></div>\n\
@@ -664,72 +667,72 @@
         $('.agregar').append(contenido);
     });
 
-    $('body').delegate('.eliminarespecifico', 'click', function() {
+    $('body').delegate('.eliminarespecifico', 'click', function () {
 
         $(this).parents('.principaldos').remove();
     });
 //
 //
-    $('#guardarintroduccion').click(function() {
+    $('#guardarintroduccion').click(function () {
         var introduccion = $('#introduccion').val();
         var url = "<?php echo base_url('index.php/administracion/guardarintroduccion'); ?>";
         $.post(url, {introduccion: introduccion})
-                .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarmiembros').click(function() {
+    $('#guardarmiembros').click(function () {
         var introduccion = $('#introduccion').val();
         var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
         $.post(url, $('#miembros').serialize())
-                .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarobjetivos').click(function() {
+    $('#guardarobjetivos').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarobjetivos'); ?>";
         $.post(url, $('#objetivos').serialize())
-                .done(function(msn) {
-            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 //
-    $('#guardarresponsables').click(function() {
+    $('#guardarresponsables').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarresponsables'); ?>";
         $.post(url, $('#responsables').serialize())
-                .done(function(msn) {
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarcomite').click(function() {
+    $('#guardarcomite').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         $.post(url, $('#comite').serialize())
-                .done(function(msn) {
-            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarprioridades').click(function() {
+    $('#guardarprioridades').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         $.post(url, $('#prioridades').serialize())
-                .done(function(msn) {
-            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 

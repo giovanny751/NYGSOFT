@@ -142,8 +142,9 @@
 
         var id = $(this).attr('pre_id');
         var url = "<?php echo base_url('index.php/preguntas/eliminarpregunta') ?>";
+        $(this).parents('tr').remove();
         $.post(url, {id: id}, function(data) {
-
+            alerta('verde','PREGUNTA ELIMINADA CORRECTAMENTE');
         });
     });
 
@@ -160,7 +161,8 @@
             var opcionpregunta = $('#opcionpregunta').val();
             var url = "<?php echo base_url('index.php/preguntas/guardarpreguntas') ?>";
             $.post(url, {tipousuario: tipousuario, opcionpregunta: opcionpregunta, tipos: tipos, pregunta: pregunta, opcion: opcion, id: id}, function(data) {
-
+                $('#pregunta').val('');
+                    alerta('verde','PREGUNTA GUARDADA CORRECTAMENTE');
             });
         }
 

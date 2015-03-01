@@ -279,4 +279,10 @@ class Ingreso_model extends CI_Model {
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
+    function admin_inicio_emp($id) {
+        $this->db->set('emp_inicio,emp_id');
+        $this->db->where('emp_id',$id);
+        $dato = $this->db->get('empresa');
+        return $dato->result();
+    }
 }

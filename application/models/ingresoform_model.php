@@ -271,9 +271,9 @@ class Ingresoform_model extends CI_Model {
         //TABLA
         $sTable = "user";
         if ($id != null)
-            $rWhere = "where usu_status<>3 and usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
+            $rWhere = "where est_id<>3 and usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
         else
-            $rWhere = "where usu_status<>3 and usu_tipo<>2 and  usu_tipo<>0 and";
+            $rWhere = "where ust_id<>3 and usu_tipo<>2 and  usu_tipo<>0 and";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -483,6 +483,40 @@ class Ingresoform_model extends CI_Model {
         
        $segmento = $this->db->get('segmento');
        return $segmento->result_array(); 
+    }
+    function totalvehiculos($id){
+        
+        $dato = "
+            SELECT sum(if(tipVin_id = 2,1,0)) as propios,sum(if(tipVin_id = 3,1,0)) as administrado,
+                    sum(if(tipVin_id = 4,1,0)) as contratista,count(emp_id) as total 
+                    
+                    FROM vehiculo
+                    where vehiculo.veh_status != 3 and emp_id =  $id 
+            ";
+        
+        $datos = $this->db->query($dato);
+        
+//       $this->db->select('sum(if(tipVin_id = 1,1,0)) as propios,sum(if(tipVin_id = 2,1,0)) as administrado,sum(if(tipVin_id = 4,1,0)) as contratista,emp_id'); 
+//       $this->db->where('emp_id',$id); 
+//       $this->db->where('usu_status !=',3); 
+//       $segmento = $this->db->get('vehiculo');
+       return $datos->result(); 
+    }
+    function totalconductores($id){
+        
+        $dato = "
+            SELECT sum(if(tipCon_id = 9,1,0)+if(tipCon_id = 10,1,0)+if(tipCon_id = 11,1,0)) as propios,
+            sum(if(tipCon_id = 12,1,0)) as contratista, sum(if(tipCon_id = 13,1,0)) as administrado,count(emp_id) as total 
+            FROM user where emp_id = $id and est_id != 3 and usu_tipo<>2
+            ";
+        
+        $datos = $this->db->query($dato);
+        
+//       $this->db->select('sum(if(tipVin_id = 1,1,0)) as propios,sum(if(tipVin_id = 2,1,0)) as administrado,sum(if(tipVin_id = 4,1,0)) as contratista,emp_id'); 
+//       $this->db->where('emp_id',$id); 
+//       $this->db->where('usu_status !=',3); 
+//       $segmento = $this->db->get('vehiculo');
+       return $datos->result(); 
     }
 
 }

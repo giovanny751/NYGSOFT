@@ -82,11 +82,11 @@
             </div>
             <div  class="col-lg-1 col-md-1 col-xs-1 col-sm-1">
                 <label for="usu_edad">Edad</label>
-                <input type="text" class="form-control obligatorio" value="<?php echo $usuario[0]['usu_edad'] ?>"  disabled="disabled" name="usu_edad" id="usu_edad">
+                <input type="text" class="form-control obligatorio" value="<?php echo $usuario[0]['usu_edad'] ?>"  name="usu_edad" id="usu_edad">
 
             </div>
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="usu_fecha_nacimiento">Fecha nacimiento</label><input type="text" value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio fecha" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
+                <label for="usu_fecha_nacimiento">Fecha nacimiento</label><input type="text" value="<?php echo $usuario[0]['usu_fecha_nacimiento'] ?>" class="form-control obligatorio" name="usu_fecha_nacimiento" id="usu_fecha_nacimiento">
             </div>
         </div>
         <div class="row">
@@ -493,13 +493,46 @@
                 alert('La direccion de correo no es valida');
             }
         });
+        
+        function CalculateDateDiff(dateFrom, dateTo) {
+            var difference = (dateTo - dateFrom);
 
-        $('#usu_fecha_nacimiento').change(function() {
-            fecha = new Date($('#usu_fecha_nacimiento').val())
-            hoy = new Date()
-            ed = parseInt((hoy - fecha) / 365 / 24 / 60 / 60 / 1000)
-            console.log(ed)
-            document.getElementById('usu_edad').value = ed;
-        })
+            var years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            difference -= years * (1000 * 60 * 60 * 24 * 365);
+            var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.4375));
+
+            var dif = '';
+            if (years > 0)
+                dif = years ;
+
+//            if (months > 0) {
+//                if (years > 0) dif += ' y ';
+//                dif += months + ' meses';
+//            }
+            $('#usu_edad').val(dif);
+            return dif;
+//            document.write('<p>Diferencia entre las fechas: ' + dif + '</p>');
+        }
+        
+        
+        
+                $("#usu_fecha_nacimiento").datepicker({
+            dateFormat: "dd/mm/yy",
+            altField: '#datepicker_value1',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', ' Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+            onSelect: function(dateText, inst) {
+                var fecha = $(this).val().split('/');
+               console.log( CalculateDateDiff(new Date(fecha[2]+"/"+fecha[1]+"/"+fecha[0]), new Date()));
+               
+            }});
+        
+//        $('#usu_fecha_nacimiento').change(function() {
+//            fecha = new Date($('#usu_fecha_nacimiento').val())
+//            hoy = new Date()
+//            ed = parseInt((hoy - fecha) / 365 / 24 / 60 / 60 / 1000)
+//            console.log(ed)
+//            document.getElementById('usu_edad').value = ed;
+//        })
 
 </script>    

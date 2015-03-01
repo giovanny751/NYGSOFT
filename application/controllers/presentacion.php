@@ -16,7 +16,9 @@ class Presentacion extends My_Controller {
     }
 
     function principal() {
+        $id = $this->data['user']['emp_id'];
         $this->data['inicio']= $this->Ingreso_model->admin_inicio();
+        $this->data['inicio2']= $this->Ingreso_model->admin_inicio_emp($id);
         $this->data['content'] = $this->modulos('prueba', null, $this->data['user']['user_id']);
         $this->layout->view('presentacion/principal', $this->data);
     }

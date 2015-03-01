@@ -8,7 +8,9 @@
                 <label>Nombre/Razón Social</label><?php echo form_input('emp_razonSocial', $empresa[0]->emp_razonSocial, 'class="form-control obligatorio" id="emp_razonSocial"') ?>
             </div>
             <div class="col-md-2 col-lg-2">
-                <label>Nit</label><?php echo form_input('emp_nit', $empresa[0]->emp_nit, 'class="form-control obligatorio" placeholder="NIT"  id="emp_nit"') ?>
+                <label>Nit</label>
+
+                <?php echo form_input('emp_nit', $empresa[0]->emp_nit, 'class="form-control obligatorio" placeholder="NIT"  id="emp_nit"') ?>
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>Tipo de Empresa</label><?php echo form_dropdown('emp_idTipo', $tipo_empresa, $empresa[0]->emp_idTipo, 'id="emp_idTipo" class="form-control"') ?>
@@ -24,7 +26,7 @@
                         else
                             $select = '';
                         ?>
-                    <option <?php echo $select; ?> value="<?php echo $segment['seg_id']; ?>"><?php echo $segment['seg_nombre']; ?></option>
+                        <option <?php echo $select; ?> value="<?php echo $segment['seg_id']; ?>"><?php echo $segment['seg_nombre']; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -112,18 +114,55 @@
     <hr>
     <br>
     <div class="row">
-        <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
-        <div class="col-md-3 col-lg-3">
-            <label>¿ Posee, Contrata o Administra vehiculos?</label><?php echo form_dropdown('emp_administraVehiculos', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_administraVehiculos, 'id="emp_administraVehiculos" class="form-control"') ?>
+        <div class="row">
+            <center>No Actual de Vehiculos
+            </center>  
+        </div>  
+        <div class="row">  
+            <div class="row">
+                <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
+                <!--            <div class="col-md-3 col-lg-3">
+                                <label>¿ Posee, Contrata o Administra vehiculos?</label><?php echo form_dropdown('emp_administraVehiculos', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_administraVehiculos, 'id="emp_administraVehiculos" class="form-control"') ?>
+                            </div>-->
+                <div class="col-md-3 col-lg-3">
+                    <label>Propios</label><?php echo form_input('emp_vehiculosPropios', $totalvehiculos[0]->propios, 'disabled="disabled" class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Contratistas</label>
+                    <!--<input type="text" class="form-control obligatorio" id="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" name="emp_vehiculosContratados">-->
+                    <?php echo form_input('emp_vehiculosContratados', $totalvehiculos[0]->contratista, 'disabled="disabled" class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Administrados</label>
+                    <!--<input type="text" class="form-control" value="<?php echo $empresa[0]->emp_numeroVehiculoAdministra; ?>" class="form-control obligatorio" id="emp_numeroVehiculoAdministra" name="emp_numeroVehiculoAdministra">-->    
+                    <?php echo form_input('emp_numeroVehiculoAdministra', $totalvehiculos[0]->administrado, 'disabled="disabled" class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Total</label><input disabled="disabled" type="text" value="<?php echo $totalvehiculos[0]->total; ?>"  class="form-control">
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 col-lg-3">
-            <label>No Actual de Vehiculos Propios</label><?php echo form_input('emp_vehiculosPropios', $empresa[0]->emp_vehiculosPropios, 'class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
-        </div>
-        <div class="col-md-3 col-lg-3">
-            <label>No actual de vehiculos contratados</label><?php echo form_input('emp_vehiculosContratados', $empresa[0]->emp_vehiculosContratados, 'class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
-        </div>
-        <div class="col-md-3 col-lg-3">
-            <label>No Actual de vehiculos que administra</label><?php echo form_input('emp_numeroVehiculoAdministra', $empresa[0]->emp_numeroVehiculoAdministra, 'class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
+        <div class="row">
+            <div class="row">
+                <center>No Actual de Conductores</center>
+            </div>    
+            <div class="row">
+                <!--            <div class="col-md-3 col-lg-3">
+                                <label>¿contrata o administra conductores?</label><?php echo form_dropdown('emp_adminConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_adminConductores, 'id="emp_adminConductores" class="form-control"') ?>
+                            </div>-->
+                <div class="col-md-3 col-lg-3">
+                    <label>Propios</label><?php echo form_input('emp_numActConductores', $conductores[0]->propios, 'disabled="disabled" class="form-control obligatorio" id=emp_numActConductores') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Contratistas</label><?php echo form_input('emp_numActConductores', $conductores[0]->contratista, ' disabled="disabled" class="form-control obligatorio" id=emp_numActConductores') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Administrados</label><?php echo form_input('emp_numActConductoresAdministra', $conductores[0]->administrado, 'disabled="disabled" class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <label>Total</label><input disabled="disabled" type="text" value="<?php echo $conductores[0]->total; ?>"  class="form-control">
+                </div>
+            </div>
         </div>
     </div>
     <br>
@@ -131,17 +170,7 @@
     <br>
     <div class="row" >
         <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
-        <div class="row">
-            <div class="col-md-3 col-lg-3">
-                <label>¿contrata o administra conductores?</label><?php echo form_dropdown('emp_adminConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_adminConductores, 'id="emp_adminConductores" class="form-control"') ?>
-            </div>
-            <div class="col-md-3 col-lg-3">
-                <label>No Actual de Conductores Contratados</label><?php echo form_input('emp_numActConductores', $empresa[0]->emp_numActConductores, 'class="form-control obligatorio" id=emp_numActConductores') ?>
-            </div>
-            <div class="col-md-3 col-lg-3">
-                <label>No Actual de Conductores que administra</label><?php echo form_input('emp_numActConductoresAdministra', $empresa[0]->emp_numActConductoresAdministra, 'class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-md-3 col-lg-3">
                 <label>¿Cuentan con ARL?</label><?php echo form_dropdown('emp_idArl', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_idArl, 'id="emp_idArl" class="form-control"') ?>
@@ -185,15 +214,15 @@
     <br>
     <div class="row" >
         <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
-            <div class="col-md-7 col-lg-7">
-                <label>¿cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?</label><?php echo form_dropdown('emp_procedimientoAtencion', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_procedimientoAtencion, 'id="emp_procedimientoAtencion" class="form-control"') ?>
-            </div>
-        <div class="col-md-5 col-lg-5">
-                <label>¿posee historicos de acciodentes y/o incidentes de transito?</label><?php echo form_dropdown('emp_historicoAccidente', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_historicoAccidente, 'id="emp_historicoAccidente" class="form-control"') ?>
+        <div class="col-md-7 col-lg-7">
+            <label>¿cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?</label><?php echo form_dropdown('emp_procedimientoAtencion', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_procedimientoAtencion, 'id="emp_procedimientoAtencion" class="form-control"') ?>
         </div>
-            <br>
-    <hr>
-    <br>
+        <div class="col-md-5 col-lg-5">
+            <label>¿posee historicos de acciodentes y/o incidentes de transito?</label><?php echo form_dropdown('emp_historicoAccidente', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_historicoAccidente, 'id="emp_historicoAccidente" class="form-control"') ?>
+        </div>
+        <br>
+        <hr>
+        <br>
         <div class="col-md-12 col-lg-12">
             <input type="hidden" value="<?php echo $id; ?>" id="emp_id" name="emp_id">
             <center>

@@ -99,6 +99,10 @@ class Administracion extends My_Controller {
         $id = $this->input->post('funcionario');
         $idinterno = $this->data['user']['user_id'];
         $ruta = 'index.php/login/acceso/pp/' . encrypt_id($idinterno);
+        
+//        echo "<pre>";
+//        var_dump($formulario);die;
+        
 //        echo $ruta;die;
         $data = array();
         $factoresriesgo = $this->input->post('facRis_id');
@@ -142,11 +146,10 @@ class Administracion extends My_Controller {
             if ($campo != 'facRis_id' && $campo != 'cau_id' && $campo != 'funcionario')
                 $data[$campo] = $valor;
         }
+        
+        
+
 //        echo "<pre>";
-//        var_dump($data);die;
-
-
-
         $this->administracion_model->guardarempleado($data, $id);
 //        $this->administracion_model->guardarempleado($formulario);
 
@@ -331,10 +334,20 @@ class Administracion extends My_Controller {
         $this->data['inicio'] = $this->administracion_model->admin_inicio();
         $this->layout->view('administracion/inicio', $this->data);
     }
+    function administracion_emp() {
+        $id = $this->data['user']['emp_id'];
+        $this->data['inicio'] = $this->administracion_model->admin_inicio_emp($id);
+        $this->layout->view('administracion/inicio_emp', $this->data);
+    }
 
     function guardar_admin_inicio() {
         $post = $this->input->post();
         $this->administracion_model->guardar_admin_inicio($post);
+    }
+    function guardar_admin_inicio_emp() {
+        $post = $this->input->post();
+        $id = $this->data['user']['emp_id'];
+        $this->administracion_model->guardar_admin_inicio_emp($post,$id);
     }
 
     function pesv() {

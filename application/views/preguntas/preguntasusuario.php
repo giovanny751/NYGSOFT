@@ -1,5 +1,17 @@
 <div class="well">
-<?php
+<?php // echo $tipo;die;
+
+if($tipo == 1){
+                    $primero = 'ALTO';  
+                    $segundo = 'MEDIO';  
+                    $tercero = 'BAJO';  
+                }
+                else{
+                    $primero = 'SI';  
+                    $segundo = 'NO';  
+                    $tercero = 'NA'; 
+                }
+
 if ($contador == 0) {
     echo "<div class='row'><form method='post' id='fusuario'>";
     echo "<input type='hidden' value='".$tipo."' name='tipousuario'>";
@@ -8,8 +20,14 @@ if ($contador == 0) {
             <table class='table table-responsive table-striped table-bordered'>";
         echo "<tr><td colspan='4' align='center'>" . $tipo . "</td></tr>";
         foreach ($preguntaopcion as $opcion => $opcionpregunta) {
-            echo "<tr><td colspan='4'><b>" . $opcion . "</b></td></tr>";
+            
+            echo "<tr><td><b>" . $opcion . "</b></td>
+                <td>".$primero."</td>
+                <td>".$segundo."</td>
+                <td>".$tercero."</td>
+                </tr>";
             foreach ($opcionpregunta as $id => $pregunta) {
+                
                 echo "<tr><td>" . $pregunta . "</td><td>
                     <input type='checkbox' value='".$id."'  name='si[]' class='form-control seleccionado' ></td>
                     <td><input type='checkbox' value='".$id."' name='no[]' class='form-control seleccionado' ></td>

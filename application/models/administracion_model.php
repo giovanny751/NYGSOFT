@@ -243,10 +243,20 @@ class administracion_model extends CI_Model {
         $this->db->where('ini_id', 1);
         $this->db->update('inicio', $post);
     }
+    function guardar_admin_inicio_emp($post,$id) {
+        $this->db->where('emp_id',$id);
+        $this->db->update('empresa', $post);
+    }
 
     function admin_inicio() {
         $this->db->where('ini_id', 1);
         $dato = $this->db->get('inicio');
+        return $dato->result();
+    }
+    function admin_inicio_emp($id) {
+        $this->db->set('emp_inicio,emp_id');
+        $this->db->where('emp_id',$id);
+        $dato = $this->db->get('empresa');
         return $dato->result();
     }
 

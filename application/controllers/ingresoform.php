@@ -25,9 +25,12 @@ class Ingresoform extends My_Controller {
         if (!empty($id)) {
             $this->data['titulo'] = "Registro Empresa";
             $this->data['empresa'] = $this->Ingresoform_model->empresa($id);
-//            print_y($this->data['empresa']);die;
             $this->data['ciiu'] = $this->Ingresoform_model->get_ciiu();
             $this->data['segmento'] = $this->Ingresoform_model->segmento();
+            $this->data['totalvehiculos'] = $this->Ingresoform_model->totalvehiculos($this->data['id']);
+            $this->data['conductores'] = $this->Ingresoform_model->totalconductores($this->data['id']);
+//            echo "<pre>";
+//            var_dump($this->data['totalvehiculos']);die;
             $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
             $this->layout->view('ingresoform/empresa', $this->data);
         } else {

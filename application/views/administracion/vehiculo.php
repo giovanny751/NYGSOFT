@@ -115,7 +115,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $tipo['tipCar_id'] ?>"><?php echo $tipo['tipCar_nombre'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -153,7 +153,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -168,7 +168,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -186,7 +186,7 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -202,7 +202,7 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -220,7 +220,7 @@
                         }
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
@@ -235,7 +235,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -245,40 +245,41 @@
                 <label for="veh_nombrepropietario">Nombre del Propietario</label>
                 <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_nombrepropietario)) echo $vehiculo[0]->veh_nombrepropietario ?>" id="veh_nombrepropietario" name="veh_nombrepropietario" class='form-control'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_identificacion">Identificación</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_identificacion)) echo $vehiculo[0]->veh_identificacion ?>" id="veh_identificacion" name="veh_identificacion" class='form-control'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_direccion">Direccion</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_direccion)) echo $vehiculo[0]->veh_direccion ?>" id="veh_direccion" name="veh_direccion" class='form-control'>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_telefono">Telefono</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_telefono)) echo $vehiculo[0]->veh_telefono ?>" id="veh_telefono" name="veh_telefono" class='form-control'>
             </div>
-        </div>
-        <div class="row">
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="veh_correo">Correo Electronico</label>
                 <input type="text" value="<?php if (!empty($vehiculo[0]->veh_correo)) echo $vehiculo[0]->veh_correo ?>" id="veh_correo" name="veh_correo" class='form-control'>
             </div>
-<!--            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-                <label for="veh_comparendos">Deudas de comparendos</label>
-                <select id="veh_comparendos" name="veh_comparendos" class='form-control'>
-                    <option value=""></option>
-                    <?php
-                    foreach ($confirmacion as $validacion) {
-                        if ($validacion['con_id'] == $vehiculo[0]->veh_comparendos)
-                            $sele = "selected='selected'";
-                        else
-                            $sele = "";
-                        ?>
-                        <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
-                </select>
-            </div>-->
         </div>
+        <!--<div class="row">-->
+
+            <!--            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+                            <label for="veh_comparendos">Deudas de comparendos</label>
+                            <select id="veh_comparendos" name="veh_comparendos" class='form-control'>
+                                <option value=""></option>
+            <?php
+            foreach ($confirmacion as $validacion) {
+                if ($validacion['con_id'] == $vehiculo[0]->veh_comparendos)
+                    $sele = "selected='selected'";
+                else
+                    $sele = "";
+                ?>
+                                            <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
+            <?php } ?>
+                            </select>
+                        </div>-->
+        <!--</div>-->
         <br><hr><br>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
@@ -293,7 +294,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?>value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
@@ -302,21 +303,24 @@
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="veh_fechainiciosoat">Fecha expedición</label>
-                <input type="date"  value="<?php if (!empty($vehiculo[0]->veh_fechainiciosoat)) echo $vehiculo[0]->veh_fechainiciosoat ?>" id="veh_fechainiciosoat" name="veh_fechainiciosoat" class='form-control fecha'>
+                <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_fechainiciosoat)) echo $vehiculo[0]->veh_fechainiciosoat ?>" id="veh_fechainiciosoat" name="veh_fechainiciosoat" class='form-control'>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="veh_fechafinsoat">Fecha vencimiento</label>
-                <input type="date"  value="<?php if (!empty($vehiculo[0]->veh_fechafinsoat)) echo $vehiculo[0]->veh_fechafinsoat ?>" id="veh_fechafinsoat" name="veh_fechafinsoat" class='form-control fecha'>
+                <input type="text" disabled value="<?php if (!empty($vehiculo[0]->veh_fechafinsoat)) echo $vehiculo[0]->veh_fechafinsoat ?>" id="veh_fechafinsoat" name="veh_fechafinsoat" class='form-control'>
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_entidadexpsoat">Entidad expide el SOAT</label>
                 <select id="veh_entidadexpsoat" name="veh_entidadexpsoat" class='form-control'>
                     <option value="">-Seleccionar-</option>
-                    <?php foreach($entidades as $entidad){ 
-                        if($entidad['entSoa_id'] == $vehiculo[0]->veh_entidadexpsoat) $select = "selected";
-                        else $select = ""; 
+                    <?php
+                    foreach ($entidades as $entidad) {
+                        if ($entidad['entSoa_id'] == $vehiculo[0]->veh_entidadexpsoat)
+                            $select = "selected";
+                        else
+                            $select = "";
                         ?>
-                    <option <?php echo $select; ?> value="<?php echo $entidad['entSoa_id'] ;?>"><?php echo $entidad['entSoa_nombre'] ;?></option>
+                        <option <?php echo $select; ?> value="<?php echo $entidad['entSoa_id']; ?>"><?php echo $entidad['entSoa_nombre']; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -336,20 +340,20 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
-                <label for="veh_fecinirtm">Numero RTM</label>
-                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_numrtm" name="veh_numrtm" class='form-control'>
+                <label for="veh_numrtm">Numero RTM</label>
+                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_numrtm ?>" id="veh_numrtm" name="veh_numrtm" class='form-control'>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="veh_fecinirtm">Fecha expedición</label>
-                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control fecha'/>
+                <input type="text" value="<?php if (!empty($vehiculo[0]->veh_fecinirtm)) echo $vehiculo[0]->veh_fecinirtm ?>" id="veh_fecinirtm" name="veh_fecinirtm" class='form-control'/>
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="veh_fecfinrtm">Fecha vencimiento</label>
-                <input type="text"  value="<?php if (!empty($vehiculo[0]->veh_fecfinrtm)) echo $vehiculo[0]->veh_fecfinrtm ?>"  id="veh_fecfinrtm" name="veh_fecfinrtm" class='form-control fecha'>
+                <input type="text" disabled="disabled" value="<?php if (!empty($vehiculo[0]->veh_fecfinrtm)) echo $vehiculo[0]->veh_fecfinrtm ?>"  id="veh_fecfinrtm" name="veh_fecfinrtm" class='form-control'>
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_codexpedicion">No concecutivo RUNT</label>
@@ -370,7 +374,7 @@
                             $sele = "";
                         ?>
                         <option <?php echo $sele; ?> value="<?php echo $validacion['con_id'] ?>"><?php echo $validacion['con_opcion'] ?></option>
-<?php } ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
@@ -396,8 +400,42 @@
 </div>
 
 <script>
+
+        $("#veh_fecinirtm").datepicker({
+            dateFormat: "dd/mm/yy",
+            altField: '#datepicker_value1',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', ' Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+            onSelect: function(dateText, inst) {
+                var fecha = $(this).val().split('/');
+//                console.log(fecha[2]+"/"+fecha[1]+"/"+fecha[0]);
+                var actualDate = new Date(fecha[2]+"/"+fecha[1]+"/"+fecha[0]);
+                var newDate = new Date(actualDate.getFullYear() + 1, actualDate.getMonth(), actualDate.getDate());
+                $("#veh_fecfinrtm").datepicker("option", "minDate", newDate);
+                $('#veh_fecfinrtm').datepicker({dateFormat: "dd/mm/yy"});
+                console.log(newDate);
+                $('#veh_fecfinrtm').datepicker('setDate', newDate);
+            }});
+        $("#veh_fechainiciosoat").datepicker({
+            dateFormat: "dd/mm/yy",
+            altField: '#datepicker_value1',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', ' Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+            onSelect: function(dateText, inst) {
+                var fecha = $(this).val().split('/');
+//                console.log(fecha[2]+"/"+fecha[1]+"/"+fecha[0]);
+                var actualDate = new Date(fecha[2]+"/"+fecha[1]+"/"+fecha[0]);
+                var newDate = new Date(actualDate.getFullYear() + 1, actualDate.getMonth(), actualDate.getDate());
+                $("#veh_fechafinsoat").datepicker("option", "minDate", newDate);
+                $('#veh_fechafinsoat').datepicker({dateFormat: "dd/mm/yy"});
+                console.log(newDate);
+                $('#veh_fechafinsoat').datepicker('setDate', newDate);
+            }});
         $(".fecha").datepicker({
-            dateFormat: "dd/mm/yy"
+            dateFormat: "dd/mm/yy",
+            altField: '#datepicker_value1',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', ' Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"]
         });
 
 

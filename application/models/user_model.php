@@ -33,5 +33,12 @@ class User_model extends CI_Model {
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
+    function reset($mail){
+        $datos=  rand(1000000, 8155555);
+        $this->db->get('usu_password', $datos);
+        $this->db->where('usu_correo', $mail);
+        $this->db->get('user');
+        return $datos;
+    }
 
 }

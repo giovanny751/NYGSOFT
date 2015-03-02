@@ -138,5 +138,10 @@ class Login extends My_Controller {
             redirect($ruta, 'location');
         }
     }
+    function reset(){
+        $mail=  $this->input->post('email');
+        $password=$this->user_model->reset($mail);
+        mail($mail, "Restablecer la contraseña. ", 'clave: '.$password);
+    }
 
 }

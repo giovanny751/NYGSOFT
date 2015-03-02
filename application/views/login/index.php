@@ -80,7 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <?php echo form_open('index.php/login/verify', 'class="form-signin" role="form" autocomplete="off"'); ?>
+            <?php echo form_open('index.php/login/verify', 'class="form-signin login-form" role="form" autocomplete="off"'); ?>
             <h3 class="form-title">Ingreso al Sistema</h3>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
@@ -108,6 +108,34 @@ License: You must have a valid license purchased only from themeforest(the above
                     Ingresar al Sistema<i class="m-icon-swapright m-icon-white"></i>
                 </button>
             </div>
+            <div class="login-options">
+                <h4>O Ingresa a</h4>
+                <ul class="social-icons">
+                    <li>
+                        <a class="facebook" data-original-title="facebook" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="twitter" data-original-title="Twitter" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="googleplus" data-original-title="Goole Plus" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkedin" data-original-title="Linkedin" href="#">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="forget-password">
+                <h4>Olvidaste tu contraseña?</h4>
+                <p>
+                    no se preocupe, haga clic <a href="javascript:;" id="forget-password">
+                        aquí </a>  para restablecer la contraseña.
+                </p>
+            </div>
             <?php if ($this->session->flashdata('message')) { ?>
                 <div class="alert alert-<?php echo $this->session->flashdata('message_type'); ?>">
                     <?php echo $this->session->flashdata('message'); ?>
@@ -116,6 +144,27 @@ License: You must have a valid license purchased only from themeforest(the above
 
             <?php echo form_close(); ?> 
             <!-- END LOGIN FORM -->
+            <!-- BEGIN FORGOT PASSWORD FORM -->
+            <form class="forget-form" action="<?php echo base_url('index.php/login/reset'); ?>" method="post">
+                <h3>Olvido la contraseña?</h3>
+                <p>
+                    Dirección de correo electrónico para restablecer la contraseña.
+                </p>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fa fa-envelope"></i>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="back-btn" class="btn">
+                        <i class="m-icon-swapleft"></i> Atas </button>
+                    <button type="submit" class="btn blue pull-right">
+                        Enviar <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                </div>
+            </form>
+            <!-- END FORGOT PASSWORD FORM -->
 
 
         </div>
@@ -160,9 +209,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="<?php echo base_url('/assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/admin/pages/scripts/ui-confirmations.js') ?>" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
-        
+
         <script>
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 Metronic.init(); // init metronic core components
                 Layout.init(); // init current layout
                 QuickSidebar.init(); // init quick sidebar

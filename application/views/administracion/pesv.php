@@ -43,7 +43,7 @@
                         <textarea id="introduccion" class="form-control" style="width: 100%; height: 258px;"><?php if (!empty($introduccion[0]['int_introduccion'])) echo $introduccion[0]['int_introduccion'] ?></textarea>
                     </div>
                     <div align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarintroduccion" class="btn btn-success">Gardar</button>
+                        <button type="button" id="guardarintroduccion" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
 
@@ -367,9 +367,10 @@
 </div>
 </div>
 <?php 
+    if(!empty($tipoobjetivo)){
     $dato = "";foreach($tipoobjetivo as $tipo => $tipobj ){
                $dato .= "<option value='".$tipobj['tipObj_id']."'>".$tipobj['tipObj_nombre']."</option>";
-      } ?>
+      } }?>
 
       
 <script>

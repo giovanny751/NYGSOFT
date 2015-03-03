@@ -355,6 +355,7 @@ class Administracion extends My_Controller {
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
         $this->data['especificos'] = $this->administracion_model->visualizacionobjesp($id);
+        
         $this->data['miembros'] = $this->administracion_model->visualizacionmiembros($id);
         $this->data['responsables'] = $this->administracion_model->visualizacionresponsables($id);
         $this->data['comites'] = $this->administracion_model->visualizacioncomite($id);
@@ -366,6 +367,8 @@ class Administracion extends My_Controller {
         $this->data['tipoobjetivo'] = $this->administracion_model->tipoobjetivo();
 
 
+
+        
         $this->layout->view('administracion/pesv', $this->data);
     }
 
@@ -383,7 +386,19 @@ class Administracion extends My_Controller {
         $this->data['estadistica'] = $this->administracion_model->estadisticas($id);
         $this->data['itiniere'] = $this->administracion_model->itiniere($id);
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
-
+$this->data['especificoslineaaccion'] = $this->administracion_model->visualizacionobjesplineaaccion($id);
+        $i = array();
+        
+        foreach($this->data['especificoslineaaccion'] as $key => $val){
+            $i[$val['tipObj_nombre']][] = $val['objEsp_objetivo'];
+        }
+        
+//        echo "<pre>";
+//        var_dump($i);die;
+        
+        $this->data['lineaaccion'] = $i; 
+        
+        
         $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
 //        echo $html;
         pdf($html);
@@ -482,7 +497,7 @@ class Administracion extends My_Controller {
         }
         $data = array();
         if (!empty($especifico)) {
-            for ($i = 0; $i < count($general); $i++) {
+            for ($i = 0; $i < count($especifico); $i++) {
 
                 $data[] = array(
                     'tipObj_id' => $tipoobjetivo[$i],
@@ -490,6 +505,8 @@ class Administracion extends My_Controller {
                     'emp_id' => $id
                 );
             }
+//            echo "<pre>";
+//            var_dump($data);die;
             $tabla = 'objetivos_especificos';
             $campo = 'objEsp_objetivo';
             $this->administracion_model->eliminabjetivos($id, $tabla, $campo);

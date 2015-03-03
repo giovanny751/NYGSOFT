@@ -77,7 +77,7 @@
                                     ?>
                                     <div class="principal">
                                         <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
-                                            <textarea class="form-control" name="objetivos[]"><?php echo $gen['objGen_objetivo'] ?></textarea>
+                                            <textarea class="form-control" name="objetivos[]"><?php echo utf8_encode($gen['objGen_objetivo']) ?></textarea>
                                             <!--<input type="text" value="<?php echo $gen['objGen_objetivo'] ?>" class="form-control" name="objetivos[]" placeholder="Objetivos Generales">-->
                                         </div>
                                         <div align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
@@ -95,53 +95,53 @@
                         <div style="margin-top:15px;" class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top:15px">
                             <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
                             <div class="row agregar">
-                                <div class="principal">
-                                    <?php if (empty($especificos)) { ?>
-                                        <div class="principaldos">
+                                <!--<div class="principal">-->
+                                <?php if (empty($especificos)) { ?>
+                                    <div class="principaldos">
+                                        <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                                            <textarea  class="form-control" name="objetivosespecificos[]"></textarea>
+                                            <!--<input  type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos">-->
+                                        </div>
+                                        <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <select class='form-control' name="tipoobjetivo[]">
+                                                <option value=''>-Seleccionar-</option>
+                                                <?php foreach ($tipoobjetivo as $tipo => $tipobj) { ?>
+                                                    <option value='<?php echo $tipobj['tipObj_id']; ?>'><?php echo $tipobj['tipObj_nombre']; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                    </div>
+                                    <?php
+                                } else {
+                                    foreach ($especificos as $esp) {
+                                        ?>
+                                        <div class="principal">
                                             <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                                                <textarea  class="form-control" name="objetivosespecificos[]"></textarea>
-                                                <!--<input  type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos">-->
+                                                <textarea class="form-control" name="objetivosespecificos[]" ><?php echo $esp['objEsp_objetivo'] ?></textarea>
+                                                <!--<input value="<?php echo $esp['objEsp_objetivo'] ?>" type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos">-->
                                             </div>
                                             <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                                <select class='form-control' name="tipoobjetivo">
+                                                <select class='form-control' name="tipoobjetivo[]">
                                                     <option value=''>-Seleccionar-</option>
-                                                    <?php foreach ($tipoobjetivo as $tipo => $tipobj) { ?>
-                                                        <option value='<?php echo $tipobj['tipObj_id']; ?>'><?php echo $tipobj['tipObj_nombre']; ?></option>
-                                                    <?php } ?>
+                                                    <?php
+                                                    $dato = "";
+                                                    foreach ($tipoobjetivo as $tipo => $tipobj) {
+                                                        echo "<option value='" . $tipobj['tipObj_id'] . "'>" . $tipobj['tipObj_nombre'] . "</option>";
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
-                                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
-                                            <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                            <div align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
+                                            <div esp="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $esp['objEsp_id'] ?>" dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+
                                         </div>
                                         <?php
-                                    } else {
-                                        foreach ($especificos as $esp) {
-                                            ?>
-                                            <div class="principal">
-                                                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                                                    <textarea class="form-control" name="objetivosespecificos[]" ><?php echo $esp['objEsp_objetivo'] ?></textarea>
-                                                    <!--<input value="<?php echo $esp['objEsp_objetivo'] ?>" type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos">-->
-                                                </div>
-                                                <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                                    <select class='form-control' name="tipoobjetivo[]">
-                                                        <option value=''>-Seleccionar-</option>
-                                                        <?php
-                                                        $dato = "";
-                                                        foreach ($tipoobjetivo as $tipo => $tipobj) {
-                                                            echo "<option value='" . $tipobj['tipObj_id'] . "'>" . $tipobj['tipObj_nombre'] . "</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                                <div align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
-                                                <div esp="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $esp['objEsp_id'] ?>" dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
-
-                                            </div>
-                                            <?php
-                                        }
                                     }
-                                    ?>
-                                </div>
+                                }
+                                ?>
+                                <!--</div>-->
                             </div>
                             <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                                 <button type="button" id="guardarobjetivos" class="btn btn-success">Gardar</button>
@@ -163,7 +163,7 @@
                                         <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
                                     </div>
                                     <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
                                     <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
                                 </div>
                                 <?php
@@ -179,13 +179,16 @@
                                             <label>Cargo</label><input type="text" value="<?php echo $miembro['mie_cargo'] ?>" class="form-control" name="cargo[]" placeholder="Cargo">
                                         </div>
                                         <div  miemid="<?php echo $miembro['mie_id'] ?>" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                        <div  miemid="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $miembro['mie_id'] ?>" dato="compromiso" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
+                                        <div  miemid="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $miembro['mie_id'] ?>" dato="compromiso" type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
                                         <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>  
                                     </div>
                                     <?php
                                 }
                             }
                             ?>
+                        </div>
+                        <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
+                            <textarea id="introduccion" class="form-control textareasumer" style="width: 100%; height: 258px;"></textarea>
                         </div>
                     </form>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
@@ -395,7 +398,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 //------------------------------------------------------------------------------
 //Grafica
 //------------------------------------------------------------------------------
-    $(function () {
+    $(function() {
 
         $('#tipotransporte').highcharts({
             chart: {
@@ -567,23 +570,23 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 //------------------------------------------------------------------------------
 
-    $('#guardarpolitica').click(function () {
+    $('#guardarpolitica').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardapolitica     '); ?>";
         var politica = $('#politica').code();
         modal();
 //        console.log(politica);
         $.post(url, {politica: politica})
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
-    $('body').delegate('.agregarprioridad', 'click', function () {
+    $('body').delegate('.agregarprioridad', 'click', function() {
 
         var contenido = '  <div class="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -599,7 +602,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.principalpriorida').append(contenido);
 
     });
-    $('body').delegate('.agregarcomite', 'click', function () {
+    $('body').delegate('.agregarcomite', 'click', function() {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -615,11 +618,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.comite').append(contenido);
 
     });
-    $('body').delegate('.eliminarcomite', 'click', function () {
+    $('body').delegate('.eliminarcomite', 'click', function() {
 
         $(this).parents('.principalcomite').remove();
     });
-    $('body').delegate('.agregarresponsable', 'click', function () {
+    $('body').delegate('.agregarresponsable', 'click', function() {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -635,11 +638,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.datosresponsable').append(contenido);
 
     });
-    $('body').delegate('.eliminarresponsable', 'click', function () {
+    $('body').delegate('.eliminarresponsable', 'click', function() {
 
         $(this).parents('.responsable').remove();
     });
-    $('body').delegate('.agregarobjetivo', 'click', function () {
+    $('body').delegate('.agregarobjetivo', 'click', function() {
 
         var contenido = ' <div class="principal">\n\
                             <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">\n\
@@ -653,7 +656,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('#objetivosgen').append(contenido);
 
     });
-    $('body').delegate('.eliminarobjetivo', 'click', function () {
+    $('body').delegate('.eliminarobjetivo', 'click', function() {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
@@ -661,23 +664,23 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         $(this).parents('.infoprioridades').remove();
 
-        $.post(url, {id: id, dato: dato}).done(function (msg) {
+        $.post(url, {id: id, dato: dato}).done(function(msg) {
 
-        }).fail(function (msg) {
+        }).fail(function(msg) {
 
         });
 
         $(this).parents('.principal').remove();
     });
-    $('body').delegate('.eliminarpecifico', 'click', function () {
+    $('body').delegate('.eliminarpecifico', 'click', function() {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
         var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
 
-        $.post(url, {id: id, dato: dato}).done(function (msg) {
+        $.post(url, {id: id, dato: dato}).done(function(msg) {
 
-        }).fail(function (msg) {
+        }).fail(function(msg) {
 
         });
 
@@ -685,7 +688,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
     });
 //
 //
-    $('body').delegate('.agregarmiembro', 'click', function () {
+    $('body').delegate('.agregarmiembro', 'click', function() {
 
         var contenido = '<div clas="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -695,12 +698,12 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
                                     <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">\n\
                                 </div>\n\
                                 <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>\n\
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarmiembro">Eliminar</button></div>\n\
+                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>\n\
                             </div>';
         $('.miembros').append(contenido);
     });
 //
-    $('body').delegate('.agregarespecifico', 'click', function () {
+    $('body').delegate('.agregarespecifico', 'click', function() {
         var dato = "<?php echo $dato; ?>";
 //        alert(dato);
         var objetivo = "";
@@ -711,96 +714,96 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
                                     <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">\n\
         <textarea class="form-control" name="objetivosespecificos[]"></textarea>\n\
         </div>\n\
-                                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><select class="form-control" name="tipoobjetivo"><option value="">-Seleccionar-</option>' + dato + '</select></div>\n\
+                                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"><select class="form-control" name="tipoobjetivo[]"><option value="">-Seleccionar-</option>' + dato + '</select></div>\n\
                                         <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>\n\
                                     <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarespecifico">Eliminar</button></div>\n\
                                 </div>';
         $('.agregar').append(contenido);
     });
 
-    $('body').delegate('.eliminarespecifico', 'click', function () {
+    $('body').delegate('.eliminarespecifico', 'click', function() {
 
         $(this).parents('.principaldos').remove();
     });
 //
 //
-    $('#guardarintroduccion').click(function () {
+    $('#guardarintroduccion').click(function() {
         var introduccion = $('#introduccion').code();
         var url = "<?php echo base_url('index.php/administracion/guardarintroduccion'); ?>";
         modal();
         $.post(url, {introduccion: introduccion})
-                .done(function (msn) {
-                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-                    quit_modal();
-                }).fail(function (msg) {
+                .done(function(msn) {
+            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+            quit_modal();
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarmiembros').click(function () {
+    $('#guardarmiembros').click(function() {
         var introduccion = $('#introduccion').val();
         var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
         modal();
         $.post(url, $('#miembros').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarobjetivos').click(function () {
+    $('#guardarobjetivos').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardarobjetivos'); ?>";
         modal();
         $.post(url, $('#objetivos').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 //
-    $('#guardarresponsables').click(function () {
+    $('#guardarresponsables').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardarresponsables'); ?>";
         modal();
         $.post(url, $('#responsables').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarcomite').click(function () {
+    $('#guardarcomite').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         modal();
         $.post(url, $('#comite').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarprioridades').click(function () {
+    $('#guardarprioridades').click(function() {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         modal();
         $.post(url, $('#prioridades').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-                }).fail(function (msg) {
+                .done(function(msn) {
+            quit_modal();
+            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

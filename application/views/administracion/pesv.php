@@ -13,6 +13,12 @@
 <script src="<?php echo base_url('js/reportes/highcharts.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('js/reportes/highcharts-3d.js') ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('js/exporting.js') ?>" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo base_url('dist/css/font-awesome.min.css'); ?>" />
+<script type="text/javascript" src="<?php echo base_url('dist/js/summernote.js?v=' . date("d-h")); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('dist/js/script_summernote.js?v=' . date("d-h")); ?>"></script>
+<link href="<?php echo base_url('dist/css/summernote.css?v=' . date("d-h")); ?>" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <div style="text-align: right"><a href="<?php echo base_url('index.php/Administracion/pesv_pdf') ?>" target="_black" class="btn green"> Imprimir PDF</a></div>
 <div class="portlet box blue tabbable">
     <div class="portlet-title">
@@ -40,7 +46,7 @@
                 <div class="tab-pane active" id="portlet_tab1">
                     <div class="alert alert-info"><center><p>INTRODUCCIÓN</p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
-                        <textarea id="introduccion" class="form-control" style="width: 100%; height: 258px;"><?php if (!empty($introduccion[0]['int_introduccion'])) echo $introduccion[0]['int_introduccion'] ?></textarea>
+                        <textarea id="introduccion" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($introduccion[0]['int_introduccion'])) echo $introduccion[0]['int_introduccion'] ?></textarea>
                     </div>
                     <div align="center" style="margin-top:15px;">
                         <button type="button" id="guardarintroduccion" class="btn btn-success">Guardar</button>
@@ -148,7 +154,7 @@
                     <form method="post" id="miembros">
                         <div class="row miembros">
 
-<?php if (empty($miembros)) { ?>
+                            <?php if (empty($miembros)) { ?>
                                 <div clas="principal">
                                     <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
@@ -191,7 +197,7 @@
                     <form method="post" id="responsables">
                         <div class="row datosresponsable">
                             <div class="row responsable">
-<?php if (empty($responsables)) { ?>
+                                <?php if (empty($responsables)) { ?>
                                     <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
                                     </div>
@@ -228,7 +234,7 @@
                     <form method="post" id="comite">
                         <div class="comite">
                             <div class="row">
-<?php if (empty($comites)) { ?>
+                                <?php if (empty($comites)) { ?>
                                     <div class="principal">
                                         <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                             <label>Nombre</label><input type="text" class="form-control" name="nombre[]" placeholder="Nombre">
@@ -269,7 +275,7 @@
                 <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                        <textarea id="politica" class="form-control" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
+                        <textarea id="politica" class="form-control textareasumer" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
@@ -319,7 +325,7 @@
                     <div class="row principalpriorida">
 
 
-<?php if (empty($prioridades)) { ?>
+                        <?php if (empty($prioridades)) { ?>
                             <div class="principal">
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                     <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
@@ -389,7 +395,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 //------------------------------------------------------------------------------
 //Grafica
 //------------------------------------------------------------------------------
-    $(function() {
+    $(function () {
 
         $('#tipotransporte').highcharts({
             chart: {
@@ -561,21 +567,23 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 //------------------------------------------------------------------------------
 
-    $('#guardarpolitica').click(function() {
+    $('#guardarpolitica').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardapolitica     '); ?>";
-        var politica = $('#politica').val();
-
+        var politica = $('#politica').code();
+        modal();
 //        console.log(politica);
         $.post(url, {politica: politica})
-                .done(function(msn) {
-            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
+            quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
-    $('body').delegate('.agregarprioridad', 'click', function() {
+    $('body').delegate('.agregarprioridad', 'click', function () {
 
         var contenido = '  <div class="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -591,7 +599,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.principalpriorida').append(contenido);
 
     });
-    $('body').delegate('.agregarcomite', 'click', function() {
+    $('body').delegate('.agregarcomite', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -607,11 +615,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.comite').append(contenido);
 
     });
-    $('body').delegate('.eliminarcomite', 'click', function() {
+    $('body').delegate('.eliminarcomite', 'click', function () {
 
         $(this).parents('.principalcomite').remove();
     });
-    $('body').delegate('.agregarresponsable', 'click', function() {
+    $('body').delegate('.agregarresponsable', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -627,11 +635,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.datosresponsable').append(contenido);
 
     });
-    $('body').delegate('.eliminarresponsable', 'click', function() {
+    $('body').delegate('.eliminarresponsable', 'click', function () {
 
         $(this).parents('.responsable').remove();
     });
-    $('body').delegate('.agregarobjetivo', 'click', function() {
+    $('body').delegate('.agregarobjetivo', 'click', function () {
 
         var contenido = ' <div class="principal">\n\
                             <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">\n\
@@ -645,7 +653,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('#objetivosgen').append(contenido);
 
     });
-    $('body').delegate('.eliminarobjetivo', 'click', function() {
+    $('body').delegate('.eliminarobjetivo', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
@@ -653,23 +661,23 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         $(this).parents('.infoprioridades').remove();
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
         $(this).parents('.principal').remove();
     });
-    $('body').delegate('.eliminarpecifico', 'click', function() {
+    $('body').delegate('.eliminarpecifico', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
         var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
@@ -677,7 +685,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
     });
 //
 //
-    $('body').delegate('.agregarmiembro', 'click', function() {
+    $('body').delegate('.agregarmiembro', 'click', function () {
 
         var contenido = '<div clas="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -692,7 +700,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.miembros').append(contenido);
     });
 //
-    $('body').delegate('.agregarespecifico', 'click', function() {
+    $('body').delegate('.agregarespecifico', 'click', function () {
         var dato = "<?php echo $dato; ?>";
 //        alert(dato);
         var objetivo = "";
@@ -710,89 +718,89 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.agregar').append(contenido);
     });
 
-    $('body').delegate('.eliminarespecifico', 'click', function() {
+    $('body').delegate('.eliminarespecifico', 'click', function () {
 
         $(this).parents('.principaldos').remove();
     });
 //
 //
-    $('#guardarintroduccion').click(function() {
-        var introduccion = $('#introduccion').val();
+    $('#guardarintroduccion').click(function () {
+        var introduccion = $('#introduccion').code();
         var url = "<?php echo base_url('index.php/administracion/guardarintroduccion'); ?>";
         modal();
         $.post(url, {introduccion: introduccion})
-                .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-            quit_modal();
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                    quit_modal();
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarmiembros').click(function() {
+    $('#guardarmiembros').click(function () {
         var introduccion = $('#introduccion').val();
         var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
         modal();
         $.post(url, $('#miembros').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarobjetivos').click(function() {
+    $('#guardarobjetivos').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarobjetivos'); ?>";
         modal();
         $.post(url, $('#objetivos').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 //
-    $('#guardarresponsables').click(function() {
+    $('#guardarresponsables').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarresponsables'); ?>";
         modal();
         $.post(url, $('#responsables').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarcomite').click(function() {
+    $('#guardarcomite').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         modal();
         $.post(url, $('#comite').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarprioridades').click(function() {
+    $('#guardarprioridades').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         modal();
         $.post(url, $('#prioridades').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

@@ -144,7 +144,7 @@
                                 <!--</div>-->
                             </div>
                             <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                                <button type="button" id="guardarobjetivos" class="btn btn-success">Gardar</button>
+                                <button type="button" id="guardarobjetivos" class="btn btn-success">Guardar</button>
                             </div>
                         </div>
                     </form>
@@ -192,7 +192,7 @@
                         </div>
                     </form>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarmiembros" class="btn btn-success">Gardar</button>
+                        <button type="button" id="guardarmiembros" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab4">
@@ -229,7 +229,7 @@
                         </div>
                     </form>    
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarresponsables" class="btn btn-success">Gardar</button>
+                        <button type="button" id="guardarresponsables" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab5">
@@ -270,7 +270,7 @@
                             </div>
                     </form>    
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarcomite" class="btn btn-success">Gardar</button>
+                        <button type="button" id="guardarcomite" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -282,7 +282,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                    <button type="button" id="guardarpolitica" class="btn btn-success">Gardar</button>
+                    <button type="button" id="guardarpolitica" class="btn btn-success">Guardar</button>
                 </div>
             </div>
             <div class="tab-pane" id="portlet_tab7">
@@ -366,7 +366,7 @@
                     </div>
                 </form>
                 <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                    <button type="button" id="guardarprioridades" class="btn btn-success">Gardar</button>
+                    <button type="button" id="guardarprioridades" class="btn btn-success">Guardar</button>
                 </div>
             </div>
             <div class="tab-pane" id="portlet_tab11">

@@ -144,12 +144,13 @@ class Ingresoform_model extends CI_Model {
             'veh_numlicencia',
             'veh_marca',
             'veh_capacidad',
+            'tipCar_nombre',
             'veh_id',
         );
         //LLAVE PRIMARIA
         $sIndexColumn = "veh_nombrepropietario";
         //TABLA
-        $sTable = "vehiculo join empresa on empresa.emp_id=vehiculo.emp_id";
+        $sTable = "vehiculo join empresa on empresa.emp_id=vehiculo.emp_id left join tipo_carroceria on tipo_carroceria.tipCar_id=vehiculo.tipCar_id";
         if ($id != null)
             $rWhere = "where vehiculo.emp_id=" . $id . " and veh_status <> 3 ";
         else
@@ -264,12 +265,13 @@ class Ingresoform_model extends CI_Model {
             'usu_segundonombre',
             'usu_apellido',
             'usu_segundoapellido',
+            'car_nombre',
             'usu_id',
         );
         //LLAVE PRIMARIA
         $sIndexColumn = "usu_nombres";
         //TABLA
-        $sTable = "user";
+        $sTable = "user left join cargo on user.car_id=cargo.car_id";
         if ($id != null)
             $rWhere = "where est_id<>3 and usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
         else

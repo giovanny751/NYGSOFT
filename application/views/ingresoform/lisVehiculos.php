@@ -18,6 +18,7 @@
                     <th>Numero de licencia</th>
                     <th>Marca</th>
                     <th>Capacidad</th>
+                    <th>Tipo Carroceria</th>
                     <th>Acción</th>
                 </tr>
             </thead>

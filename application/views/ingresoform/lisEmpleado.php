@@ -16,6 +16,7 @@
                     <th>Segundo Nombre</th>
                     <th>Apellido</th>
                     <th>Segundo Apellido</th>
+                    <th>Cargo</th>
                     <th>Accion</th>
                 </tr>
             </thead>

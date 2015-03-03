@@ -373,14 +373,14 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         rtl: Metronic.isRTL(),
         autoclose: true
     });
-    function modal(target,message) {
+    function modal() {
         Metronic.blockUI({
-            target: target,
-            message: message
+            target: '.container',
+            message: 'Cargando...'
         });
     }
-    function quit_modal(target) {
-        Metronic.unblockUI(target);
+    function quit_modal() {
+        Metronic.unblockUI('.container');
     }
 </script>
 <style>

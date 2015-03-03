@@ -247,6 +247,11 @@ class administracion_model extends CI_Model {
         $this->db->where('emp_id',$id);
         $this->db->update('empresa', $post);
     }
+    function info_empresa($id) {
+        $this->db->where('emp_id',$id);
+        $dato = $this->db->get('empresa');
+        return $dato->result();
+    }
 
     function admin_inicio() {
         $this->db->where('ini_id', 1);
@@ -465,6 +470,11 @@ class administracion_model extends CI_Model {
         
 //        echo $this->db->last_query();die;
         return $datos->result();
+    }
+    function tipoobjetivo(){
+        
+        $datos = $this->db->get('tipo_objetivo');
+        return $datos->result_array();
     }
     function tipotransporte($id){
         

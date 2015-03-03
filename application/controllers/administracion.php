@@ -363,6 +363,7 @@ class Administracion extends My_Controller {
         $this->data['estadistica'] = $this->administracion_model->estadisticas($id);
         $this->data['itiniere'] = $this->administracion_model->itiniere($id);
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
+        $this->data['tipoobjetivo'] = $this->administracion_model->tipoobjetivo();
 
 //        echo "<pre>";
 //        var_dump($this->data['itiniere']);die;
@@ -372,6 +373,7 @@ class Administracion extends My_Controller {
 
     function pesv_pdf() {
         $id = $this->data['user']['emp_id'];
+        $this->data['empresa'] = $this->administracion_model->info_empresa($id);
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
         $this->data['especificos'] = $this->administracion_model->visualizacionobjesp($id);
@@ -385,7 +387,8 @@ class Administracion extends My_Controller {
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
 
         $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
-        pdf($html);
+        echo $html;
+//        pdf($html);
     }
 
     
@@ -463,6 +466,7 @@ class Administracion extends My_Controller {
         $general = $this->input->post('objetivos');
         $especifico = $this->input->post('objetivosespecificos');
         $id = $this->data['user']['emp_id'];
+        $tipoobjetivo = $this->input->post('tipoobjetivo');
         $data = array();
         if (!empty($general)) {
             $data = array();
@@ -483,6 +487,7 @@ class Administracion extends My_Controller {
             for ($i = 0; $i < count($general); $i++) {
 
                 $data[] = array(
+                    'tipObj_id' => $tipoobjetivo[$i],
                     'objEsp_objetivo' => $especifico[$i],
                     'emp_id' => $id
                 );

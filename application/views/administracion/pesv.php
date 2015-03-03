@@ -367,10 +367,10 @@
 </div>
 </div>
 <?php 
-    if(!empty($tipoobjetivo)){
+//    if(!empty($tipoobjetivo)){
     $dato = "";foreach($tipoobjetivo as $tipo => $tipobj ){
                $dato .= "<option value='".$tipobj['tipObj_id']."'>".$tipobj['tipObj_nombre']."</option>";
-      } }?>
+      } ?>
 
       
 <script>

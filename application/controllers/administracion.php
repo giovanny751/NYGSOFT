@@ -365,8 +365,6 @@ class Administracion extends My_Controller {
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
         $this->data['tipoobjetivo'] = $this->administracion_model->tipoobjetivo();
 
-//        echo "<pre>";
-//        var_dump($this->data['itiniere']);die;
 
         $this->layout->view('administracion/pesv', $this->data);
     }

@@ -385,8 +385,8 @@ class Administracion extends My_Controller {
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
 
         $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
-        echo $html;
-//        pdf($html);
+//        echo $html;
+        pdf($html);
     }
 
     

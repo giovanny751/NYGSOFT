@@ -206,7 +206,9 @@
             </div>
         </div>
         <div class="row">
-
+            <div class="col-md-4 col-lg-4">
+                <label>Logo Corporativo: </label><input type="file" id="emp_imagen" name="emp_imagen">
+            </div>
         </div>
     </div>
     <br>
@@ -236,7 +238,7 @@
     $('#emp_nit').validCampoFranz('0123456789');
 
 
-    $('#emp_nit').change(function() {
+    $('#emp_nit').change(function () {
         var num = $(this).val();
         console.log(num);
         if (isNaN(num)) {
@@ -249,12 +251,12 @@
         var emp_nit = $(this).val();
         if (emp_nit != "") {
             $.post(url, {emp_nit, emp_nit})
-                    .done(function(msg) {
-                if (msg > 0) {
-                    alert('El Nit ya se Encuentra Registrado en el Sistema')
-                    $('#emp_nit').val('');
-                }
-            }).fail(function(msg) {
+                    .done(function (msg) {
+                        if (msg > 0) {
+                            alert('El Nit ya se Encuentra Registrado en el Sistema')
+                            $('#emp_nit').val('');
+                        }
+                    }).fail(function (msg) {
 
             })
         }

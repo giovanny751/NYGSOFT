@@ -4,7 +4,7 @@
 <div class='alert alert-info'>
     <center><b><?php echo $titulo; ?></b></center>
 </div>
-<div class="portlet box green">
+<div class="portlet box blue">
     <div class="caption">
         &nbsp;&nbsp;<i class="fa fa-users"></i>
         Detalle

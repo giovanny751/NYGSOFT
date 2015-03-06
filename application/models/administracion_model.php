@@ -50,16 +50,19 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('confirmacion');
         return $dato->result_array();
     }
+
     function tipovinculacion() {
 
         $dato = $this->db->get('tipo_vinculacion');
         return $dato->result_array();
     }
+
     function tipocarroceria() {
 
         $dato = $this->db->get('tipo_carroceria');
         return $dato->result_array();
     }
+
     function entidades() {
 
         $dato = $this->db->get('entidad_soat');
@@ -221,6 +224,7 @@ class administracion_model extends CI_Model {
         $ciudad = $this->db->get('estado_conductor');
         return $ciudad->result_array();
     }
+
     function restricciones() {
 
         $ciudad = $this->db->get('restricciones');
@@ -243,12 +247,14 @@ class administracion_model extends CI_Model {
         $this->db->where('ini_id', 1);
         $this->db->update('inicio', $post);
     }
-    function guardar_admin_inicio_emp($post,$id) {
-        $this->db->where('emp_id',$id);
+
+    function guardar_admin_inicio_emp($post, $id) {
+        $this->db->where('emp_id', $id);
         $this->db->update('empresa', $post);
     }
+
     function info_empresa($id) {
-        $this->db->where('emp_id',$id);
+        $this->db->where('emp_id', $id);
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
@@ -258,9 +264,10 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('inicio');
         return $dato->result();
     }
+
     function admin_inicio_emp($id) {
         $this->db->set('emp_inicio,emp_id');
-        $this->db->where('emp_id',$id);
+        $this->db->where('emp_id', $id);
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
@@ -284,32 +291,36 @@ class administracion_model extends CI_Model {
         $this->db->where('emp_id', $id);
         $this->db->where('tipObj_id', 5);
 //        $this->db->join('tipo_objetivo','tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
-        
+
         $dato = $this->db->get('objetivos_especificos');
         return $dato->result_array();
     }
+
     function visualizacionobjesplineaaccion($id) {
 
         $this->db->select('objetivos_especificos.objEsp_objetivo,tipo_objetivo.tipObj_nombre');
         $this->db->where('emp_id', $id);
         $this->db->where('objetivos_especificos.tipObj_id !=', 5);
-        $this->db->join('tipo_objetivo','tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
-        
+        $this->db->join('tipo_objetivo', 'tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
+
         $dato = $this->db->get('objetivos_especificos');
         return $dato->result_array();
     }
+
     function visualizacionmiembros($id) {
 
         $this->db->where('emp_id', $id);
         $dato = $this->db->get('miembros');
         return $dato->result_array();
     }
+
     function visualizacionresponsables($id) {
 
         $this->db->where('emp_id', $id);
         $dato = $this->db->get('responsables');
         return $dato->result_array();
     }
+
     function visualizacioncomite($id) {
 
         $this->db->where('emp_id', $id);
@@ -323,14 +334,14 @@ class administracion_model extends CI_Model {
         $datos = $this->db->get('introduccion');
         return $datos->result_array();
     }
-    function eliminarpesv($tabla,$campo,$id,$idempresa){
-        
-        $this->db->where('emp_id',$idempresa);
-        $this->db->where($campo,$id);
+
+    function eliminarpesv($tabla, $campo, $id, $idempresa) {
+
+        $this->db->where('emp_id', $idempresa);
+        $this->db->where($campo, $id);
         $this->db->delete($tabla);
-        
+
         echo $this->db->last_query();
-        
     }
 
     function actualizaintroduccion($introduccion, $id) {
@@ -359,33 +370,37 @@ class administracion_model extends CI_Model {
 
         $this->db->insert('politicas', $data);
     }
+
     function actualizarpolitica($politica, $id) {
 
-        $this->db->where('emp_id',$id);
-        $this->db->set('pol_politica',$politica );
+        $this->db->where('emp_id', $id);
+        $this->db->set('pol_politica', $politica);
         $this->db->update('politicas');
     }
-    function verificapolitica($id){
-        
-        $this->db->where('emp_id',$id);
+
+    function verificapolitica($id) {
+
+        $this->db->where('emp_id', $id);
         $politica = $this->db->get('politicas');
         return $politica->result_array();
     }
-    function verificaprioridad($id){
-        
-        $this->db->where('emp_id',$id);
+
+    function verificaprioridad($id) {
+
+        $this->db->where('emp_id', $id);
         $politica = $this->db->get('prioridades');
         return $politica->result_array();
     }
-    function eliminarprioridades($id){
-        
-        $this->db->where('pri_id',$id);
+
+    function eliminarprioridades($id) {
+
+        $this->db->where('pri_id', $id);
         $this->db->delete('prioridades');
-        
     }
-    function insertaprioridades($data){
-        
-        $this->db->insert_batch('prioridades',$data);
+
+    function insertaprioridades($data) {
+
+        $this->db->insert_batch('prioridades', $data);
     }
 
     function guardarobjetivos($data, $tabla) {
@@ -397,9 +412,10 @@ class administracion_model extends CI_Model {
 
         $this->db->insert_batch('miembros', $data);
     }
-    function eliminarmiembros($id){
-        
-        $this->db->where('emp_id',$id);
+
+    function eliminarmiembros($id) {
+
+        $this->db->where('emp_id', $id);
         $this->db->delete('miembros');
     }
 
@@ -409,16 +425,18 @@ class administracion_model extends CI_Model {
 
 //        echo $this->db->last_query();
     }
+
     function eliminarresponsables($id) {
 
-        $this->db->where('emp_id',$id);
+        $this->db->where('emp_id', $id);
         $this->db->delete('responsables');
 
 //        echo $this->db->last_query();
     }
+
     function eliminarcomite($id) {
 
-        $this->db->where('emp_id',$id);
+        $this->db->where('emp_id', $id);
         $this->db->delete('comite');
 
 //        echo $this->db->last_query();
@@ -440,8 +458,9 @@ class administracion_model extends CI_Model {
         $this->db->where('usu_id', $id);
         $this->db->delete('causas_usuario');
     }
-    function estadisticas($id){
-        
+
+    function estadisticas($id) {
+
         $datos = $this->db->query("
             
             select 
@@ -469,8 +488,9 @@ class administracion_model extends CI_Model {
             ");
         return $datos->result();
     }
-    function itiniere($id){
-        
+
+    function itiniere($id) {
+
         $datos = $this->db->query("
             
             select 
@@ -480,17 +500,19 @@ class administracion_model extends CI_Model {
 		(select sum(if(usu_rol_via = 'Pasajero',1,0)) from user where emp_id = $id) pasajero, 
 		(select sum(if(usu_rol_via = 'Peaton',1,0)) from user where emp_id = $id) peaton
             ");
-        
+
 //        echo $this->db->last_query();die;
         return $datos->result();
     }
-    function tipoobjetivo(){
-        
+
+    function tipoobjetivo() {
+
         $datos = $this->db->get('tipo_objetivo');
         return $datos->result_array();
     }
-    function tipotransporte($id){
-        
+
+    function tipotransporte($id) {
+
         $datos = $this->db->query("
             select 
 		(select count(usu_tipo_transporte) from user where emp_id = $id) total,
@@ -502,30 +524,37 @@ class administracion_model extends CI_Model {
 		(select sum(if(usu_tipo_transporte = '7',1,0)) from user where emp_id = $id) Transporteautomotorparticular,
 		(select sum(if(usu_tipo_transporte = '8',1,0)) from user where emp_id = $id) Transporteautomotorpublico
             ");
-        
+
 //        echo $this->db->last_query();die;
         return $datos->result();
     }
-    function eliminabjetivos($id,$tabla,$campo){
-        
-        $this->db->where('emp_id',$id);
+
+    function eliminabjetivos($id, $tabla, $campo) {
+
+        $this->db->where('emp_id', $id);
         $this->db->delete($tabla);
-        
-        
     }
-    function empleado_el($id){
-        $id=  deencrypt_id($id);
-       $this->db->set('usu_status','3');
-       $this->db->where('usu_id',$id);
-        $this->db->update('user'); 
+
+    function empleado_el($id) {
+        $id = deencrypt_id($id);
+        $this->db->set('usu_status', '3');
+        $this->db->where('usu_id', $id);
+        $this->db->update('user');
     }
-    function vehiculo_el($id){
-        $id=  deencrypt_id($id);
-       $this->db->set('veh_status','3');
-       $this->db->where('veh_id',$id);
-        $this->db->update('vehiculo'); 
+
+    function vehiculo_el($id) {
+        $id = deencrypt_id($id);
+        $this->db->set('veh_status', '3');
+        $this->db->where('veh_id', $id);
+        $this->db->update('vehiculo');
     }
-    
+
+    function empresa_el($id) {
+        $id = deencrypt_id($id);
+        $this->db->set('emp_status', '3');
+        $this->db->where('emp_id', $id);
+        $this->db->update('empresa');
+    }
 
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";

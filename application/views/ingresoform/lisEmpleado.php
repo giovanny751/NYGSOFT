@@ -2,7 +2,7 @@
     ruta = "ingresoform/get_dataEmpleado/<?php echo $id ?>";
 </script>
 <center><h1><?php echo $titulo; ?></h1></center>
-<div class="portlet box green">
+<div class="portlet box blue">
     <div class="caption">
         &nbsp;&nbsp;<i class="fa fa-users"></i>
         Detalle

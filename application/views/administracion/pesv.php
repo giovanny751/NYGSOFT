@@ -719,6 +719,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
                                     <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarespecifico">Eliminar</button></div>\n\
                                 </div>';
         $('.agregar').append(contenido);
+        $('.tab-pane').append('height','850px');
     });
 
     $('body').delegate('.eliminarespecifico', 'click', function() {

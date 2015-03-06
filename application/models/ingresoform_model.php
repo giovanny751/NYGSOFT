@@ -30,9 +30,9 @@ class Ingresoform_model extends CI_Model {
         //TABLA
         $sTable = "empresa";
         if ($id != null)
-            $rWhere = "where emp_id=" . $id . " ";
+            $rWhere = "where emp_id=" . $id . " and emp_status <> 3 ";
         else
-            $rWhere = "where 1=1  ";
+            $rWhere = "where emp_status not in (3)  ";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -118,9 +118,12 @@ class Ingresoform_model extends CI_Model {
 //                    $row[] = $contador;
 //                } else
                 if ($aColumns[$i] == "emp_id") {
-                    $row[] = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs" title="Vehiculo"><i class="fa fa-car"></i></a>' .
+                    $col = '<a href="' . base_url('index.php/ingresoform/lisVehiculos/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-success btn-xs" title="Vehiculo"><i class="fa fa-car"></i></a>' .
                             '<a href="' . base_url('index.php/ingresoform/lisEmpleado/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-primary btn-xs" title="Empleado"><i class="fa fa-group"></i></a>' .
                             '<a href="' . base_url('index.php/ingresoform/empresa/' . encrypt_id($aRow['emp_id'])) . '" class="btn btn-info btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>';
+                    if ($id == null)
+                        $col.= '<a href="' . base_url('index.php/administracion/empresa_el/' . (encrypt_id($aRow['emp_id'])) . '/' . encrypt_id($aRow['emp_id'])) . '"  title="Eliminar" class="btn red btn-xs"><i class="fa fa-eraser"></i></a>';
+                    $row[] = $col;
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -241,7 +244,7 @@ class Ingresoform_model extends CI_Model {
 //                } else
                 if ($aColumns[$i] == "veh_id") {
                     $row[] = '<a href="' . base_url('index.php/administracion/vehiculo/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '" class="btn btn-success btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>'
-                    .'<a href="' . base_url('index.php/administracion/vehicuo_el/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '"  title="Eliminar" class="btn red btn-xs"><i class="fa fa-eraser"></i></a>';
+                            . '<a href="' . base_url('index.php/administracion/vehicuo_el/' . encrypt_id($id) . '/' . encrypt_id($aRow['veh_id'])) . '"  title="Eliminar" class="btn red btn-xs"><i class="fa fa-eraser"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -362,7 +365,7 @@ class Ingresoform_model extends CI_Model {
 //                } else
                 if ($aColumns[$i] == "usu_id") {
                     $row[] = '<a href="' . base_url('index.php/administracion/empleado/' . encrypt_id($aRow['usu_id'])) . '" class="btn btn-success btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>'
-                    .'<a href="' . base_url('index.php/administracion/empleado_el/' . encrypt_id($aRow['usu_id'])) . '" class="btn red btn-xs" title="Eliminar"><i class="fa fa-eraser"></i></a>';
+                            . '<a href="' . base_url('index.php/administracion/empleado_el/' . encrypt_id($aRow['usu_id'])) . '" class="btn red btn-xs" title="Eliminar"><i class="fa fa-eraser"></i></a>';
                 } else
                 if ($aColumns[$i] != ' ') {
                     /* General output */
@@ -388,7 +391,7 @@ class Ingresoform_model extends CI_Model {
         $this->db->insert_batch('correo_usuario', $log);
     }
 
-    function ingresousuariopagina($correo, $random, $documento,$empresa) {
+    function ingresousuariopagina($correo, $random, $documento, $empresa) {
 
         $datos[] = array(
             'usu_correo' => $correo,
@@ -481,13 +484,15 @@ class Ingresoform_model extends CI_Model {
 
         $this->db->insert_batch('permisos', $data);
     }
-    function segmento(){
-        
-       $segmento = $this->db->get('segmento');
-       return $segmento->result_array(); 
+
+    function segmento() {
+
+        $segmento = $this->db->get('segmento');
+        return $segmento->result_array();
     }
-    function totalvehiculos($id){
-        
+
+    function totalvehiculos($id) {
+
         $dato = "
             SELECT sum(if(tipVin_id = 2,1,0)) as propios,sum(if(tipVin_id = 3,1,0)) as administrado,
                     sum(if(tipVin_id = 4,1,0)) as contratista,count(emp_id) as total 
@@ -495,30 +500,31 @@ class Ingresoform_model extends CI_Model {
                     FROM vehiculo
                     where vehiculo.veh_status != 3 and emp_id =  $id 
             ";
-        
+
         $datos = $this->db->query($dato);
-        
+
 //       $this->db->select('sum(if(tipVin_id = 1,1,0)) as propios,sum(if(tipVin_id = 2,1,0)) as administrado,sum(if(tipVin_id = 4,1,0)) as contratista,emp_id'); 
 //       $this->db->where('emp_id',$id); 
 //       $this->db->where('usu_status !=',3); 
 //       $segmento = $this->db->get('vehiculo');
-       return $datos->result(); 
+        return $datos->result();
     }
-    function totalconductores($id){
-        
+
+    function totalconductores($id) {
+
         $dato = "
             SELECT sum(if(tipCon_id = 9,1,0)+if(tipCon_id = 10,1,0)+if(tipCon_id = 11,1,0)) as propios,
             sum(if(tipCon_id = 12,1,0)) as contratista, sum(if(tipCon_id = 13,1,0)) as administrado,count(emp_id) as total 
             FROM user where emp_id = $id and est_id != 3 and usu_tipo<>2
             ";
-        
+
         $datos = $this->db->query($dato);
-        
+
 //       $this->db->select('sum(if(tipVin_id = 1,1,0)) as propios,sum(if(tipVin_id = 2,1,0)) as administrado,sum(if(tipVin_id = 4,1,0)) as contratista,emp_id'); 
 //       $this->db->where('emp_id',$id); 
 //       $this->db->where('usu_status !=',3); 
 //       $segmento = $this->db->get('vehiculo');
-       return $datos->result(); 
+        return $datos->result();
     }
 
 }

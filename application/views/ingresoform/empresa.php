@@ -5,15 +5,18 @@
         <!--    <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">-->
         <div class="row">
             <div class="col-md-4 col-lg-4">
-                <label>Nombre/Razón Social</label><?php echo form_input('emp_razonSocial', $empresa[0]->emp_razonSocial, 'class="form-control obligatorio" id="emp_razonSocial"') ?>
+                <label>Nombre/Razón Social</label>
+                <input type="text" name="emp_razonSocial" value="<?php echo $empresa[0]->emp_razonSocial; ?>" id="emp_razonSocial" class="form-control obligatorio">
+
             </div>
             <div class="col-md-2 col-lg-2">
                 <label>Nit</label>
-
-                <?php echo form_input('emp_nit', $empresa[0]->emp_nit, 'class="form-control obligatorio" placeholder="NIT"  id="emp_nit"') ?>
+                <input type="text" name="emp_nit" id="emp_nit" value="<?php echo $empresa[0]->emp_nit; ?>" class="form-control obligatorio" placeholder="NIT" >
             </div>
             <div class="col-md-3 col-lg-3">
-                <label>Tipo de Empresa</label><?php echo form_dropdown('emp_idTipo', $tipo_empresa, $empresa[0]->emp_idTipo, 'id="emp_idTipo" class="form-control"') ?>
+                <label>Tipo de Empresa</label>
+
+                <?php echo form_dropdown('emp_idTipo', $tipo_empresa, $empresa[0]->emp_idTipo, 'id="emp_idTipo" class="form-control"') ?>
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>Segmento a la que pertenece</label>
@@ -89,24 +92,33 @@
 
             </div>
             <div class="col-md-3 col-lg-3">
-                <label>Telefono</label><?php echo form_input('emp_telefono', $empresa[0]->emp_telefono, 'class="form-control obligatorio" placeholder="TELEFONO" id="emp_telefono"') ?>
+                <label>Telefono</label>
+                <input type="text" name="emp_telefono" value="<?php echo $empresa[0]->emp_telefono; ?>" id="emp_telefono" placeholder="TELEFONO" class="form-control obligatorio">
             </div>
             <div class="col-md-3 col-lg-3">
-                <label>Direccion Principal</label><?php echo form_input('emp_direccion', $empresa[0]->emp_direccion, 'class="form-control obligatorio" placeholder="DIRECCION" id="emp_direccion"') ?>
+                <label>Direccion Principal</label>
+                <input type="text" name="emp_direccion" value="<?php echo $empresa[0]->emp_direccion; ?>" id="emp_direccion" placeholder="DIRECCION" class="form-control obligatorio">
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 col-lg-2">
-                <label>Sucursales</label><?php echo form_dropdown('emp_sucursal', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_sucursal, 'id="emp_sucursal" class="form-control obligatorio" ') ?>
+                <label>Sucursales</label>
+                <select name="emp_sucursal"  id="emp_sucursal" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_sucursal) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_sucursal) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select> 
             </div>
             <div class="col-md-4 col-lg-4">
-                <label>Direcciones Sucursales</label><?php echo form_input('emp_direccioSuc', $empresa[0]->emp_direccioSuc, 'class="form-control obligatorio" placeholder="DIRECCION" id="emp_direccioSuc"') ?>
+                <label>Direcciones Sucursales</label>
+                <input type="text" name="emp_direccioSuc" value="<?php echo $empresa[0]->emp_direccioSuc; ?>" id="emp_direccioSuc" placeholder="DIRECCION" class="form-control obligatorio">
             </div>
             <div class="col-md-4 col-lg-4">
-                <label>Nombre del Representante Legal</label><?php echo form_input('emp_nombre_repre', $empresa[0]->emp_nombre_repre, 'class="form-control obligatorio" placeholder="REPRESENTANTE" id="emp_nombre_repre"') ?>
+                <label>Nombre del Representante Legal</label>
+                <input type="text" name="emp_nombre_repre" value="<?php echo $empresa[0]->emp_nombre_repre; ?>" id="emp_nombre_repre" placeholder="REPRESENTANTE" class="form-control obligatorio">
             </div>
             <div class="col-md-2 col-lg-2">
-                <label>Cedula de Ciudadania</label><?php echo form_input('emp_numDocRepre', $empresa[0]->emp_numDocRepre, 'class="form-control obligatorio" placeholder="CEDULA" id="emp_numDocRepre"') ?>
+                <label>Cedula de Ciudadania</label>
+                <input type="text" name="emp_numDocRepre" value="<?php echo $empresa[0]->emp_numDocRepre; ?>" id="emp_numDocRepre" placeholder="CEDULA" class="form-control obligatorio">
             </div>
         </div>
     </div>
@@ -125,20 +137,21 @@
                                 <label>¿ Posee, Contrata o Administra vehiculos?</label><?php echo form_dropdown('emp_administraVehiculos', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_administraVehiculos, 'id="emp_administraVehiculos" class="form-control"') ?>
                             </div>-->
                 <div class="col-md-3 col-lg-3">
-                    <label>Propios</label><?php echo form_input('emp_vehiculosPropios', $totalvehiculos[0]->propios, 'disabled="disabled" class="form-control obligatorio" id="emp_vehiculosPropios"') ?>
+                    <label>Propios</label>
+                    <input type="text" name="emp_vehiculosPropios" value="<?php echo $empresa[0]->emp_vehiculosPropios; ?>" id="emp_vehiculosPropios" disabled="disabled" class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <label>Contratistas</label>
                     <!--<input type="text" class="form-control obligatorio" id="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" name="emp_vehiculosContratados">-->
-                    <?php echo form_input('emp_vehiculosContratados', $totalvehiculos[0]->contratista, 'disabled="disabled" class="form-control obligatorio" id="emp_vehiculosContratados"') ?>
+                    <input type="text" name="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" id="emp_vehiculosContratados" disabled="disabled"  class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <label>Administrados</label>
-                    <!--<input type="text" class="form-control" value="<?php echo $empresa[0]->emp_numeroVehiculoAdministra; ?>" class="form-control obligatorio" id="emp_numeroVehiculoAdministra" name="emp_numeroVehiculoAdministra">-->    
-                    <?php echo form_input('emp_numeroVehiculoAdministra', $totalvehiculos[0]->administrado, 'disabled="disabled" class="form-control obligatorio" id="emp_numeroVehiculoAdministra"') ?>
+
+                    <input type="text" name="emp_numeroVehiculoAdministra" value="<?php echo $empresa[0]->emp_numeroVehiculoAdministra; ?>" id="emp_numeroVehiculoAdministra" disabled="disabled" class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <label>Total</label><input disabled="disabled" type="text" value="<?php echo $totalvehiculos[0]->total; ?>"  class="form-control">
+                    <label>Total</label><input disabled="disabled" type="text"  value="<?php echo $totalvehiculos[0]->total; ?>"  class="form-control">
                 </div>
             </div>
         </div>
@@ -151,13 +164,16 @@
                                 <label>¿contrata o administra conductores?</label><?php echo form_dropdown('emp_adminConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_adminConductores, 'id="emp_adminConductores" class="form-control"') ?>
                             </div>-->
                 <div class="col-md-3 col-lg-3">
-                    <label>Propios</label><?php echo form_input('emp_numActConductores', $conductores[0]->propios, 'disabled="disabled" class="form-control obligatorio" id=emp_numActConductores') ?>
+                    <label>Propios</label>
+                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <label>Contratistas</label><?php echo form_input('emp_numActConductores', $conductores[0]->contratista, ' disabled="disabled" class="form-control obligatorio" id=emp_numActConductores') ?>
+                    <label>Contratistas</label>
+                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
-                    <label>Administrados</label><?php echo form_input('emp_numActConductoresAdministra', $conductores[0]->administrado, 'disabled="disabled" class="form-control obligatorio" id=emp_numActConductoresAdministra') ?>
+                    <label>Administrados</label>
+                    <input type="text" name="emp_numActConductoresAdministra" value="<?php echo $empresa[0]->emp_numActConductoresAdministra; ?>" id="emp_numActConductoresAdministra" disabled="disabled" class="form-control obligatorio">
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <label>Total</label><input disabled="disabled" type="text" value="<?php echo $conductores[0]->total; ?>"  class="form-control">
@@ -176,7 +192,8 @@
                 <label>¿Cuentan con ARL?</label><?php echo form_dropdown('emp_idArl', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_idArl, 'id="emp_idArl" class="form-control"') ?>
             </div>
             <div class="col-md-2 col-lg-2">
-                <label>Cual?</label><?php echo form_input('emp_Arl_otra', $empresa[0]->emp_Arl_otra, 'class="form-control" id="emp_Arl_otra"') ?>
+                <label>Cual?</label>
+                <input type="text" name="emp_Arl_otra" value="<?php echo $empresa[0]->emp_Arl_otra; ?>" id="emp_Arl_otra" class="form-control">
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>¿cuenta actualente con HSEQ?</label><?php echo form_dropdown('emp_hseq', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_hseq, 'id"=emp_hseq" class="form-control" ') ?>
@@ -190,19 +207,28 @@
                 <label>¿Realiza pruebas de ingreso a los conductores?</label><?php echo form_dropdown('emp_ingresoConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_ingresoConductores, 'id="emp_ingresoConductores" class="form-control"') ?>
             </div>
             <div class="col-md-1 col-lg-1">
-                <label> Examenes Medicos</label><?php echo form_checkbox('emp_examenesMedicos', '1', ((($empresa[0]->emp_examenesMedicos) == 1) ? TRUE : FALSE), 'id="emp_examenesMedicos"') ?>
+                <label> Examenes Medicos</label>
+                <input type="checkbox" name="emp_examenesMedicos" value="1" id="emp_examenesMedicos"  checked="<?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? TRUE : FALSE); ?>">
             </div>
             <div class="col-md-1 col-lg-1">
-                <label>Prueba Teorica</label><?php echo form_checkbox('emp_pruebasTeoricas', '1', ((($empresa[0]->emp_pruebasTeoricas) == 1) ? TRUE : FALSE), 'id="emp_pruebasTeoricas"') ?>
+                <label>Prueba Teorica</label>
+                <input type="checkbox" name="emp_pruebasTeoricas" value="1" id="emp_pruebasTeoricas"  checked="<?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? TRUE : FALSE); ?>">
             </div>
             <div class="col-md-2 col-lg-2">
-                <label>Examentes psocosensometricos</label><?php echo form_checkbox('emp_examenesPsicosensometricos', '1', ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? TRUE : FALSE), 'id="emp_examenesPsicosensometricos"') ?>
+                <label>Examentes psocosensometricos</label>
+                <input type="checkbox" name="emp_examenesPsicosensometricos" id="emp_examenesPsicosensometricos" value="1" class="form-control obligatorio" checked="<?php echo ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? TRUE : FALSE); ?>">
             </div>
             <div class="col-md-1 col-lg-1">
-                <label>Prueba tactica</label><?php echo form_checkbox('emp_pruebaTactica', '1', ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? TRUE : FALSE), 'id="emp_pruebaTactica"') ?>
+                <label>Prueba tactica</label>
+                <input type="checkbox" name="emp_pruebaTactica" id="emp_pruebaTactica"  value="1" checked="<?php echo ((($empresa[0]->emp_pruebaTactica) == 1) ? TRUE : FALSE); ?>">
             </div>
             <div class="col-md-3 col-lg-3">
-                <label>¿realiza capacitacion en seguridad vial?</label><?php echo form_dropdown('emp_capacitaPruebaVial', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_capacitaPruebaVial, 'id="emp_capacitaPruebaVial" class="form-control"') ?>
+                <label>¿realiza capacitacion en seguridad vial?</label>
+                <select name="emp_capacitaPruebaVial"  id="emp_capacitaPruebaVial" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_capacitaPruebaVial) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_capacitaPruebaVial) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
+
             </div>
         </div>
         <div class="row">
@@ -217,10 +243,18 @@
     <div class="row" >
         <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
         <div class="col-md-7 col-lg-7">
-            <label>¿cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?</label><?php echo form_dropdown('emp_procedimientoAtencion', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_procedimientoAtencion, 'id="emp_procedimientoAtencion" class="form-control"') ?>
+            <label>¿cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?</label>
+            <select name="emp_procedimientoAtencion"  id="emp_procedimientoAtencion" class="form-control">
+                <option value="2" <?php echo ((($empresa[0]->emp_procedimientoAtencion) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                <option value="1" <?php echo ((($empresa[0]->emp_procedimientoAtencion) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+            </select>
         </div>
         <div class="col-md-5 col-lg-5">
-            <label>¿posee historicos de acciodentes y/o incidentes de transito?</label><?php echo form_dropdown('emp_historicoAccidente', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_historicoAccidente, 'id="emp_historicoAccidente" class="form-control"') ?>
+            <label>¿posee historicos de acciodentes y/o incidentes de transito?</label>
+            <select name="emp_historicoAccidente"  id="emp_historicoAccidente" class="form-control">
+                <option value="2" <?php echo ((($empresa[0]->emp_historicoAccidente) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                <option value="1" <?php echo ((($empresa[0]->emp_historicoAccidente) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+            </select>
         </div>
         <br>
         <hr>

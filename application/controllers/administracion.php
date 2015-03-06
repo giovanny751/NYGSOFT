@@ -56,6 +56,11 @@ class Administracion extends My_Controller {
 //        ingresoform/lisEmpresa
         redirect('index.php/ingresoform/lisVehiculos/' . $id_emp, 'location');
     }
+    function empresa_el($id= null) {
+        $this->administracion_model->empresa_el($id);
+//        ingresoform/lisEmpresa
+        redirect('index.php/ingresoform/lisEmpresa', 'location');
+    }
 
     function empleado($id = null) {
 

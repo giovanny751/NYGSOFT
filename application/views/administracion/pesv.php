@@ -44,7 +44,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="portlet_tab1">
-                    <div class="alert alert-info"><center><p>INTRODUCCIÓN</p></center></div>
+                    <div class="alert alert-info"><center><p><b>INTRODUCCIÓN</b></p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
                         <textarea id="introduccion" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($introduccion[0]['int_introduccion'])) echo $introduccion[0]['int_introduccion'] ?></textarea>
                     </div>
@@ -56,7 +56,7 @@
                 <div class="tab-pane" id="portlet_tab2">
                     <form method="post" id="objetivos">
                         <div  class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="objetivosgen">
-                            <div class="alert alert-info"><center>OBJETIVOS GENERALES</center></div>
+                            <div class="alert alert-info"><center><b>OBJETIVOS GENERALES</b></center></div>
 
                             <?php if (empty($general)) { ?>
                                 <div class="principal">
@@ -93,7 +93,7 @@
                             ?>
                         </div>
                         <div style="margin-top:15px;" class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top:15px">
-                            <div class="alert alert-info"><center><p>OBJETIVOS ESPECIFICOS</p></center></div>
+                            <div class="alert alert-info"><center><p><b>OBJETIVOS ESPECIFICOS</b></p></center></div>
                             <div class="row agregar">
                                 <!--<div class="principal">-->
                                 <?php if (empty($especificos)) { ?>
@@ -115,11 +115,14 @@
                                     </div>
                                     <?php
                                 } else {
+                                    ?>
+                                    <!--<div class="row">-->
+                                    <?php
                                     foreach ($especificos as $esp) {
                                         ?>
                                         <div class="principal">
                                             <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                                                <textarea class="form-control" name="objetivosespecificos[]" ><?php echo $esp['objEsp_objetivo'] ?></textarea>
+                                                <textarea class="form-control" name="objetivosespecificos[]" ><?php echo utf8_encode($esp['objEsp_objetivo']) ?></textarea>
                                                 <!--<input value="<?php echo $esp['objEsp_objetivo'] ?>" type="text" class="form-control" name="objetivosespecificos[]" placeholder="Objetivos Especificos">-->
                                             </div>
                                             <div align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
@@ -128,20 +131,34 @@
                                                     <?php
                                                     $dato = "";
                                                     foreach ($tipoobjetivo as $tipo => $tipobj) {
-                                                        echo "<option value='" . $tipobj['tipObj_id'] . "'>" . $tipobj['tipObj_nombre'] . "</option>";
+
+                                                        if ($esp['tipObj_id'] == $tipobj['tipObj_id']) {
+                                                            $select = 'selected';
+                                                        } else {
+                                                            $select = '';
+                                                        }
+
+                                                        echo "<option " . $select . " value='" . $tipobj['tipObj_id'] . "'>" . $tipobj['tipObj_nombre'] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarespecifico">Agregar</button></div>
-                                            <div esp="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button doc="<?php echo $esp['objEsp_id'] ?>" dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
-
+                                            <div align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                                <button type="button" class="btn btn-info agregarespecifico">Agregar</button>
+                                            </div>
+                                            <div esp="" align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                                <button doc="<?php echo $esp['objEsp_id'] ?>" dato="especifico"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button>
+                                            </div>
                                         </div>
                                         <?php
                                     }
+                                    ?>
+                                    <!--</div>-->
+                                    <?php
                                 }
                                 ?>
                                 <!--</div>-->
+
                             </div>
                             <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                                 <button type="button" id="guardarobjetivos" class="btn btn-success">Guardar</button>
@@ -150,7 +167,8 @@
                     </form>
                 </div>
                 <div class="tab-pane" id="portlet_tab3">
-                    <div class="alert alert-info"><center><p>Los  miembros  de  la  alta  dirección  que  aparecen  a  continuación:  </p></center></div>
+                    <div class="alert alert-info"><center><p><b>COMPROMISO DE LA ALTA DIRECCIÓN </b></p></center></div>
+                    <p class="bg-info" style="color:black">Los miembros de la alta dirección que aparecen a continuación:</p>
                     <form method="post" id="miembros">
                         <div class="row miembros">
 
@@ -162,8 +180,8 @@
                                     <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Cargo</label><input type="text" class="form-control" name="cargo[]" placeholder="Cargo">
                                     </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="compromiso"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><label>&nbsp;</label><button type="button" class="btn btn-info agregarmiembro">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><label>&nbsp;</label><button  dato="compromiso"  type="button" class="btn btn-danger eliminarpecifico">Eliminar</button></div>
                                     <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
                                 </div>
                                 <?php
@@ -188,15 +206,18 @@
                             ?>
                         </div>
                         <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
-                            <textarea id="introduccion" class="form-control textareasumer" style="width: 100%; height: 258px;"></textarea>
+                            <textarea id="miembrotexto" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php echo $textomiembro[0]['comTex_texto']; ?></textarea>
                         </div>
+                        <input type="hidden" name="textomiembro" id="textomiembro">
                     </form>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                         <button type="button" id="guardarmiembros" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab4">
-                    <div class="alert alert-info"><center><p>Como  responsable  del  PESV  se  a  delegado  por  la  Alta  gerencia  a: </p></center></div>
+                    <div class="alert alert-info"><center><p><b>RESPONSABLE(S) DEL PESV</b></p></center></div>
+                    <p class="bg-info" style="color:black">Como responsable(s) del PESV se a delegado por la Alta gerencia a:</p>
+
                     <form method="post" id="responsables">
                         <div class="row datosresponsable">
                             <div class="row responsable">
@@ -227,13 +248,17 @@
                                 ?>
                             </div>
                         </div>
-                    </form>    
+                    </form>
+                    <br>
+                    <br>
+                    <p class="bg-info" style="color:black">Quién se encargará de diseñar, desarrollar , implementar y hacer seguimiento del PESV. Y de cada una de las acciones que deriven de éste.</p>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
                         <button type="button" id="guardarresponsables" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab5">
-                    <div class="alert alert-info"><center><p>El  CSV  (comité  de  seguridad  vial)  designado  por  la  alta  gerencia,  está  conformado  por:  </p></center></div>
+                    <div class="alert alert-info"><center><p><b>COMITÉ DE SEGURIDAD VIAL</b></p></center></div>
+                    <p class="bg-info" style="color:black">El CSV (comité de seguridad vial) designado por la alta gerencia, está conformado por:</p>
                     <form method="post" id="comite">
                         <div class="comite">
                             <div class="row">
@@ -268,119 +293,123 @@
                                 ?>
 
                             </div>
-                    </form>    
+                            <br>
+                            <div style="margin-top: 3px" col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
+                                <textarea id="textocomite" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php echo $consultatextocomite[0]['texCom_texto'] ?></textarea>
+                            </div>
+                            <input type="hidden" name="textocom" id="textocom">
+                            </form>    
+                            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                                <button type="button" id="guardarcomite" class="btn btn-success">Guardar</button>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab-pane" id="portlet_tab6">
+                    <div class="alert alert-info"><center><p><b>POLÍTICA  DE  SEGURIDAD  VIAL </b> </p></center></div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            <textarea id="politica" class="form-control textareasumer" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
+                        </div>
+                    </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                        <button type="button" id="guardarcomite" class="btn btn-success">Guardar</button>
+                        <button type="button" id="guardarpolitica" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab6">
-                <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                        <textarea id="politica" class="form-control textareasumer" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
+                <div class="tab-pane" id="portlet_tab7">
+                    <div class="alert alert-info"><center><p><b>COMUNICACIÓN </b></p></center></div>
+                    <div class="row">
+                        <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
+                            <p>El  lider  de  la  organización  garantizará  que  las  acciones  de  este  PESV  sea  informadas  a  todos  los  involucrados  a  través  de  carteleras,  boletines  y  comunicados.</p>  
+
+                            <p>Nota:  La  opción  de  comunicación,  debe  poder  ser  fexible  para  cada  organización.  (Boletines,  correo  electrponico,  página  web,  etc,  etc) </p> 
+
+                            <p>La  politica  de  seguridad  vial  se  mantendrá  en  un  lugar  visible  y  disponible  para  ser  consultada  por  los  miembros  de  la  organización.  El  Plan  Estratégico  de  Seguridad  Vial,  debe  ser  comunicado  a  todos  los  empleados. </p> 
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                    <button type="button" id="guardarpolitica" class="btn btn-success">Guardar</button>
-                </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab7">
-                <div class="alert alert-info"><center><p>POLÍTICA  DE  SEGURIDAD  VIAL  </p></center></div>
-                <div class="row">
-                    <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
-                        <p>El  lider  de  la  organización  garantizará  que  las  acciones  de  este  PESV  sea  informadas  a  todos  los  involucrados  a  través  de  carteleras,  boletines  y  comunicados.</p>  
-
-                        <p>Nota:  La  opción  de  comunicación,  debe  poder  ser  fexible  para  cada  organización.  (Boletines,  correo  electrponico,  página  web,  etc,  etc) </p> 
-
-                        <p>La  politica  de  seguridad  vial  se  mantendrá  en  un  lugar  visible  y  disponible  para  ser  consultada  por  los  miembros  de  la  organización.  El  Plan  Estratégico  de  Seguridad  Vial,  debe  ser  comunicado  a  todos  los  empleados. </p> 
+                <div class="tab-pane" id="portlet_tab10">
+                    <div class="alert alert-info"><center><p><b>ESTADISTICAS</b></p></center></div>
+                    <div class="row" >
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            <div id="container"></div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
+                            <div id="categoria"></div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
+                            <div id="tipotransporte"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab10">
-                <div class="alert alert-info"><center><p>ESTADISTICAS</p></center></div>
-                <div class="row" >
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                        <div id="container"></div>
+                <div class="tab-pane" id="portlet_tab8">
+                     <div class="alert alert-info"><center><p><b>DIAGNÓSTICO</b></p></center></div>
+                    <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
+                        <textarea id="diagnostico" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($diagnostico[0]['texDia_texto'])) echo $diagnostico[0]['texDia_texto'] ?></textarea>
                     </div>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-                        <div id="categoria"></div>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-                        <div id="tipotransporte"></div>
+                    <div class="row" align="center">
+                        <button type="button" class="btn btn-success" id="guardardiagnostico">Guardar</button>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab8">
-                <div class="alert alert-info"><center><p>DIAGNÓSTICO</p></center></div>
-                <div class="row">
-                    <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
-                        <p>Los  formularios  del  diagnostico  realizado  para  la  empresa  se  pueden  ver  en  el  anexo  1  de  este  documento.  Los  resultados  obtenidos  se  pueden  ver  en  el  anexo  2.  De  dichos  resultados  se  identificaron  y  priorizaron  los  siguientes  riesgos: </p>  
-
-                        <p>Nota:  Los  anexos  a  los  que  se  refiere  esta  parte  son:  Anexo  1  (fromularios  en  PDF)  y  Anexo  2  (los  reportes  que  debe  arrojar  el  aplicativo). </p>  
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab9">
-                <div class="alert alert-info"><center><p>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </p></center></div>
-                <center><p class="alert alert-danger">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
-                <form method="post" id="prioridades">
-                    <div class="row principalpriorida">
+                <div class="tab-pane" id="portlet_tab9">
+                    <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
+                    <center><p class="bg-danger" style="color:black">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
+                    <form method="post" id="prioridades">
+                        <div class="row principalpriorida">
 
 
-                        <?php if (empty($prioridades)) { ?>
-                            <div class="principal">
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                </div>
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                    <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
-                                </div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
-                                <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-
-                                </div> 
-                            </div> 
-                            <?php
-                        } else {
-                            foreach ($prioridades as $prioridad) {
-                                ?>
+                            <?php if (empty($prioridades)) { ?>
                                 <div class="principal">
                                     <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                        <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                        <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
                                     </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
-                                </div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
+                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+
+                                    </div> 
+                                </div> 
                                 <?php
+                            } else {
+                                foreach ($prioridades as $prioridad) {
+                                    ?>
+                                    <div class="principal">
+                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+                                            <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                        </div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
+                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
+                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+                                    </div>
+                                    <?php
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
 
-                    </div>
-                </form>
-                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
-                    <button type="button" id="guardarprioridades" class="btn btn-success">Guardar</button>
-                </div>
-            </div>
-            <div class="tab-pane" id="portlet_tab11">
-                <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
-
-                <div class="row datosresponsable">
-                    <div class="row responsable">
+                        </div>
+                    </form>
+                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
+                        <button type="button" id="guardarprioridades" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
-                </
+                <div class="tab-pane" id="portlet_tab11">
+                    <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
+
+                    <div class="row datosresponsable">
+                        <div class="row responsable">
+                        </div>
+                    </div>
+                    </
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <?php
 //    if(!empty($tipoobjetivo)){
@@ -393,7 +422,19 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 <script>
 
-
+$('#guardardiagnostico').click(function(){
+    
+//    alert('paso por aca');
+    
+    var diagnostico = $('#diagnostico').code();
+    var url = "<?php echo base_url('index.php/administracion/guardardiagnostico') ?>";
+    
+    $.post(url,{diagnostico:diagnostico}).done(function(msg){
+        alerta('verde',"DATOS GUARDADOS CORRECTAMENTE")
+    }).fail(function(msg){
+        alerta('rojo','ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+    });
+});
 
 //------------------------------------------------------------------------------
 //Grafica
@@ -719,7 +760,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
                                     <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarespecifico">Eliminar</button></div>\n\
                                 </div>';
         $('.agregar').append(contenido);
-        $('.tab-pane').append('height','850px');
+        $('.tab-pane').append('height', '850px');
     });
 
     $('body').delegate('.eliminarespecifico', 'click', function() {
@@ -741,8 +782,14 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
+
     $('#guardarmiembros').click(function() {
-        var introduccion = $('#introduccion').val();
+//        var introduccion = $('#introduccion').code();
+
+        var introduccion = $('#miembrotexto').code();
+//        console.log(introduccion);
+        $('#textomiembro').val(introduccion);
+
         var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
         modal();
         $.post(url, $('#miembros').serialize())
@@ -783,7 +830,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
     });
     $('#guardarcomite').click(function() {
-
+        var introduccion = $('#textocomite').code();
+//        console.log(introduccion);
+        $('#textocom').val(introduccion);
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         modal();
         $.post(url, $('#comite').serialize())

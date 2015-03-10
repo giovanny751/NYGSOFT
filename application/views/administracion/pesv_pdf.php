@@ -6,11 +6,11 @@
     <?php
     if (!empty($introduccion[0]['int_introduccion'])) {
         ?>
-        <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 color">
+        <p>
             <?php
             echo $introduccion[0]['int_introduccion'];
         }
-        ?></div><h2>OBJETIVOS</h2><?php
+        ?></p><br><h2>OBJETIVOS</h2><?php
         ?></div><h3>Objetivos generales</h3><?php
 foreach ($general as $gen) {
     ?>
@@ -23,8 +23,8 @@ foreach ($general as $gen) {
 ?><h3>Objetivos especificos</h3><?php
 foreach ($especificos as $esp) {
     ?>
-    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 color">
-        <?php echo $esp['objEsp_objetivo'] ?><br></div>
+    <p>
+        <?php echo $esp['objEsp_objetivo'] ?></p><br>
     <?php
 }
 ?>
@@ -38,7 +38,7 @@ foreach ($especificos as $esp) {
             echo "<li>" . $obj . "</li>";
         }
         echo "</ul><br>";
-    }   
+    }
     ?>
 </ul>
 <!--</table>-->
@@ -48,10 +48,10 @@ foreach ($especificos as $esp) {
 <?php
 foreach ($miembros as $miembro) {
     ?>
-    <div class="color col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+    <p>
         <label>Nombre: </label><?php echo $miembro['mie_nombre'] ?><br>
         <label>Cargo: </label><?php echo $miembro['mie_cargo'] ?>
-    </div>
+    </p><br>
     <?php
 }
 ?>
@@ -61,39 +61,37 @@ foreach ($miembros as $miembro) {
 <br>Como responsable del PESV se a delegado por la Alta gerencia a: <br><?php
 foreach ($responsables as $responsable) {
     ?>
-    <div class="color col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+    <p>
         <label>Nombre: </label><?php echo $responsable['res_cargo']; ?><br>
         <label>Cargo: </label><?php echo $responsable['res_nombre']; ?>
-    </div>
+    </p><br>
     <?php
 }
 ?><h2>COMITE</h2><?php
 foreach ($comites as $comite) {
     ?>
-
-    <div class="color col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+    <p>
         <label>Nombre: </label><?php echo $comite['com_nombre']; ?><br>
         <label>Cargo: </label><?php echo $comite['com_cargo']; ?>
-    </div>
-
+    </p>
     <?php
 }
 ?><h2>POLITICA</h2>
-<br>POLÍTICA  DE  SEGURIDAD  VIAL<br><?php
+<br>POLÍTICA  DE  SEGURIDAD  VIAL<?php
 if (!empty($politicas[0]['pol_politica'])) {
-    ?><div class="col-lg-8 col-sm-8 col-xs-8 col-md-8 color">
-    <?php
-    echo $politicas[0]['pol_politica'];
-}
-?></div><br><h2>PRIORIDADES</h2>
+    ?><p>
+        <?php
+        echo $politicas[0]['pol_politica'];
+    }
+    ?></p><br><h2>PRIORIDADES</h2>
 IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN <?php
 foreach ($prioridades as $prioridad) {
     ?>
 
-    <div class=" color col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
+    <p>
         <label>No Prioridad: </label><?php echo $prioridad['pri_prioridad']; ?> <br>
         <label>Nombre del Riesgo: </label><?php echo $prioridad['pri_riesgo']; ?>
-    </div>
+    </p><br>
     <?php
 }
 ?>

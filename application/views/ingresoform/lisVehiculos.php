@@ -2,7 +2,7 @@
     ruta = "ingresoform/get_datavehiculo/<?php echo $id ?>";
 </script>
 <div class='alert alert-info'>
-    <center><b><?php echo $titulo; ?></b></center>
+    <center><b><?php echo strtoupper($titulo); ?></b></center>
 </div>
 <div class="portlet box blue">
     <div class="caption">

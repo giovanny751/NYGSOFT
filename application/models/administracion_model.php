@@ -289,7 +289,7 @@ class administracion_model extends CI_Model {
     function visualizacionobjesp($id) {
 
         $this->db->where('emp_id', $id);
-        $this->db->where('tipObj_id', 5);
+//        $this->db->where('tipObj_id', 5);
 //        $this->db->join('tipo_objetivo','tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
 
         $dato = $this->db->get('objetivos_especificos');
@@ -327,7 +327,25 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('comite');
         return $dato->result_array();
     }
-
+    
+    function consultadiagnostico($id){
+        
+        $this->db->where('emp_id',$id);
+        $diagnostico = $this->db->get('texto_diagnostico');
+        return $diagnostico->result_array();
+    }
+    function actualizardiagnostico($texto, $id){
+        $this->db->where('emp_id',$id);
+        $this->db->set('texDia_texto',$texto);
+        $this->db->update('texto_diagnostico');
+    }
+    function insertardiagnostico($texto, $id){
+        
+        $this->db->set('texDia_texto',$texto);
+        $this->db->set('emp_id',$id);
+        $this->db->insert('texto_diagnostico');
+    }
+    
     function consultaingtroduccion($id) {
 
         $this->db->where('emp_id', $id);
@@ -417,6 +435,46 @@ class administracion_model extends CI_Model {
 
         $this->db->where('emp_id', $id);
         $this->db->delete('miembros');
+    }
+    function guardartextomiembro($texto,$id){
+        
+        $this->db->where('emp_id',$id);
+        $this->db->set('comTex_texto',$texto);
+        $this->db->update('comite_texto');
+        
+        echo $this->db->last_query();
+        
+    }
+    function textomiembro($id){
+        
+        $this->db->where('emp_id',$id);
+//        $this->db->set('comTex_texto',$texto);
+        $dato = $this->db->get('comite_texto');
+        return $dato->result_array();
+//        echo $this->db->last_query();
+        
+    }
+    function guardartextocomite($texto,$id){
+        
+        $this->db->where('emp_id',$id);
+        $this->db->set('texCom_texto',$texto);
+        $this->db->update('texto_comite');
+        
+        echo $this->db->last_query();
+        
+    }
+    function insertartextocomite($texto,$id){
+        
+        $this->db->set('emp_id',$id);
+        $this->db->set('texCom_texto',$texto);
+        $this->db->insert('texto_comite');
+        
+    }
+    function consultatextocomite($id){
+        
+        $this->db->where('emp_id',$id);
+        $dato = $this->db->get('texto_comite');
+        return $dato->result_array();
     }
 
     function guardarresponsables($data) {

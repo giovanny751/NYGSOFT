@@ -56,7 +56,8 @@ class Administracion extends My_Controller {
 //        ingresoform/lisEmpresa
         redirect('index.php/ingresoform/lisVehiculos/' . $id_emp, 'location');
     }
-    function empresa_el($id= null) {
+
+    function empresa_el($id = null) {
         $this->administracion_model->empresa_el($id);
 //        ingresoform/lisEmpresa
         redirect('index.php/ingresoform/lisEmpresa', 'location');
@@ -104,10 +105,9 @@ class Administracion extends My_Controller {
         $id = $this->input->post('funcionario');
         $idinterno = $this->data['user']['user_id'];
         $ruta = 'index.php/login/acceso/pp/' . encrypt_id($idinterno);
-        
+
 //        echo "<pre>";
 //        var_dump($formulario);die;
-        
 //        echo $ruta;die;
         $data = array();
         $factoresriesgo = $this->input->post('facRis_id');
@@ -151,8 +151,8 @@ class Administracion extends My_Controller {
             if ($campo != 'facRis_id' && $campo != 'cau_id' && $campo != 'funcionario')
                 $data[$campo] = $valor;
         }
-        
-        
+
+
 
 //        echo "<pre>";
         $this->administracion_model->guardarempleado($data, $id);
@@ -339,6 +339,7 @@ class Administracion extends My_Controller {
         $this->data['inicio'] = $this->administracion_model->admin_inicio();
         $this->layout->view('administracion/inicio', $this->data);
     }
+
     function administracion_emp() {
         $id = $this->data['user']['emp_id'];
         $this->data['inicio'] = $this->administracion_model->admin_inicio_emp($id);
@@ -349,10 +350,11 @@ class Administracion extends My_Controller {
         $post = $this->input->post();
         $this->administracion_model->guardar_admin_inicio($post);
     }
+
     function guardar_admin_inicio_emp() {
         $post = $this->input->post();
         $id = $this->data['user']['emp_id'];
-        $this->administracion_model->guardar_admin_inicio_emp($post,$id);
+        $this->administracion_model->guardar_admin_inicio_emp($post, $id);
     }
 
     function pesv() {
@@ -360,7 +362,13 @@ class Administracion extends My_Controller {
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
         $this->data['especificos'] = $this->administracion_model->visualizacionobjesp($id);
-        
+        $this->data['textomiembro'] = $this->administracion_model->textomiembro($id);
+        $this->data['consultatextocomite'] = $this->administracion_model->consultatextocomite($id);
+        $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);
+
+//        echo "<pre>";
+//        var_dump($this->data['textomiembro']);die;
+//        
         $this->data['miembros'] = $this->administracion_model->visualizacionmiembros($id);
         $this->data['responsables'] = $this->administracion_model->visualizacionresponsables($id);
         $this->data['comites'] = $this->administracion_model->visualizacioncomite($id);
@@ -373,7 +381,7 @@ class Administracion extends My_Controller {
 
 
 
-        
+
         $this->layout->view('administracion/pesv', $this->data);
     }
 
@@ -389,27 +397,28 @@ class Administracion extends My_Controller {
         $this->data['politicas'] = $this->administracion_model->verificapolitica($id);
         $this->data['prioridades'] = $this->administracion_model->verificaprioridad($id);
         $this->data['estadistica'] = $this->administracion_model->estadisticas($id);
+        $this->data['textomiembro'] = $this->administracion_model->textomiembro($id);
         $this->data['itiniere'] = $this->administracion_model->itiniere($id);
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
-$this->data['especificoslineaaccion'] = $this->administracion_model->visualizacionobjesplineaaccion($id);
+        $this->data['consultatextocomite'] = $this->administracion_model->consultatextocomite($id);
+        $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);
+        $this->data['especificoslineaaccion'] = $this->administracion_model->visualizacionobjesplineaaccion($id);
         $i = array();
-        
-        foreach($this->data['especificoslineaaccion'] as $key => $val){
+
+        foreach ($this->data['especificoslineaaccion'] as $key => $val) {
             $i[$val['tipObj_nombre']][] = $val['objEsp_objetivo'];
         }
-        
+
 //        echo "<pre>";
 //        var_dump($i);die;
-        
-        $this->data['lineaaccion'] = $i; 
-        
-        
-        $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
-//        echo $html;
-        pdf($html);
-    }
 
-    
+        $this->data['lineaaccion'] = $i;
+
+
+        $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
+        echo $html;
+//        pdf($html);
+    }
 
     function eliminar() {
 
@@ -463,6 +472,21 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
         $this->administracion_model->eliminarpesv($tabla, $campo, $id, $idempresa);
     }
 
+    function guardardiagnostico() {
+
+        $texto = $this->input->post('diagnostico');
+        $id = $this->data['user']['emp_id'];
+
+
+
+        $diagnostico = $this->administracion_model->consultadiagnostico($id);
+        if (!empty($diagnostico)) {
+            $this->administracion_model->actualizardiagnostico($texto, $id);
+        } else {
+            $this->administracion_model->insertardiagnostico($texto, $id);
+        }
+    }
+
     function guardarintroduccion() {
 
         $introduccion = $this->input->post('introduccion');
@@ -491,7 +515,7 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
             for ($i = 0; $i < count($general); $i++) {
 
                 $data[] = array(
-                    'objGen_objetivo' => $general[$i],
+                    'objGen_objetivo' => utf8_decode($general[$i]),
                     'emp_id' => $id
                 );
             }
@@ -506,7 +530,7 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
 
                 $data[] = array(
                     'tipObj_id' => $tipoobjetivo[$i],
-                    'objEsp_objetivo' => $especifico[$i],
+                    'objEsp_objetivo' => utf8_decode($especifico[$i]),
                     'emp_id' => $id
                 );
             }
@@ -524,6 +548,9 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
         $cargo = $this->input->post('cargo');
         $nombre = $this->input->post('nombre');
         $id = $this->data['user']['emp_id'];
+        $texto = $this->input->post('textomiembro');
+//        echo $id."*****";die;
+
         $data = array();
         for ($i = 0; $i < count($cargo); $i++) {
             $data[] = array(
@@ -533,6 +560,7 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
             );
         }
 
+        $this->administracion_model->guardartextomiembro($texto, $id);
         $this->administracion_model->eliminarmiembros($id);
         $this->administracion_model->miembros($data);
     }
@@ -576,6 +604,7 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
 
         $cargo = $this->input->post('cargo');
         $nombre = $this->input->post('nombre');
+        $texto = $this->input->post('textocom');
         $id = $this->data['user']['emp_id'];
         $data = array();
         for ($i = 0; $i < count($cargo); $i++) {
@@ -584,6 +613,12 @@ $this->data['especificoslineaaccion'] = $this->administracion_model->visualizaci
                 'com_nombre' => $nombre[$i],
                 'emp_id' => $id
             );
+        }
+        $consulta = $this->administracion_model->consultatextocomite($id);
+        if (!empty($consulta)) {
+            $this->administracion_model->guardartextocomite($texto, $id);
+        } else {
+            $this->administracion_model->insertartextocomite($texto, $id);
         }
         $this->administracion_model->eliminarcomite($id);
         $this->administracion_model->guardarcomite($data);

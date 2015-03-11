@@ -41,6 +41,7 @@
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
                 <li><a href="#portlet_tab9" data-toggle="tab">PRIORIDADES</a></li>
                 <li><a href="#portlet_tab11" data-toggle="tab">CRONOGRAMA</a></li>
+                <li><a href="#portlet_tab12" data-toggle="tab">SUBIR IMAGEN</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="portlet_tab1">
@@ -342,7 +343,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab8">
-                     <div class="alert alert-info"><center><p><b>DIAGNÓSTICO</b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>DIAGNÓSTICO</b></p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
                         <textarea id="diagnostico" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($diagnostico[0]['texDia_texto'])) echo $diagnostico[0]['texDia_texto'] ?></textarea>
                     </div>
@@ -405,9 +406,42 @@
                         <div class="row responsable">
                         </div>
                     </div>
-                    </
+
+                </div>
+                <div class="tab-pane" id="portlet_tab12">
+                    <div>
+                        <center>
+                            <div id="formulario_imagenes">
+                                <span><?php echo validation_errors(); ?></span>
+                                <?= form_open_multipart(base_url() . "index.php/administracion/do_upload") ?>
+                                
+                                <?php if(!empty($empresa[0]->userfile)){
+                                    ?>
+                                <center><img src="<?php echo base_url('/uploads/')."/".$empresa[0]->userfile ?>" style="width: 240px"></center>
+                                        <?php
+                                } ?>
+                                
+                                <label><h1>Imagen </h1><br></label><input type="file" name="userfile" /><br /><br />
+                                <input type="submit" value="Subir imágen" class="btn green"/>
+                                <?= form_close() ?>
+                            </div>
+                        </center>
+                        <style>
+    
+    
+    input[type=file]{
+        padding: 10px;
+        width: 300px;
+        background-color: #444;
+        color: #fff;
+        font-weight: bold;
+    }
+    
+</style>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -422,19 +456,19 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 <script>
 
-$('#guardardiagnostico').click(function(){
-    
+    $('#guardardiagnostico').click(function() {
+
 //    alert('paso por aca');
-    
-    var diagnostico = $('#diagnostico').code();
-    var url = "<?php echo base_url('index.php/administracion/guardardiagnostico') ?>";
-    
-    $.post(url,{diagnostico:diagnostico}).done(function(msg){
-        alerta('verde',"DATOS GUARDADOS CORRECTAMENTE")
-    }).fail(function(msg){
-        alerta('rojo','ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+
+        var diagnostico = $('#diagnostico').code();
+        var url = "<?php echo base_url('index.php/administracion/guardardiagnostico') ?>";
+
+        $.post(url, {diagnostico: diagnostico}).done(function(msg) {
+            alerta('verde', "DATOS GUARDADOS CORRECTAMENTE")
+        }).fail(function(msg) {
+            alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+        });
     });
-});
 
 //------------------------------------------------------------------------------
 //Grafica
@@ -619,9 +653,9 @@ $('#guardardiagnostico').click(function(){
 //        console.log(politica);
         $.post(url, {politica: politica})
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -775,9 +809,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, {introduccion: introduccion})
                 .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-            quit_modal();
-        }).fail(function(msg) {
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                    quit_modal();
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -794,9 +828,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, $('#miembros').serialize())
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -807,9 +841,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, $('#objetivos').serialize())
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -821,9 +855,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, $('#responsables').serialize())
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -837,9 +871,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, $('#comite').serialize())
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -851,9 +885,9 @@ $('#guardardiagnostico').click(function(){
         modal();
         $.post(url, $('#prioridades').serialize())
                 .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                    quit_modal();
+                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+                }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

@@ -231,11 +231,7 @@
 
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-lg-4">
-                <label>Logo Corporativo: </label><input type="file" id="emp_imagen" name="emp_imagen">
-            </div>
-        </div>
+        
     </div>
     <br>
     <hr>

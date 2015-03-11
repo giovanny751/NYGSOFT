@@ -613,6 +613,11 @@ class administracion_model extends CI_Model {
         $this->db->where('emp_id', $id);
         $this->db->update('empresa');
     }
+    function empresa($id) {
+        $this->db->where('emp_id', $id);
+        $datos=$this->db->get('empresa');
+        return $datos->result();
+    }
 
 //    function guardarempleado($post) {
 //        $post['usu_segundoapellido'] = $post['usu_segundoapellido'] . " ";
@@ -622,4 +627,12 @@ class administracion_model extends CI_Model {
 //            $this->db->insert('user', $post);
 //        }
 //    }
+    function guardar_emp($userfile,$id) {
+        $this->db->where('emp_id', $id);
+        $this->db->set('userfile', $userfile);
+        $this->db->update('empresa');
+//        if (($this->db->affected_rows()) > 0) {
+//            $this->db->insert('empresa', $post);
+//        }
+    }
 }

@@ -359,6 +359,7 @@ class Administracion extends My_Controller {
 
     function pesv() {
         $id = $this->data['user']['emp_id'];
+        $this->data['empresa'] = $this->administracion_model->empresa($id);
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
         $this->data['especificos'] = $this->administracion_model->visualizacionobjesp($id);
@@ -387,6 +388,7 @@ class Administracion extends My_Controller {
 
     function pesv_pdf() {
         $id = $this->data['user']['emp_id'];
+//        $this->data['empresa'] = $this->administracion_model->empresa($id);
         $this->data['empresa'] = $this->administracion_model->info_empresa($id);
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
@@ -416,8 +418,16 @@ class Administracion extends My_Controller {
 
 
         $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
-        echo $html;
-//        pdf($html);
+//        echo $html;
+
+        if (!empty($this->data['empresa'][0]->userfile)) {
+            $logo =  "../../uploads/".$this->data['empresa'][0]->userfile;
+        } else
+            $logo = "";
+
+
+
+        pdf($html, $logo);
     }
 
     function eliminar() {
@@ -635,6 +645,37 @@ class Administracion extends My_Controller {
             $this->administracion_model->guardapolitica($politica, $empresa);
         else
             $this->administracion_model->actualizarpolitica($politica, $empresa);
+    }
+
+    function do_upload($id = NULL) {
+        if ($id == NULL) {
+            $this->data['id'] = $id = $this->data['user']['emp_id'];
+        } else {
+            $this->data['id'] = $id = deencrypt_id($id);
+        }
+
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+
+        $this->load->library('upload', $config);
+        //SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA UPLOAD_VIEW
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('upload_view', $error);
+        } else {
+            //EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS
+            //ENVÍAMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
+            $file_info = $this->upload->data();
+            //USAMOS LA FUNCIÓN create_thumbnail Y LE PASAMOS EL NOMBRE DE LA IMAGEN,
+            //ASÍ YA TENEMOS LA IMAGEN REDIMENSIONADA
+            $data = array('upload_data' => $this->upload->data());
+            $this->data['userfile'] = $file_info['file_name'];
+            $this->administracion_model->guardar_emp($this->data['userfile'], $this->data['id']);
+        }
+        redirect('index.php/administracion/pesv', 'location');
     }
 
 }

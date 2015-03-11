@@ -752,9 +752,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
         var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
-            
-            $(this).parents('.principal').remove();
-            
+
         $.post(url, {id: id, dato: dato}).done(function(msg) {
 
         }).fail(function(msg) {

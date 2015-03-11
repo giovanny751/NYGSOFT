@@ -35,7 +35,7 @@
                 <li><a href="#portlet_tab3" data-toggle="tab">COMPROMISO </a></li>
                 <li><a href="#portlet_tab4" data-toggle="tab">RESPONSABLES </a></li>
                 <li><a href="#portlet_tab5" data-toggle="tab">COMITE </a></li>
-                <li><a href="#portlet_tab6" data-toggle="tab">POLÍTICA </a></li>
+                <li><a href="#portlet_tab6" data-toggle="tab">POL�?TICA </a></li>
                 <li><a href="#portlet_tab7" data-toggle="tab">COMUNICACIÓN </a></li>
                 <li><a href="#portlet_tab10" data-toggle="tab">ESTADISTICAS </a></li>
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
@@ -258,7 +258,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab5">
-                    <div class="alert alert-info"><center><p><b>COMITÉ DE SEGURIDAD VIAL</b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>COMITE DE SEGURIDAD VIAL</b></p></center></div>
                     <p class="bg-info" style="color:black">El CSV (comité de seguridad vial) designado por la alta gerencia, está conformado por:</p>
                     <form method="post" id="comite">
                         <div class="comite">
@@ -306,7 +306,7 @@
                         </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab6">
-                    <div class="alert alert-info"><center><p><b>POLÍTICA  DE  SEGURIDAD  VIAL </b> </p></center></div>
+                    <div class="alert alert-info"><center><p><b>POL�?TICA  DE  SEGURIDAD  VIAL </b> </p></center></div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                             <textarea id="politica" class="form-control textareasumer" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
@@ -343,7 +343,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab8">
-                    <div class="alert alert-info"><center><p><b>DIAGNÓSTICO</b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>DIAGN�STICO</b></p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
                         <textarea id="diagnostico" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($diagnostico[0]['texDia_texto'])) echo $diagnostico[0]['texDia_texto'] ?></textarea>
                     </div>
@@ -352,7 +352,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab9">
-                    <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>IDENTIFICACI�N  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
                     <center><p class="bg-danger" style="color:black">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
                     <form method="post" id="prioridades">
                         <div class="row principalpriorida">
@@ -360,39 +360,113 @@
 
                             <?php if (empty($prioridades)) { ?>
                                 <div class="principal">
-                                    <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <label>Comportamiento</label>
+                                            <select class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                                <option value="">-Seleccionar-</option>
+                                                <?php foreach ($comportamiento as $com) { ?>
+                                                    <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                                                                    <label>No Prioridad</label>
+                                                                                    <select class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                                                                        <option value="">-Seleccionar-</option>
+                                        <?php for ($i = 1; $i <= 50; $i++) { ?>
+                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>-->
+                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <label>Tipo Riesgo</label>
+                                            <select class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                                <option value="">-Seleccionar-</option>
+                                                <?php foreach ($riesgo as $ries) { ?>
+                                                    <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
+                                        </div>
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
+                                        </div>
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
                                     </div>
-                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                        <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                    <div class="row">
+                                        <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
+                                            <label>Descripci�n</label>
+                                            <textarea class="form-control" name="riesgo[]"></textarea>
+                                        </div>
                                     </div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                    <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button dato="prioridad" type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>
-                                    <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-
-                                    </div> 
                                 </div> 
                                 <?php
                             } else {
                                 foreach ($prioridades as $prioridad) {
                                     ?>
                                     <div class="principal">
-                                        <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>No Prioridad</label><input value="<?php echo $prioridad['pri_prioridad']; ?>" type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">
+                                        <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <label>Comportamiento</label>
+                                            <select class="form-control" name="comportamiento" placeholder="Prioridad">
+                                                <option value="">-Seleccionar-</option>
+                                                <?php foreach ($comportamiento as $com) { ?>
+                                                    <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
-                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
-                                            <label>Nombre del Riesgo</label><input value="<?php echo $prioridad['pri_riesgo']; ?>" type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">
+                                        <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                                                                    <label>No Prioridad</label>
+                                                                                    <select class="form-control" name="prioridad" placeholder="Prioridad">
+                                                                                        <option value="">-Seleccionar-</option>
+                                        <?php for ($i = 1; $i <= 50; $i++) { ?>
+                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php } ?>
+                                                                                    </select>
+                                                                                </div>-->
+                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                            <label>Tipo Riesgo</label>
+                                            <select class="form-control" name="tiporiesgo" placeholder="Prioridad">
+                                                <option value="">-Seleccionar-</option>
+                                                <?php foreach ($riesgo as $ries) { ?>
+                                                    <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button pri="<?php echo $prioridad['pri_riesgo']; ?>" type="button" class="btn btn-info agregarprioridad">Agregar</button></div>
-                                        <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button  dato="prioridad" doc="<?php echo $prioridad['pri_id']; ?>" type="button" class="btn btn-danger eliminarobjetivo">Eliminar</button></div>
-                                        <div  align="center" class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div> 
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
+                                        </div>
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
+                                        </div>
+                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                            <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
+                                        </div>
+                                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                                            <label>Responsable</label>
+                                            <input type="text" name="responsable" class="form-control">
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                            <label>Descripci�n</label>
+                                            <textarea class="form-control" name="descripcion"></textarea>
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                            <label>Estrategia</label>
+                                            <textarea class="form-control" name="estrategia"></textarea>
+                                        </div>
                                     </div>
+                            <br>
+                            <hr>
+                            <br>
                                     <?php
                                 }
                             }
                             ?>
-
-
                         </div>
                     </form>
                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="center" style="margin-top:15px;">
@@ -414,30 +488,30 @@
                             <div id="formulario_imagenes">
                                 <span><?php echo validation_errors(); ?></span>
                                 <?= form_open_multipart(base_url() . "index.php/administracion/do_upload") ?>
-                                
-                                <?php if(!empty($empresa[0]->userfile)){
+
+                                <?php if (!empty($empresa[0]->userfile)) {
                                     ?>
-                                <center><img src="<?php echo base_url('/uploads/')."/".$empresa[0]->userfile ?>" style="width: 240px"></center>
-                                        <?php
-                                } ?>
-                                
+                                    <center><img src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" style="width: 240px"></center>
+                                <?php }
+                                ?>
+
                                 <label><h1>Imagen </h1><br></label><input type="file" name="userfile" /><br /><br />
                                 <input type="submit" value="Subir imágen" class="btn green"/>
                                 <?= form_close() ?>
                             </div>
                         </center>
                         <style>
-    
-    
-    input[type=file]{
-        padding: 10px;
-        width: 300px;
-        background-color: #444;
-        color: #fff;
-        font-weight: bold;
-    }
-    
-</style>
+
+
+                            input[type=file]{
+                                padding: 10px;
+                                width: 300px;
+                                background-color: #444;
+                                color: #fff;
+                                font-weight: bold;
+                            }
+
+                        </style>
                     </div>
                 </div>
             </div>
@@ -653,25 +727,31 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 //        console.log(politica);
         $.post(url, {politica: politica})
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
     $('body').delegate('.agregarprioridad', 'click', function() {
+        var option = "";
+        for (var i = 0; i < 50; i++) {
+            option += "<option value='" + i + "'>" + i + "</option>";
+        }
 
         var contenido = '  <div class="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
-                                    <label>No Prioridad</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">\n\
+                                    <label>Comportamiento</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">\n\
                                 </div>\n\
                                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
-                                    <label>Nombre del Riesgo</label><input type="text" class="form-control" name="riesgo[]" placeholder="Riesgo">\n\
+                                    <label>No Prioridad</label>\n\
+                                    <select >' + option + '</select>\n\
                                 </div>\n\
                                 <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>\n\
                                 <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>\n\
+                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12"><textarea class="form-control" name="riesgo[]" ></textarea></div>\n\
                             </div>';
 
         $('.principalpriorida').append(contenido);
@@ -752,9 +832,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
         var url = "<?php echo base_url('index.php/administracion/eliminar'); ?>";
-            
-            $(this).parents('.principal').remove();
-            
+
+        $(this).parents('.principal').remove();
+
         $.post(url, {id: id, dato: dato}).done(function(msg) {
 
         }).fail(function(msg) {
@@ -811,9 +891,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, {introduccion: introduccion})
                 .done(function(msn) {
-                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-                    quit_modal();
-                }).fail(function(msg) {
+            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+            quit_modal();
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -830,9 +910,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, $('#miembros').serialize())
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -843,9 +923,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, $('#objetivos').serialize())
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -857,9 +937,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, $('#responsables').serialize())
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -873,9 +953,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, $('#comite').serialize())
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
@@ -887,9 +967,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         modal();
         $.post(url, $('#prioridades').serialize())
                 .done(function(msn) {
-                    quit_modal();
-                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-                }).fail(function(msg) {
+            quit_modal();
+            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+        }).fail(function(msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

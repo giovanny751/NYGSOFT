@@ -366,6 +366,8 @@ class Administracion extends My_Controller {
         $this->data['textomiembro'] = $this->administracion_model->textomiembro($id);
         $this->data['consultatextocomite'] = $this->administracion_model->consultatextocomite($id);
         $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);
+        $this->data['comportamiento'] = $this->administracion_model->comportamiento();
+        $this->data['riesgo'] = $this->administracion_model->riesgo();
 
 //        echo "<pre>";
 //        var_dump($this->data['textomiembro']);die;
@@ -576,21 +578,24 @@ class Administracion extends My_Controller {
     }
 
     function guardarprioridades() {
-
+        
+        $comportamiento = $this->input->post('comportamiento');
+        $conductor = $this->input->post('conductor');
+        $descripcion = $this->input->post('descripcion');
+        $estrategia = $this->input->post('estrategia');
+        $pasajero = $this->input->post('pasajero');
+        $peaton = $this->input->post('peaton');
         $prioridad = $this->input->post('prioridad');
-        $riesgo = $this->input->post('riesgo');
+        $responsable = $this->input->post('responsable');
+        $tiporiesgo = $this->input->post('tiporiesgo');
         $id = $this->data['user']['emp_id'];
-        $data = array();
-        for ($i = 0; $i < count($prioridad); $i++) {
-            $data[] = array(
-                'pri_prioridad' => $prioridad[$i],
-                'pri_riesgo' => $riesgo[$i],
-                'emp_id' => $id
-            );
-        }
-
+        
+        
         $this->administracion_model->eliminarprioridades($id);
-        $this->administracion_model->insertaprioridades($data);
+        $this->administracion_model->insertaprioridades(
+                $comportamiento,$conductor,$descripcion,$estrategia,
+                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo
+                ,$id);
     }
 
     function guardarresponsables() {
@@ -667,10 +672,10 @@ class Administracion extends My_Controller {
             $this->load->view('upload_view', $error);
         } else {
             //EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS
-            //ENVÍAMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
+            //ENV�?AMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÓN
             $file_info = $this->upload->data();
             //USAMOS LA FUNCIÓN create_thumbnail Y LE PASAMOS EL NOMBRE DE LA IMAGEN,
-            //ASÍ YA TENEMOS LA IMAGEN REDIMENSIONADA
+            //AS�? YA TENEMOS LA IMAGEN REDIMENSIONADA
             $data = array('upload_data' => $this->upload->data());
             $this->data['userfile'] = $file_info['file_name'];
             $this->administracion_model->guardar_emp($this->data['userfile'], $this->data['id']);

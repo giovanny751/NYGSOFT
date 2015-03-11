@@ -416,9 +416,21 @@ class administracion_model extends CI_Model {
         $this->db->delete('prioridades');
     }
 
-    function insertaprioridades($data) {
+    function insertaprioridades($comportamiento,$conductor,$descripcion,$estrategia,
+                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo,$id) {
 
-        $this->db->insert_batch('prioridades', $data);
+        if(!empty($estrategia))$this->db->set('pri_estrategia',$estrategia);
+        if(!empty($prioridad))$this->db->set('pri_prioridad',$prioridad);
+        if(!empty($responsable))$this->db->set('pri_responsable',$responsable);
+        if(!empty($pasajero))$this->db->set('pri_pasajero',$pasajero);
+        if(!empty($conductor))$this->db->set('pri_conductor',$conductor);
+        if(!empty($peaton))$this->db->set('pri_peaton',$peaton);
+        if(!empty($descripcion))$this->db->set('pri_descripcion',$descripcion);
+        if(!empty($tiporiesgo))$this->db->set('tipRie_id',$tiporiesgo);
+        if(!empty($comportamiento))$this->db->set('pri_comportamiento',$comportamiento);
+        if(!empty($id))$this->db->set('emp_id',$id);
+        
+        $this->db->insert('prioridades');
     }
 
     function guardarobjetivos($data, $tabla) {
@@ -474,6 +486,16 @@ class administracion_model extends CI_Model {
         
         $this->db->where('emp_id',$id);
         $dato = $this->db->get('texto_comite');
+        return $dato->result_array();
+    }
+    function comportamiento(){
+        
+        $dato = $this->db->get('comportamiento');
+        return $dato->result_array();
+    }
+    function riesgo(){
+        
+        $dato = $this->db->get('tipo_riesgo');
         return $dato->result_array();
     }
 

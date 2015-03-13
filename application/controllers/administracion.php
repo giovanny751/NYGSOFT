@@ -423,12 +423,13 @@ class Administracion extends My_Controller {
 //        echo $html;
 
         if (!empty($this->data['empresa'][0]->userfile)) {
-            $logo =  "../../uploads/".$this->data['empresa'][0]->userfile;
+            $logo = "../../uploads/" . $this->data['empresa'][0]->userfile;
         } else
             $logo = "";
-
-
-
+//                echo $html;
+        $html=str_replace("style=", 's=', $html);
+//        $html=str_replace("<p>", '<p style="text-align: justify">', $html);
+        
         pdf($html, $logo);
     }
 
@@ -672,10 +673,10 @@ class Administracion extends My_Controller {
             $this->load->view('upload_view', $error);
         } else {
             //EN OTRO CASO SUBIMOS LA IMAGEN, CREAMOS LA MINIATURA Y HACEMOS
-            //ENVÃ?AMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÃ“N
+            //ENVï¿½?AMOS LOS DATOS AL MODELO PARA HACER LA INSERCIÃ“N
             $file_info = $this->upload->data();
             //USAMOS LA FUNCIÃ“N create_thumbnail Y LE PASAMOS EL NOMBRE DE LA IMAGEN,
-            //ASÃ? YA TENEMOS LA IMAGEN REDIMENSIONADA
+            //ASï¿½? YA TENEMOS LA IMAGEN REDIMENSIONADA
             $data = array('upload_data' => $this->upload->data());
             $this->data['userfile'] = $file_info['file_name'];
             $this->administracion_model->guardar_emp($this->data['userfile'], $this->data['id']);

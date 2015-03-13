@@ -1,4 +1,4 @@
-<div style="color">
+
     <b>Nombre de la empresa:</b> <?php echo $empresa[0]->emp_razonSocial; ?>
     <!--<br><b>LOGO DE LA EMPRESA:</b>--> 
     <?php // if (!empty($empresa[0]->userfile)) {
@@ -9,20 +9,20 @@
     <h2>INTRODUCCIÓN</h2>
     <?php
     if (!empty($introduccion[0]['int_introduccion'])) {
-        echo "<p class='color'>" . $introduccion[0]['int_introduccion'] . "</p>";
+        echo "<div >" . strip_tags($introduccion[0]['int_introduccion'], '<br>') . "</div>";
     }
     ?>
     <h2>OBJETIVOS</h2>
-</div>
+
 <h3>Objetivos generales</h3>
 <?php
 foreach ($general as $gen):
     ?>
-    <p><?php echo utf8_encode($gen['objGen_objetivo']) ?></p>
+    <div><?php echo utf8_encode($gen['objGen_objetivo']) ?></div>
     <?php endforeach; ?>
 <h3>Objetivos especificos</h3>
 <?php foreach ($especificos as $esp) { ?>
-    <p><?php echo utf8_encode($esp['objEsp_objetivo']) ?></p><br>
+<div><?php echo utf8_encode($esp['objEsp_objetivo']) ?></div>
 <?php } ?>
 
 <h3>Objetivos por linea de accion del PESV</h3>
@@ -78,7 +78,7 @@ if (!empty($politicas[0]['pol_politica'])) {
 ?>
 <br>
 <h2>DIAGNOSTICO</h2>
-<p><?php echo $diagnostico[0]['texDia_texto']; ?></p>
+<div><?php echo $diagnostico[0]['texDia_texto']; ?></div>
 <br>
 <h2>PRIORIDADES</h2>
 IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN <?php foreach ($prioridades as $prioridad) { ?>
@@ -91,7 +91,7 @@ IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN <?php forea
     h2{
         text-align: center;
     }
-    .color{
+    div{
         text-align: justify;
     }
 </style>

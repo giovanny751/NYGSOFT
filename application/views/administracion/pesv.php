@@ -35,7 +35,7 @@
                 <li><a href="#portlet_tab3" data-toggle="tab">COMPROMISO </a></li>
                 <li><a href="#portlet_tab4" data-toggle="tab">RESPONSABLES </a></li>
                 <li><a href="#portlet_tab5" data-toggle="tab">COMITE </a></li>
-                <li><a href="#portlet_tab6" data-toggle="tab">POL�?TICA </a></li>
+                <li><a href="#portlet_tab6" data-toggle="tab">POLÓ?TICA </a></li>
                 <li><a href="#portlet_tab7" data-toggle="tab">COMUNICACIÓN </a></li>
                 <li><a href="#portlet_tab10" data-toggle="tab">ESTADISTICAS </a></li>
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
@@ -306,7 +306,7 @@
                         </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab6">
-                    <div class="alert alert-info"><center><p><b>POL�?TICA  DE  SEGURIDAD  VIAL </b> </p></center></div>
+                    <div class="alert alert-info"><center><p><b>POLíTICA  DE  SEGURIDAD  VIAL </b> </p></center></div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                             <textarea id="politica" class="form-control textareasumer" style="width: 1139px; height: 258px;"><?php if (!empty($politicas[0]['pol_politica'])) echo $politicas[0]['pol_politica']; ?></textarea>
@@ -343,7 +343,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab8">
-                    <div class="alert alert-info"><center><p><b>DIAGN�STICO</b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>DIAGNÓSTICO</b></p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
                         <textarea id="diagnostico" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($diagnostico[0]['texDia_texto'])) echo $diagnostico[0]['texDia_texto'] ?></textarea>
                     </div>
@@ -352,7 +352,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab9">
-                    <div class="alert alert-info"><center><p><b>IDENTIFICACI�N  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
                     <center><p class="bg-danger" style="color:black">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
                     <form method="post" id="prioridades">
                         <div class="row principalpriorida">
@@ -401,7 +401,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
-                                            <label>Descripci�n</label>
+                                            <label>Descripción</label>
                                             <textarea class="form-control" name="riesgo[]"></textarea>
                                         </div>
                                     </div>
@@ -452,7 +452,7 @@
                                             <input type="text" name="responsable" class="form-control">
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                            <label>Descripci�n</label>
+                                            <label>Descripción</label>
                                             <textarea class="form-control" name="descripcion"></textarea>
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
@@ -876,9 +876,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
                                     <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarespecifico">Eliminar</button></div>\n\
                                 </div>';
         $('.agregar').append(contenido);
-        $('.tab-pane').append('height', '850px');
+        $('.tab-pane').append('min-height', '850px');
     });
-
+    $('.tab-pane').append('min-height', '850px');
     $('body').delegate('.eliminarespecifico', 'click', function() {
 
         $(this).parents('.principaldos').remove();

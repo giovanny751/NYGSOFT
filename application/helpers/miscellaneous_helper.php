@@ -150,7 +150,7 @@ function max_folio($id) {
     return $datos[0]->consecutivo;
 }
 
-function pdf($html = null, $logo = null) {
+function pdf($html = null, $logo = null,$nombre=null) {
     ob_clean();
 // create new PDF document
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -163,19 +163,20 @@ function pdf($html = null, $logo = null) {
 // set default header data
 //$pdf->SetHeaderData($logo, '20', PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
     if (!empty($logo))
-        $pdf->SetHeaderData($logo, '20', '', '', '', '');
+        $pdf->SetHeaderData($logo, '20', '         PLAN ESTRATEGICO DE SEGURIDAD VÍAL       '. date('d/m/Y'),'', array(0, 64, 128), array(0, 64, 128));
     $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
 // set header and footer fonts
-    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+    $pdf->SetMargins(25, 25, 25);
     $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
     $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
     $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
     $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
     //$pdf->setLanguageArray($l);
-    $pdf->setFontSubsetting(true);
+    $pdf->setFontSubsetting(false);
     $pdf->SetFont('dejavusans', '', 10, '', true);
     $pdf->AddPage();
 //$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
     $pdf->writeHTML($html, true, false, true, false, '');
+//    $pdf->writeHTMLCell(1, 1, '', '', $html, 0, 1, 0, true, '', true);
     $pdf->Output('datos.pdf', 'I');
 }

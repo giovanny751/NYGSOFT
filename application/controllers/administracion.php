@@ -424,13 +424,16 @@ class Administracion extends My_Controller {
 
         if (!empty($this->data['empresa'][0]->userfile)) {
             $logo = "../../uploads/" . $this->data['empresa'][0]->userfile;
-        } else
+            $nombre = $this->data['empresa'][0]->emp_razonSocial;
+        } else{
             $logo = "";
+            $nombre="";
+        }
 //                echo $html;
         $html=str_replace("style=", 's=', $html);
 //        $html=str_replace("<p>", '<p style="text-align: justify">', $html);
         
-        pdf($html, $logo);
+        pdf($html, $logo,$nombre);
     }
 
     function eliminar() {

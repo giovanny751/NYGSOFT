@@ -304,7 +304,36 @@ class administracion_model extends CI_Model {
         $dato = $this->db->get('objetivos_especificos');
         return $dato->result_array();
     }
+    function cronograma($id){
+        $this->db->order_by('cro_semestre','asc');
+        $this->db->where('emp_id',$id);
+        $cronograma = $this->db->get('cronograma');
+        return $cronograma->result_array();
+    }
 
+    function consultacronograma($id, $semestre,$eje){
+        $this->db->where('emp_id',$id);
+        $this->db->where('cro_semestre',$semestre);
+        $this->db->where('cro_eje',$eje);
+        $cronograma = $this->db->get('cronograma');
+        return $cronograma->result_array();
+    }
+    function actualizacronograma($id, $semestre,$eje,$cronograma){
+        $this->db->where('emp_id',$id);
+        $this->db->where('cro_semestre',$semestre);
+        $this->db->where('cro_eje',$eje);
+        $this->db->set('cro_cronograma',$cronograma);
+        $this->db->update('cronograma');
+    }
+    function insertacronograma($id, $semestre,$eje,$cronograma){
+        $data = array(
+            'cro_semestre'=>$semestre,
+            'cro_eje'=>$eje,
+            'cro_cronograma'=>$cronograma,
+            'emp_id'=>$id
+        );
+        $this->db->insert('cronograma',$data);
+    }
     function visualizacionobjesplineaaccion($id) {
 
         $this->db->select('objetivos_especificos.objEsp_objetivo,tipo_objetivo.tipObj_nombre');

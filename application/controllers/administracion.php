@@ -407,8 +407,13 @@ class Administracion extends My_Controller {
         $this->data['consultatextocomite'] = $this->administracion_model->consultatextocomite($id);
         $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);
         $this->data['especificoslineaaccion'] = $this->administracion_model->visualizacionobjesplineaaccion($id);
+        $this->data['allcronograma'] = $this->administracion_model->cronograma($id);
+        
+        $j = array();
+        foreach($this->data['allcronograma'] as $cro){
+            $j[$cro['cro_semestre']][$cro['cro_eje']][] = $cro['cro_cronograma'];
+        }
         $i = array();
-
         foreach ($this->data['especificoslineaaccion'] as $key => $val) {
             $i[$val['tipObj_nombre']][] = $val['objEsp_objetivo'];
         }
@@ -416,6 +421,7 @@ class Administracion extends My_Controller {
 //        echo "<pre>";
 //        var_dump($i);die;
 
+        $this->data['cronograma'] = $j;
         $this->data['lineaaccion'] = $i;
 
 
@@ -488,6 +494,33 @@ class Administracion extends My_Controller {
         $this->administracion_model->eliminarpesv($tabla, $campo, $id, $idempresa);
     }
 
+    function guardarcronograma(){
+        
+        $cronograma = $this->input->post('cronograma');
+        $semestre = $this->input->post('semestre');
+        $eje = $this->input->post('eje');
+        $id = $this->data['user']['emp_id'];
+        
+        $existencia = $this->administracion_model->consultacronograma($id, $semestre,$eje);
+        
+        if(!empty($existencia)){
+            $this->administracion_model->actualizacronograma($id, $semestre,$eje,$cronograma);
+        }else{
+            $this->administracion_model->insertacronograma($id, $semestre,$eje,$cronograma);    
+        }
+    } 
+    function cargarcronograma(){
+        
+        $semestre = $this->input->post('semestre');
+        $eje = $this->input->post('eje');
+        $id = $this->data['user']['emp_id'];
+        
+        $cronograma = $this->administracion_model->consultacronograma($id, $semestre,$eje);
+        if(!empty($cronograma)){
+        $this->output->set_content_type('application/json')->set_output(json_encode($cronograma[0]));
+        }
+    }
+            
     function guardardiagnostico() {
 
         $texto = $this->input->post('diagnostico');

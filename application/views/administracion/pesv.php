@@ -42,7 +42,7 @@
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
                 <li><a href="#portlet_tab9" data-toggle="tab">PRIORIDADES</a></li>
                 <li><a href="#portlet_tab11" data-toggle="tab">CRONOGRAMA</a></li>
-                
+
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="portlet_tab12">
@@ -408,7 +408,7 @@
                                                                                     <select class="form-control" name="prioridad[]" placeholder="Prioridad">
                                                                                         <option value="">-Seleccionar-</option>
                                         <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                         <?php } ?>
                                                                                     </select>
                                                                                 </div>-->
@@ -458,7 +458,7 @@
                                                                                     <select class="form-control" name="prioridad" placeholder="Prioridad">
                                                                                         <option value="">-Seleccionar-</option>
                                         <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                         <?php } ?>
                                                                                     </select>
                                                                                 </div>-->
@@ -493,9 +493,9 @@
                                             <textarea class="form-control" name="estrategia"></textarea>
                                         </div>
                                     </div>
-                            <br>
-                            <hr>
-                            <br>
+                                    <br>
+                                    <hr>
+                                    <br>
                                     <?php
                                 }
                             }
@@ -507,11 +507,12 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab11">
-                    <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
+                    <div class="alert alert-info"><center><p><b>CRONOGRAMA</b></p></center></div>
 
                     <div class="row datosresponsable">
-                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
-                            <label>Semestre</label><select class="form-control">
+                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" >
+                            <label>Semestre</label>
+                            <select class="form-control" id="semestre">
                                 <option value="">-Seleccionar-</option> 
                                 <option value="1">I</option> 
                                 <option value="2">II</option> 
@@ -519,15 +520,24 @@
                                 <option value="4">IV</option> 
                             </select>
                         </div>
-                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
-                            <label>Eje</label><select class="form-control">
+                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" >
+                            <label>Eje</label>
+                            <select class="form-control" id="eje">
                                 <option value="">-Seleccionar-</option> 
-                                <option value="1"></option> 
-                                <option value="2"></option> 
-                                <option value="3"></option> 
-                                <option value="4"></option> 
+                                <option value="1">Comportamiento Humano</option> 
+                                <option value="2">Vehiculo Seguro</option> 
+                                <option value="3">Infraestructura Segura</option> 
+                                <option value="4">Atencion a Victimas</option> 
                             </select>
                         </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
+                        <textarea id="cronograma" class="form-control textareasumer" style="width: 100%; height: 258px;"></textarea>
+                    </div>
+                    <div class="row" align="center">
+                        <button type="button" class="btn btn-success" id="guardarcro">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -546,16 +556,64 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 <script>
 
-    $('#guardardiagnostico').click(function() {
+//------------------------------------------------------------------------------
+//                      CRONOGRAMA
+//------------------------------------------------------------------------------
+
+    $('#semestre,#eje').change(function () {
+        
+        var semestre = $('#semestre').val();
+        var eje = $('#eje').val();
+        if (semestre != "" && eje != "") {
+
+            var url = "<?php echo base_url('index.php/administracion/cargarcronograma'); ?>";
+            modal();
+            $.post(url, { semestre: semestre, eje: eje})
+                    .done(function (msn) {
+                        if(msn.cro_cronograma){
+                            $('#cronograma').code(msn.cro_cronograma);
+                        }else{
+                            $('#cronograma').code("");
+                        }
+                        
+                        quit_modal();
+                        alerta('verde', 'CARGADO CORRECTAMENTE');
+                    }).fail(function (msg) {
+                quit_modal();
+                alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+            });
+        }
+    });
+
+    $('#guardarcro').click(function () {
+
+        var url = "<?php echo base_url('index.php/administracion/guardarcronograma'); ?>";
+        var cronograma = $('#cronograma').code();
+        var semestre = $('#semestre').val();
+        var eje = $('#eje').val();
+        modal();
+//        console.log(politica);
+        $.post(url, {cronograma: cronograma, semestre: semestre, eje: eje})
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'CRONOGRAMA GUARDADO CORRECTAMENTE');
+                }).fail(function (msg) {
+            quit_modal();
+            alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+        });
+    });
+
+
+    $('#guardardiagnostico').click(function () {
 
 //    alert('paso por aca');
 
         var diagnostico = $('#diagnostico').code();
         var url = "<?php echo base_url('index.php/administracion/guardardiagnostico') ?>";
 
-        $.post(url, {diagnostico: diagnostico}).done(function(msg) {
+        $.post(url, {diagnostico: diagnostico}).done(function (msg) {
             alerta('verde', "DATOS GUARDADOS CORRECTAMENTE")
-        }).fail(function(msg) {
+        }).fail(function (msg) {
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
@@ -563,7 +621,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 //------------------------------------------------------------------------------
 //Grafica
 //------------------------------------------------------------------------------
-    $(function() {
+    $(function () {
 
         $('#tipotransporte').highcharts({
             chart: {
@@ -735,23 +793,23 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 //------------------------------------------------------------------------------
 
-    $('#guardarpolitica').click(function() {
+    $('#guardarpolitica').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardapolitica     '); ?>";
         var politica = $('#politica').code();
         modal();
 //        console.log(politica);
         $.post(url, {politica: politica})
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'POLITICA GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
-    $('body').delegate('.agregarprioridad', 'click', function() {
+    $('body').delegate('.agregarprioridad', 'click', function () {
         var option = "";
         for (var i = 0; i < 50; i++) {
             option += "<option value='" + i + "'>" + i + "</option>";
@@ -773,7 +831,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.principalpriorida').append(contenido);
 
     });
-    $('body').delegate('.agregarcomite', 'click', function() {
+    $('body').delegate('.agregarcomite', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -789,11 +847,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.comite').append(contenido);
 
     });
-    $('body').delegate('.eliminarcomite', 'click', function() {
+    $('body').delegate('.eliminarcomite', 'click', function () {
 
         $(this).parents('.principalcomite').remove();
     });
-    $('body').delegate('.agregarresponsable', 'click', function() {
+    $('body').delegate('.agregarresponsable', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -809,11 +867,11 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.datosresponsable').append(contenido);
 
     });
-    $('body').delegate('.eliminarresponsable', 'click', function() {
+    $('body').delegate('.eliminarresponsable', 'click', function () {
 
         $(this).parents('.responsable').remove();
     });
-    $('body').delegate('.agregarobjetivo', 'click', function() {
+    $('body').delegate('.agregarobjetivo', 'click', function () {
 
         var contenido = ' <div class="principal">\n\
                             <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">\n\
@@ -827,7 +885,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('#objetivosgen').append(contenido);
 
     });
-    $('body').delegate('.eliminarobjetivo', 'click', function() {
+    $('body').delegate('.eliminarobjetivo', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
@@ -835,15 +893,15 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         $(this).parents('.infoprioridades').remove();
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
         $(this).parents('.principal').remove();
     });
-    $('body').delegate('.eliminarpecifico', 'click', function() {
+    $('body').delegate('.eliminarpecifico', 'click', function () {
 
         var id = $(this).attr('doc');
         var dato = $(this).attr('dato');
@@ -851,9 +909,9 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         $(this).parents('.principal').remove();
 
-        $.post(url, {id: id, dato: dato}).done(function(msg) {
+        $.post(url, {id: id, dato: dato}).done(function (msg) {
 
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
 
@@ -861,7 +919,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
     });
 //
 //
-    $('body').delegate('.agregarmiembro', 'click', function() {
+    $('body').delegate('.agregarmiembro', 'click', function () {
 
         var contenido = '<div clas="principal">\n\
                                 <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
@@ -876,7 +934,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.miembros').append(contenido);
     });
 //
-    $('body').delegate('.agregarespecifico', 'click', function() {
+    $('body').delegate('.agregarespecifico', 'click', function () {
         var dato = "<?php echo $dato; ?>";
 //        alert(dato);
         var objetivo = "";
@@ -895,27 +953,27 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         $('.tab-pane').append('min-height', '850px');
     });
     $('.tab-pane').append('min-height', '850px');
-    $('body').delegate('.eliminarespecifico', 'click', function() {
+    $('body').delegate('.eliminarespecifico', 'click', function () {
 
         $(this).parents('.principaldos').remove();
     });
 //
 //
-    $('#guardarintroduccion').click(function() {
+    $('#guardarintroduccion').click(function () {
         var introduccion = $('#introduccion').code();
         var url = "<?php echo base_url('index.php/administracion/guardarintroduccion'); ?>";
         modal();
         $.post(url, {introduccion: introduccion})
-                .done(function(msn) {
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-            quit_modal();
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                    quit_modal();
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 
-    $('#guardarmiembros').click(function() {
+    $('#guardarmiembros').click(function () {
 //        var introduccion = $('#introduccion').code();
 
         var introduccion = $('#miembrotexto').code();
@@ -925,67 +983,67 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         var url = "<?php echo base_url('index.php/administracion/guardarmiembros'); ?>";
         modal();
         $.post(url, $('#miembros').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'INTRODUCCION GUARDADA CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
-    $('#guardarobjetivos').click(function() {
+    $('#guardarobjetivos').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarobjetivos'); ?>";
         modal();
         $.post(url, $('#objetivos').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'OBJETIVOS GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
     });
 //
-    $('#guardarresponsables').click(function() {
+    $('#guardarresponsables').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarresponsables'); ?>";
         modal();
         $.post(url, $('#responsables').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'RESPONSABLES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarcomite').click(function() {
+    $('#guardarcomite').click(function () {
         var introduccion = $('#textocomite').code();
 //        console.log(introduccion);
         $('#textocom').val(introduccion);
         var url = "<?php echo base_url('index.php/administracion/guardarcomite'); ?>";
         modal();
         $.post(url, $('#comite').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'COMITE GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
 
     });
-    $('#guardarprioridades').click(function() {
+    $('#guardarprioridades').click(function () {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         modal();
         $.post(url, $('#prioridades').serialize())
-                .done(function(msn) {
-            quit_modal();
-            alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-        }).fail(function(msg) {
+                .done(function (msn) {
+                    quit_modal();
+                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+                }).fail(function (msg) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });

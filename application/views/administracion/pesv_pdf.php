@@ -79,7 +79,25 @@ if (!empty($politicas[0]['pol_politica'])) {
 ?>
 <br>
 <h2>DIAGNOSTICO</h2>
-<div><?php echo $diagnostico[0]['texDia_texto']; ?></div>
+<p><?php echo $diagnostico[0]['texDia_texto']; ?></p>
+<h2>CRONOGRAMA</h2>
+<?php 
+foreach($cronograma as $semestre=>$eje){
+    if($semestre == 1)echo "<h3>PRIMER SEMESTRE</h3>";
+    if($semestre == 2)echo "<h3>SEGUNDO SEMESTRE</h3>";
+    if($semestre == 3)echo "<h3>TERCER SEMESTRE</h3>";
+    if($semestre == 4)echo "<h3>CUARTO SEMESTRE</h3>";
+    foreach($eje as $eje => $num){
+        if($eje == 1) "<h4>Comportamiento humano</h4>";
+        if($eje == 2) "<h4>Vehiculo seguro</h4>";
+        if($eje == 3) "<h4>Infraestructura segura</h4>";
+        if($eje == 4) "<h4>Atencion a victimas</h4>";
+        foreach($num as $cronogra){
+            echo "<p>$cronogra</p>";
+        }
+    }
+}
+?>
 <!--<br>
 <h2>PRIORIDADES</h2>
 IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->

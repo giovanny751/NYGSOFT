@@ -178,5 +178,5 @@ function pdf($html = null, $logo = null,$nombre=null) {
 //$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
     $pdf->writeHTML($html, true, false, true, false, '');
 //    $pdf->writeHTMLCell(1, 1, '', '', $html, 0, 1, 0, true, '', true);
-    $pdf->Output('datos.pdf', 'I');
+    $pdf->Output('pesv.pdf', 'I');
 }

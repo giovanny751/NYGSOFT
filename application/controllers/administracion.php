@@ -417,15 +417,12 @@ class Administracion extends My_Controller {
         foreach ($this->data['especificoslineaaccion'] as $key => $val) {
             $i[$val['tipObj_nombre']][] = $val['objEsp_objetivo'];
         }
-
-//        echo "<pre>";
-//        var_dump($i);die;
-
+        
         $this->data['cronograma'] = $j;
         $this->data['lineaaccion'] = $i;
 
-
-        $html = $this->load->view('administracion/pesv_pdf', $this->data, true);
+        
+        $html .= $this->load->view('administracion/pesv_pdf', $this->data, true);
 //        echo $html;
 
         if (!empty($this->data['empresa'][0]->userfile)) {

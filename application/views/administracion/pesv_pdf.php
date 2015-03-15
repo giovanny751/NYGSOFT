@@ -88,10 +88,11 @@ foreach($cronograma as $semestre=>$eje){
     if($semestre == 3)echo "<h3>TERCER SEMESTRE</h3>";
     if($semestre == 4)echo "<h3>CUARTO SEMESTRE</h3>";
     foreach($eje as $eje => $num){
-        if($eje == 1) "<h4>Comportamiento humano</h4>";
-        if($eje == 2) "<h4>Vehiculo seguro</h4>";
-        if($eje == 3) "<h4>Infraestructura segura</h4>";
-        if($eje == 4) "<h4>Atencion a victimas</h4>";
+        
+        if($eje == 1) echo "<h4>Comportamiento humano</h4>";
+        if($eje == 2) echo "<h4>Vehiculo seguro</h4>";
+        if($eje == 3) echo "<h4>Infraestructura segura</h4>";
+        if($eje == 4) echo "<h4>Atencion a victimas</h4>";
         foreach($num as $cronogra){
             echo "<p>$cronogra</p>";
         }

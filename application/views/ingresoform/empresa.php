@@ -15,8 +15,10 @@
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>Tipo de Empresa</label>
-
-                <?php echo form_dropdown('emp_idTipo', $tipo_empresa, $empresa[0]->emp_idTipo, 'id="emp_idTipo" class="form-control"') ?>
+                <select name="emp_idTipo"  id="emp_idTipo" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_idTipo) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_idTipo) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>Segmento a la que pertenece</label>
@@ -132,10 +134,6 @@
         </div>  
         <div class="row">  
             <div class="row">
-                <!--<div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px;margin-top:10px">-->
-                <!--            <div class="col-md-3 col-lg-3">
-                                <label>¿ Posee, Contrata o Administra vehiculos?</label><?php echo form_dropdown('emp_administraVehiculos', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_administraVehiculos, 'id="emp_administraVehiculos" class="form-control"') ?>
-                            </div>-->
                 <div class="col-md-3 col-lg-3">
                     <label>Propios</label>
                     <input type="text" name="emp_vehiculosPropios" value="<?php echo $empresa[0]->emp_vehiculosPropios; ?>" id="emp_vehiculosPropios" disabled="disabled" class="form-control obligatorio">
@@ -160,9 +158,6 @@
                 <center>No Actual de Conductores</center>
             </div>    
             <div class="row">
-                <!--            <div class="col-md-3 col-lg-3">
-                                <label>¿contrata o administra conductores?</label><?php echo form_dropdown('emp_adminConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_adminConductores, 'id="emp_adminConductores" class="form-control"') ?>
-                            </div>-->
                 <div class="col-md-3 col-lg-3">
                     <label>Propios</label>
                     <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control obligatorio">
@@ -189,38 +184,54 @@
 
         <div class="row">
             <div class="col-md-3 col-lg-3">
-                <label>¿Cuentan con ARL?</label><?php echo form_dropdown('emp_idArl', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_idArl, 'id="emp_idArl" class="form-control"') ?>
+                <label>¿Cuentan con ARL?</label>
+                <select name="emp_idArl"  id="emp_idArl" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_idArl) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_idArl) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
             </div>
             <div class="col-md-2 col-lg-2">
                 <label>Cual?</label>
                 <input type="text" name="emp_Arl_otra" value="<?php echo $empresa[0]->emp_Arl_otra; ?>" id="emp_Arl_otra" class="form-control">
             </div>
             <div class="col-md-3 col-lg-3">
-                <label>¿cuenta actualente con HSEQ?</label><?php echo form_dropdown('emp_hseq', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_hseq, 'id"=emp_hseq" class="form-control" ') ?>
+                <label>¿cuenta actualente con HSEQ?</label>
+                <select name="emp_hseq"  id="emp_hseq" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_hseq) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_hseq) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
             </div>
             <div class="col-md-4 col-lg-4">
-                <label>¿Cuenta con un procedimiento para seleccion de conductores?</label><?php echo form_dropdown('emp_seleccionConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_seleccionConductores, 'id="emp_seleccionConductores" class="form-control"') ?>
+                <label>¿Cuenta con un procedimiento para seleccion de conductores?</label>
+                <select name="emp_seleccionConductores"  id="emp_seleccionConductores" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_seleccionConductores) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_seleccionConductores) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-4">
-                <label>¿Realiza pruebas de ingreso a los conductores?</label><?php echo form_dropdown('emp_ingresoConductores', array('2' => 'No', '1' => 'Si'), $empresa[0]->emp_ingresoConductores, 'id="emp_ingresoConductores" class="form-control"') ?>
+                <label>¿Realiza pruebas de ingreso a los conductores?</label>
+                <select name="emp_ingresoConductores"  id="emp_ingresoConductores" class="form-control">
+                    <option value="2" <?php echo ((($empresa[0]->emp_ingresoConductores) == 2) ? "selected='selected'" : ""); ?> >NO</option>
+                    <option value="1" <?php echo ((($empresa[0]->emp_ingresoConductores) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                </select>
             </div>
             <div class="col-md-1 col-lg-1">
                 <label> Examenes Medicos</label>
-                <input type="checkbox" name="emp_examenesMedicos" value="1" id="emp_examenesMedicos"  checked="<?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? TRUE : FALSE); ?>">
+                <input type="checkbox" name="emp_examenesMedicos"  value="1" id="emp_examenesMedicos"  <?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? 'checked="checked"' : ''); ?>>
             </div>
             <div class="col-md-1 col-lg-1">
                 <label>Prueba Teorica</label>
-                <input type="checkbox" name="emp_pruebasTeoricas" value="1" id="emp_pruebasTeoricas"  checked="<?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? TRUE : FALSE); ?>">
+                <input type="checkbox" name="emp_pruebasTeoricas" value="1" id="emp_pruebasTeoricas"  <?php echo ((($empresa[0]->emp_pruebasTeoricas) == 1) ? 'checked="checked"' : 'dddd'); ?>>
             </div>
             <div class="col-md-2 col-lg-2">
                 <label>Examentes psocosensometricos</label>
-                <input type="checkbox" name="emp_examenesPsicosensometricos" id="emp_examenesPsicosensometricos" value="1" class="form-control obligatorio" checked="<?php echo ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? TRUE : FALSE); ?>">
+                <input type="checkbox" name="emp_examenesPsicosensometricos" id="emp_examenesPsicosensometricos" value="1" class="form-control " <?php echo ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? 'checked="checked"' : ''); ?>>
             </div>
             <div class="col-md-1 col-lg-1">
                 <label>Prueba tactica</label>
-                <input type="checkbox" name="emp_pruebaTactica" id="emp_pruebaTactica"  value="1" checked="<?php echo ((($empresa[0]->emp_pruebaTactica) == 1) ? TRUE : FALSE); ?>">
+                <input type="checkbox" name="emp_pruebaTactica" id="emp_pruebaTactica"  value="1" <?php echo ((($empresa[0]->emp_pruebaTactica) == 1) ? 'checked="checked"' : ''); ?>>
             </div>
             <div class="col-md-3 col-lg-3">
                 <label>¿realiza capacitacion en seguridad vial?</label>
@@ -231,7 +242,7 @@
 
             </div>
         </div>
-        
+
     </div>
     <br>
     <hr>
@@ -265,10 +276,47 @@
 </form>
 
 <script>
+    datos = "";
     $('#emp_nit').validCampoFranz('0123456789');
+    $('#emp_idArl').change(function() {
+        arl();
+    });
+    function arl(){
+        var desp = $('#emp_idArl').val();
+        if (desp == 2) {
+            $('#emp_Arl_otra').attr('disabled', true);
+            if (($('#emp_Arl_otra').val()) != "")
+                datos = $('#emp_Arl_otra').val();
+            $('#emp_Arl_otra').val('');
+            $('#emp_Arl_otra').attr('class','form-control');
+        } else {
+            if(datos!="")
+            $('#emp_Arl_otra').val(datos);
+            $('#emp_Arl_otra').attr('class','form-control obligatorio');
+            $('#emp_Arl_otra').attr('disabled', false);
+        }
+    }
+    arl();
+    $('#emp_ingresoConductores').change(function(e) {
+        activar()
+    });
+    activar()
+    function activar() {
+        var desp = $('#emp_ingresoConductores').val();
+        if (desp == 2) {
+            $('#emp_examenesMedicos').prop('checked', false).attr('disabled', true);
+            $('#emp_pruebasTeoricas').prop('checked', false).attr('disabled', true);
+            $('#emp_examenesPsicosensometricos').prop('checked', false).attr('disabled', true);
+            $('#emp_pruebaTactica').prop('checked', false).attr('disabled', true);
+        } else {
+            $('#emp_examenesMedicos').attr('disabled', false);
+            $('#emp_pruebasTeoricas').attr('disabled', false);
+            $('#emp_examenesPsicosensometricos').attr('disabled', false);
+            $('#emp_pruebaTactica').attr('disabled', false);
+        }
+    }
 
-
-    $('#emp_nit').change(function () {
+    $('#emp_nit').change(function() {
         var num = $(this).val();
         console.log(num);
         if (isNaN(num)) {
@@ -281,14 +329,16 @@
         var emp_nit = $(this).val();
         if (emp_nit != "") {
             $.post(url, {emp_nit, emp_nit})
-                    .done(function (msg) {
+                    .done(function(msg) {
                         if (msg > 0) {
                             alert('El Nit ya se Encuentra Registrado en el Sistema')
                             $('#emp_nit').val('');
                         }
-                    }).fail(function (msg) {
+                    }).fail(function(msg) {
 
             })
         }
-    })
+    });
+
+
 </script>

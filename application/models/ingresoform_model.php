@@ -7,6 +7,14 @@ class Ingresoform_model extends CI_Model {
     }
 
     function guardar_emp($post) {
+        if(!isset($post['emp_examenesMedicos']))
+            $post['emp_examenesMedicos']=0;
+        if(!isset($post['emp_pruebasTeoricas']))
+            $post['emp_pruebasTeoricas']=0;
+        if(!isset($post['emp_examenesPsicosensometricos']))
+            $post['emp_examenesPsicosensometricos']=0;
+        if(!isset($post['emp_pruebaTactica']))
+            $post['emp_pruebaTactica']=0;
         $post['emp_razonSocial'] = $post['emp_razonSocial'] . " ";
         $this->db->where('emp_id', $post['emp_id']);
         $this->db->update('empresa', $post);

@@ -289,6 +289,15 @@ class administracion_model extends CI_Model {
     function visualizacionobjesp($id) {
 
         $this->db->where('emp_id', $id);
+        $this->db->where('tipObj_id', 5);
+//        $this->db->join('tipo_objetivo','tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
+
+        $dato = $this->db->get('objetivos_especificos');
+        return $dato->result_array();
+    }
+    function solovisualizacionobjesp($id) {
+
+        $this->db->where('emp_id', $id);
 //        $this->db->where('tipObj_id', 5);
 //        $this->db->join('tipo_objetivo','tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
 

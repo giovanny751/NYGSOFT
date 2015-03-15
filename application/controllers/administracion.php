@@ -362,7 +362,7 @@ class Administracion extends My_Controller {
         $this->data['empresa'] = $this->administracion_model->empresa($id);
         $this->data['introduccion'] = $this->administracion_model->visualizacionintroduccion($id);
         $this->data['general'] = $this->administracion_model->visualizacionobjgen($id);
-        $this->data['especificos'] = $this->administracion_model->visualizacionobjesp($id);
+        $this->data['especificos'] = $this->administracion_model->solovisualizacionobjesp($id);
         $this->data['textomiembro'] = $this->administracion_model->textomiembro($id);
         $this->data['consultatextocomite'] = $this->administracion_model->consultatextocomite($id);
         $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);

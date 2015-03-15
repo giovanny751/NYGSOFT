@@ -29,22 +29,55 @@
     <div class="portlet-body">
         <div class=" portlet-tabs">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#portlet_tab1" data-toggle="tab">INTRODUCCIÓN </a></li>
+                <li  class="active"><a href="#portlet_tab12" data-toggle="tab">LOGO</a></li>
+                <li><a href="#portlet_tab1" data-toggle="tab">INTRODUCCIÓN </a></li>
                 <li><a href="#portlet_tab2" data-toggle="tab">OBJETIVOS</a></li>
                 <!--<li><a href="#portlet_tab2" data-toggle="tab">OBJETIVOS PESV</a></li>-->
                 <li><a href="#portlet_tab3" data-toggle="tab">COMPROMISO </a></li>
                 <li><a href="#portlet_tab4" data-toggle="tab">RESPONSABLES </a></li>
                 <li><a href="#portlet_tab5" data-toggle="tab">COMITE </a></li>
-                <li><a href="#portlet_tab6" data-toggle="tab">POLÓ?TICA </a></li>
+                <li><a href="#portlet_tab6" data-toggle="tab">POLÌTICA </a></li>
                 <li><a href="#portlet_tab7" data-toggle="tab">COMUNICACIÓN </a></li>
                 <li><a href="#portlet_tab10" data-toggle="tab">ESTADISTICAS </a></li>
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
                 <li><a href="#portlet_tab9" data-toggle="tab">PRIORIDADES</a></li>
                 <li><a href="#portlet_tab11" data-toggle="tab">CRONOGRAMA</a></li>
-                <li><a href="#portlet_tab12" data-toggle="tab">SUBIR IMAGEN</a></li>
+                
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="portlet_tab1">
+                <div class="tab-pane active" id="portlet_tab12">
+                    <div>
+                        <center>
+                            <div id="formulario_imagenes">
+                                <span><?php echo validation_errors(); ?></span>
+                                <?= form_open_multipart(base_url() . "index.php/administracion/do_upload") ?>
+
+                                <?php if (!empty($empresa[0]->userfile)) {
+                                    ?>
+                                    <center><img src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" style="width: 240px"></center>
+                                <?php }
+                                ?>
+
+                                <label><h1>Imagen </h1><br></label><input type="file" name="userfile" /><br /><br />
+                                <input type="submit" value="Subir imágen" class="btn green"/>
+                                <?= form_close() ?>
+                            </div>
+                        </center>
+                        <style>
+
+
+                            input[type=file]{
+                                padding: 10px;
+                                width: 300px;
+                                background-color: #444;
+                                color: #fff;
+                                font-weight: bold;
+                            }
+
+                        </style>
+                    </div>
+                </div>
+                <div   class="tab-pane"  id="portlet_tab1">
                     <div class="alert alert-info"><center><p><b>INTRODUCCIÓN</b></p></center></div>
                     <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
                         <textarea id="introduccion" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($introduccion[0]['int_introduccion'])) echo $introduccion[0]['int_introduccion'] ?></textarea>
@@ -477,41 +510,24 @@
                     <div class="alert alert-info"><center><p>CRONOGRAMA</p></center></div>
 
                     <div class="row datosresponsable">
-                        <div class="row responsable">
+                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                            <label>Semestre</label><select class="form-control">
+                                <option value="">-Seleccionar-</option> 
+                                <option value="1">I</option> 
+                                <option value="2">II</option> 
+                                <option value="3">III</option> 
+                                <option value="4">IV</option> 
+                            </select>
                         </div>
-                    </div>
-
-                </div>
-                <div class="tab-pane" id="portlet_tab12">
-                    <div>
-                        <center>
-                            <div id="formulario_imagenes">
-                                <span><?php echo validation_errors(); ?></span>
-                                <?= form_open_multipart(base_url() . "index.php/administracion/do_upload") ?>
-
-                                <?php if (!empty($empresa[0]->userfile)) {
-                                    ?>
-                                    <center><img src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" style="width: 240px"></center>
-                                <?php }
-                                ?>
-
-                                <label><h1>Imagen </h1><br></label><input type="file" name="userfile" /><br /><br />
-                                <input type="submit" value="Subir imágen" class="btn green"/>
-                                <?= form_close() ?>
-                            </div>
-                        </center>
-                        <style>
-
-
-                            input[type=file]{
-                                padding: 10px;
-                                width: 300px;
-                                background-color: #444;
-                                color: #fff;
-                                font-weight: bold;
-                            }
-
-                        </style>
+                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                            <label>Eje</label><select class="form-control">
+                                <option value="">-Seleccionar-</option> 
+                                <option value="1"></option> 
+                                <option value="2"></option> 
+                                <option value="3"></option> 
+                                <option value="4"></option> 
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

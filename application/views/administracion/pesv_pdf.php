@@ -80,19 +80,19 @@ if (!empty($politicas[0]['pol_politica'])) {
 <br>
 <h2>DIAGNOSTICO</h2>
 <div><?php echo $diagnostico[0]['texDia_texto']; ?></div>
-<br>
+<!--<br>
 <h2>PRIORIDADES</h2>
-IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN 
-<?php if (count($prioridades) > 0) {
-     echo print_y($prioridades);
-    foreach ($prioridades as $prioridad) {
+IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
+<?php // if (count($prioridades) > 0) {
+//     echo print_y($prioridades);
+//    foreach ($prioridades as $prioridad) {
         ?>
-        <p>
+<!--        <p>
             <label>No Prioridad: </label><?php echo (!empty($prioridad['pri_prioridad']))?$prioridad['pri_prioridad']:''; ?> <br>
             <label>Nombre del Riesgo: </label><?php echo (!empty($prioridad['pri_riesgo']))?$prioridad['pri_riesgo']:''; ?>
-        </p><br>
-    <?php }
-}
+        </p><br>-->
+    <?php // }
+//}
 ?>
 <style>
     h2{

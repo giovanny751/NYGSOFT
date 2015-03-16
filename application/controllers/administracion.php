@@ -400,6 +400,9 @@ class Administracion extends My_Controller {
         $this->data['comites'] = $this->administracion_model->visualizacioncomite($id);
         $this->data['politicas'] = $this->administracion_model->verificapolitica($id);
         $this->data['prioridades'] = $this->administracion_model->verificaprioridad($id);
+        
+//        var_dump($this->data['prioridades']);die;
+        
         $this->data['estadistica'] = $this->administracion_model->estadisticas($id);
         $this->data['textomiembro'] = $this->administracion_model->textomiembro($id);
         $this->data['itiniere'] = $this->administracion_model->itiniere($id);

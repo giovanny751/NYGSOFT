@@ -1,18 +1,35 @@
 
-<b>Nombre de la empresa:</b> 
-    <?php echo $empresa[0]->emp_razonSocial; ?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!--<br><b>LOGO DE LA EMPRESA:</b>--> 
-<?php // if (!empty($empresa[0]->userfile)) {
+<?php if (!empty($empresa[0]->userfile)) { ?>
+
+    <div align="center"><img width="200px"  src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" ></div>
+<?php }
 ?>
-    <!--<center><img src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" style="width: 100px"></center>-->
-<?php // }
-?>
-<h2>INTRODUCCIÓN</h2>
+<h4>Nombre de la empresa:</h4><br>
+<h4><?php echo $empresa[0]->emp_razonSocial; ?></h4>
+<br class="salto">
+<h2 class="principal">INTRODUCCIÓN</h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
     echo "<div >" . strip_tags($introduccion[0]['int_introduccion'], '<br>') . "</div>";
 }
 ?>
+<br class="salto">
 <h2>OBJETIVOS</h2>
 
 <h3>Objetivos generales</h3>
@@ -38,6 +55,7 @@ foreach ($general as $gen):
     }
     ?>
 </ul>
+<br class="salto">
 <h2>COMPROMISO DE LA ALTA DIRECCIÓN</h2>
 <p>Los miembros de la alta dirección que aparecen a continuación: </p>
 <?php
@@ -51,7 +69,7 @@ foreach ($miembros as $miembro):
 endforeach;
 ?>
 <p><?php echo $textomiembro[0]['comTex_texto']; ?></p>
-
+<br class="salto">
 <h2>RESPONSABLE</h2>
 <p>Como responsable del PESV se a delegado por la Alta gerencia a: </p><?php foreach ($responsables as $responsable) : ?>
     <p>
@@ -71,6 +89,7 @@ endforeach;
 <?php } ?>
 
 <p><?php echo $consultatextocomite[0]['texCom_texto']; ?></p>
+<br class="salto">
 <h2>POLITICA</h2>
 <br>POLÍTICA  DE  SEGURIDAD  VIAL<?php
 if (!empty($politicas[0]['pol_politica'])) {
@@ -78,22 +97,79 @@ if (!empty($politicas[0]['pol_politica'])) {
 }
 ?>
 <br>
+<br class="salto">
 <h2>DIAGNOSTICO</h2>
 <p><?php echo $diagnostico[0]['texDia_texto']; ?></p>
+<br class="salto">
+<h2>PRIORIDADES</h2>
+<table border="1">
+    <tr>
+        <td  width="150px"><b>Comportamiento</b></td>
+        <td><b>Timpo de Riesgo</b></td>
+        <td  width="70px"><b>Peaton</b></td>
+        <td width="70px"><b>Pasajero</b></td>
+        <td  width="80px"><b>Conductor</b></td>
+        <td><b>Responsable</b></td>
+    </tr>
+    <?php
+    foreach ($prioridades as $pri) {
+        ?>
+
+        <tr>
+            <td>
+                <?php if($pri['pri_comportamiento'] == 1)echo "Comportamiento humano" ?>
+                <?php if($pri['pri_comportamiento'] == 2)echo "Vehiculo seguro" ?>
+                <?php if($pri['pri_comportamiento'] == 3)echo "Infraestructura segura" ?>
+                <?php if($pri['pri_comportamiento'] == 4)echo "Atencion a victimas" ?>
+            </td>
+            <td>
+                <?php if($pri['tipRie_id'] == 1)echo "ALTO"; ?>
+                <?php if($pri['tipRie_id'] == 2)echo "MEDIO"; ?>
+                <?php if($pri['tipRie_id'] == 3)echo "BAJO"; ?>
+            </td>
+            <td><?php echo $pri['pri_peaton'] ?></td>
+            <td><?php echo $pri['pri_pasajero'] ?></td>
+            <td><?php echo $pri['pri_conductor'] ?></td>
+            <td><?php echo $pri['pri_responsable'] ?></td>
+        </tr>
+        <tr>
+            <td>Descripcion</td>
+            <td colspan="5">
+                <?php echo $pri['pri_descripcion'] ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Estrategia</td>
+            <td colspan="5">
+                <?php echo $pri['pri_estrategia'] ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?></table>  
+<br class="salto">
 <h2>CRONOGRAMA</h2>
-<?php 
-foreach($cronograma as $semestre=>$eje){
-    if($semestre == 1)echo "<h3>PRIMER SEMESTRE</h3>";
-    if($semestre == 2)echo "<h3>SEGUNDO SEMESTRE</h3>";
-    if($semestre == 3)echo "<h3>TERCER SEMESTRE</h3>";
-    if($semestre == 4)echo "<h3>CUARTO SEMESTRE</h3>";
-    foreach($eje as $eje => $num){
-        
-        if($eje == 1) echo "<h4>Comportamiento humano</h4>";
-        if($eje == 2) echo "<h4>Vehiculo seguro</h4>";
-        if($eje == 3) echo "<h4>Infraestructura segura</h4>";
-        if($eje == 4) echo "<h4>Atencion a victimas</h4>";
-        foreach($num as $cronogra){
+<?php
+foreach ($cronograma as $semestre => $eje) {
+    if ($semestre == 1)
+        echo "<h3>PRIMER SEMESTRE</h3>";
+    if ($semestre == 2)
+        echo "<h3>SEGUNDO SEMESTRE</h3>";
+    if ($semestre == 3)
+        echo "<h3>TERCER SEMESTRE</h3>";
+    if ($semestre == 4)
+        echo "<h3>CUARTO SEMESTRE</h3>";
+    foreach ($eje as $eje => $num) {
+
+        if ($eje == 1)
+            echo "<h4>Comportamiento humano</h4>";
+        if ($eje == 2)
+            echo "<h4>Vehiculo seguro</h4>";
+        if ($eje == 3)
+            echo "<h4>Infraestructura segura</h4>";
+        if ($eje == 4)
+            echo "<h4>Atencion a victimas</h4>";
+        foreach ($num as $cronogra) {
             echo "<p>$cronogra</p>";
         }
     }
@@ -102,22 +178,30 @@ foreach($cronograma as $semestre=>$eje){
 <!--<br>
 <h2>PRIORIDADES</h2>
 IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
-<?php // if (count($prioridades) > 0) {
+<?php
+// if (count($prioridades) > 0) {
 //     echo print_y($prioridades);
 //    foreach ($prioridades as $prioridad) {
-        ?>
+?>
 <!--        <p>
-            <label>No Prioridad: </label><?php echo (!empty($prioridad['pri_prioridad']))?$prioridad['pri_prioridad']:''; ?> <br>
-            <label>Nombre del Riesgo: </label><?php echo (!empty($prioridad['pri_riesgo']))?$prioridad['pri_riesgo']:''; ?>
+            <label>No Prioridad: </label><?php echo (!empty($prioridad['pri_prioridad'])) ? $prioridad['pri_prioridad'] : ''; ?> <br>
+            <label>Nombre del Riesgo: </label><?php echo (!empty($prioridad['pri_riesgo'])) ? $prioridad['pri_riesgo'] : ''; ?>
         </p><br>-->
-    <?php // }
+<?php
+// }
 //}
 ?>
 <style>
-    h2{
+    .principal{
+        margin-top: 400px;
+    }
+    h2,h4,img{
         text-align: center;
     }
     div{
         text-align: justify;
+    }
+    .salto{
+        page-break-after: always;
     }
 </style>

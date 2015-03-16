@@ -441,7 +441,7 @@
                                 </div> 
                                 <?php
                             } else {
-                                foreach ($prioridades as $prioridad) {
+//                                foreach ($prioridades as $prioridad) {
                                     ?>
                                     <div class="principal">
                                         <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
@@ -486,18 +486,18 @@
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                                             <label>Descripción</label>
-                                            <textarea class="form-control" name="descripcion"></textarea>
+                                            <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                                             <label>Estrategia</label>
-                                            <textarea class="form-control" name="estrategia"></textarea>
+                                            <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <hr>
                                     <br>
                                     <?php
-                                }
+//                                }
                             }
                             ?>
                         </div>
@@ -1039,6 +1039,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         modal();
+        if($('#descripcion').val() != "" && $('#estrategia').val() != ""){
         $.post(url, $('#prioridades').serialize())
                 .done(function (msn) {
                     quit_modal();
@@ -1047,7 +1048,10 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
             quit_modal();
             alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
         });
-
+        }else{
+            alerta('AMARILLO','POR FAVOR INGRESAR LOS DATOS')
+            quit_modal();
+        }
     });
 
 </script>    

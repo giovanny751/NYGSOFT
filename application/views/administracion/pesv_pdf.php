@@ -23,7 +23,8 @@
 <h4>Nombre de la empresa:</h4><br>
 <h4><?php echo $empresa[0]->emp_razonSocial; ?></h4>
 <br class="salto">
-<h2 class="principal">INTRODUCCIÓN</h2>
+<div>&nbsp;</div>
+<h2 class="principal" >INTRODUCCIÓN</h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
     echo "<div >" . strip_tags($introduccion[0]['int_introduccion'], '<br>') . "</div>";
@@ -56,6 +57,7 @@ foreach ($general as $gen):
     ?>
 </ul>
 <br class="salto">
+<div>&nbsp;</div>
 <h2>COMPROMISO DE LA ALTA DIRECCIÓN</h2>
 <p>Los miembros de la alta dirección que aparecen a continuación: </p>
 <?php
@@ -70,17 +72,21 @@ endforeach;
 ?>
 <p><?php echo $textomiembro[0]['comTex_texto']; ?></p>
 <br class="salto">
-<h2>RESPONSABLE</h2>
+<div>&nbsp;</div>
+<h2>RESPONSABLE DEL PESV</h2>
 <p>Como responsable del PESV se a delegado por la Alta gerencia a: </p><?php foreach ($responsables as $responsable) : ?>
+    <?php if(!empty($responsable['res_nombre']) && !empty($responsable['res_cargo'])){?>
     <p>
-        <label>Nombre: </label><?php echo $responsable['res_cargo']; ?><br>
-        <label>Cargo: </label><?php echo $responsable['res_nombre']; ?>
+        <label>Nombre: </label><?php echo $responsable['res_nombre']; ?><br>
+        <label>Cargo: </label><?php echo $responsable['res_cargo']; ?>
     </p>
-    <?php
+    <?php }
 endforeach;
 ?>
 <p>Quién se encargará de diseñar, desarrollar , implementar y hacer seguimiento del PESV. Y de cada una de las acciones que deriven de éste.</p>
-<h2>COMITE</h2>
+<br class="salto">
+<div>&nbsp;</div>
+<h2>COMITE DE SEGURIDAD VÌAL</h2>
 <?php foreach ($comites as $comite) { ?>
     <p>
         <label>Nombre: </label><?php echo $comite['com_nombre']; ?><br>
@@ -90,17 +96,20 @@ endforeach;
 
 <p><?php echo $consultatextocomite[0]['texCom_texto']; ?></p>
 <br class="salto">
-<h2>POLITICA</h2>
-<br>POLÍTICA  DE  SEGURIDAD  VIAL<?php
+<div>&nbsp;</div>
+<h2>POLÍTICA  DE  SEGURIDAD  VIAL</h2>
+<?php
 if (!empty($politicas[0]['pol_politica'])) {
     echo "<p>" . $politicas[0]['pol_politica'] . "</p>";
 }
 ?>
 <br>
 <br class="salto">
+<div>&nbsp;</div>
 <h2>DIAGNOSTICO</h2>
 <p><?php echo $diagnostico[0]['texDia_texto']; ?></p>
 <br class="salto">
+<div>&nbsp;</div>
 <h2>PRIORIDADES</h2>
 <table border="1">
     <tr>
@@ -135,19 +144,20 @@ if (!empty($politicas[0]['pol_politica'])) {
         <tr>
             <td>Descripcion</td>
             <td colspan="5">
-                <?php echo $pri['pri_descripcion'] ?>
+                <?php if(!empty($pri['pri_descripcion']))echo $pri['pri_descripcion'] ?>
             </td>
         </tr>
         <tr>
             <td>Estrategia</td>
             <td colspan="5">
-                <?php echo $pri['pri_estrategia'] ?>
+                <?php if(!empty($pri['pri_estrategia']))echo $pri['pri_estrategia'] ?>
             </td>
         </tr>
         <?php
     }
     ?></table>  
 <br class="salto">
+<div>&nbsp;</div>
 <h2>CRONOGRAMA</h2>
 <?php
 foreach ($cronograma as $semestre => $eje) {
@@ -192,10 +202,14 @@ IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
 //}
 ?>
 <style>
+    .titulo{
+        padding: 50%;
+    }
+    * { font-family: "calibri", Garamond, 'Comic Sans'; }
     .principal{
         margin-top: 400px;
     }
-    h2,h4,img{
+    h2,h3,h4,img{
         text-align: center;
     }
     div{
@@ -205,3 +219,6 @@ IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
         page-break-after: always;
     }
 </style>
+
+nygsoft
+Gerzhiton12

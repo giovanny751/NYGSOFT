@@ -31,6 +31,7 @@ if (!empty($introduccion[0]['int_introduccion'])) {
 }
 ?>
 <br class="salto">
+<div>&nbsp;</div>
 <h2>OBJETIVOS</h2>
 
 <h3>Objetivos generales</h3>
@@ -97,6 +98,13 @@ endforeach;
 <p><?php echo $consultatextocomite[0]['texCom_texto']; ?></p>
 <br class="salto">
 <div>&nbsp;</div>
+<h2>COMUNICACIÒN</h2>
+<p><?php if(!empty($comunicacion[0]['com_comunicacion']))echo  $comunicacion[0]['com_comunicacion'] ?></p>
+<br class="salto">
+<div>&nbsp;</div>
+<h2>ESTADISTICAS</h2>
+<br class="salto">
+<div>&nbsp;</div>
 <h2>POLÍTICA  DE  SEGURIDAD  VIAL</h2>
 <?php
 if (!empty($politicas[0]['pol_politica'])) {
@@ -111,19 +119,26 @@ if (!empty($politicas[0]['pol_politica'])) {
 <br class="salto">
 <div>&nbsp;</div>
 <h2>PRIORIDADES</h2>
-<table border="1">
-    <tr>
-        <td  width="150px"><b>Comportamiento</b></td>
-        <td><b>Timpo de Riesgo</b></td>
-        <td  width="70px"><b>Peaton</b></td>
-        <td width="70px"><b>Pasajero</b></td>
-        <td  width="80px"><b>Conductor</b></td>
-        <td><b>Responsable</b></td>
-    </tr>
+
     <?php
     foreach ($prioridades as $pri) {
         ?>
-
+<table width="100%">
+    <tr>
+        <td colspan="6"><b>Riesgo</b></td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <?php if(!empty($pri['pri_riesgo']))echo $pri['pri_riesgo'] ?>
+        </td>
+    </tr>
+    <tr>
+        <td  width="180px"><b>Eje Afectado</b></td>
+        <td colspan="2" width="100px"><b>Nivel de Riesgo</b></td>
+        <td  align="center"><b>Peaton</b></td>
+        <td  align="center"><b>Pasajero</b></td>
+        <td   align="center"><b>Conductor</b></td>
+    </tr>
         <tr>
             <td>
                 <?php if($pri['pri_comportamiento'] == 1)echo "Comportamiento humano" ?>
@@ -131,31 +146,43 @@ if (!empty($politicas[0]['pol_politica'])) {
                 <?php if($pri['pri_comportamiento'] == 3)echo "Infraestructura segura" ?>
                 <?php if($pri['pri_comportamiento'] == 4)echo "Atencion a victimas" ?>
             </td>
-            <td>
+            <td colspan="2" >
                 <?php if($pri['tipRie_id'] == 1)echo "ALTO"; ?>
                 <?php if($pri['tipRie_id'] == 2)echo "MEDIO"; ?>
                 <?php if($pri['tipRie_id'] == 3)echo "BAJO"; ?>
             </td>
-            <td><?php echo $pri['pri_peaton'] ?></td>
-            <td><?php echo $pri['pri_pasajero'] ?></td>
-            <td><?php echo $pri['pri_conductor'] ?></td>
-            <td><?php echo $pri['pri_responsable'] ?></td>
+            <td align="center"><?php if(!empty($pri['pri_peaton'])){echo "X";}else{echo "O";} ?></td>
+            <td align="center"><?php if(!empty($pri['pri_pasajero'])){echo "X";}else{echo "O";}  ?></td>
+            <td align="center"><?php if(!empty($pri['pri_conductor'])){echo "X";}else{echo "O";}  ?></td>
+        </tr>
+                <tr>
+                    <td colspan="6"><b>Responsable</b></td>
         </tr>
         <tr>
-            <td>Descripcion</td>
-            <td colspan="5">
+            <td colspan="6" align="justify">
+                <?php echo $pri['pri_responsable'] ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6"><b>Descripcion</b></td>
+        </tr>
+        <tr>
+            <td colspan="6" align="justify">
                 <?php if(!empty($pri['pri_descripcion']))echo $pri['pri_descripcion'] ?>
             </td>
         </tr>
         <tr>
-            <td>Estrategia</td>
-            <td colspan="5">
+            <td colspan="6"><b>Estrategia</b></td>
+        </tr>
+        <tr>
+            <td colspan="6" align="justify">
                 <?php if(!empty($pri['pri_estrategia']))echo $pri['pri_estrategia'] ?>
             </td>
         </tr>
+        </table>  <br><br><br>
         <?php
     }
-    ?></table>  
+    ?>
 <br class="salto">
 <div>&nbsp;</div>
 <h2>CRONOGRAMA</h2>
@@ -205,7 +232,10 @@ IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
     .titulo{
         padding: 50%;
     }
-    * { font-family: "calibri", Garamond, 'Comic Sans'; }
+    * { 
+        font-family: "calibri", Garamond, 'Comic Sans'; 
+        line-height: 150%;
+    }
     .principal{
         margin-top: 400px;
     }

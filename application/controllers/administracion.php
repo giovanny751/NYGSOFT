@@ -371,7 +371,7 @@ class Administracion extends My_Controller {
 
 //        echo "<pre>";
 //        var_dump($this->data['textomiembro']);die;
-//        
+       $this->data['comunicacion'] = $this->administracion_model->comunicacion($id);  
         $this->data['miembros'] = $this->administracion_model->visualizacionmiembros($id);
         $this->data['responsables'] = $this->administracion_model->visualizacionresponsables($id);
         $this->data['comites'] = $this->administracion_model->visualizacioncomite($id);
@@ -411,6 +411,7 @@ class Administracion extends My_Controller {
         $this->data['diagnostico'] = $this->administracion_model->consultadiagnostico($id);
         $this->data['especificoslineaaccion'] = $this->administracion_model->visualizacionobjesplineaaccion($id);
         $this->data['allcronograma'] = $this->administracion_model->cronograma($id);
+        $this->data['comunicacion'] = $this->administracion_model->comunicacion($id);
         
         $j = array();
         foreach($this->data['allcronograma'] as $cro){
@@ -508,6 +509,23 @@ class Administracion extends My_Controller {
             $this->administracion_model->insertacronograma($id, $semestre,$eje,$cronograma);    
         }
     } 
+    
+    function guardarcomunicacion(){
+        
+        $comunicaciontexto = $this->input->post('comunicacion');
+        
+        $id = $this->data['user']['emp_id'];
+        
+        $comunicacion = $this->administracion_model->comunicacion($id);
+        
+        if(!empty($comunicacion)){
+            $this->administracion_model->actualizacomunicacion($id,$comunicaciontexto);
+        }else{
+            $this->administracion_model->insertacomunicacion($id,$comunicaciontexto);
+        }
+        
+    }
+    
     function cargarcronograma(){
         
         $semestre = $this->input->post('semestre');
@@ -616,6 +634,7 @@ class Administracion extends My_Controller {
     function guardarprioridades() {
         
         $comportamiento = $this->input->post('comportamiento');
+        $riesgoprincipal = $this->input->post('riesgoprincipal');
         $conductor = $this->input->post('conductor');
         $descripcion = $this->input->post('descripcion');
         $estrategia = $this->input->post('estrategia');
@@ -631,7 +650,7 @@ class Administracion extends My_Controller {
         $this->administracion_model->insertaprioridades(
                 $comportamiento,$conductor,$descripcion,$estrategia,
                 $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo
-                ,$id);
+                ,$id,$riesgoprincipal);
     }
 
     function guardarresponsables() {

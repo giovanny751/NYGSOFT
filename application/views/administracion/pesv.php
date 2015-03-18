@@ -351,14 +351,11 @@
                 </div>
                 <div class="tab-pane" id="portlet_tab7">
                     <div class="alert alert-info"><center><p><b>COMUNICACIÓN </b></p></center></div>
-                    <div class="row">
-                        <div align="justify" class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8" style="color:black">
-                            <p>El  lider  de  la  organización  garantizará  que  las  acciones  de  este  PESV  sea  informadas  a  todos  los  involucrados  a  través  de  carteleras,  boletines  y  comunicados.</p>  
-
-                            <p>Nota:  La  opción  de  comunicación,  debe  poder  ser  fexible  para  cada  organización.  (Boletines,  correo  electrponico,  página  web,  etc,  etc) </p> 
-
-                            <p>La  politica  de  seguridad  vial  se  mantendrá  en  un  lugar  visible  y  disponible  para  ser  consultada  por  los  miembros  de  la  organización.  El  Plan  Estratégico  de  Seguridad  Vial,  debe  ser  comunicado  a  todos  los  empleados. </p> 
-                        </div>
+                    <div col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-8 col-sm-8 col-xs-8 col-md-8>
+                        <textarea id="comunicacion" class="form-control textareasumer" style="width: 100%; height: 258px;"><?php if (!empty($comunicacion[0]['com_comunicacion'])) echo $comunicacion[0]['com_comunicacion'] ?></textarea>
+                    </div>
+                    <div align="center" style="margin-top:15px;">
+                        <button type="button" id="guardarcomunicacion" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab10">
@@ -385,17 +382,19 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab9">
-                    <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES    DE  RIESGOS  VIALES  EN  LA  ORGANIZACIÓN  </b></p></center></div>
-                    <center><p class="bg-danger" style="color:black">Ejes  son:  Factor  humano,  infraestructura  segura, vehpiculos  seguros  y  atención  a  víctimas.   </p></center>
+                    <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS </b></p></center></div>
+                    <center><p class="bg-danger" style="color:black">En reuniones de evaluación del diagnóstico, el CSV analizó los resultados obtenidos. Una vez identificados y priorizados los riesgos encontrados, se definieron las siguientes estrategias, por riesgo así:   </p></center>
                     <form method="post" id="prioridades">
                         <div class="row principalpriorida">
-
-
                             <?php if (empty($prioridades)) { ?>
                                 <div class="principal">
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Riesgo</label>
+                                        <textarea class="form-control" name="riesgoprincipal" id="riesgoprincipal"></textarea>
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Comportamiento</label>
+                                            <label>Eje afectado</label>
                                             <select class="form-control" name="prioridad[]" placeholder="Prioridad">
                                                 <option value="">-Seleccionar-</option>
                                                 <?php foreach ($comportamiento as $com) { ?>
@@ -408,12 +407,12 @@
                                                                                     <select class="form-control" name="prioridad[]" placeholder="Prioridad">
                                                                                         <option value="">-Seleccionar-</option>
                                         <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                         <?php } ?>
                                                                                     </select>
                                                                                 </div>-->
                                         <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Tipo Riesgo</label>
+                                            <label>Nivel de Riesgo</label>
                                             <select class="form-control" name="prioridad[]" placeholder="Prioridad">
                                                 <option value="">-Seleccionar-</option>
                                                 <?php foreach ($riesgo as $ries) { ?>
@@ -432,71 +431,77 @@
                                         </div>
                                         <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-10 col-sm-10 col-xs-10 col-md-10">
-                                            <label>Descripción</label>
-                                            <textarea class="form-control" name="riesgo[]"></textarea>
-                                        </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Descripción</label>
+                                        <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Estrategia</label>
+                                        <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
                                     </div>
                                 </div> 
                                 <?php
                             } else {
 //                                foreach ($prioridades as $prioridad) {
-                                    ?>
-                                    <div class="principal">
-                                        <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Comportamiento</label>
-                                            <select class="form-control" name="comportamiento" placeholder="Prioridad">
-                                                <option value="">-Seleccionar-</option>
-                                                <?php foreach ($comportamiento as $com) { ?>
-                                                    <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                                                                    <label>No Prioridad</label>
-                                                                                    <select class="form-control" name="prioridad" placeholder="Prioridad">
-                                                                                        <option value="">-Seleccionar-</option>
-                                        <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                        <?php } ?>
-                                                                                    </select>
-                                                                                </div>-->
-                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Tipo Riesgo</label>
-                                            <select class="form-control" name="tiporiesgo" placeholder="Prioridad">
-                                                <option value="">-Seleccionar-</option>
-                                                <?php foreach ($riesgo as $ries) { ?>
-                                                    <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
-                                        </div>
-                                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
-                                            <label>Responsable</label>
-                                            <input type="text" name="responsable" class="form-control">
-                                        </div>
-                                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                            <label>Descripción</label>
-                                            <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
-                                        </div>
-                                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                            <label>Estrategia</label>
-                                            <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
-                                        </div>
+                                ?>
+                                <div class="principal">
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Riesgo</label>
+                                        <textarea class="form-control" name="riesgoprincipal" id="riesgoprincipal"></textarea>
                                     </div>
-                                    <br>
-                                    <hr>
-                                    <br>
-                                    <?php
+                                    <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <label>Eje Afectado</label>
+                                        <select class="form-control" name="comportamiento" placeholder="Prioridad">
+                                            <option value="">-Seleccionar-</option>
+                                            <?php foreach ($comportamiento as $com) { ?>
+                                                <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                                                                <label>No Prioridad</label>
+                                                                                <select class="form-control" name="prioridad" placeholder="Prioridad">
+                                                                                    <option value="">-Seleccionar-</option>
+                                    <?php for ($i = 1; $i <= 50; $i++) { ?>
+                                                                                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                    <?php } ?>
+                                                                                </select>
+                                                                            </div>-->
+                                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <label>Nivel de Riesgo</label>
+                                        <select class="form-control" name="tiporiesgo" placeholder="Prioridad">
+                                            <option value="">-Seleccionar-</option>
+                                            <?php foreach ($riesgo as $ries) { ?>
+                                                <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
+                                    </div>
+                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                                        <label>Responsable</label>
+                                        <input type="text" name="responsable" class="form-control">
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Descripción</label>
+                                        <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Estrategia</label>
+                                        <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <hr>
+                                <br>
+                                <?php
 //                                }
                             }
                             ?>
@@ -557,25 +562,46 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 <script>
 
 //------------------------------------------------------------------------------
+//                      Guardar Comunicacion
+//------------------------------------------------------------------------------
+
+    $('#guardarcomunicacion').click(function () {
+
+        var comunicacion = $('#comunicacion').code();
+
+        console.log(comunicacion);
+
+        var url = "<?php echo base_url('index.php/administracion/guardarcomunicacion'); ?>";
+
+        $.post(url, {comunicacion: comunicacion})
+                .done(function (data) {
+                    alerta('verde', 'COMUNICACIÒN GUARDADA CORRECTAMENTE');
+                }).file(function (data) {
+            alerta('rojo', 'ERROR COMUNICARCE CON EL ADMINISTRADOR')
+        });
+    });
+
+
+//------------------------------------------------------------------------------
 //                      CRONOGRAMA
 //------------------------------------------------------------------------------
 
     $('#semestre,#eje').change(function () {
-        
+
         var semestre = $('#semestre').val();
         var eje = $('#eje').val();
         if (semestre != "" && eje != "") {
 
             var url = "<?php echo base_url('index.php/administracion/cargarcronograma'); ?>";
             modal();
-            $.post(url, { semestre: semestre, eje: eje})
+            $.post(url, {semestre: semestre, eje: eje})
                     .done(function (msn) {
-                        if(msn.cro_cronograma){
+                        if (msn.cro_cronograma) {
                             $('#cronograma').code(msn.cro_cronograma);
-                        }else{
+                        } else {
                             $('#cronograma').code("");
                         }
-                        
+
                         quit_modal();
                         alerta('verde', 'CARGADO CORRECTAMENTE');
                     }).fail(function (msg) {
@@ -1039,17 +1065,17 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
         var url = "<?php echo base_url('index.php/administracion/guardarprioridades'); ?>";
         modal();
-        if($('#descripcion').val() != "" && $('#estrategia').val() != ""){
-        $.post(url, $('#prioridades').serialize())
-                .done(function (msn) {
-                    quit_modal();
-                    alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
-                }).fail(function (msg) {
-            quit_modal();
-            alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
-        });
-        }else{
-            alerta('AMARILLO','POR FAVOR INGRESAR LOS DATOS')
+        if ($('#descripcion').val() != "" && $('#estrategia').val() != "") {
+            $.post(url, $('#prioridades').serialize())
+                    .done(function (msn) {
+                        quit_modal();
+                        alerta('verde', 'PRIORIDADES GUARDADOS CORRECTAMENTE');
+                    }).fail(function (msg) {
+                quit_modal();
+                alerta('rojo', 'ERROR POR FAVOR COMUNICARCE CON EL ADMINISTRADOR');
+            });
+        } else {
+            alerta('AMARILLO', 'POR FAVOR INGRESAR LOS DATOS')
             quit_modal();
         }
     });

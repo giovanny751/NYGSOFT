@@ -310,6 +310,30 @@ class administracion_model extends CI_Model {
         $cronograma = $this->db->get('cronograma');
         return $cronograma->result_array();
     }
+    function comunicacion($id){
+
+        $this->db->where('emp_id',$id);
+        $comunicacion = $this->db->get('comunicacion');
+        return $comunicacion->result_array();
+    }
+    function actualizacomunicacion($id,$comunicacion){
+        $this->db->where('emp_id',$id);
+        $this->db->set('com_comunicacion',$comunicacion);
+        $this->db->update('comunicacion');
+        
+    }
+    function insertacomunicacion($id,$comunicacion){
+        
+        
+        $data = array(
+            'emp_id' =>$id,
+            'com_comunicacion'=>$comunicacion
+        );
+        $this->db->insert('comunicacion',$data);
+        
+//        echo $this->db->last_query();
+        
+    }
 
     function consultacronograma($id, $semestre,$eje){
         $this->db->where('emp_id',$id);
@@ -337,6 +361,7 @@ class administracion_model extends CI_Model {
     function visualizacionobjesplineaaccion($id) {
 
         $this->db->select('objetivos_especificos.objEsp_objetivo,tipo_objetivo.tipObj_nombre');
+        $this->db->order_by('objetivos_especificos.tipObj_id','asc');
         $this->db->where('emp_id', $id);
         $this->db->where('objetivos_especificos.tipObj_id !=', 5);
         $this->db->join('tipo_objetivo', 'tipo_objetivo.tipObj_id = objetivos_especificos.tipObj_id');
@@ -456,7 +481,7 @@ class administracion_model extends CI_Model {
     }
 
     function insertaprioridades($comportamiento,$conductor,$descripcion,$estrategia,
-                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo,$id) {
+                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo,$id,$riesgoprincipal) {
 
         if(!empty($estrategia))$this->db->set('pri_estrategia',$estrategia);
         if(!empty($prioridad))$this->db->set('pri_prioridad',$prioridad);
@@ -468,6 +493,7 @@ class administracion_model extends CI_Model {
         if(!empty($tiporiesgo))$this->db->set('tipRie_id',$tiporiesgo);
         if(!empty($comportamiento))$this->db->set('pri_comportamiento',$comportamiento);
         if(!empty($id))$this->db->set('emp_id',$id);
+        if(!empty($id))$this->db->set('pri_riesgo',$riesgoprincipal);
         
         $this->db->insert('prioridades');
     }

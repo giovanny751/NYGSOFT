@@ -436,7 +436,7 @@ class administracion_model extends CI_Model {
 
     function verificapolitica($id) {
         
-        $this->db->order_by('tipObj_id');
+//        $this->db->order_by('tipObj_id');
         $this->db->where('emp_id', $id);
         $politica = $this->db->get('politicas');
         return $politica->result_array();

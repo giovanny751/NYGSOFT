@@ -425,7 +425,7 @@ class Administracion extends My_Controller {
         $this->data['lineaaccion'] = $i;
 
         
-        $html .= $this->load->view('administracion/pesv_pdf', $this->data, true);
+        $html= $this->load->view('administracion/pesv_pdf', $this->data, true);
 //        echo $html;
 
         if (!empty($this->data['empresa'][0]->userfile)) {
@@ -435,10 +435,9 @@ class Administracion extends My_Controller {
             $logo = "";
             $nombre="";
         }
-//                echo $html;
+                
         $html=str_replace("style=", 's=', $html);
-//        $html=str_replace("<p>", '<p style="text-align: justify">', $html);
-        
+//        echo $html;die();
         pdf($html, $logo,$nombre);
     }
 

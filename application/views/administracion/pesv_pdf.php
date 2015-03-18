@@ -27,7 +27,7 @@
 <h2 class="principal" >INTRODUCCIÓN</h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
-    echo "<div >" . strip_tags($introduccion[0]['int_introduccion'], '<br>') . "</div>";
+    echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 }
 ?>
 <br class="salto">
@@ -172,13 +172,13 @@ foreach ($cronograma as $semestre => $eje) {
     foreach ($eje as $eje => $num) {
 
         if ($eje == 1)
-            echo "<h4>Comportamiento humano</h4>";
+            echo "<h3>Comportamiento humano</h3>";
         if ($eje == 2)
-            echo "<h4>Vehiculo seguro</h4>";
+            echo "<h3>Vehiculo seguro</h3>";
         if ($eje == 3)
-            echo "<h4>Infraestructura segura</h4>";
+            echo "<h3>Infraestructura segura</h3>";
         if ($eje == 4)
-            echo "<h4>Atencion a victimas</h4>";
+            echo "<h3>Atencion a victimas</h3>";
         foreach ($num as $cronogra) {
             echo "<p>$cronogra</p>";
         }

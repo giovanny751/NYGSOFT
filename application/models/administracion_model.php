@@ -305,7 +305,9 @@ class administracion_model extends CI_Model {
         return $dato->result_array();
     }
     function cronograma($id){
+        
         $this->db->order_by('cro_semestre','asc');
+        $this->db->order_by('cro_eje','asc');
         $this->db->where('emp_id',$id);
         $cronograma = $this->db->get('cronograma');
         return $cronograma->result_array();

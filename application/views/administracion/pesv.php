@@ -41,7 +41,7 @@
                 <li><a href="#portlet_tab10" data-toggle="tab">ESTADISTICAS </a></li>
                 <li><a href="#portlet_tab8" data-toggle="tab">DIAGNÓSTICO</a></li>
                 <li><a href="#portlet_tab9" data-toggle="tab">PRIORIDADES</a></li>
-                <li><a href="#portlet_tab11" data-toggle="tab">CRONOGRAMA</a></li>
+                <li><a href="#portlet_tab11" data-toggle="tab">PLAN</a></li>
 
             </ul>
             <div class="tab-content">
@@ -512,7 +512,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="portlet_tab11">
-                    <div class="alert alert-info"><center><p><b>CRONOGRAMA</b></p></center></div>
+                    <div class="alert alert-info"><center><p><b>PLAN DE ACCION</b></p></center></div>
 
                     <div class="row datosresponsable">
                         <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" >

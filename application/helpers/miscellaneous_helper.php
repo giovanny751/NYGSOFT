@@ -163,7 +163,7 @@ function pdf($html = null, $logo = null,$nombre=null) {
 // set default header data
 //$pdf->SetHeaderData($logo, '20', PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
     if (!empty($logo))
-        $pdf->SetHeaderData($logo, '20','', '         PLAN ESTRATEGICO DE SEGURIDAD VÍAL       '. date('d/m/Y'), array(0, 64, 128), array(0, 64, 128));
+        $pdf->SetHeaderData($logo, '20','', '              PLAN ESTRATEGICO DE SEGURIDAD VÍAL           '. date('d/m/Y'), array(0, 64, 128), array(0, 64, 128));
     $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
 // set header and footer fonts
     $pdf->SetMargins(25, 25, 25);

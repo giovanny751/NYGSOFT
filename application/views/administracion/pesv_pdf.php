@@ -36,23 +36,17 @@
 <div><br></div>    
 <div><br></div>    
 <div><br></div>    
-<div><br></div>    
-<div><br></div>    
-<div><br></div>    
-<div><br></div>    
-<div><br></div>    
+
   
 <h4 class="ano"><?php echo date('Y'); ?></h4>
 <br class="salto">
-<div>&nbsp;</div>
-<h2 class="principal" >INTRODUCCIÓN</h2>
+<h2 class="principal">INTRODUCCIÓN</h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
     echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 }
 ?>
 <br class="salto">
-<div>&nbsp;</div>
 <h2>OBJETIVOS</h2>
 
 <h3>Objetivos generales</h3>

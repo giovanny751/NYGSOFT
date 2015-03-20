@@ -708,6 +708,7 @@ class Administracion extends My_Controller {
     }
 
     function do_upload($id = NULL) {
+        set_time_limit(0);
         if ($id == NULL) {
             $this->data['id'] = $id = $this->data['user']['emp_id'];
         } else {

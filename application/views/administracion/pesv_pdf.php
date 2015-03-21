@@ -119,15 +119,11 @@ endforeach;
 <br class="salto">
 <div>&nbsp;</div>
 <h2>ESTADISTICAS</h2>
-<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-    <div id="container"></div>
-</div>
-<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-    <div id="categoria"></div>
-</div>
-<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" >
-    <div id="tipotransporte"></div>
-</div>
+
+<p>
+    
+</p>
+
 <br class="salto">
 <div>&nbsp;</div>
 <h2>POLÍTICA  DE  SEGURIDAD  VIAL</h2>

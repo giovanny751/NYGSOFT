@@ -478,18 +478,26 @@ class administracion_model extends CI_Model {
 
     function eliminarprioridades($id) {
 
-        $this->db->where('emp_id', $id);
-        $this->db->delete('prioridades');
-    }
-    function eliminarprioridad($id) {
-
         $this->db->where('pri_id', $id);
         $this->db->delete('prioridades');
     }
 
-    function insertaprioridades($data) {
+    function insertaprioridades($comportamiento,$conductor,$descripcion,$estrategia,
+                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo,$id,$riesgoprincipal) {
+
+        if(!empty($estrategia))$this->db->set('pri_estrategia',$estrategia);
+        if(!empty($prioridad))$this->db->set('pri_prioridad',$prioridad);
+        if(!empty($responsable))$this->db->set('pri_responsable',$responsable);
+        if(!empty($pasajero))$this->db->set('pri_pasajero',$pasajero);
+        if(!empty($conductor))$this->db->set('pri_conductor',$conductor);
+        if(!empty($peaton))$this->db->set('pri_peaton',$peaton);
+        if(!empty($descripcion))$this->db->set('pri_descripcion',$descripcion);
+        if(!empty($tiporiesgo))$this->db->set('tipRie_id',$tiporiesgo);
+        if(!empty($comportamiento))$this->db->set('pri_comportamiento',$comportamiento);
+        if(!empty($id))$this->db->set('emp_id',$id);
+        if(!empty($id))$this->db->set('pri_riesgo',$riesgoprincipal);
         
-        $this->db->insert_batch('prioridades',$data);
+        $this->db->insert('prioridades');
     }
 
     function guardarobjetivos($data, $tabla) {

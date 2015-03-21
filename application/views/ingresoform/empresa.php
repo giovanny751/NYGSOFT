@@ -1,5 +1,5 @@
 
-<div class="alert alert-info"><center><b><?php echo $titulo; ?></b></center></div>
+<div class="alert alert-info"><center><b><?php echo strtoupper($titulo); ?></b></center></div>
 <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" onsubmit="return obligatorio('1')" method="post">
     <div class="row" >
         <!--    <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">-->

@@ -384,92 +384,29 @@
                 <div class="tab-pane" id="portlet_tab9">
                     <div class="alert alert-info"><center><p><b>IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS </b></p></center></div>
                     <center><p class="bg-danger" style="color:black">En reuniones de evaluación del diagnóstico, el CSV analizó los resultados obtenidos. Una vez identificados y priorizados los riesgos encontrados, se definieron las siguientes estrategias, por riesgo así:   </p></center>
+                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="right">
+                        <button type="button" class="btn btn-info agregarprioridad">Agregar</button>
+                    </div>
                     <form method="post" id="prioridades">
                         <div class="row principalpriorida">
                             <?php if (empty($prioridades)) { ?>
                                 <div class="principal">
                                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                                         <label>Riesgo</label>
-                                        <textarea class="form-control" name="riesgoprincipal" id="riesgoprincipal"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Eje afectado</label>
-                                            <select class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                                <option value="">-Seleccionar-</option>
-                                                <?php foreach ($comportamiento as $com) { ?>
-                                                    <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                                                                    <label>No Prioridad</label>
-                                                                                    <select class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                                                                        <option value="">-Seleccionar-</option>
-                                        <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                        <?php } ?>
-                                                                                    </select>
-                                                                                </div>-->
-                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                            <label>Nivel de Riesgo</label>
-                                            <select class="form-control" name="prioridad[]" placeholder="Prioridad">
-                                                <option value="">-Seleccionar-</option>
-                                                <?php foreach ($riesgo as $ries) { ?>
-                                                    <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
-                                        </div>
-                                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                            <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                        <label>Descripción</label>
-                                        <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                        <label>Estrategia</label>
-                                        <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
-                                    </div>
-                                </div> 
-                                <?php
-                            } else {
-//                                foreach ($prioridades as $prioridad) {
-                                ?>
-                                <div class="principal">
-                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                                        <label>Riesgo</label>
-                                        <textarea class="form-control" name="riesgoprincipal" id="riesgoprincipal"></textarea>
+                                        <textarea class="form-control" name="riesgoprincipal[]" id="riesgoprincipal"></textarea>
                                     </div>
                                     <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
                                         <label>Eje Afectado</label>
-                                        <select class="form-control" name="comportamiento" placeholder="Prioridad">
+                                        <select class="form-control eje" name="comportamiento[]" placeholder="Prioridad">
                                             <option value="">-Seleccionar-</option>
                                             <?php foreach ($comportamiento as $com) { ?>
                                                 <option value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <!--                                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                                                                                <label>No Prioridad</label>
-                                                                                <select class="form-control" name="prioridad" placeholder="Prioridad">
-                                                                                    <option value="">-Seleccionar-</option>
-                                    <?php for ($i = 1; $i <= 50; $i++) { ?>
-                                                                                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                    <?php } ?>
-                                                                                </select>
-                                                                            </div>-->
                                     <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
                                         <label>Nivel de Riesgo</label>
-                                        <select class="form-control" name="tiporiesgo" placeholder="Prioridad">
+                                        <select class="form-control nivel" name="tiporiesgo[]" placeholder="Prioridad">
                                             <option value="">-Seleccionar-</option>
                                             <?php foreach ($riesgo as $ries) { ?>
                                                 <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
@@ -477,32 +414,121 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                        <label>Peaton</label><input class="form-control" type="checkbox" name="peaton" value="1">
+                                        <label>Peaton</label>
+                                        <select class="form-control" name="peaton[]">
+                                            <option value="1">SI</option>
+                                            <option value="2" selected="selected">NO</option>
+                                        </select>
                                     </div>
                                     <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                        <label>Pasajero</label><input class="form-control" type="checkbox" name="pasajero" value="1">
+                                        <label>Pasajero</label>
+                                        <select class="form-control" name="pasajero[]">
+                                            <option value="1">SI</option>
+                                            <option value="2" selected="selected">NO</option>
+                                        </select>
                                     </div>
                                     <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                                        <label>Conductor</label><input class="form-control" type="checkbox" name="conductor" value="1">
+                                        <label>Conductor</label>
+                                        <select class="form-control" name="conductor[]">
+                                            <option value="1">SI</option>
+                                            <option value="2" selected="selected">NO</option>
+                                        </select>
                                     </div>
                                     <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
                                         <label>Responsable</label>
-                                        <input type="text" name="responsable" class="form-control">
+                                        <input type="text" name="responsable[]" class="form-control">
                                     </div>
                                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                                         <label>Descripción</label>
-                                        <textarea class="form-control" name="descripcion" id="descripcion"></textarea>
+                                        <textarea class="form-control" name="descripcion[]" id="descripcion"></textarea>
                                     </div>
                                     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                                         <label>Estrategia</label>
-                                        <textarea class="form-control" name="estrategia" id="estrategia"></textarea>
+                                        <textarea class="form-control" name="estrategia[]" id="estrategia"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="right">
+                                        <button type="button" class="btn btn-danger eliminarprioridad">Eliminar</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <hr>
+                                <br> 
+                                <?php
+                            } else {
+                                foreach ($prioridades as $prioridad) {
+                                ?>
+                                <div class="principal">
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Riesgo</label>
+                                        <textarea class="form-control" name="riesgoprincipal[]" id="riesgoprincipal"><?php echo $prioridad['pri_riesgo']?></textarea>
+                                    </div>
+                                    <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <label>Eje Afectado</label>
+                                        <select class="form-control eje" name="comportamiento[]" placeholder="Prioridad">
+                                            <option value="">-Seleccionar-</option>
+                                            <?php foreach ($comportamiento as $com) { 
+                                                if($com['com_id'] == $prioridad['pri_comportamiento'])$select = "selected";
+                                                else $select = "";
+                                                ?>
+                                            
+                                            <option <?php echo $select; ?> value="<?php echo $com['com_id']; ?>"><?php echo $com['com_comportamiento']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                        <label>Nivel de Riesgo</label>
+                                        <select class="form-control nivel" name="tiporiesgo[]" placeholder="Prioridad">
+                                            <option value="">-Seleccionar-</option>
+                                            <?php foreach ($riesgo as $ries) { 
+                                                if($ries['tipRie_id'] == $prioridad['tipRie_id'])$select = "selected";
+                                                else $select = "";
+                                                ?>
+                                                <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Peaton</label>
+                                        <select class="form-control" name="peaton[]">
+                                            <option <?php if($prioridad['pri_peaton'] == 1)echo "selected"; ?> value="1">SI</option>
+                                            <option <?php if($prioridad['pri_peaton'] == 2)echo "selected"; ?>value="2">NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Pasajero</label>
+                                        <select class="form-control" name="pasajero[]">
+                                            <option <?php if($prioridad['pri_pasajero'] == 1)echo "selected"; ?> value="1">SI</option>
+                                            <option <?php if($prioridad['pri_pasajero'] == 2)echo "selected"; ?> value="2">NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                                        <label>Conductor</label>
+                                        <select class="form-control" name="conductor[]">
+                                            <option <?php if($prioridad['pri_conductor'] == 1)echo "selected"; ?> value="1">SI</option>
+                                            <option <?php if($prioridad['pri_conductor'] == 2)echo "selected"; ?> value="2">NO</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                                        <label>Responsable</label>
+                                        <input type="text" name="responsable[]" class="form-control" value="<?php echo $prioridad['pri_responsable']; ?>">
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Descripción</label>
+                                        <textarea class="form-control" name="descripcion[]" id="descripcion"><?php echo $prioridad['pri_descripcion']; ?></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                        <label>Estrategia</label>
+                                        <textarea class="form-control" name="estrategia[]" id="estrategia"><?php echo $prioridad['pri_estrategia']; ?></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="right">
+                                        <button type="button" class="btn btn-danger eliminarprioridad" pri_id="<?php echo $prioridad['pri_id']?>">Eliminar</button>
                                     </div>
                                 </div>
                                 <br>
                                 <hr>
                                 <br>
                                 <?php
-//                                }
+                                }
                             }
                             ?>
                         </div>
@@ -560,6 +586,94 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
 
 
 <script>
+
+//------------------------------------------------------------------------------
+//                      Eliminar Prioridad
+//------------------------------------------------------------------------------
+
+$('.eliminarprioridad').click(function(){
+    
+    var id = $(this).attr('pri_id');
+    
+    $(this).parents('.principal').remove();
+   
+    var url = "<?php echo base_url('index.php/administracion/eliminarprioridad'); ?>";
+
+        $.post(url, {id: id})
+                .done(function (data) {
+                     
+                    alerta('verde', 'ELIMINADO CORRECTAMENTE');
+                }).fail(function (data) {
+            alerta('rojo', 'ERROR COMUNICARCE CON EL ADMINISTRADOR')
+        });
+});
+
+//------------------------------------------------------------------------------
+//                      Agregar Prioridad
+//------------------------------------------------------------------------------
+
+$('.agregarprioridad').click(function(){
+    
+    var eje = $('.eje').html();
+    var nivel = $('.nivel').html();
+    
+    var prioridad = '<div class="principal">\n\
+                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">\n\
+                                        <label>Riesgo</label>\n\
+                                        <textarea class="form-control" name="riesgoprincipal[]" id="riesgoprincipal"></textarea>\n\
+                                    </div>\n\
+                                    <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">\n\
+                                        <label>Eje Afectado</label>\n\
+                                        <select class="form-control" name="comportamiento[]" placeholder="Prioridad">\n\
+                                            '+eje+'\n\
+                                        </select>\n\
+                                    </div>\n\
+                                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">\n\
+                                        <label>Nivel de Riesgo</label>\n\
+                                        <select class="form-control" name="tiporiesgo[]" placeholder="Prioridad">\n\
+                                            '+nivel+'\n\
+                                        </select>\n\
+                                    </div>\n\
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">\n\
+                                        <label>Peaton</label>\n\
+                                        <select class="form-control" name="peaton[]">\n\
+                                            <option value="1">SI</option>\n\
+                                            <option value="2">NO</option>\n\
+                                        </select>\n\
+                                    </div>\n\
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">\n\
+                                        <label>Pasajero</label>\n\
+                                        <select class="form-control" name="pasajero[]">\n\
+                                            <option value="1">SI</option>\n\
+                                            <option value="2">NO</option>\n\
+                                        </select>\n\
+                                    </div>\n\
+                                    <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">\n\
+                                        <label>Conductor</label>\n\
+                                        <select class="form-control" name="conductor[]">\n\
+                                            <option value="1">SI</option>\n\
+                                            <option value="2">NO</option>\n\
+                                        </select>\n\
+                                    </div>\n\
+                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">\n\
+                                        <label>Responsable</label>\n\
+                                        <input type="text" name="responsable[]" class="form-control">\n\
+                                    </div>\n\
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">\n\
+                                        <label>Descripción</label>\n\
+                                        <textarea class="form-control" name="descripcion[]" id="descripcion"></textarea>\n\
+                                    </div>\n\
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">\n\
+                                        <label>Estrategia</label>\n\
+                                        <textarea class="form-control" name="estrategia[]" id="estrategia"></textarea>\n\
+                                    </div>\n\
+                                    <div  class="col-lg-12 col-sm-12 col-xs-12 col-md-12" align="right">\n\
+                                        <button type="button" class="btn btn-danger eliminarprioridad">Eliminar</button>\n\
+                                    </div>\n\
+                                </div>';
+            $('.principalpriorida').append(prioridad);                                
+    
+});
 
 //------------------------------------------------------------------------------
 //                      Guardar Comunicacion
@@ -835,28 +949,7 @@ foreach ($tipoobjetivo as $tipo => $tipobj) {
         });
     });
 
-    $('body').delegate('.agregarprioridad', 'click', function () {
-        var option = "";
-        for (var i = 0; i < 50; i++) {
-            option += "<option value='" + i + "'>" + i + "</option>";
-        }
-
-        var contenido = '  <div class="principal">\n\
-                                <div class="col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-offset-2 col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
-                                    <label>Comportamiento</label><input type="text" class="form-control" name="prioridad[]" placeholder="Prioridad">\n\
-                                </div>\n\
-                                <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">\n\
-                                    <label>No Prioridad</label>\n\
-                                    <select >' + option + '</select>\n\
-                                </div>\n\
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-info agregarprioridad">Agregar</button></div>\n\
-                                <div  align="center" class="col-lg-1 col-sm-1 col-xs-1 col-md-1"><button type="button" class="btn btn-danger eliminarprioridad">Eliminar</button></div>\n\
-                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12"><textarea class="form-control" name="riesgo[]" ></textarea></div>\n\
-                            </div>';
-
-        $('.principalpriorida').append(contenido);
-
-    });
+    
     $('body').delegate('.agregarcomite', 'click', function () {
 
         var contenido = ' <div class="row principal">\n\

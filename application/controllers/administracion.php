@@ -382,7 +382,7 @@ class Administracion extends My_Controller {
         $this->data['tipotransporte'] = $this->administracion_model->tipotransporte($id);
         $this->data['tipoobjetivo'] = $this->administracion_model->tipoobjetivo();
 
-
+        
 
 
         $this->layout->view('administracion/pesv', $this->data);
@@ -509,6 +509,11 @@ class Administracion extends My_Controller {
             $this->administracion_model->insertacronograma($id, $semestre,$eje,$cronograma);    
         }
     } 
+    function eliminarprioridad(){
+        
+        $id = $this->input->post('id');
+        $this->administracion_model->eliminarprioridad($id);  
+    }
     
     function guardarcomunicacion(){
         
@@ -640,17 +645,32 @@ class Administracion extends My_Controller {
         $estrategia = $this->input->post('estrategia');
         $pasajero = $this->input->post('pasajero');
         $peaton = $this->input->post('peaton');
-        $prioridad = $this->input->post('prioridad');
         $responsable = $this->input->post('responsable');
         $tiporiesgo = $this->input->post('tiporiesgo');
         $id = $this->data['user']['emp_id'];
+        $contador = count($comportamiento);
+        $data = array();
         
         
         $this->administracion_model->eliminarprioridades($id);
-        $this->administracion_model->insertaprioridades(
-                $comportamiento,$conductor,$descripcion,$estrategia,
-                $pasajero,$peaton,$prioridad,$responsable,$tiporiesgo
-                ,$id,$riesgoprincipal);
+        for($i = 0; $i < $contador;$i++){
+            $data[] = array(
+                'pri_riesgo'=>$riesgoprincipal[$i],
+                'pri_estrategia'=>$estrategia[$i],
+                'pri_responsable'=>$responsable[$i],
+                'pri_pasajero'=>$pasajero[$i],
+                'pri_conductor'=>$conductor[$i],
+                'pri_peaton'=>$peaton[$i],
+                'pri_descripcion'=>$descripcion[$i],
+                'tipRie_id'=>$tiporiesgo[$i],
+                'pri_comportamiento'=>$comportamiento[$i],
+                'emp_id'=>$id
+            );
+        }
+        
+        
+        
+        $this->administracion_model->insertaprioridades($data);
     }
 
     function guardarresponsables() {

@@ -33,9 +33,7 @@
 <div><br></div>    
 <div><br></div>    
 <div><br></div>    
-<div><br></div>    
-<div><br></div>    
-<div><br></div>    
+ 
 
   
 <h4 class="ano"><?php echo date('Y'); ?></h4>
@@ -44,6 +42,7 @@
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
     echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
+//    echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 }
 ?>
 <br class="salto">

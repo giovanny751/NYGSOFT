@@ -150,10 +150,13 @@ function max_folio($id) {
     return $datos[0]->consecutivo;
 }
 
-function pdf($html = null, $logo = null,$nombre=null) {
+function pdf($html = null, $logo = null, $nombre = null) {
+    set_time_limit(0);
+//    $html="OOOJHKJHKJH JLH KJH KH KJH";
     ob_clean();
 // create new PDF document
-    $pdf = new TCPDF('C', 'mm', 'carta');
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(210, 272), true, 'UTF-8', false);
+//    $pdf = new TCPDF('P', 'IN', array (8.5,11),true, 'UTF-8', false);
 // set document information
     //$pdf->SetCreator(PDF_CREATOR);
 //$pdf->SetAuthor('Nicola Asuni');
@@ -163,17 +166,20 @@ function pdf($html = null, $logo = null,$nombre=null) {
 // set default header data
 //$pdf->SetHeaderData($logo, '20', PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
     if (!empty($logo))
-        $pdf->SetHeaderData($logo, '20','','              PLAN ESTRATEGICO DE SEGURIDAD VÍAL           '. date('d/m/Y'), array(0, 64, 128), array(0, 64, 128));
+        $pdf->SetHeaderData($logo, '20', '', '      PLAN ESTRATEGICO DE SEGURIDAD VÍAL       ' . date('d/m/Y'), array(0, 64, 128), array(0, 64, 128));
     $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
 // set header and footer fonts
-    $pdf->SetMargins(23, 35, 13);
+//    $pdf->SetMargins(23, 35, 13);
+    $pdf->SetMargins(32, 35, 20);
     $pdf->SetHeaderMargin(19);
-    $pdf->SetFooterMargin(37);
-    $pdf->SetAutoPageBreak(TRUE, 34);
+    $pdf->SetFooterMargin(21);
+    $pdf->SetAutoPageBreak(TRUE, 20);
     $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
     //$pdf->setLanguageArray($l);
     $pdf->setFontSubsetting(false);
     $pdf->SetFont('dejavusans', '', 10, '', true);
+    //$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
     $pdf->AddPage();
 //$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
     $pdf->writeHTML($html, true, false, true, false, '');

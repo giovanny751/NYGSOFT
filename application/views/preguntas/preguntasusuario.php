@@ -18,13 +18,13 @@ if ($contador == 0) {
     foreach ($i as $tipo => $preguntaopcion) {
         echo "<div class='table-responsive'>
             <table class='table table-responsive table-striped table-bordered'>";
-        echo "<tr><td colspan='4' align='center'>" . $tipo . "</td></tr>";
+        echo "<tr><td colspan='4' align='center'><b>" . $tipo . "</b></td></tr>";
         foreach ($preguntaopcion as $opcion => $opcionpregunta) {
             
-            echo "<tr><td><b>" . $opcion . "</b></td>
-                <td>".$primero."</td>
-                <td>".$segundo."</td>
-                <td>".$tercero."</td>
+            echo "<tr><td  style='width:85%'><b>" . $opcion . "</b></td>
+                <td style='width:5%' align='center'><b>".$primero."</b></td>
+                <td style='width:5%' align='center'><b>".$segundo."</b></td>
+                <td style='width:5%' align='center'><b>".$tercero."</b></td>
                 </tr>";
             foreach ($opcionpregunta as $id => $pregunta) {
                 

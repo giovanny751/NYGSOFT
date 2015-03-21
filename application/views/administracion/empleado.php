@@ -68,7 +68,7 @@
             <div  class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="gen_id">Genero</label>
                 <select id="gen_id" name="gen_id"  class="form-control">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($genero as $sexo) {
                         if ($sexo['gen_id'] == $usuario[0]['gen_id'])
@@ -142,7 +142,7 @@
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="usu_confir_eps">Tiene EPS</label>
                 <select class="form-control obligatorio" name="usu_confir_eps" id="usu_confir_eps">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $desicion) {
                         if ($desicion['con_id'] == $usuario[0]['usu_confir_eps'])
@@ -157,7 +157,7 @@
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="usu_confir_pension">Cotiza sistema Pension</label>
                 <select class="form-control obligatorio" name="usu_confir_pension" id="usu_confir_pension">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $desicion) {
                         if ($desicion['con_id'] == $usuario[0]['usu_confir_pension'])
@@ -174,7 +174,7 @@
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="usu_confir_arl">Tiene ARL</label>
                 <select  class="form-control" id="usu_confir_arl" name="usu_confir_arl">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $desicion) {
                         if ($desicion['con_id'] == $usuario[0]['usu_confir_arl'])
@@ -189,7 +189,7 @@
             <div  class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="usu_confir_caja_compensacio">Tiene caja compensación</label>
                 <select class="form-control obligatorio" name="usu_confir_caja_compensacio" id="usu_confir_caja_compensacio">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $desicion) {
                         if ($desicion['con_id'] == $usuario[0]['usu_confir_arl'])
@@ -209,7 +209,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_desplazamiento_mision">Realiza desplazamientos en misión</label>
                 <select  class="form-control" id="usu_desplazamiento_mision" name="usu_desplazamiento_mision">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $desicion) {
                         if ($desicion['con_id'] == $usuario[0]['usu_desplazamiento_mision'])
@@ -224,7 +224,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_rol_mision">Cual es su rol en la via en mision</label>
                 <select  class="form-control" name="usu_rol_mision" id="usu_rol_mision">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($rol as $roles) {
                         if ($usuario[0]['usu_rol_mision'] == $roles['rol_id'])
@@ -239,7 +239,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_frecuenciadesmision">Frecuencia desplazamiento en mision</label>
                 <select  class="form-control" name="usu_frecuenciadesmision" id="usu_frecuenciadesmision">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($frecuencia as $frecuenciamision) {
                         if ($frecuenciamision['freDes_id'] == $usuario[0]['usu_frecuenciadesmision'])
@@ -325,7 +325,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="tipVeh_id">Tipo de vehiculo que conduce</label>
                 <select id="tipVeh_id" class="form-control" name="tipVeh_id">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($tipovehiculo as $tipo) {
                         if ($tipo['tipVeh_id'] == $usuario[0]['tipVeh_id'])
@@ -340,7 +340,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="cat_id">Categoria licencia conduccion</label>
                 <select class="form-control" name="cat_id" id="cat_id">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($categoria as $categorias) {
                         if ($categorias['cat_id'] == $usuario[0]['cat_id'])
@@ -366,7 +366,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_experiecia_anos">Experiencia en años de conduccion</label>
                 <select class="form-control" name="usu_experiecia_anos" id="usu_experiecia_anos">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     for ($i = 1; $i < 50; $i++) {
                         if ($i == $usuario[0]['usu_experiecia_anos'])
@@ -381,7 +381,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_estado_conductor">Estado Conductor</label>
                 <select class="form-control" name="estCon_id" id="estCon_id">
-                    <option value=''></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($estadoconductor as $estado) {
                         if ($estado['estCon_id'] == $usuario[0]['estCon_id'])
@@ -396,7 +396,7 @@
             <div  class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
                 <label for="usu_estado_conductor">Restricciones del conductor</label>
                 <select class="form-control" name="res_id" id="res_id">
-                    <option value=''></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($restricciones as $res) {
                         if ($res['res_id'] == $usuario[0]['res_id'])

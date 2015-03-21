@@ -42,7 +42,7 @@
             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 <label for="tipVin_id">Tipo Vinculación</label>
                 <select id="tipVin_id" name="tipVin_id" class="form-control obligado">
-                    <option value="">-Seleccionar</option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($tipovinculacion as $tipovin) {
                         if ($tipovin['tipVin_id'] == $vehiculo[0]->tipVin_id)
@@ -176,7 +176,7 @@
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="veh_planifica">Esta planificada la modernizacion del vehículo</label>
                 <select class="form-control obligado" name="veh_planifica" id="veh_planifica">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_planifica) {
@@ -192,7 +192,7 @@
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="veh_preestablecidas">Las rutas del vehiculo estan preestablecidas</label>
                 <select class="form-control obligado" name="veh_preestablecidas" id="veh_preestablecidas">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_preestablecidas) {
@@ -210,7 +210,7 @@
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="veh_inspecciondiaria">Realiza inspeccion diaria del vehículo</label>
                 <select class="form-control obligado" name="veh_inspecciondiaria" id="veh_inspecciondiaria">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_inspecciondiaria) {
@@ -226,7 +226,7 @@
             <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <label for="veh_puntoscriticos">Estan identificados los puntos criticos de mayor accidentalidad de la ruta</label>
                 <select class="form-control obligado" name="veh_puntoscriticos" id="veh_puntoscriticos">
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_puntoscriticos)
@@ -285,7 +285,7 @@
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_soatvigente">Tiene SOAT Vigente</label>
                 <select id="veh_soatvigente" name="veh_soatvigente" class='form-control'>
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_soatvigente)
@@ -331,7 +331,7 @@
             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
                 <label for="veh_rtm">Tiene RTM vigente</label>
                 <select id="veh_rtm" name="veh_rtm" class='form-control'>
-                    <option value=""></option>
+                    <option value="">-Seleccionar-</option>
                     <?php
                     foreach ($confirmacion as $validacion) {
                         if ($validacion['con_id'] == $vehiculo[0]->veh_rtm)

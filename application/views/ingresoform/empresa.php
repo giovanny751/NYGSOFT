@@ -1,5 +1,5 @@
 
-<div class="alert alert-info"><center><?php echo $titulo; ?></center></div>
+<div class="alert alert-info"><center><b><?php echo $titulo; ?></b></center></div>
 <form action="<?php echo base_url('index.php/ingresoform/guardar_emp/'); ?>" onsubmit="return obligatorio('1')" method="post">
     <div class="row" >
         <!--    <div class="col-md-12 col-lg-12" style="border: 1px solid #CCC;padding: 15px">-->
@@ -16,6 +16,7 @@
             <div class="col-md-3 col-lg-3">
                 <label>Tipo de Empresa</label>
                 <select name="emp_idTipo"  id="emp_idTipo" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_idTipo) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_idTipo) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -106,6 +107,7 @@
             <div class="col-md-2 col-lg-2">
                 <label>Sucursales</label>
                 <select name="emp_sucursal"  id="emp_sucursal" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_sucursal) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_sucursal) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select> 
@@ -186,6 +188,7 @@
             <div class="col-md-3 col-lg-3">
                 <label>¿Cuentan con ARL?</label>
                 <select name="emp_idArl"  id="emp_idArl" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_idArl) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_idArl) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -197,6 +200,7 @@
             <div class="col-md-3 col-lg-3">
                 <label>¿cuenta actualente con HSEQ?</label>
                 <select name="emp_hseq"  id="emp_hseq" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_hseq) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_hseq) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -204,6 +208,7 @@
             <div class="col-md-4 col-lg-4">
                 <label>¿Cuenta con un procedimiento para seleccion de conductores?</label>
                 <select name="emp_seleccionConductores"  id="emp_seleccionConductores" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_seleccionConductores) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_seleccionConductores) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -213,6 +218,7 @@
             <div class="col-md-4 col-lg-4">
                 <label>¿Realiza pruebas de ingreso a los conductores?</label>
                 <select name="emp_ingresoConductores"  id="emp_ingresoConductores" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_ingresoConductores) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_ingresoConductores) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -236,6 +242,7 @@
             <div class="col-md-3 col-lg-3">
                 <label>¿realiza capacitacion en seguridad vial?</label>
                 <select name="emp_capacitaPruebaVial"  id="emp_capacitaPruebaVial" class="form-control">
+                    <option value="">-Seleccionar-</option>
                     <option value="2" <?php echo ((($empresa[0]->emp_capacitaPruebaVial) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                     <option value="1" <?php echo ((($empresa[0]->emp_capacitaPruebaVial) == 1) ? "selected='selected'" : ""); ?> >SI</option>
                 </select>
@@ -252,6 +259,7 @@
         <div class="col-md-7 col-lg-7">
             <label>¿cuenta con un procedimiento de atencion a victimas en caso de accidente y/o incidentes de transito?</label>
             <select name="emp_procedimientoAtencion"  id="emp_procedimientoAtencion" class="form-control">
+                <option value="">-Seleccionar-</option>
                 <option value="2" <?php echo ((($empresa[0]->emp_procedimientoAtencion) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                 <option value="1" <?php echo ((($empresa[0]->emp_procedimientoAtencion) == 1) ? "selected='selected'" : ""); ?> >SI</option>
             </select>
@@ -259,6 +267,7 @@
         <div class="col-md-5 col-lg-5">
             <label>¿posee historicos de acciodentes y/o incidentes de transito?</label>
             <select name="emp_historicoAccidente"  id="emp_historicoAccidente" class="form-control">
+                <option value="">-Seleccionar-</option>
                 <option value="2" <?php echo ((($empresa[0]->emp_historicoAccidente) == 2) ? "selected='selected'" : ""); ?> >NO</option>
                 <option value="1" <?php echo ((($empresa[0]->emp_historicoAccidente) == 1) ? "selected='selected'" : ""); ?> >SI</option>
             </select>

@@ -142,6 +142,10 @@
         padding-top: 83px;
 
     }
+    * { 
+        font-family: "calibri", Garamond, 'Comic Sans'; 
+        font: 12px/2em sans-serif;
+    }
 </style>
 <?php
 

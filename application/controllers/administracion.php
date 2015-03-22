@@ -389,6 +389,7 @@ class Administracion extends My_Controller {
     }
 
     function pesv_pdf() {
+        set_time_limit(0);
         $id = $this->data['user']['emp_id'];
 //        $this->data['empresa'] = $this->administracion_model->empresa($id);
         $this->data['empresa'] = $this->administracion_model->info_empresa($id);
@@ -438,6 +439,7 @@ class Administracion extends My_Controller {
         }
                 
         $html=str_replace("style=", 's=', $html);
+        $html=str_replace("width=", 'w=', $html);
 //        echo $html;die();
         pdf($html, $logo,$nombre);
     }

@@ -151,7 +151,7 @@ function max_folio($id) {
 }
 
 function pdf($html = null, $logo = null, $nombre = null) {
-    set_time_limit(0);
+//    echo $html;
 //    $html="OOOJHKJHKJH JLH KJH KH KJH";
     ob_clean();
 // create new PDF document
@@ -171,7 +171,7 @@ function pdf($html = null, $logo = null, $nombre = null) {
 // set header and footer fonts
 //    $pdf->SetMargins(23, 35, 13);
     $pdf->SetMargins(32, 35, 20);
-    $pdf->SetHeaderMargin(19);
+    $pdf->SetHeaderMargin(14);
     $pdf->SetFooterMargin(21);
     $pdf->SetAutoPageBreak(TRUE, 20);
     $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -179,7 +179,7 @@ function pdf($html = null, $logo = null, $nombre = null) {
     $pdf->setFontSubsetting(false);
     $pdf->SetFont('dejavusans', '', 10, '', true);
     //$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', '6'));
     $pdf->AddPage();
 //$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
     $pdf->writeHTML($html, true, false, true, false, '');

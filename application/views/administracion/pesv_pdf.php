@@ -13,10 +13,37 @@
 <br>
 <br>
 <br>
+<?php
+$contenido = array('INTRODUCCIÓN', 'OBJETIVOS', 'Objetivos generales', 'Objetivos especificos', 'OBJETIVOS POR LINEA DE ACCION DEL PESV',
+    'COMPROMISO DE LA ALTA DIRECCIÓN', 'RESPONSABLE DEL PESV', 'COMITE DE SEGURIDAD VÌAL', 'COMUNICACIÒN',
+    'ESTADISTICAS', 'POLÍTICA DE SEGURIDAD VIAL', 'DIAGNOSTICO', 'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS',
+    'PLAN DE ACCION');
+
+$contenidomenu = array(
+    'INTRODUCCIÓN'=>array(), 
+    'OBJETIVOS'=>array('Objetivos generales', 'Objetivos especificos'), 
+    'OBJETIVOS POR LINEA DE ACCION DEL PESV'=>array(),
+    'COMPROMISO DE LA ALTA DIRECCIÓN'=>array(), 
+    'RESPONSABLE DEL PESV'=>array(), 
+    'COMITE DE SEGURIDAD VÌAL'=>array(), 
+    'COMUNICACIÒN'=>array(),
+    'ESTADISTICAS'=>array(), 
+    'POLÍTICA DE SEGURIDAD VIAL'=>array(), 
+    'DIAGNOSTICO'=>array(), 
+    'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS'=>array(),
+    'PLAN DE ACCION'=>array()
+    );
+
+//echo "<pre>";
+//var_dump($contenidomenu);die;
+
+$i = 0;
+?>
+
 <!--<br><b>LOGO DE LA EMPRESA:</b>--> 
 <?php if (!empty($empresa[0]->userfile)) { ?>
 
-    <div align="center"><img width="200px"  src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" ></div>
+<div align="center"><img class="img_cl"  src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" ></div>
 <?php }
 ?>
 
@@ -31,49 +58,86 @@
 <div><br></div>    
 <div><br></div>    
 <div><br></div>    
-<div><br></div>    
-<div><br></div>    
- 
 
-  
+
+
+
 <h4 class="ano"><?php echo date('Y'); ?></h4>
-<br class="salto">
-<h2 class="principal">INTRODUCCIÓN</h2>
+<span class="salto"></span>
+
+<h2>CONENIDO</h2>
+
+<?php 
+
+echo "<ul>";
+foreach($contenidomenu as $padre => $nhijo){
+    echo "<li>$padre</li>";
+    if(!empty($nhijo)){
+        echo "<ul>";
+    foreach($nhijo as $num => $hijo){
+        echo "<li>$hijo</li>";
+    }   
+    echo "</ul>";
+    }
+}
+echo "</ul>";
+
+?>
+
+
+
+<?php 
+//foreach ($contenido as $value) {
+//    $con=substr($value,0,2);
+//    if(ctype_upper($con)){
+//      echo $value."<br>";
+//    }else{
+//        
+//        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$value."<br>";  
+//    }
+//    
+//}
+?>
+
+<span class="salto"></span>
+<!----INTRODUCCIÓN<-->
+<h2 class="principal"><?php echo $contenido[$i++] ?></h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
     echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 //    echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 }
 ?>
-<br class="salto">
-<h2>OBJETIVOS</h2>
-
-<h3>Objetivos generales</h3>
+<span class="salto"></span>
+<!----OBJETIVOS-->
+<h2><?php echo $contenido[$i++] ?></h2>
+<!----Objetivos generales-->
+<h3><?php echo $contenido[$i++] ?></h3>
 <?php
 foreach ($general as $gen):
     ?>
     <div><?php echo utf8_encode($gen['objGen_objetivo']) ?></div>
 <?php endforeach; ?>
-<h3>Objetivos especificos</h3>
+    <!----Objetivos especificos-->
+<h3><?php echo $contenido[$i++] ?></h3>
 <?php foreach ($especificos as $esp) { ?>
     <div><?php echo utf8_encode($esp['objEsp_objetivo']) ?></div>
 <?php } ?>
-
-<h3>Objetivos por linea de accion del PESV</h3>
-<ul style='line-height: 150%;'>
-    <?php
-    foreach ($lineaaccion as $accion => $objetivo) {
-        echo "<li style='line-height: 150%;'><b>" . $accion . "</b></li><ul>";
-        foreach ($objetivo as $posicion => $obj) {
-            echo "<li  style='line-height: 150%;'>" . utf8_encode($obj) . "</li>";
-        }
-        echo "</ul><br>";
+   <span class="salto"></span> 
+<!----Objetivos por linea de accion del PESV-->
+<h3><?php echo $contenido[$i++] ?></h3>
+<?php
+foreach ($lineaaccion as $accion => $objetivo) {
+    echo "<b>" . $accion . "</b><ul>";
+    foreach ($objetivo as $posicion => $obj) {
+        echo "<li  style='line-height: 150%;'>" . utf8_encode($obj) . "</li>";
     }
-    ?>
-</ul>
-<br class="salto">
-<div>&nbsp;</div>
-<h2>COMPROMISO DE LA ALTA DIRECCIÓN</h2>
+    echo "</ul>";
+}
+?>
+<span class="salto"></span>
+<!----COMPROMISO DE LA ALTA DIRECCIÓN-->
+<h2><?php echo $contenido[$i++] ?></h2>
 <p>Los miembros de la alta dirección que aparecen a continuación: </p>
 <?php
 foreach ($miembros as $miembro):
@@ -86,23 +150,25 @@ foreach ($miembros as $miembro):
 endforeach;
 ?>
 <p><?php echo $textomiembro[0]['comTex_texto']; ?></p>
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>RESPONSABLE DEL PESV</h2>
+<!----RESPONSABLE DEL PESV-->
+<h2><?php echo $contenido[$i++] ?></h2>
 <p>Como responsable del PESV se a delegado por la Alta gerencia a: </p><?php foreach ($responsables as $responsable) : ?>
     <?php if (!empty($responsable['res_nombre']) && !empty($responsable['res_cargo'])) { ?>
         <p>
             <label>Nombre: </label><?php echo $responsable['res_nombre']; ?><br>
             <label>Cargo: </label><?php echo $responsable['res_cargo']; ?>
         </p>
-    <?php
+        <?php
     }
 endforeach;
 ?>
 <p>Quién se encargará de diseñar, desarrollar , implementar y hacer seguimiento del PESV. Y de cada una de las acciones que deriven de éste.</p>
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>COMITE DE SEGURIDAD VÌAL</h2>
+<!----COMITE DE SEGURIDAD VÌAL-->
+<h2><?php echo $contenido[$i++] ?></h2>
 <?php foreach ($comites as $comite) { ?>
     <p>
         <label>Nombre: </label><?php echo $comite['com_nombre']; ?><br>
@@ -111,50 +177,53 @@ endforeach;
 <?php } ?>
 
 <p><?php echo $consultatextocomite[0]['texCom_texto']; ?></p>
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>COMUNICACIÒN</h2>
+<!----COMUNICACIÒN-->
+<h2><?php echo $contenido[$i++] ?></h2>
 <p><?php if (!empty($comunicacion[0]['com_comunicacion'])) echo $comunicacion[0]['com_comunicacion'] ?></p>
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>ESTADISTICAS</h2>
+<!----ESTADISTICAS-->
+<h2><?php echo $contenido[$i++] ?></h2>
 
 <p>
-    
+
 </p>
 
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>POLÍTICA  DE  SEGURIDAD  VIAL</h2>
+<h2><?php echo $contenido[$i++] ?></h2>
 <?php
 if (!empty($politicas[0]['pol_politica'])) {
-    echo "<p>" . $politicas[0]['pol_politica'] . "</p>";
+    echo "<div>" . $politicas[0]['pol_politica'] . "</div>";
 }
 ?>
 <br>
-<br class="salto">
-<div>&nbsp;</div>
-<h2>DIAGNOSTICO</h2>
-<p><?php echo $diagnostico[0]['texDia_texto']; ?></p>
-<br class="salto">
-<div>&nbsp;</div>
-<h2>IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS</h2>
-<p align="justify">En reuniones de evaluación del diagnóstico, el CSV analizó los resultados obtenidos. Una vez identificados y priorizados los riesgos encontrados, se definieron las siguientes estrategias, por riesgo así:   </p>
+<span class="salto"></span>
+<p>
+<!----DIAGNOSTICO-->
+<h2><?php echo $contenido[$i++] ?></h2>
+<span><?php echo $diagnostico[0]['texDia_texto']; ?></span>
+<span class="salto"></span>
+<!----IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS-->
+<h2><?php echo $contenido[$i++] ?></h2>
+<span>En reuniones de evaluación del diagnóstico, el CSV analizó los resultados obtenidos. Una vez identificados y priorizados los riesgos encontrados, se definieron las siguientes estrategias, por riesgo así:</span></p>
 <?php
 foreach ($prioridades as $pri) {
     ?>
-    <table width="100%">
+    <table >
         <tr>
             <td colspan="6"><b>Riesgo</b></td>
         </tr>
         <tr>
             <td colspan="6">
-    <?php if (!empty($pri['pri_riesgo'])) echo $pri['pri_riesgo'] ?>
+                <?php if (!empty($pri['pri_riesgo'])) echo $pri['pri_riesgo'] ?>
             </td>
         </tr>
         <tr>
-            <td  width="180px"><b>Eje Afectado</b></td>
-            <td colspan="2" width="100px"><b>Nivel de Riesgo</b></td>
+            <td  ><b>Eje Afectado</b></td>
+            <td colspan="2" ><b>Nivel de Riesgo</b></td>
             <td  align="center"><b>Peaton</b></td>
             <td  align="center"><b>Pasajero</b></td>
             <td   align="center"><b>Conductor</b></td>
@@ -164,28 +233,34 @@ foreach ($prioridades as $pri) {
                 <?php if ($pri['pri_comportamiento'] == 1) echo "Comportamiento humano" ?>
                 <?php if ($pri['pri_comportamiento'] == 2) echo "Vehiculo seguro" ?>
                 <?php if ($pri['pri_comportamiento'] == 3) echo "Infraestructura segura" ?>
-    <?php if ($pri['pri_comportamiento'] == 4) echo "Atencion a victimas" ?>
+                <?php if ($pri['pri_comportamiento'] == 4) echo "Atencion a victimas" ?>
             </td>
             <td colspan="2" >
                 <?php if ($pri['tipRie_id'] == 1) echo "ALTO"; ?>
                 <?php if ($pri['tipRie_id'] == 2) echo "MEDIO"; ?>
-    <?php if ($pri['tipRie_id'] == 3) echo "BAJO"; ?>
+                <?php if ($pri['tipRie_id'] == 3) echo "BAJO"; ?>
             </td>
-            <td align="center"><?php if (!empty($pri['pri_peaton'])) {
-        echo "X";
-    } else {
-        echo "O";
-    } ?></td>
-            <td align="center"><?php if (!empty($pri['pri_pasajero'])) {
-        echo "X";
-    } else {
-        echo "O";
-    } ?></td>
-            <td align="center"><?php if (!empty($pri['pri_conductor'])) {
-        echo "X";
-    } else {
-        echo "O";
-    } ?></td>
+            <td align="center"><?php
+                if (!empty($pri['pri_peaton'])) {
+                    echo "X";
+                } else {
+                    echo "O";
+                }
+                ?></td>
+            <td align="center"><?php
+                if (!empty($pri['pri_pasajero'])) {
+                    echo "X";
+                } else {
+                    echo "O";
+                }
+                ?></td>
+            <td align="center"><?php
+            if (!empty($pri['pri_conductor'])) {
+                echo "X";
+            } else {
+                echo "O";
+            }
+            ?></td>
         </tr>
         <tr>
             <td colspan="6"><b>Responsable</b></td>
@@ -215,9 +290,10 @@ foreach ($prioridades as $pri) {
     <?php
 }
 ?>
-<br class="salto">
+<span class="salto"></span>
 <div>&nbsp;</div>
-<h2>PLAN DE ACCION</h2>
+<!----PLAN DE ACCION-->
+<h2><?php echo $contenido[$i++] ?></h2>
 <?php
 foreach ($cronograma as $semestre => $eje) {
     if ($semestre == 1)
@@ -239,27 +315,12 @@ foreach ($cronograma as $semestre => $eje) {
         if ($eje == 4)
             echo "<h3>Atencion a victimas</h3>";
         foreach ($num as $cronogra) {
-            echo "<p>$cronogra</p>";
+            echo $cronogra."";
         }
     }
 }
 ?>
-<!--<br>
-<h2>PRIORIDADES</h2>
-IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
-<?php
-// if (count($prioridades) > 0) {
-//     echo print_y($prioridades);
-//    foreach ($prioridades as $prioridad) {
-?>
-<!--        <p>
-            <label>No Prioridad: </label><?php echo (!empty($prioridad['pri_prioridad'])) ? $prioridad['pri_prioridad'] : ''; ?> <br>
-            <label>Nombre del Riesgo: </label><?php echo (!empty($prioridad['pri_riesgo'])) ? $prioridad['pri_riesgo'] : ''; ?>
-        </p><br>-->
-<?php
-// }
-//}
-?>
+
 <style>
     .ano{
         margin-top: 140px;
@@ -284,5 +345,13 @@ IDENTIFICACIÓN DE PRIORIDADES DE RIESGOS VIALES EN LA ORGANIZACIÓN -->
     .salto{
         page-break-after: always;
     }
+    span{
+        text-align: justify;
+    }
+    table{
+        width: 100%
+    }
+    .img_cl{
+        width: 200px
+    }
 </style>
-  

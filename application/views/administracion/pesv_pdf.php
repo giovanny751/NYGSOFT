@@ -222,43 +222,43 @@ foreach ($prioridades as $pri) {
             </td>
         </tr>
         <tr>
-            <td  ><b>Eje Afectado</b></td>
-            <td colspan="2" ><b>Nivel de Riesgo</b></td>
+            <td colspan="2" ><b>Eje Afectado</b></td>
+            <td  ><b>Nivel de Riesgo</b></td>
             <td  align="center"><b>Peaton</b></td>
             <td  align="center"><b>Pasajero</b></td>
             <td   align="center"><b>Conductor</b></td>
         </tr>
         <tr>
-            <td>
+            <td colspan="2">
                 <?php if ($pri['pri_comportamiento'] == 1) echo "Comportamiento humano" ?>
                 <?php if ($pri['pri_comportamiento'] == 2) echo "Vehiculo seguro" ?>
                 <?php if ($pri['pri_comportamiento'] == 3) echo "Infraestructura segura" ?>
                 <?php if ($pri['pri_comportamiento'] == 4) echo "Atencion a victimas" ?>
             </td>
-            <td colspan="2" >
+            <td  >
                 <?php if ($pri['tipRie_id'] == 1) echo "ALTO"; ?>
                 <?php if ($pri['tipRie_id'] == 2) echo "MEDIO"; ?>
                 <?php if ($pri['tipRie_id'] == 3) echo "BAJO"; ?>
             </td>
             <td align="center"><?php
-                if (!empty($pri['pri_peaton'])) {
-                    echo "X";
+                if ($pri['pri_peaton'] == 1) {
+                    echo "SI";
                 } else {
-                    echo "O";
+                    echo "NO";
                 }
                 ?></td>
             <td align="center"><?php
-                if (!empty($pri['pri_pasajero'])) {
-                    echo "X";
+                if ($pri['pri_pasajero'] == 1) {
+                    echo "SI";
                 } else {
-                    echo "O";
+                    echo "NO";
                 }
                 ?></td>
             <td align="center"><?php
-            if (!empty($pri['pri_conductor'])) {
-                echo "X";
+            if ($pri['pri_conductor'] == 1) {
+                echo "SI";
             } else {
-                echo "O";
+                echo "NO";
             }
             ?></td>
         </tr>

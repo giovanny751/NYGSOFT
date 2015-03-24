@@ -462,7 +462,7 @@
                                         <label>Riesgo</label>
                                         <textarea class="form-control" name="riesgoprincipal[]" id="riesgoprincipal"><?php echo $prioridad['pri_riesgo']?></textarea>
                                     </div>
-                                    <div class=" col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                                    <div class=" col-lg-4 col-sm-4 col-xs-4 col-md-4">
                                         <label>Eje Afectado</label>
                                         <select class="form-control eje" name="comportamiento[]" placeholder="Prioridad">
                                             <option value="">-Seleccionar-</option>
@@ -483,7 +483,7 @@
                                                 if($ries['tipRie_id'] == $prioridad['tipRie_id'])$select = "selected";
                                                 else $select = "";
                                                 ?>
-                                                <option value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
+                                            <option <?php echo $select; ?> value="<?php echo $ries['tipRie_id']; ?>"><?php echo $ries['tipRie_nombre']; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -508,7 +508,7 @@
                                             <option <?php if($prioridad['pri_conductor'] == 2)echo "selected"; ?> value="2">NO</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                                         <label>Responsable</label>
                                         <input type="text" name="responsable[]" class="form-control" value="<?php echo $prioridad['pri_responsable']; ?>">
                                     </div>

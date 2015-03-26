@@ -182,7 +182,7 @@ function pdf($html = null, $logo = null, $nombre = null,$estadistica,$itiniere,$
     $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', '6'));
     $pdf->AddPage();
     $pdf->writeHTML($html, true, false, true, false, '');
-    $pdf->AddPage();
+//    $pdf->AddPage();
     $pdf->SetFillColor(0, 0, 0);
     $pdf->Write(10, '                                                                  ARL');
 //    echo $estadistica[0]->arlnula;die;
@@ -200,7 +200,7 @@ function pdf($html = null, $logo = null, $nombre = null,$estadistica,$itiniere,$
     $r2=  round($r2);
     $r3=  round($r3);
     $xc1 = 105;
-    $yc1 = 100;
+    $yc1 = 120;
     $r11 = 50;
     $pdf->SetFillColor(0, 0, 255);
     $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);

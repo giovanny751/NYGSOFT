@@ -1,38 +1,23 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <?php
 $contenido = array('INTRODUCCIÓN', 'OBJETIVOS', 'Objetivos generales', 'Objetivos especificos', 'OBJETIVOS POR LINEA DE ACCION DEL PESV',
     'COMPROMISO DE LA ALTA DIRECCIÓN', 'RESPONSABLE DEL PESV', 'COMITE DE SEGURIDAD VÌAL', 'COMUNICACIÒN',
-    'ESTADISTICAS', 'POLÍTICA DE SEGURIDAD VIAL', 'DIAGNOSTICO', 'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS',
-    'PLAN DE ACCION');
+    'POLÍTICA DE SEGURIDAD VIAL', 'DIAGNOSTICO', 'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS',
+    'PLAN DE ACCION', 'ESTADISTICAS');
 
 $contenidomenu = array(
-    'INTRODUCCIÓN'=>array(), 
-    'OBJETIVOS'=>array('Objetivos generales', 'Objetivos especificos'), 
-    'OBJETIVOS POR LINEA DE ACCION DEL PESV'=>array(),
-    'COMPROMISO DE LA ALTA DIRECCIÓN'=>array(), 
-    'RESPONSABLE DEL PESV'=>array(), 
-    'COMITE DE SEGURIDAD VÌAL'=>array(), 
-    'COMUNICACIÒN'=>array(),
-    'ESTADISTICAS'=>array(), 
-    'POLÍTICA DE SEGURIDAD VIAL'=>array(), 
-    'DIAGNOSTICO'=>array(), 
-    'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS'=>array(),
-    'PLAN DE ACCION'=>array()
-    );
+    'INTRODUCCIÓN' => array(),
+    'OBJETIVOS' => array('Objetivos generales', 'Objetivos especificos'),
+    'OBJETIVOS POR LINEA DE ACCION DEL PESV' => array(),
+    'COMPROMISO DE LA ALTA DIRECCIÓN' => array(),
+    'RESPONSABLE DEL PESV' => array(),
+    'COMITE DE SEGURIDAD VÌAL' => array(),
+    'COMUNICACIÒN' => array(),
+    'ESTADISTICAS' => array(),
+    'POLÍTICA DE SEGURIDAD VIAL' => array(),
+    'DIAGNOSTICO' => array(),
+    'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS' => array(),
+    'PLAN DE ACCION' => array()
+);
 
 //echo "<pre>";
 //var_dump($contenidomenu);die;
@@ -40,10 +25,26 @@ $contenidomenu = array(
 $i = 0;
 ?>
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!--<br><b>LOGO DE LA EMPRESA:</b>--> 
 <?php if (!empty($empresa[0]->userfile)) { ?>
 
-<div align="center"><img class="img_cl"  src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" ></div>
+    <div align="center"><img class="img_cl"  src="<?php echo base_url('/uploads/') . "/" . $empresa[0]->userfile ?>" ></div>
 <?php }
 ?>
 
@@ -66,27 +67,48 @@ $i = 0;
 <span class="salto"></span>
 
 <h2>CONENIDO</h2>
+<ul>
+    <?php
+    foreach ($contenidomenu as $padre => $nhijo) {
+        ?><li><?php echo $padre; ?></li><?php
+        if (!empty($nhijo)) {
+            ?><ul><?php
+                    foreach ($nhijo as $num => $hijo) {
+                        ?><li><?php echo $hijo; ?></li><?php
+                }
+                ?></ul><?php
+            }
+        }
+        ?>
+</ul>
+<p>
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>  
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>    
+<div><br></div>  
+<div><br></div>  
+<div><br></div>  
+<div><br></div>  
 
-<?php 
+<!--<span class="salto"></span>-->
 
-echo "<ul>";
-foreach($contenidomenu as $padre => $nhijo){
-    echo "<li>$padre</li>";
-    if(!empty($nhijo)){
-        echo "<ul>";
-    foreach($nhijo as $num => $hijo){
-        echo "<li>$hijo</li>";
-    }   
-    echo "</ul>";
-    }
-}
-echo "</ul>";
-
-?>
-
-
-
-<?php 
+<?php
 //foreach ($contenido as $value) {
 //    $con=substr($value,0,2);
 //    if(ctype_upper($con)){
@@ -99,12 +121,12 @@ echo "</ul>";
 //}
 ?>
 
-<span class="salto"></span>
+
 <!----INTRODUCCIÓN<-->
-<h2 class="principal"><?php echo $contenido[$i++] ?></h2>
+<h2><?php echo $contenido[$i++] ?></h2>
 <?php
 if (!empty($introduccion[0]['int_introduccion'])) {
-    echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
+    ?><div><?php echo $introduccion[0]['int_introduccion']; ?></div><?php
 //    echo "<div >" . $introduccion[0]['int_introduccion'] . "</div>";
 }
 ?>
@@ -118,12 +140,12 @@ foreach ($general as $gen):
     ?>
     <div><?php echo utf8_encode($gen['objGen_objetivo']) ?></div>
 <?php endforeach; ?>
-    <!----Objetivos especificos-->
+<!----Objetivos especificos-->
 <h3><?php echo $contenido[$i++] ?></h3>
 <?php foreach ($especificos as $esp) { ?>
     <div><?php echo utf8_encode($esp['objEsp_objetivo']) ?></div>
 <?php } ?>
-   <span class="salto"></span> 
+<span class="salto"></span> 
 <!----Objetivos por linea de accion del PESV-->
 <h3><?php echo $contenido[$i++] ?></h3>
 <?php
@@ -184,25 +206,14 @@ endforeach;
 <p><?php if (!empty($comunicacion[0]['com_comunicacion'])) echo $comunicacion[0]['com_comunicacion'] ?></p>
 <span class="salto"></span>
 <div>&nbsp;</div>
-<!----ESTADISTICAS-->
-<h2><?php echo $contenido[$i++] ?></h2>
-
-<p>
-
-</p>
-
-<span class="salto"></span>
-<div>&nbsp;</div>
 <h2><?php echo $contenido[$i++] ?></h2>
 <?php
 if (!empty($politicas[0]['pol_politica'])) {
     echo "<div>" . $politicas[0]['pol_politica'] . "</div>";
 }
 ?>
-<br>
 <span class="salto"></span>
-<p>
-<!----DIAGNOSTICO-->
+    <!----DIAGNOSTICO-->
 <h2><?php echo $contenido[$i++] ?></h2>
 <span><?php echo $diagnostico[0]['texDia_texto']; ?></span>
 <span class="salto"></span>
@@ -255,19 +266,19 @@ foreach ($prioridades as $pri) {
                 }
                 ?></td>
             <td align="center"><?php
-            if ($pri['pri_conductor'] == 1) {
-                echo "SI";
-            } else {
-                echo "NO";
-            }
-            ?></td>
+                if ($pri['pri_conductor'] == 1) {
+                    echo "SI";
+                } else {
+                    echo "NO";
+                }
+                ?></td>
         </tr>
         <tr>
             <td colspan="6"><b>Responsable</b></td>
         </tr>
         <tr>
             <td colspan="6" align="justify">
-    <?php echo $pri['pri_responsable'] ?>
+                <?php echo $pri['pri_responsable'] ?>
             </td>
         </tr>
         <tr>
@@ -275,7 +286,7 @@ foreach ($prioridades as $pri) {
         </tr>
         <tr>
             <td colspan="6" align="justify">
-    <?php if (!empty($pri['pri_descripcion'])) echo $pri['pri_descripcion'] ?>
+                <?php if (!empty($pri['pri_descripcion'])) echo $pri['pri_descripcion'] ?>
             </td>
         </tr>
         <tr>
@@ -283,7 +294,7 @@ foreach ($prioridades as $pri) {
         </tr>
         <tr>
             <td colspan="6" align="justify">
-    <?php if (!empty($pri['pri_estrategia'])) echo $pri['pri_estrategia'] ?>
+                <?php if (!empty($pri['pri_estrategia'])) echo $pri['pri_estrategia'] ?>
             </td>
         </tr>
     </table>  <br><br><br>
@@ -315,11 +326,16 @@ foreach ($cronograma as $semestre => $eje) {
         if ($eje == 4)
             echo "<h3>Atencion a victimas</h3>";
         foreach ($num as $cronogra) {
-            echo $cronogra."";
+            echo $cronogra . "";
         }
     }
 }
 ?>
+<span class="salto"></span>
+
+<!----ESTADISTICAS-->
+<h2><?php echo $contenido[$i++] ?></h2>
+
 
 <style>
     .ano{

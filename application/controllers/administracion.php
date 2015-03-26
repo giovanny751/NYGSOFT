@@ -441,7 +441,7 @@ class Administracion extends My_Controller {
         $html=str_replace("style=", 's=', $html);
         $html=str_replace("width=", 'w=', $html);
 //        echo $html;die();
-        pdf($html, $logo,$nombre);
+        pdf($html, $logo,$nombre,$this->data['estadistica'],$this->data['itiniere'],$this->data['tipotransporte']);
     }
 
     function eliminar() {

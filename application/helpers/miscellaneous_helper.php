@@ -150,8 +150,8 @@ function max_folio($id) {
     return $datos[0]->consecutivo;
 }
 
-function pdf($html = null, $logo = null, $nombre = null) {
-//    echo $html;
+function pdf($html = null, $logo = null, $nombre = null,$estadistica,$itiniere,$transporte) {
+//$html= utf8_decode($html);
 //    $html="OOOJHKJHKJH JLH KJH KH KJH";
     ob_clean();
 // create new PDF document
@@ -181,8 +181,175 @@ function pdf($html = null, $logo = null, $nombre = null) {
     //$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
     $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', '6'));
     $pdf->AddPage();
-//$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
     $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->AddPage();
+    $pdf->SetFillColor(0, 0, 0);
+    $pdf->Write(10, '                                                                  ARL');
+//    echo $estadistica[0]->arlnula;die;
+//   GRAFICA No 1
+    $xc = $estadistica[0]->arlnula;
+    $yc = $estadistica[0]->arlsi;
+    $r = $estadistica[0]->arlno;
+//echo "<pre>";
+//    var_dump($estadistica);die();
+    $total=$xc+$yc+$r;
+    $r1=($xc*360)/$total;
+    $r2=($yc*360)/$total;
+    $r3=($r*360)/$total;
+    $r1=  round($r1);
+    $r2=  round($r2);
+    $r3=  round($r3);
+    $xc1 = 105;
+    $yc1 = 100;
+    $r11 = 50;
+    $pdf->SetFillColor(0, 0, 255);
+    $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(0, 255, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r1, $r2+$r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(255, 0, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r2+$r1, 0, 'FD', false, 0, 2);
+    
+        $pdf->SetTextColor(0,0,255);
+    $pdf->Text(150, 150, 'NO CONTESTADAS: '.$xc);
+    $pdf->SetTextColor(0,255,0);
+    $pdf->Text(150, 155, 'SI: '.$yc);
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Text(150, 160, 'NO: '.$r);
+    
+        $pdf->AddPage();
+    
+//----------------------------------------------------------------
+//   GRAFICA No 2
+    $pdf->SetTextColor(0,0,0);
+        $pdf->Write(10, '                                                             PENSION');
+    $xc = $estadistica[0]->pensionnula;
+    $yc = $estadistica[0]->pensionsi;
+    $r = $estadistica[0]->pensionno;
+
+    $total=$xc+$yc+$r;
+    $r1=($xc*360)/$total;
+    $r2=($yc*360)/$total;
+    $r3=($r*360)/$total;
+    $r1=  round($r1);
+    $r2=  round($r2);
+    $r3=  round($r3);
+    $xc1 = 105;
+    $yc1 = 100;
+    $r11 = 50;
+    $pdf->SetFillColor(0, 0, 255);
+    $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(0, 255, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r1, $r2+$r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(255, 0, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r2+$r1, 0, 'FD', false, 0, 2);
+    
+        $pdf->SetTextColor(0,0,255);
+    $pdf->Text(150, 150, 'NO CONTESTADAS: '.$xc);
+    $pdf->SetTextColor(0,255,0);
+    $pdf->Text(150, 155, 'SI: '.$yc);
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Text(150, 160, 'NO: '.$r);
+        $pdf->AddPage();
+//----------------------------------------------------------------
+//   GRAFICA No 3
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Write(10, '                                                                 EPS');
+    $xc = $estadistica[0]->epsnula;
+    $yc = $estadistica[0]->epssi;
+    $r = $estadistica[0]->epsno;
+
+    $total=$xc+$yc+$r;
+    $r1=($xc*360)/$total;
+    $r2=($yc*360)/$total;
+    $r3=($r*360)/$total;
+    $r1=  round($r1);
+    $r2=  round($r2);
+    $r3=  round($r3);
+    $xc1 = 105;
+    $yc1 = 100;
+    $r11 = 50;
+    $pdf->SetFillColor(0, 0, 255);
+    $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(0, 255, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r1, $r2+$r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(255, 0, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r2+$r1, 0, 'FD', false, 0, 2);
+    
+        $pdf->SetTextColor(0,0,255);
+    $pdf->Text(150, 150, 'NO CONTESTADAS: '.$xc);
+    $pdf->SetTextColor(0,255,0);
+    $pdf->Text(150, 155, 'SI: '.$yc);
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Text(150, 160, 'NO: '.$r);
+        $pdf->AddPage();
+//----------------------------------------------------------------
+//   GRAFICA No 4
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Write(10, '                                                  CAJA DE COMPENSACIÓN');
+    $xc = $estadistica[0]->cajacompensacionnula;
+    $yc = $estadistica[0]->cajacompensacionsi;
+    $r = $estadistica[0]->cajacompensacionno;
+
+    $total=$xc+$yc+$r;
+    $r1=($xc*360)/$total;
+    $r2=($yc*360)/$total;
+    $r3=($r*360)/$total;
+    $r1=  round($r1);
+    $r2=  round($r2);
+    $r3=  round($r3);
+    $xc1 = 105;
+    $yc1 = 100;
+    $r11 = 50;
+    $pdf->SetFillColor(0, 0, 255);
+    $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(0, 255, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r1, $r2+$r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(255, 0, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r2+$r1, 0, 'FD', false, 0, 2);
+    
+        $pdf->SetTextColor(0,0,255);
+    $pdf->Text(150, 150, 'NO CONTESTADAS: '.$xc);
+    $pdf->SetTextColor(0,255,0);
+    $pdf->Text(150, 155, 'SI: '.$yc);
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Text(150, 160, 'NO: '.$r);
+        $pdf->AddPage();
+//----------------------------------------------------------------
+//   GRAFICA No 5
+        $pdf->SetTextColor(0,0,0);
+        $pdf->Write(10, '                                              DESPLAZAMIENTO EN MISIÓN');
+    $xc = $estadistica[0]->usu_desplazamiento_misionnula;
+    $yc = $estadistica[0]->usu_desplazamiento_misionsi;
+    $r = $estadistica[0]->usu_desplazamiento_misionno;
+    
+
+    $total=$xc+$yc+$r;
+    $r1=($xc*360)/$total;
+    $r2=($yc*360)/$total;
+    $r3=($r*360)/$total;
+    $r1=  round($r1);
+    $r2=  round($r2);
+    $r3=  round($r3);
+    $xc1 = 105;
+    $yc1 = 100;
+    $r11 = 50;
+    $pdf->SetFillColor(0, 0, 255);
+    $pdf->PieSector($xc1, $yc1, $r11, 0, $r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(0, 255, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r1, $r2+$r1, 'FD', false, 0, 2);
+    $pdf->SetFillColor(255, 0, 0);
+    $pdf->PieSector($xc1, $yc1, $r11, $r2+$r1, 0, 'FD', false, 0, 2);
+    
+        $pdf->SetTextColor(0,0,255);
+    $pdf->Text(150, 150, 'NO CONTESTADAS: '.$xc);
+    $pdf->SetTextColor(0,255,0);
+    $pdf->Text(150, 155, 'SI: '.$yc);
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Text(150, 160, 'NO: '.$r);
+       
+//    $pdf->Write(0, 'Example of PieSector() method.');
+//$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+    
 //    $pdf->writeHTMLCell(1, 1, '', '', $html, 0, 1, 0, true, '', true);
     $pdf->Output('pesv.pdf', 'I');
 }

@@ -90,7 +90,7 @@
 <!--<script src="<?= base_url('js/jquery-ui.min.js') ?>" type="text/javascript"></script>-->
 <script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>
 <link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url('img/nygsoft.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
+<link href="<?php echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
 <script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
@@ -241,8 +241,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 <footer class="footer">
     <div class="row" style="">
         <div class="container">
-            <div class="col-md-8 col-lg-8 col-sm-8 col-sx-8"><p class="text-muted">Copyright Â© <?php echo date("Y"); ?> texto - Nygsoft.com</p></div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('img/nygsoft.jpg'); ?>" style="width: 70px"></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><img src="<?php echo base_url('uploads/FinalG22.jpg'); ?>" style="width: 70px"></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 79%;height: 16%"></a></div>
         </div>  
     </div>  
 </footer>

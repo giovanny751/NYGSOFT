@@ -18,20 +18,20 @@ if ($contador == 0) {
     foreach ($i as $tipo => $preguntaopcion) {
         echo "<div class='table-responsive'>
             <table class='table table-responsive table-striped table-bordered'>";
-        echo "<tr><td colspan='4' align='center'><b>" . $tipo . "</b></td></tr>";
+        echo "<tr ><td colspan='4' align='center' class='alert alert-info'><b>" . $tipo . "</b></td></tr>";
         foreach ($preguntaopcion as $opcion => $opcionpregunta) {
             
-            echo "<tr><td  style='width:85%'><b>" . $opcion . "</b></td>
-                <td style='width:5%' align='center'><b>".$primero."</b></td>
-                <td style='width:5%' align='center'><b>".$segundo."</b></td>
-                <td style='width:5%' align='center'><b>".$tercero."</b></td>
+            echo "<tr style='background-color:#7CACFA;color:white'><td  style='width:85%;background-color:#7CACFA;color:white'><b>" . $opcion . "</b></td>
+                <td style='width:5%;background-color:#7CACFA;color:white' align='center'><b>".$primero."</b></td>
+                <td style='width:5%;background-color:#7CACFA;color:white' align='center'><b>".$segundo."</b></td>
+                <td style='width:5%;background-color:#7CACFA;color:white' align='center'><b>".$tercero."</b></td>
                 </tr>";
             foreach ($opcionpregunta as $id => $pregunta) {
                 
-                echo "<tr><td>" . $pregunta . "</td><td>
-                    <input type='checkbox' value='".$id."'  name='si[]' class='form-control seleccionado' ></td>
-                    <td><input type='checkbox' value='".$id."' name='no[]' class='form-control seleccionado' ></td>
-                    <td><input type='checkbox' value='".$id."' name='na[]' class='form-control seleccionado' ></td>
+                echo "<tr><td>" . $pregunta . "</td><td  align='center'>
+                    <input type='checkbox' value='".$id."'  name='si[]' class='seleccionado' ></td>
+                    <td align='center' ><input type='checkbox' value='".$id."' name='no[]' class='seleccionado' ></td>
+                    <td align='center'><input type='checkbox' value='".$id."' name='na[]' class='seleccionado' ></td>
                     </tr>";
             }
         }

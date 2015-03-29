@@ -72,7 +72,7 @@ class Ingresoform_model extends CI_Model {
             $data = $_GET['search']['value'];
             $sWhere = " AND (";
             for ($i = 0; $i < count($aColumns2); $i++) {
-                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . mysql_real_escape_string($data) . '%' . "' OR ";
+                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . ($data) . '%' . "' OR ";
             }
             $sWhere = substr_replace($sWhere, "", -3);
             $sWhere .= ')';
@@ -197,7 +197,7 @@ class Ingresoform_model extends CI_Model {
             $data = $_GET['search']['value'];
             $sWhere = " AND (";
             for ($i = 0; $i < count($aColumns2); $i++) {
-                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . mysql_real_escape_string($data) . '%' . "' OR ";
+                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . ($data) . '%' . "' OR ";
             }
             $sWhere = substr_replace($sWhere, "", -3);
             $sWhere .= ')';
@@ -286,7 +286,7 @@ class Ingresoform_model extends CI_Model {
         if ($id != null)
             $rWhere = "where est_id<>3 and usu_tipo<>2 and usu_tipo<>0 and user.emp_id=" . $id . " ";
         else
-            $rWhere = "where ust_id<>3 and usu_tipo<>2 and  usu_tipo<>0 and";
+            $rWhere = "where est_id<>3 and usu_tipo<>2 and  usu_tipo<>0 ";
 
         $aColumns2 = array();
         foreach ($aColumns as $aColumn) {
@@ -318,7 +318,7 @@ class Ingresoform_model extends CI_Model {
             $data = $_GET['search']['value'];
             $sWhere = " AND (";
             for ($i = 0; $i < count($aColumns2); $i++) {
-                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . mysql_real_escape_string($data) . '%' . "' OR ";
+                $sWhere .= $aColumns2[$i] . " LIKE '" . '%' . ($data) . '%' . "' OR ";
             }
             $sWhere = substr_replace($sWhere, "", -3);
             $sWhere .= ')';

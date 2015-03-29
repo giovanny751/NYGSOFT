@@ -1,22 +1,23 @@
 <?php
-$contenido = array('INTRODUCCIÓN', 'OBJETIVOS', 'Objetivos generales', 'Objetivos especificos', 'OBJETIVOS POR LINEA DE ACCION DEL PESV',
-    'COMPROMISO DE LA ALTA DIRECCIÓN', 'RESPONSABLE DEL PESV', 'COMITE DE SEGURIDAD VÌAL', 'COMUNICACIÒN',
-    'POLÍTICA DE SEGURIDAD VIAL', 'DIAGNOSTICO', 'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS',
+$contenido = array('INTRODUCCION', 'OBJETIVOS', 'Objetivos generales', 'Objetivos especificos', 'OBJETIVOS POR LINEA DE ACCION DEL PESV',
+    'COMPROMISO DE LA ALTA DIRECCION', 'RESPONSABLE DEL PESV', 'COMITE DE SEGURIDAD VIAL', 'COMUNICACION',
+    'POLITICA DE SEGURIDAD VIAL', 'DIAGNOSTICO', 'IDENTIFICACION  DE  PRIORIDADES  DE RIESGOS',
     'PLAN DE ACCION', 'ESTADISTICAS');
 
 $contenidomenu = array(
-    'INTRODUCCIÓN' => array(),
+    'INTRODUCCION' => array(),
     'OBJETIVOS' => array('Objetivos generales', 'Objetivos especificos'),
     'OBJETIVOS POR LINEA DE ACCION DEL PESV' => array(),
-    'COMPROMISO DE LA ALTA DIRECCIÓN' => array(),
+    'COMPROMISO DE LA ALTA DIRECCION' => array(),
     'RESPONSABLE DEL PESV' => array(),
-    'COMITE DE SEGURIDAD VÌAL' => array(),
-    'COMUNICACIÒN' => array(),
+    'COMITE DE SEGURIDAD VIAL' => array(),
+    'POLITICA DE SEGURIDAD VIAL' => array(),
+    'COMUNICACION' => array(),
     'ESTADISTICAS' => array(),
-    'POLÍTICA DE SEGURIDAD VIAL' => array(),
     'DIAGNOSTICO' => array(),
-    'IDENTIFICACIÓN  DE  PRIORIDADES  DE RIESGOS' => array(),
-    'PLAN DE ACCION' => array()
+    'IDENTIFICACION  DE  PRIORIDADES  DE RIESGOS' => array(),
+    'PLAN DE ACCION' => array(),
+
 );
 
 //echo "<pre>";
@@ -66,7 +67,7 @@ $i = 0;
 <h4 class="ano"><?php echo date('Y'); ?></h4>
 <span class="salto"></span>
 
-<h2>CONENIDO</h2>
+<h2>CONTENIDO</h2>
 <ul>
     <?php
     foreach ($contenidomenu as $padre => $nhijo) {

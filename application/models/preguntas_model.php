@@ -45,6 +45,7 @@ class Preguntas_model extends CI_Model {
         $this->db->where('pre_estado !=',2);
         $this->db->where('tipo_pregunta.tipUsu_id',$tipo);
         $this->db->select('preguntas.pre_id,tipo_pregunta.tipPre_id,opcion_pregunta.opcPre_id,tipo_pregunta.tipPre_tipo,opcion_pregunta.opcPre_opcion,preguntas.pre_pregunta');
+        $this->db->order_by('tipo_pregunta.tipUsu_orden','asc');
         $this->db->join('tipo_pregunta','tipo_pregunta.tipPre_id = preguntas.tipPre_id'); 
         $this->db->join('opcion_pregunta','preguntas.opcPre_id = opcion_pregunta.opcPre_id'); 
         $preguntas = $this->db->get('preguntas');

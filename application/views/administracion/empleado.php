@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 <?php // echo $usuario[0]['gruTra_id'];die;    ?>
 <div class="widgetTitle">
-    <h5><i class="glyphicon glyphicon-ok"></i> ACTUALIZACIÃ“N DE DATOS</h5>
+    <h5><i class="glyphicon glyphicon-ok"></i> ACTUALIZACIÒN DE DATOS</h5>
 </div>
 <div class='well'>
     <form method="post" id="fusuario" action='<?php echo base_url('index.php/administracion/guardarempleado'); ?>' onsubmit="return obligatorio('1')">
@@ -316,7 +316,7 @@
         <div class="row">
             <hr>
         </div>
-        <b>Si en alguno de los desplazamientos su rol es conductor conteste:</b>
+        <p class="bg-info"><b>Si en alguno de los desplazamientos su rol es conductor conteste:</b></p>
         <div class="row">
             <hr>
         </div>
@@ -432,7 +432,7 @@
         <div class="row">
             <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
                 <p class="alert alert-info" align="center">
-                    Principales factores de riesgo con los que se encuentra (tanto en mision como ida y vuelta al domicilio)
+                    Se&ntilde;ale los principales factores de riesgo con los que se encuentra      (En trayectos in itinere  o  misi&oacute;n)
                 </p>
                 <div class="table-responsive ">
                     <table class="table table-responsive table-striped table-bordered" >
@@ -452,7 +452,9 @@
                 </div>
             </div>
             <div  class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-                <p class="alert alert-info"  align="center">Causas que motivan riesgo</p>
+                <p class="alert alert-info"  align="center">
+                    Se&ntilde;ale las principales causas potenciales de riesgos  (En trayectos in itinere  o  misi&oacute;n)
+                </p>
                 <div class="table-responsive ">
                     <table class="table table-responsive table-striped table-bordered">
                         <?php

@@ -230,19 +230,20 @@
                 <label> Examenes Medicos</label>
                 <input type="checkbox" name="emp_examenesMedicos"  value="1" id="emp_examenesMedicos"  <?php echo ((($empresa[0]->emp_examenesMedicos) == 1) ? 'checked="checked"' : ''); ?>>
             </div>
-            <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
+                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2" align="center">
+                <label>Examenes psicosensometricos</label>
+                <input type="checkbox" name="emp_examenesPsicosensometricos" id="emp_examenesPsicosensometricos" value="1" <?php echo ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? 'checked="checked"' : ''); ?>>
+            </div>
+            <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1" align="center">
                 <label>Prueba Teorica</label>
                 <input type="checkbox" name="emp_pruebasTeoricas" value="1" id="emp_pruebasTeoricas"  <?php echo ((($empresa[0]->emp_pruebasTeoricas) == 1) ? 'checked="checked"' : 'dddd'); ?>>
             </div>
-            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
-                <label>Examentes psocosensometricos</label>
-                <input type="checkbox" name="emp_examenesPsicosensometricos" id="emp_examenesPsicosensometricos" value="1" class="form-control " <?php echo ((($empresa[0]->emp_examenesPsicosensometricos) == 1) ? 'checked="checked"' : ''); ?>>
-            </div>
-            <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1">
-                <label>Prueba tactica</label>
+
+            <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1" align="center">
+                <label>Prueba practica</label>
                 <input type="checkbox" name="emp_pruebaTactica" id="emp_pruebaTactica"  value="1" <?php echo ((($empresa[0]->emp_pruebaTactica) == 1) ? 'checked="checked"' : ''); ?>>
             </div>
-            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
+            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3" align="center">
                 <label>¿realiza capacitacion en seguridad vial?</label>
                 <select name="emp_capacitaPruebaVial"  id="emp_capacitaPruebaVial" class="form-control">
                     <option value="">-Seleccionar-</option>

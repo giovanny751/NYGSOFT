@@ -205,7 +205,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena'); ?>">Cambiar ContraseÃ±a</a></li>
+                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena'); ?>">Cambiar Contraseña</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url('index.php/login/logout'); ?>">Cerrar sesion</a></li>
                     </ul>

@@ -147,16 +147,16 @@
             <!--<div class="row">-->
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Propios</label>
-                    <input type="text" name="emp_vehiculosPropios" value="<?php echo $empresa[0]->emp_vehiculosPropios; ?>" id="emp_vehiculosPropios" disabled="disabled" class="form-control obligatorio">
+                    <input type="text" name="emp_vehiculosPropios" value="<?php echo $empresa[0]->emp_vehiculosPropios; ?>" id="emp_vehiculosPropios" disabled="disabled" class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Contratistas</label>
-                    <input type="text" name="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" id="emp_vehiculosContratados" disabled="disabled"  class="form-control obligatorio">
+                    <input type="text" name="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" id="emp_vehiculosContratados" disabled="disabled"  class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Administrados</label>
 
-                    <input type="text" name="emp_numeroVehiculoAdministra" value="<?php echo $empresa[0]->emp_numeroVehiculoAdministra; ?>" id="emp_numeroVehiculoAdministra" disabled="disabled" class="form-control obligatorio">
+                    <input type="text" name="emp_numeroVehiculoAdministra" value="<?php echo $empresa[0]->emp_numeroVehiculoAdministra; ?>" id="emp_numeroVehiculoAdministra" disabled="disabled" class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Total</label><input disabled="disabled" type="text"  value="<?php echo $totalvehiculos[0]->total; ?>"  class="form-control">
@@ -170,15 +170,15 @@
             <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Propios</label>
-                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control obligatorio">
+                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Contratistas</label>
-                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control obligatorio">
+                    <input type="text" name="emp_numActConductores" value="<?php echo $empresa[0]->emp_numActConductores; ?>" id="emp_numActConductores" disabled="disabled" class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Administrados</label>
-                    <input type="text" name="emp_numActConductoresAdministra" value="<?php echo $empresa[0]->emp_numActConductoresAdministra; ?>" id="emp_numActConductoresAdministra" disabled="disabled" class="form-control obligatorio">
+                    <input type="text" name="emp_numActConductoresAdministra" value="<?php echo $empresa[0]->emp_numActConductoresAdministra; ?>" id="emp_numActConductoresAdministra" disabled="disabled" class="form-control ">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Total</label><input disabled="disabled" type="text" value="<?php echo $conductores[0]->total; ?>"  class="form-control">

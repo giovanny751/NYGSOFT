@@ -20,9 +20,15 @@
             <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                 <label>Tipo de Empresa</label>
                 <select name="emp_idTipo"  id="emp_idTipo" class="form-control">
-                    <option value="">-Seleccionar-</option>
-                    <option value="2" <?php echo ((($empresa[0]->emp_idTipo) == 2) ? "selected='selected'" : ""); ?> >NO</option>
-                    <option value="1" <?php echo ((($empresa[0]->emp_idTipo) == 1) ? "selected='selected'" : ""); ?> >SI</option>
+                    <?php
+                    foreach ($tipo_empresa as $tipo) {
+                        if ($empresa[0]->emp_idTipo == $tipo->tipEmp_id)
+                            $select = 'selected';
+                        else
+                            $select = '';
+                        ?>
+                        <option <?php echo $select; ?> value="<?php echo $tipo->tipEmp_id; ?>"><?php echo $tipo->tipEmp_nombre; ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
@@ -145,7 +151,6 @@
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
                     <label>Contratistas</label>
-                    <!--<input type="text" class="form-control obligatorio" id="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" name="emp_vehiculosContratados">-->
                     <input type="text" name="emp_vehiculosContratados" value="<?php echo $empresa[0]->emp_vehiculosContratados; ?>" id="emp_vehiculosContratados" disabled="disabled"  class="form-control obligatorio">
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3">
@@ -295,7 +300,7 @@
     });
     function arl(){
         var desp = $('#emp_idArl').val();
-        if (desp == 2) {
+        if (desp == 2 || desp == "") {
             $('#emp_Arl_otra').attr('disabled', true);
             if (($('#emp_Arl_otra').val()) != "")
                 datos = $('#emp_Arl_otra').val();
@@ -309,6 +314,26 @@
         }
     }
     arl();
+    $('#emp_sucursal').change(function() {
+        emp_sucursal();
+    });
+    function emp_sucursal(){
+        var desp = $('#emp_sucursal').val();
+        if (desp == 2 || desp == "") {
+            $('#emp_direccioSuc').attr('disabled', true);
+            if (($('#emp_direccioSuc').val()) != "")
+                datos = $('#emp_direccioSuc').val();
+            $('#emp_direccioSuc').val('');
+            $('#emp_direccioSuc').attr('class','form-control');
+        } else {
+            if(datos!="")
+            $('#emp_direccioSuc').val(datos);
+            $('#emp_direccioSuc').attr('class','form-control obligatorio');
+            $('#emp_direccioSuc').attr('disabled', false);
+        }
+    }
+    emp_sucursal();
+    
     $('#emp_ingresoConductores').change(function(e) {
         activar()
     });

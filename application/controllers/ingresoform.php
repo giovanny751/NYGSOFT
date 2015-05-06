@@ -31,7 +31,7 @@ class Ingresoform extends My_Controller {
             $this->data['conductores'] = $this->Ingresoform_model->totalconductores($this->data['id']);
 //            echo "<pre>";
 //            var_dump($this->data['totalvehiculos']);die;
-            $this->data['tipo_empresa'] = get_dropdown($this->Ingresoform_model->tipo_empresa(), 'tipEmp_id', 'tipEmp_nombre');
+            $this->data['tipo_empresa'] = $this->Ingresoform_model->tipo_empresa();
             $this->layout->view('ingresoform/empresa', $this->data);
         } else {
             redirect('index.php/presentacion/principal', 'location');
